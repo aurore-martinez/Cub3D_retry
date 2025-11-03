@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 12:09:02 by eieong            #+#    #+#             */
-/*   Updated: 2025/10/30 15:46:42 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/03 14:21:39 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ void	clean_game(t_game *game)
 	if (game->elements.path_east)
 		free(game->elements.path_east);
 	if (game->map)
-		ft_freetab(game->map);
+		free_split(game->map);
 	free(game);
 }

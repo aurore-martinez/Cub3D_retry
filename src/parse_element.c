@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 11:47:22 by eieong            #+#    #+#             */
-/*   Updated: 2025/10/31 16:01:16 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/03 14:21:39 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static int	count_split_elem(char **split_tab)
 
 static void	proper_free_split(char **split_line)
 {
-	ft_freetab(split_line);
+	free_split(split_line);
 	split_line = NULL;
 }
 
