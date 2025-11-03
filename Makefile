@@ -173,7 +173,7 @@ fclean: clean
 	@echo "$(YELLOW)🧼 Nettoyage complet fclean en cours...$(RESET)\r"
 	@$(RM) $(NAME)
 	@$(MAKE) $(LIB_DIR) fclean
-	@$(MAKE) $(MLX_DIR) clean
+	@$(MAKE) $(MLX_DIR) clean > /dev/null 2>&1
 	@echo -e "$(CLEAR_LINE) Nettoyage complet fclean réussi (✔)"
 
 re: fclean all
