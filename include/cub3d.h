@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/10/31 15:46:17 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/03 13:32:05 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../libft/include/libft.h"
-# include "../libft/include/ft_fprintf.h"
-# include "../libft/include/get_next_line_bonus.h"
+# include "../lib/ft_printf/ft_printf.h"
+# include "../lib/gnl/get_next_line_bonus.h"
+# include "../lib/libft/libft.h"
 # include <limits.h>
 # include <stdbool.h>
 # include <sys/types.h>
