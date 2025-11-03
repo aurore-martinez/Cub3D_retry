@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tjacquel <tjacquel@student.42.fr>          +#+  +:+       +#+         #
+#    By: eieong <eieong@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/09 07:11:04 by aumartin          #+#    #+#              #
-#    Updated: 2025/06/23 21:39:31 by tjacquel         ###   ########.fr        #
+#    Updated: 2025/11/03 14:28:01 by eieong           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,8 +58,9 @@ LIBFT		= libft/ft_atoi.c\
 		libft/ft_toupper.c
 PRINTF		= ft_printf/ft_printf.c ft_printf/ft_puthex.c ft_printf/ft_putnbr.c \
 	ft_printf/ft_puttxt.c
+FPRINTF		= ft_fprintf/ft_fprintf.c ft_fprintf/ft_fprintothers.c
 GNL			= gnl/get_next_line_bonus.c gnl/get_next_line_utils_bonus.c
-OBJS		= ${LIBFT:.c=.o} ${PRINTF:.c=.o} ${GNL:.c=.o}
+OBJS		= ${LIBFT:.c=.o} ${PRINTF:.c=.o} ${GNL:.c=.o} ${FPRINTF:.c=.o}
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
 RM			= rm -rf
