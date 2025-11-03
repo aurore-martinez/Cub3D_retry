@@ -69,7 +69,7 @@ SRC_DIR = src/
 # Fichiers sources (relatifs à SRC_DIR)
 
 
-SRC_FILES = main.c
+SRC_FILES = main.c \
 			check_map.c \
 			cleanup.c \
 			get_map.c \
