@@ -1,0 +1,17 @@
+#!/bin/bash
+
+GRIND=(valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all --track-fds=yes)
+BIN="./cub3d"
+MAPDIR="maps"
+
+MAPS=($(find "$MAPDIR" -type f -name "*.cub"))
+
+for map in "${MAPS[@]}"; do
+	echo
+	echo
+    echo "========== $map =========="
+	echo
+    "${GRIND[@]}" "$BIN" "$map"
+    echo
+	echo
+done

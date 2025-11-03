@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/03 14:29:17 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/03 17:39:38 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <unistd.h>
 # include <math.h>
 
+/* indices de carte */
 typedef struct s_pos
 {
 	int		x;
@@ -59,6 +60,27 @@ typedef struct s_game
 	int				height;
 }	t_game;
 
+/* coord reelles du player, rayons, direction */
+typedef struct s_dpos
+{
+	double	x;
+	double	y;
+}	t_dpos;
+
+/* ensemble des vecteurs camera / player */
+typedef struct s_player
+{
+	t_dpos	pos;	// position reelle dans la map
+	t_dpos	dir;	// dir
+	t_dpos	plane;	// plan camera pour champ de vision
+}	t_player;
+
+typedef struct s_data
+{
+
+}	t_data;
+
+\
 /* check_element.c */
 bool	split_the_line(t_game *game, char *line);
 
