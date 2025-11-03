@@ -134,6 +134,14 @@ $(LIB):
 	|| { echo -e "$(CLEAR_LINE)❌ Erreur : Compilation de la lib échouée (✘)"; exit 1; }
 
 $(MLX):
+	@echo "$(YELLOW) Vérification / clonage MiniLibX...$(RESET)\r"
+	@if [ ! -d "$(MLX_DIR)" ]; then \
+		echo "➡️ $(YELLOW) Clonage de la MiniLibX depuis GitHub..."; \
+		git clone --depth=1 https://github.com/42paris/minilibx-linux.git $(MLX_DIR) >/dev/null 2>&1 \
+		&& echo " MiniLibX clonée avec succès (✔)"; \
+	else \
+		echo " MiniLibX déjà présente, pas de clonage nécessaire (✔)"; \
+	fi
 	@echo "$(YELLOW) Compilation de MiniLibX...$(RESET)\r"
 	@$(MAKE) $(MLX_DIR) > /dev/null 2>&1 \
 	&& echo -e "$(CLEAR_LINE) Compilation mlx réussie (✔)" \
