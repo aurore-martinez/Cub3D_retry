@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 13:43:03 by eieong            #+#    #+#             */
-/*   Updated: 2025/10/31 15:37:56 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/03 17:27:32 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ static bool	init_game(t_game **game, char *filename)
 	if ((*game)->fd < 0)
 	{
 		perror("Error");
-		clean_game(*game);
-		return (false);
+		return (clean_game(*game, false));
 	}
 	return (true);
 }
@@ -57,11 +56,14 @@ int	main(int argc, char **argv)
 	if ((!check_filename(argv[1])) || !init_game(&game, argv[1]))
 		return (1);
 	if (!parse_game_info(game))
-		return (clean_game(game), 1);
+		return (clean_game(game, 1));
 	if (!check_map(game))
-		return (clean_game(game), 1);
+		return (clean_game(game, 1));
 	print_map(game->map);
 	// minilibx-raycasting-exec
-	clean_game(game);
+	if (!init_mlx(game))
+		return (clean_game(game, 1));
+	mlx_launch(game);
+	// clean_game(game, 0); //useless, mlx exit() when ESC or X
 	return (0);
 }

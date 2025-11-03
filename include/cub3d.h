@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/03 14:29:17 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/03 17:26:32 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../lib/ft_fprintf/ft_fprintf.h"
 # include "../lib/gnl/get_next_line_bonus.h"
 # include "../lib/libft/libft.h"
+# include "../minilibx/minilibx-linux/mlx.h"
 # include <limits.h>
 # include <stdbool.h>
 # include <sys/types.h>
@@ -26,6 +27,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <math.h>
+# include <X11/X.h>
+# include <X11/keysym.h>
+# include <X11/keysymdef.h>
 
 typedef struct s_pos
 {
@@ -57,7 +61,13 @@ typedef struct s_game
 	int				fd;
 	int				width;
 	int				height;
+	void			*mlx_ptr;
+	void			*win_ptr;
 }	t_game;
+
+/* mlx.c */
+void	mlx_launch(t_game *game);
+bool	init_mlx(t_game *game);
 
 /* check_element.c */
 bool	split_the_line(t_game *game, char *line);
@@ -67,7 +77,7 @@ bool	check_map(t_game *game);
 
 /* cleanup.c */
 void	gnl_clear(t_game *game, char *line);
-void	clean_game(t_game *game);
+int		clean_game(t_game *game, int ret);
 
 /* line_to_map.c */
 char	**line_to_map(t_game *game, char *line);

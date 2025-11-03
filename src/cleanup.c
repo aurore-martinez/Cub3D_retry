@@ -6,11 +6,22 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 12:09:02 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/03 14:21:39 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/03 17:26:38 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+static void	clean_mlx(t_game *game)
+{
+	if (game->win_ptr)
+		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+	if (game->mlx_ptr)
+	{
+		mlx_destroy_display(game->mlx_ptr);
+		free(game->mlx_ptr);
+	}
+}
 
 void	gnl_clear(t_game *game, char *line)
 {
@@ -22,7 +33,7 @@ void	gnl_clear(t_game *game, char *line)
 	free(line);
 }
 
-void	clean_game(t_game *game)
+int	clean_game(t_game *game, int ret)
 {
 	if (game->fd != -1)
 		close(game->fd);
@@ -36,5 +47,8 @@ void	clean_game(t_game *game)
 		free(game->elements.path_east);
 	if (game->map)
 		free_split(game->map);
+	clean_mlx(game);
 	free(game);
+	exit(ret);
+	return (ret);
 }
