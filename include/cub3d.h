@@ -6,13 +6,14 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/03 18:13:57 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/03 19:02:57 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+/* ==========================    📚 INCLUDE    ========================== */
 # include "../lib/ft_printf/ft_printf.h"
 # include "../lib/ft_fprintf/ft_fprintf.h"
 # include "../lib/gnl/get_next_line_bonus.h"
@@ -64,25 +65,25 @@ typedef struct s_vec
 	t_dpos	plane;	// plan camera pour champ de vision
 }	t_vec;
 
-typedef struct s_data
-{
-	t_game	map;
-	t_vec	player;
-	int		scr_w;
-	int		scr_h;
-}	t_data;
 
 typedef struct s_game
 {
 	t_element		elements;
 	char			**map;
-	t_pos			player;
+	t_pos			player; // spawn
 	int				player_char;
 	int				fd;
 	int				width;
 	int				height;
-	t_data			data;
 }	t_game;
+
+typedef struct s_data
+{
+	t_game	*game;
+	t_vec	player;
+	int		scr_w;
+	int		scr_h;
+}	t_data;
 
 \
 /* check_element.c */
@@ -114,5 +115,15 @@ void	exit_error(char *str);
 
 /* debug.c */
 void	print_map(char **map);
+
+/* ========================    🦄 PARSING    ======================== */
+
+/* ==============================    🛠️ UTILS    ============================ */
+
+/* ========================    🚧 DEBUG    ======================== */
+void	print_player(t_vec *p);
+
+/*  ======================== 🔦🦇 RAYCASTING ======================== */
+void	init_player_from_game(t_data *data);
 
 #endif
