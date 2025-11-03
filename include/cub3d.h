@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/03 17:39:38 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/03 18:13:57 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,29 @@ typedef struct s_element
 	//RGB floor & ceiling, check 42 doc
 }	t_element;
 
+/* coord reelles du player, rayons, direction */
+typedef struct s_dpos
+{
+	double	x;
+	double	y;
+}	t_dpos;
+
+/* ensemble des vecteurs camera = player */
+typedef struct s_vec
+{
+	t_dpos	pos;	// position reelle dans la map
+	t_dpos	dir;	// dir
+	t_dpos	plane;	// plan camera pour champ de vision
+}	t_vec;
+
+typedef struct s_data
+{
+	t_game	map;
+	t_vec	player;
+	int		scr_w;
+	int		scr_h;
+}	t_data;
+
 typedef struct s_game
 {
 	t_element		elements;
@@ -58,27 +81,8 @@ typedef struct s_game
 	int				fd;
 	int				width;
 	int				height;
+	t_data			data;
 }	t_game;
-
-/* coord reelles du player, rayons, direction */
-typedef struct s_dpos
-{
-	double	x;
-	double	y;
-}	t_dpos;
-
-/* ensemble des vecteurs camera / player */
-typedef struct s_player
-{
-	t_dpos	pos;	// position reelle dans la map
-	t_dpos	dir;	// dir
-	t_dpos	plane;	// plan camera pour champ de vision
-}	t_player;
-
-typedef struct s_data
-{
-
-}	t_data;
 
 \
 /* check_element.c */

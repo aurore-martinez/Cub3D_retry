@@ -1,8 +1,8 @@
 #!/bin/bash
 
 GRIND=(valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all --track-fds=yes)
-BIN="./cub3d"
-MAPDIR="maps"
+BIN="./cub3D"
+MAPDIR="assets/maps_invalids"
 
 MAPS=($(find "$MAPDIR" -type f -name "*.cub"))
 

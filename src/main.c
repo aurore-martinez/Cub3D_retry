@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 13:43:03 by eieong            #+#    #+#             */
-/*   Updated: 2025/10/31 15:37:56 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/03 17:56:03 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,10 @@ int	main(int argc, char **argv)
 		return (clean_game(game), 1);
 	print_map(game->map);
 	// minilibx-raycasting-exec
+
+	init_player_from_spawn(&game);
+
+
 	clean_game(game);
 	return (0);
 }
