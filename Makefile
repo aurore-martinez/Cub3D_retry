@@ -70,8 +70,15 @@ SRC_DIR = src/
 
 
 SRC_FILES = main.c
-
-
+			check_map.c \
+			cleanup.c \
+			get_map.c \
+			parse_element.c \
+			parse_floor_ceiling.c \
+			parse_game_info.c \
+			parse_wall.c \
+			print_error.c\
+			debug.c
 
 # Chemins complets des sources et objets
 SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))
