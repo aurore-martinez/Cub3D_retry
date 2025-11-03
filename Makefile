@@ -155,8 +155,8 @@ $(OBJS_DIR)%.o: $(SRC_DIR)%.c $(INCLUDE)
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(INCLUDE_FLAG) -c $< -o $@
 
-$(OBJS_DIR)main.o: main.c $(INCLUDE) | $(OBJS_DIR)
-	@$(CC) $(CFLAGS) $(INCLUDE_FLAG) -c $< -o $(OBJS_DIR)main.o
+# $(OBJS_DIR)main.o: main.c $(INCLUDE) | $(OBJS_DIR)
+# 	@$(CC) $(CFLAGS) $(INCLUDE_FLAG) -c $< -o $(OBJS_DIR)main.o
 
 # Compilation du binaire
 $(NAME): $(OBJS) $(LIB) $(MLX)
