@@ -6,13 +6,13 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 17:56:44 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/03 18:03:40 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/03 18:24:08 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	print_player(t_player *p)
+void	print_player(t_vec *p)
 {
 	if (!p)
 	{

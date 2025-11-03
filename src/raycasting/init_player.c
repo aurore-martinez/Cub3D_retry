@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:05:48 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/03 18:16:51 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/03 18:22:59 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 | Plan caméra     | FOV ≈ 66°, perpendiculaire à `dir`    |
 | Taille écran    | Fixe la résolution du rendu initial   |
 */
+
+#define PX (data->player.pos.x)
+#define PY (data->player.pos.y)
 
 /* oriente la direction et le plan caméra selon le spawn */
 static void	set_dir_plane_from_char(t_data *data, char c)
@@ -56,8 +59,13 @@ static void	set_dir_plane_from_char(t_data *data, char c)
 /* initialise la caméra du joueur depuis sa position dans la map */
 void	init_player_from_spawn(t_data *data)
 {
-	data->player.pos.x = data->player.pos.y + 0.5;
-	data->player.pos.y = data->player.pos.x + 0.5;
+	// indices de case trouvés par le parsing
+	int	row = data->map.player.y; // ligne dans la map
+	int	col = data->map.player.x; // colonne dans la map
+
+	// position réelle = centre de la case de spawn
+	PX = (double)row + 0.5;
+	PY = (double)col + 0.5;
 
 	set_dir_plane_from_char(data, (char)data->map.player_char);
 
