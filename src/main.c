@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 13:43:03 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/04 10:34:41 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/04 14:23:21 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,14 @@ int	main(int argc, char **argv)
 		return (clean_data(data), 1);
 
 	print_player_data(data);
+
+	if (!init_mlx(data))
+		return (clean_data(data), 1);
+
+	render_frame(data);
+	mlx_key_hook(data->gfx.win, on_key_press, data);
+	mlx_hook(data->gfx.win, 17, 0, on_destroy_event, data);
+	mlx_loop(data->gfx.mlx);
 
 	clean_data(data); // j'ai change clean game pour clean data
 	return (0);

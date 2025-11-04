@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/04 10:33:47 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/04 14:23:02 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "../lib/gnl/get_next_line_bonus.h"
 # include "../lib/libft/libft.h"
 # include "../minilibx/minilibx-linux/mlx.h"
+# include "keys.h"
 # include <limits.h>
 # include <stdbool.h>
 # include <sys/types.h>
@@ -28,9 +29,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <math.h>
-# include <X11/X.h>
-# include <X11/keysym.h>
-# include <X11/keysymdef.h>
+
+# define RGB(r, g, b) ((int)(((r) & 0xFF) << 16 | ((g) & 0xFF) << 8 | ((b) & 0xFF)))
 
 /* indices de carte */
 typedef struct s_pos
@@ -83,9 +83,54 @@ typedef struct s_game
 	void			*win_ptr;
 }	t_game;
 
-/* mlx.c */
-void	mlx_launch(t_game *game);
-bool	init_mlx(t_game *game);
+/* === bresenham === */
+typedef struct s_bresenham
+{
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
+	int	err;
+	int	e2;
+}	t_bresenham;
+
+/* === pixel === */
+typedef struct s_point
+{
+	int	x;
+	int	y;
+	int	z;
+	int	color;
+}	t_point;
+
+/* Cam 2D (mini-map), issue de FdF */
+typedef struct s_cam
+{
+	float	zoom;
+	int		x_offset;
+	int		y_offset;
+	int		color;
+	int		z_scale;
+	int		tile_size;
+}	t_cam;
+
+/* MiniLibX */
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_img;
+
+typedef struct s_gfx
+{
+	void	*mlx;
+	void	*win;
+	t_img	frame;
+	t_cam	cam;
+}	t_gfx;
 
 typedef struct s_data
 {
@@ -93,7 +138,9 @@ typedef struct s_data
 	t_vec	player;
 	int		scr_w;
 	int		scr_h;
+	t_gfx	gfx;
 }	t_data;
+
 
 \
 /* check_element.c */
@@ -139,5 +186,17 @@ void	print_game(t_game *g);
 /*  ======================== 🔦🦇 RAYCASTING ======================== */
 bool	init_player_from_game(t_data *data, t_game *game);
 bool	init_data(t_data **data);
+
+/* ========================== 📊 GFX ========================== */
+bool	init_mlx(t_data *d);
+int		on_destroy_event(t_data *d);
+void	draw_line(t_img *img, t_point a, t_point b_point);
+void	draw_pixel(t_img *img, t_point p);
+void	draw_hline(t_img *img, int y, int x0, int x1, int color);
+void	draw_vline(t_img *img, int x, int y0, int y1, int color);
+int		render_frame(t_data *d);
+void	clear_frame(t_img *img, int w, int h, int color);
+int		on_key_press(int key, t_data *d);
+void	draw_minimap(t_data *d);
 
 #endif
