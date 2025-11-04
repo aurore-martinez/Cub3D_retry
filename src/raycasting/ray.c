@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 15:37:27 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/04 10:52:28 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/04 15:05:20 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@
 
 /* var :
 pour tous x (o, scr_w -1) : indice de la colonne dessiner
+
+player.pos.x = row (ligne dans la map)
+player.pos.y = col (colonne dans la map)
+
 posX posY -> data.player.pos.x / y
 dirX dirY -> data.player.dir.x / y
 planeX planeY -> data.player.plane.x / y

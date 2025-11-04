@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/04 14:23:02 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/04 15:17:55 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,7 +188,7 @@ bool	init_player_from_game(t_data *data, t_game *game);
 bool	init_data(t_data **data);
 
 /* ========================== 📊 GFX ========================== */
-bool	init_mlx(t_data *d);
+bool	init_mlx(t_data *d, const char *title);
 int		on_destroy_event(t_data *d);
 void	draw_line(t_img *img, t_point a, t_point b_point);
 void	draw_pixel(t_img *img, t_point p);

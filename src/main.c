@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 13:43:03 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/04 14:23:21 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/04 15:18:01 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	main(int argc, char **argv)
 
 	print_player_data(data);
 
-	if (!init_mlx(data))
+	if (!init_mlx(data, "cub3D"))
 		return (clean_data(data), 1);
 
 	render_frame(data);
