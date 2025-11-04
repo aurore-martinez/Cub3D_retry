@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 13:43:03 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/04 15:52:13 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/04 16:04:46 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ static bool	parsing(char *file, t_game **game)
 	if (!init_game(game, file))
 		return (false);
 	if (!parse_game_info(*game))
-		return (clean_game(*game), false);
+		return (false);
 	if (!check_map(*game))
-		return (clean_game(*game), false);
+		return (false);
 	print_map((*game)->map);
 	return (true);
 }
