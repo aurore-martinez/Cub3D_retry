@@ -81,6 +81,9 @@ SRC_FILES = main.c \
 			debug.c \
 			raycasting/init_player.c \
 			debug/print_data.c \
+			raycasting/dda.c \
+			raycasting/ray.c \
+			gfx/render.c \
 
 # Chemins complets des sources et objets
 SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))
