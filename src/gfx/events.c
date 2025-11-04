@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:07:30 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/04 15:46:20 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/04 16:36:49 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,8 @@ void	change_view(int key, t_engine *engine)
 	else if (key == KEY_0)
 		engine->camera.tile_size -= 1;
 } */
+
+
 int	on_key_press(int key, t_data *d)
 {
 	if (key == KEY_ESC)
