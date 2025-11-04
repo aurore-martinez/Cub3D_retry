@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:01:59 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/03 14:21:39 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/04 08:46:16 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static bool	is_map_valid(t_game *game)
 		print_error("The map must be closed by walls");
 		return (false);
 	}
-	print_map(map_copy);
+	// print_map(map_copy);
 	printf("\n");
 	free_split(map_copy);
 	return (true);

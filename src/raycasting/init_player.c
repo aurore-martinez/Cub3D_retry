@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:05:48 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/04 08:39:47 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/04 08:49:23 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,14 @@ static void	set_dir_plane_from_char(t_vec *player, char c)
 }
 
 /* init la cam du joueur depuis sa position dans la map = t_game */
-void	init_player_from_game(t_data *data)
+bool	init_player_from_game(t_data *data, t_game *game)
 {
 	int	row;
 	int	col;
 
 	if (!data || !data->game)
 		return ;
+	data->game = game;
 	row = data->game->player.y;
 	col = data->game->player.x;
 

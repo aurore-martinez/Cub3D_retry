@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/04 08:38:49 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/04 08:49:58 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,9 +121,9 @@ void	print_map(char **map);
 /* ==============================    🛠️ UTILS    ============================ */
 
 /* ========================    🚧 DEBUG    ======================== */
-void	print_player_data(t_data *d)
+void	print_player_data(t_data *d);
 
 /*  ======================== 🔦🦇 RAYCASTING ======================== */
-void	init_player_from_game(t_data *data);
+bool	init_player_from_game(t_data *data, t_game *game);
 
 #endif
