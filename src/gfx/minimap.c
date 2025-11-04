@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
+/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:34:10 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/04 14:05:36 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/04 15:47:29 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 /* paramètres mini-map */
 static int	mm_tile_size(t_data *d)
 {
-	if (d->gfx.cam.tile_size > 0)
-		return (d->gfx.cam.tile_size);
+	if (d->gfx->cam.tile_size > 0)
+		return (d->gfx->cam.tile_size);
 	return (8);
 }
 
 static int	mm_off_x(t_data *d)
 {
-	return (d->gfx.cam.x_offset);
+	return (d->gfx->cam.x_offset);
 }
 
 static int	mm_off_y(t_data *d)
 {
-	return (d->gfx.cam.y_offset);
+	return (d->gfx->cam.y_offset);
 }
 
 /* couleur selon le char de la map */
@@ -80,7 +80,7 @@ static void	draw_minimap_cell(t_data *d, int row, int col, int color)
 	ts = mm_tile_size(d);
 	x = mm_off_x(d) + col * ts;
 	y = mm_off_y(d) + row * ts;
-	draw_square(&d->gfx.frame, x, y, ts, color);
+	draw_square(&d->gfx->frame, x, y, ts, color);
 }
 
 /* petit cercle rempli pour le joueur */
@@ -113,7 +113,7 @@ static void	draw_minimap_player(t_data *d)
 				p.y = cy + y;
 				p.z = 0;
 				p.color = RGB(255, 50, 50);
-				draw_pixel(&d->gfx.frame, p);
+				draw_pixel(&d->gfx->frame, p);
 			}
 			x++;
 		}
@@ -143,7 +143,7 @@ static void	draw_minimap_horizon(t_data *d)
 		p.y = mid_y;
 		p.z = 0;
 		p.color = RGB(255, 220, 0);
-		draw_pixel(&d->gfx.frame, p);
+		draw_pixel(&d->gfx->frame, p);
 		x++;
 	}
 }

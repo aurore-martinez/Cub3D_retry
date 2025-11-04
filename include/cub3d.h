@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/04 15:17:55 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/04 15:45:59 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ typedef struct s_vec
 	t_dpos	plane;	// plan camera pour champ de vision
 }	t_vec;
 
-
 typedef struct s_game
 {
 	t_element		elements;
@@ -79,8 +78,6 @@ typedef struct s_game
 	int				fd;
 	int				width;
 	int				height;
-	void			*mlx_ptr;
-	void			*win_ptr;
 }	t_game;
 
 /* === bresenham === */
@@ -136,13 +133,11 @@ typedef struct s_data
 {
 	t_game	*game;
 	t_vec	player;
+	t_gfx	*gfx;
 	int		scr_w;
 	int		scr_h;
-	t_gfx	gfx;
 }	t_data;
 
-
-\
 /* check_element.c */
 bool	split_the_line(t_game *game, char *line);
 
@@ -151,7 +146,7 @@ bool	check_map(t_game *game);
 
 /* cleanup.c */
 void	gnl_clear(t_game *game, char *line);
-int		clean_game(t_game *game, int ret);
+void	clean_game(t_game *game);
 void	clean_data(t_data *data);
 
 /* line_to_map.c */
@@ -184,11 +179,11 @@ void	print_player_data(t_data *d);
 void	print_game(t_game *g);
 
 /*  ======================== 🔦🦇 RAYCASTING ======================== */
-bool	init_player_from_game(t_data *data, t_game *game);
+bool	init_player_from_game(t_data *data);
 bool	init_data(t_data **data);
 
 /* ========================== 📊 GFX ========================== */
-bool	init_mlx(t_data *d, const char *title);
+bool	init_mlx(t_gfx **gfx, int w, int h, const char *title);
 int		on_destroy_event(t_data *d);
 void	draw_line(t_img *img, t_point a, t_point b_point);
 void	draw_pixel(t_img *img, t_point p);

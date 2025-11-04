@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 13:43:03 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/04 15:18:01 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/04 15:52:13 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static bool	init_game(t_game **game, char *filename)
 	if ((*game)->fd < 0)
 	{
 		perror("Error");
-		return (clean_game(*game, false));
+		return (clean_game(*game), false);
 	}
 	return (true);
 }
@@ -46,39 +46,44 @@ static bool	check_filename(char *name)
 	return (true);
 }
 
+static bool	parsing(char *file, t_game **game)
+{
+	if (!init_game(game, file))
+		return (false);
+	if (!parse_game_info(*game))
+		return (clean_game(*game), false);
+	if (!check_map(*game))
+		return (clean_game(*game), false);
+	print_map((*game)->map);
+	return (true);
+}
+
 int	main(int argc, char **argv)
 {
-	t_game	*game;
 	t_data	*data;
 
-	game = NULL;
 	data = NULL;
 	if (argc != 2)
 		exit_error("Usage: ./cub3d [map_file].cub");
-	if ((!check_filename(argv[1])) || !init_game(&game, argv[1]))
+	if (!check_filename(argv[1]))
 		return (1);
-	if (!parse_game_info(game))
-		return (clean_game(game, 1));
-	if (!check_map(game))
-		return (clean_game(game, 1));
-	print_map(game->map);
-	// minilibx-raycasting-exec
-
-	print_game(game);
 	if (!init_data(&data))
-		return (clean_game(game), 1);
-	if (!init_player_from_game(data, game))
+		return (1);
+	if (!parsing(argv[1], &data->game))
+		return (clean_data(data), 1);
+	// print_game(game);
+	if (!init_player_from_game(data))
 		return (clean_data(data), 1);
 
 	print_player_data(data);
 
-	if (!init_mlx(data, "cub3D"))
+	if (!init_mlx(&data->gfx, data->scr_w, data->scr_h, "cub3D"))
 		return (clean_data(data), 1);
 
 	render_frame(data);
-	mlx_key_hook(data->gfx.win, on_key_press, data);
-	mlx_hook(data->gfx.win, 17, 0, on_destroy_event, data);
-	mlx_loop(data->gfx.mlx);
+	mlx_key_hook(data->gfx->win, on_key_press, data);
+	mlx_hook(data->gfx->win, 17, 0, on_destroy_event, data);
+	mlx_loop(data->gfx->mlx);
 
 	clean_data(data); // j'ai change clean game pour clean data
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
+/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:14:56 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/04 13:37:24 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/04 15:43:55 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	render_frame(t_data *d)
 	if (d == NULL)
 		return (0);
 
-	clear_frame(&d->gfx.frame, d->scr_w, d->scr_h, RGB(12, 12, 12));
+	clear_frame(&d->gfx->frame, d->scr_w, d->scr_h, RGB(12, 12, 12));
 
 	midy = d->scr_h / 2;
 	midx = d->scr_w / 2;
@@ -36,7 +36,7 @@ int	render_frame(t_data *d)
 	b.y = midy;
 	b.z = 0;
 	b.color = RGB(255, 255, 255);
-	draw_line(&d->gfx.frame, a, b);
+	draw_line(&d->gfx->frame, a, b);
 
 	/* verticale rouge au milieu */
 	a.x = midx;
@@ -47,10 +47,10 @@ int	render_frame(t_data *d)
 	b.y = d->scr_h - 1;
 	b.z = 0;
 	b.color = RGB(255, 0, 0);
-	draw_line(&d->gfx.frame, a, b);
+	draw_line(&d->gfx->frame, a, b);
 
 	draw_minimap(d);
 	
-	mlx_put_image_to_window(d->gfx.mlx, d->gfx.win, d->gfx.frame.img, 0, 0);
+	mlx_put_image_to_window(d->gfx->mlx, d->gfx->win, d->gfx->frame.img, 0, 0);
 	return (0);
 }

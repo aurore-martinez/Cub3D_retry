@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
+/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:05:48 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/04 09:55:43 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/04 15:42:31 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,13 @@ static void	set_dir_plane_from_char(t_vec *player, char c)
 }
 
 /* init la cam du joueur depuis sa position dans la map = t_game */
-bool	init_player_from_game(t_data *data, t_game *game)
+bool	init_player_from_game(t_data *data)
 {
 	int	row;
 	int	col;
 
-	if (!data || !game)
+	if (!data || !data->game)
 		return (false);
-	data->game = game;
 	row = data->game->player.y;
 	col = data->game->player.x;
 

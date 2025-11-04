@@ -3,31 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
+/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:07:30 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/04 14:59:44 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/04 15:46:20 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-bool	init_mlx(t_data *d, const char *title)
+bool	init_mlx(t_gfx **gfx, int w, int h, const char *title)
 {
-	if (d == NULL)
+	*gfx = malloc(sizeof(t_gfx));
+	if (!(*gfx))
+	{
+		perror("Error");
 		return (false);
-	d->gfx.mlx = mlx_init();
-	if (d->gfx.mlx == NULL)
+	}
+	(*gfx)->mlx = mlx_init();
+	if ((*gfx)->mlx == NULL)
 		return (false);
-	d->gfx.win = mlx_new_window(d->gfx.mlx, d->scr_w, d->scr_h, (char *)title);
-	if (d->gfx.win == NULL)
+	(*gfx)->win = mlx_new_window((*gfx)->mlx, w, h, (char *)title);
+	if ((*gfx)->win == NULL)
 		return (false);
-	d->gfx.frame.img = mlx_new_image(d->gfx.mlx, d->scr_w, d->scr_h);
-	if (d->gfx.frame.img == NULL)
+	(*gfx)->frame.img = mlx_new_image((*gfx)->mlx, w, h);
+	if ((*gfx)->frame.img == NULL)
 		return (false);
-	d->gfx.frame.addr = mlx_get_data_addr(d->gfx.frame.img, &d->gfx.frame.bpp,
-			&d->gfx.frame.line_len, &d->gfx.frame.endian);
-	if (d->gfx.frame.addr == NULL)
+	(*gfx)->frame.addr = mlx_get_data_addr((*gfx)->frame.img, &(*gfx)->frame.bpp,
+			&(*gfx)->frame.line_len, &(*gfx)->frame.endian);
+	if ((*gfx)->frame.addr == NULL)
 		return (false);
 	return (true);
 }
@@ -36,21 +40,21 @@ int	on_destroy_event(t_data *d)
 {
 	if (d == NULL)
 		return (0);
-	if (d->gfx.frame.img != NULL)
+	if (d->gfx->frame.img != NULL)
 	{
-		mlx_destroy_image(d->gfx.mlx, d->gfx.frame.img);
-		d->gfx.frame.img = NULL;
+		mlx_destroy_image(d->gfx->mlx, d->gfx->frame.img);
+		d->gfx->frame.img = NULL;
 	}
-	if (d->gfx.win != NULL)
+	if (d->gfx->win != NULL)
 	{
-		mlx_destroy_window(d->gfx.mlx, d->gfx.win);
-		d->gfx.win = NULL;
+		mlx_destroy_window(d->gfx->mlx, d->gfx->win);
+		d->gfx->win = NULL;
 	}
-	if (d->gfx.mlx)
+	if (d->gfx->mlx)
 	{
-		mlx_destroy_display(d->gfx.mlx);
-		free(d->gfx.mlx);
-		d->gfx.mlx = NULL;
+		mlx_destroy_display(d->gfx->mlx);
+		free(d->gfx->mlx);
+		d->gfx->mlx = NULL;
 	}
 	clean_data(d);
 	exit(EXIT_SUCCESS);

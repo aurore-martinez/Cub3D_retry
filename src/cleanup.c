@@ -6,20 +6,20 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 12:09:02 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/04 14:23:33 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/04 15:43:00 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static void	clean_mlx(t_game *game)
+static void	clean_mlx(t_gfx *gfx)
 {
-	if (game->win_ptr)
-		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
-	if (game->mlx_ptr)
+	if (gfx->win)
+		mlx_destroy_window(gfx->mlx, gfx->win);
+	if (gfx->mlx)
 	{
-		mlx_destroy_display(game->mlx_ptr);
-		free(game->mlx_ptr);
+		mlx_destroy_display(gfx->mlx);
+		free(gfx->mlx);
 	}
 }
 
@@ -33,7 +33,7 @@ void	gnl_clear(t_game *game, char *line)
 	free(line);
 }
 
-int	clean_game(t_game *game, int ret)
+void	clean_game(t_game *game)
 {
 	if (game->fd != -1)
 		close(game->fd);
@@ -47,20 +47,20 @@ int	clean_game(t_game *game, int ret)
 		free(game->elements.path_east);
 	if (game->map)
 		free_split(game->map);
-	clean_mlx(game);
 	free(game);
-	exit(ret);
-	return (ret);
 }
 
 void	clean_data(t_data *data)
 {
 	if (!data)
 		return ;
-	on_destroy_event(data);
+	// on_destroy_event(data);
 	if (data->game)
-		clean_game(data->game,0);
+		clean_game(data->game);
 	/* free MLX, textures, buf… */
+	if (data->gfx)
+		clean_mlx(data->gfx);
+	
 
 	free(data);
 }
