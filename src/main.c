@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 13:43:03 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/03 17:27:32 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/04 10:34:41 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,10 @@ static bool	check_filename(char *name)
 int	main(int argc, char **argv)
 {
 	t_game	*game;
+	t_data	*data;
 
 	game = NULL;
+	data = NULL;
 	if (argc != 2)
 		exit_error("Usage: ./cub3d [map_file].cub");
 	if ((!check_filename(argv[1])) || !init_game(&game, argv[1]))
@@ -61,9 +63,15 @@ int	main(int argc, char **argv)
 		return (clean_game(game, 1));
 	print_map(game->map);
 	// minilibx-raycasting-exec
-	if (!init_mlx(game))
-		return (clean_game(game, 1));
-	mlx_launch(game);
-	// clean_game(game, 0); //useless, mlx exit() when ESC or X
+
+	print_game(game);
+	if (!init_data(&data))
+		return (clean_game(game), 1);
+	if (!init_player_from_game(data, game))
+		return (clean_data(data), 1);
+
+	print_player_data(data);
+
+	clean_data(data); // j'ai change clean game pour clean data
 	return (0);
 }

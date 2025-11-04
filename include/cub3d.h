@@ -6,13 +6,14 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/03 17:26:32 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/04 10:33:47 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+/* ==========================    📚 INCLUDE    ========================== */
 # include "../lib/ft_printf/ft_printf.h"
 # include "../lib/ft_fprintf/ft_fprintf.h"
 # include "../lib/gnl/get_next_line_bonus.h"
@@ -31,6 +32,7 @@
 # include <X11/keysym.h>
 # include <X11/keysymdef.h>
 
+/* indices de carte */
 typedef struct s_pos
 {
 	int		x;
@@ -52,11 +54,27 @@ typedef struct s_element
 	//RGB floor & ceiling, check 42 doc
 }	t_element;
 
+/* coord reelles du player, rayons, direction */
+typedef struct s_dpos
+{
+	double	x;
+	double	y;
+}	t_dpos;
+
+/* ensemble des vecteurs camera = player */
+typedef struct s_vec
+{
+	t_dpos	pos;	// position reelle dans la map
+	t_dpos	dir;	// dir
+	t_dpos	plane;	// plan camera pour champ de vision
+}	t_vec;
+
+
 typedef struct s_game
 {
 	t_element		elements;
 	char			**map;
-	t_pos			player;
+	t_pos			player; // spawn
 	int				player_char;
 	int				fd;
 	int				width;
@@ -69,6 +87,15 @@ typedef struct s_game
 void	mlx_launch(t_game *game);
 bool	init_mlx(t_game *game);
 
+typedef struct s_data
+{
+	t_game	*game;
+	t_vec	player;
+	int		scr_w;
+	int		scr_h;
+}	t_data;
+
+\
 /* check_element.c */
 bool	split_the_line(t_game *game, char *line);
 
@@ -78,6 +105,7 @@ bool	check_map(t_game *game);
 /* cleanup.c */
 void	gnl_clear(t_game *game, char *line);
 int		clean_game(t_game *game, int ret);
+void	clean_data(t_data *data);
 
 /* line_to_map.c */
 char	**line_to_map(t_game *game, char *line);
@@ -98,5 +126,18 @@ void	exit_error(char *str);
 
 /* debug.c */
 void	print_map(char **map);
+
+/* ========================    🦄 PARSING    ======================== */
+
+/* ==============================    🛠️ UTILS    ============================ */
+
+
+/* ========================    🚧 DEBUG    ======================== */
+void	print_player_data(t_data *d);
+void	print_game(t_game *g);
+
+/*  ======================== 🔦🦇 RAYCASTING ======================== */
+bool	init_player_from_game(t_data *data, t_game *game);
+bool	init_data(t_data **data);
 
 #endif

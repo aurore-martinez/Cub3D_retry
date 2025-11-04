@@ -79,6 +79,8 @@ SRC_FILES = main.c \
 			parse_wall.c \
 			print_error.c\
 			debug.c \
+			raycasting/init_player.c \
+			debug/print_data.c \ \
 			mlx.c
 
 # Chemins complets des sources et objets

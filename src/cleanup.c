@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 12:09:02 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/03 17:26:38 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/04 10:34:09 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,16 @@ int	clean_game(t_game *game, int ret)
 	free(game);
 	exit(ret);
 	return (ret);
+}
+
+void	clean_data(t_data *data)
+{
+	if (!data)
+		return ;
+	if (data->game)
+		clean_game(data->game);
+
+	/* free MLX, textures, buf… */
+
+	free(data);
 }
