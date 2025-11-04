@@ -6,13 +6,13 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:07:30 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/04 14:11:46 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/04 14:21:02 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-bool	init_mlx(t_data *d, const char *title)
+bool	init_mlx(t_data *d)
 {
 	if (d == NULL)
 		return (false);

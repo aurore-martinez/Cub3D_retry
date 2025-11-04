@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 13:43:03 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/04 13:51:12 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/04 14:20:40 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	main(int argc, char **argv)
 
 	print_player_data(data);
 
-	if (!init_mlx(data, "cub3D"))
+	if (!init_mlx(data))
 		return (clean_data(data), 1);
 
 	render_frame(data);
