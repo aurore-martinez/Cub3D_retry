@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:05:48 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/04 15:42:31 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/04 16:01:39 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ bool	init_data(t_data **data)
 	}
 	ft_memset(*data, 0, sizeof(t_data));
 	(*data)->game = NULL;
-	(*data)->scr_w = 960;
-	(*data)->scr_h = 640;
+	(*data)->scr_w = SCR_W;
+	(*data)->scr_h = SCR_H;
 	zero_player(&(*data)->player);
 	return (true);
 }
