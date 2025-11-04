@@ -3,15 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eieong <eieong@student.42.fr>              +#+  +:+       +#+         #
+#    By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/09 07:11:04 by aumartin          #+#    #+#              #
-#    Updated: 2025/11/03 14:28:01 by eieong           ###   ########.fr        #
+#    Updated: 2025/11/04 14:00:45 by aumartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME    	= lib.a
 LIBFT		= libft/ft_atoi.c\
+		libft/ft_abs.c\
 		libft/ft_atol.c\
 		libft/ft_bzero.c\
 		libft/ft_calloc.c\
@@ -55,7 +56,8 @@ LIBFT		= libft/ft_atoi.c\
 		libft/ft_strtrim.c\
 		libft/ft_substr.c\
 		libft/ft_tolower.c\
-		libft/ft_toupper.c
+		libft/ft_toupper.c \
+		libft/ft_swap.c
 PRINTF		= ft_printf/ft_printf.c ft_printf/ft_puthex.c ft_printf/ft_putnbr.c \
 	ft_printf/ft_puttxt.c
 FPRINTF		= ft_fprintf/ft_fprintf.c ft_fprintf/ft_fprintothers.c

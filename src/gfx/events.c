@@ -5,73 +5,88 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/04 10:39:20 by aumartin          #+#    #+#             */
-/*   Updated: 2025/04/04 13:58:38 by aumartin         ###   ########.fr       */
+/*   Created: 2025/11/04 13:07:30 by aumartin          #+#    #+#             */
+/*   Updated: 2025/11/04 14:11:46 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../include/cub3d.h"
 
-/*
-	Détruire proprement la fenêtre (on_destroy_event)
-	- Déclenché quand l'utilisateur ferme la fenêtre
-	- Libère les ressources MLX (image, fenêtre)
-	- Termine le programme proprement (exit)
-
-	Réagir aux touches du clavier (key_hook_event)
-	- Détecte quelle touche est pressée
-	- Si ESC est pressée : quitte proprement (comme on_destroy_event)
-	- Sinon : appelle des fonctions pour :
-		- Changer la vue (zoom, déplacement, échelle Z, taille tuiles)
-		- Changer les couleurs
-	- Rafraîchit ensuite l'affichage (re_render)
-*/
-
-int	on_destroy_event(void *param)
+bool	init_mlx(t_data *d, const char *title)
 {
-	t_engine	*engine;
+	if (d == NULL)
+		return (false);
+	d->gfx.mlx = mlx_init();
+	if (d->gfx.mlx == NULL)
+		return (false);
+	d->gfx.win = mlx_new_window(d->gfx.mlx, d->scr_w, d->scr_h, (char *)title);
+	if (d->gfx.win == NULL)
+		return (false);
+	d->gfx.frame.img = mlx_new_image(d->gfx.mlx, d->scr_w, d->scr_h);
+	if (d->gfx.frame.img == NULL)
+		return (false);
+	d->gfx.frame.addr = mlx_get_data_addr(d->gfx.frame.img, &d->gfx.frame.bpp,
+			&d->gfx.frame.line_len, &d->gfx.frame.endian);
+	if (d->gfx.frame.addr == NULL)
+		return (false);
+	return (true);
+}
 
-	engine = (t_engine *)param;
-	if (engine->image.img_ptr)
-		mlx_destroy_image(engine->mlx, engine->image.img_ptr);
-	if (engine->window)
-		mlx_destroy_window(engine->mlx, engine->window);
-	if (engine->mlx)
-		mlx_destroy_display(engine->mlx);
-	free(engine->mlx);
-	free_grid(engine->map.grid);
+int	on_destroy_event(t_data *d)
+{
+	if (d == NULL)
+		return (0);
+	if (d->gfx.frame.img != NULL)
+	{
+		mlx_destroy_image(d->gfx.mlx, d->gfx.frame.img);
+		d->gfx.frame.img = NULL;
+	}
+	if (d->gfx.win != NULL)
+	{
+		mlx_destroy_window(d->gfx.mlx, d->gfx.win);
+		d->gfx.win = NULL;
+	}
+	if (d->gfx.mlx)
+	{
+		mlx_destroy_display(d->gfx.mlx);
+		free(d->gfx.mlx);
+		d->gfx.mlx = NULL;
+	}
+	clean_data(d);
 	exit(EXIT_SUCCESS);
 	return (0);
 }
-/* void	on_destroy(t_engine *engine)
-{
-	if (engine->image.img_ptr)
-		mlx_destroy_image(engine->mlx, engine->image.img_ptr);
-	if (engine->window)
-		mlx_destroy_window(engine->mlx, engine->window);
-	exit(EXIT_SUCCESS);
-} */
 
-/* int	on_key_press(int key, t_engine *engine)
+void	clear_frame(t_img *img, int w, int h, int color)
+{
+	int		x;
+	int		y;
+	t_point	p;
+
+	if (img == NULL)
+		return ;
+	y = 0;
+	while (y < h)
+	{
+		x = 0;
+		while (x < w)
+		{
+			p.x = x;
+			p.y = y;
+			p.z = 0;
+			p.color = color;
+			draw_pixel(img, p);
+			x++;
+		}
+		y++;
+	}
+}
+int	on_key_press(int key, t_data *d)
 {
 	if (key == KEY_ESC)
-		on_destroy(engine);
-	render_map(engine);
-	return (0);
-} */
-
-int	on_key_press(int key, t_engine *engine)
-{
-	if (key == KEY_ESC)
-		on_destroy_event(engine);
-	else if (key == KEY_PLUS || key == KEY_MINUS
-		|| key == KEY_LEFT || key == KEY_RIGHT
-		|| key == KEY_UP || key == KEY_DOWN
-		|| key == KEY_1 || key == KEY_2
-		|| key == KEY_9 || key == KEY_0)
-		change_view(key, engine);
-	else if ((key >= KEY_Q && key <= KEY_Y) || (key >= KEY_A && key <= KEY_H))
-		change_color(key, engine);
-	render_map(engine);
+		on_destroy_event(d);
+	/* gestions des touches */
+	render_frame(d);
 	return (0);
 }
+

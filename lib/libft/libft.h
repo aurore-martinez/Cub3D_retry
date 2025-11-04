@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 14:31:22 by aumartin          #+#    #+#             */
-/*   Updated: 2025/06/26 10:33:41 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/04 13:59:10 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+int		ft_abs(int a);
+void	ft_swap(int *a, int *b);
 
 /* Bonus */
 typedef struct s_list

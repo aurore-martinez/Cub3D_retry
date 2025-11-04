@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 12:09:02 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/04 09:18:10 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/04 13:53:03 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ void	clean_data(t_data *data)
 {
 	if (!data)
 		return ;
+	on_destroy_event(data);
 	if (data->game)
 		clean_game(data->game);
-
 	/* free MLX, textures, buf… */
 
 	free(data);

@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_line.c                                        :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:39:48 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/04 11:08:10 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/04 13:55:15 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../include/cub3d.h"
 
-/*
-	Tracer une ligne droite entre 2 pts sur l'écran, pixel par pixel (Bresenham)
-	- L'init de Bresenham (init_bresenham)
-	- Le placement d'un pixel (draw_pixel)
-	- Update du pixel (update_position)
-	- Boucle qui trace toute la ligne (draw_line)
-*/
+/* WIP copie colle de fdf a adapter pour Cub */
 
 static void	init_bresenham(t_bresenham *b, t_point a, t_point b_point)
 {
-	b->dx = abs(b_point.x - a.x);
-	b->dy = abs(b_point.y - a.y);
+	b->dx = ft_abs(b_point.x - a.x);
+	b->dy = ft_abs(b_point.y - a.y);
 	if (a.x < b_point.x)
 		b->sx = 1;
 	else
@@ -35,20 +29,18 @@ static void	init_bresenham(t_bresenham *b, t_point a, t_point b_point)
 	b->err = b->dx - b->dy;
 }
 
-static void	draw_pixel(t_engine *engine, t_point a)
+void	draw_pixel(t_img *img, t_point p)
 {
-	int		color;
 	char	*dst;
 
-	if (a.color != -1)
-		color = a.color;
-	else
-		color = engine->camera.color;
-	if (a.x < 0 || a.x >= WIN_WIDTH || a.y < 0 || a.y >= WIN_HEIGHT)
+	if (img == NULL)
 		return ;
-	dst = engine->image.addr_ptr
-		+ (a.y * engine->image.line_len + a.x * (engine->image.pixel_bits / 8));
-	*(unsigned int *)dst = color;
+	if (img->addr == NULL)
+		return ;
+	if (p.x < 0 || p.y < 0)
+		return ;
+	dst = img->addr + (p.y * img->line_len + p.x * (img->bpp / 8));
+	*(int *)dst = p.color;
 }
 
 static void	update_position(t_bresenham *b, t_point *a)
@@ -66,34 +58,58 @@ static void	update_position(t_bresenham *b, t_point *a)
 	}
 }
 
-void	draw_line(t_engine *engine, t_point a, t_point b_point)
+void	draw_line(t_img *img, t_point a, t_point b_point)
 {
 	t_bresenham	b;
 
 	init_bresenham(&b, a, b_point);
 	while (1)
 	{
-		draw_pixel(engine, a);
+		draw_pixel(img, a);
 		if (a.x == b_point.x && a.y == b_point.y)
 			break ;
 		update_position(&b, &a);
 	}
 }
 
-void	draw_connections(t_engine *engine, int x, int y)
+void	draw_hline(t_img *img, int y, int x0, int x1, int color)
 {
-	t_point	p1;
-	t_point	p2;
+	t_point	p;
 
-	p1 = get_projected_point(engine->map.grid[y][x], engine);
-	if (x < engine->map.width - 1)
+	if (img == NULL)
+		return ;
+	if (y < 0)
+		return ;
+	if (x0 > x1)
+		ft_swap(&x0, &x1);
+	p.y = y;
+	p.z = 0;
+	p.color = color;
+	while (x0 <= x1)
 	{
-		p2 = get_projected_point(engine->map.grid[y][x + 1], engine);
-		draw_line(engine, p1, p2);
+		p.x = x0;
+		draw_pixel(img, p);
+		x0++;
 	}
-	if (y < engine->map.height - 1)
+}
+
+void	draw_vline(t_img *img, int x, int y0, int y1, int color)
+{
+	t_point	p;
+
+	if (img == NULL)
+		return ;
+	if (x < 0)
+		return ;
+	if (y0 > y1)
+		ft_swap(&y0, &y1);
+	p.x = x;
+	p.z = 0;
+	p.color = color;
+	while (y0 <= y1)
 	{
-		p2 = get_projected_point(engine->map.grid[y + 1][x], engine);
-		draw_line(engine, p1, p2);
+		p.y = y0;
+		draw_pixel(img, p);
+		y0++;
 	}
 }

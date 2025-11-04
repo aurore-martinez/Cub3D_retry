@@ -5,72 +5,52 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/04 10:40:03 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/04 11:00:53 by aumartin         ###   ########.fr       */
+/*   Created: 2025/11/04 13:14:56 by aumartin          #+#    #+#             */
+/*   Updated: 2025/11/04 13:37:24 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-/*
-WIP copie colle de fdf a adapter pour Cub
-*/
-
-void	render_map(t_engine *engine)
+int	render_frame(t_data *d)
 {
-	int	x;
-	int	y;
+	t_point	a;
+	t_point	b;
+	int		midy;
+	int		midx;
 
-	mlx_clear_window(engine->mlx, engine->window);
-	ft_bzero(engine->image.addr_ptr, WIN_WIDTH * WIN_HEIGHT * 4);
-	y = 0;
-	while (y < engine->map.height)
-	{
-		x = 0;
-		while (x < engine->map.width)
-		{
-			draw_connections(engine, x, y);
-			x++;
-		}
-		y++;
-	}
-	mlx_put_image_to_window(engine->mlx, engine->window,
-		engine->image.img_ptr, 0, 0);
-}
-void	init_camera(t_camera *camera)
-{
-	camera->zoom = 1.0;
-	camera->tile_size = 20;
-	camera->z_scale = 1;
-	camera->x_offset = WIN_WIDTH / 2;
-	camera->y_offset = WIN_HEIGHT / 2;
-	camera->color = 0xFFFFFF;
-}
+	if (d == NULL)
+		return (0);
 
-void	init_engine(t_engine *engine, char *filename)
-{
-	int	pixel_bits;
-	int	line_len;
-	int	endian;
+	clear_frame(&d->gfx.frame, d->scr_w, d->scr_h, RGB(12, 12, 12));
 
-	parse_map(filename, &engine->map);
-	engine->mlx = mlx_init();
-	if (!engine->mlx)
-		error_message("[MLX ERROR]: can't init mlx!\n", 1);
-	engine->window = mlx_new_window(engine->mlx, WIN_WIDTH, WIN_HEIGHT, "Fdf");
-	engine->image.img_ptr = mlx_new_image(engine->mlx, WIN_WIDTH, WIN_HEIGHT);
-	if (!engine->window || !engine->image.img_ptr)
-	{
-		mlx_destroy_image(engine->mlx, engine->image.img_ptr);
-		mlx_destroy_window(engine->mlx, engine->window);
-		error_message("[MLX ERROR]: failed to create window/image!\n", 1);
-	}
-	engine->image.addr_ptr = mlx_get_data_addr(engine->image.img_ptr,
-			&pixel_bits, &line_len, &endian);
-	engine->image.pixel_bits = pixel_bits;
-	engine->image.line_len = line_len;
-	engine->image.endian = endian;
-	init_camera(&engine->camera);
-	engine->camera.z_scale = determine_z_scale(&engine->map);
-	engine->camera.tile_size = determine_tile_size(&engine->map);
+	midy = d->scr_h / 2;
+	midx = d->scr_w / 2;
+
+	/* horizontale blanche au milieu */
+	a.x = 0;
+	a.y = midy;
+	a.z = 0;
+	a.color = RGB(255, 255, 255);
+	b.x = d->scr_w - 1;
+	b.y = midy;
+	b.z = 0;
+	b.color = RGB(255, 255, 255);
+	draw_line(&d->gfx.frame, a, b);
+
+	/* verticale rouge au milieu */
+	a.x = midx;
+	a.y = 0;
+	a.z = 0;
+	a.color = RGB(255, 0, 0);
+	b.x = midx;
+	b.y = d->scr_h - 1;
+	b.z = 0;
+	b.color = RGB(255, 0, 0);
+	draw_line(&d->gfx.frame, a, b);
+
+	draw_minimap(d);
+	
+	mlx_put_image_to_window(d->gfx.mlx, d->gfx.win, d->gfx.frame.img, 0, 0);
+	return (0);
 }
