@@ -78,7 +78,9 @@ SRC_FILES = main.c \
 			parse_game_info.c \
 			parse_wall.c \
 			print_error.c\
-			debug.c
+			debug.c \
+			raycasting/init_player.c \
+			debug/ray_print.c \
 
 # Chemins complets des sources et objets
 SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))

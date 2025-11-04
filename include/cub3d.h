@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/04 08:49:58 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/04 09:47:57 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ bool	check_map(t_game *game);
 /* cleanup.c */
 void	gnl_clear(t_game *game, char *line);
 void	clean_game(t_game *game);
+void	clean_data(t_data *data);
 
 /* line_to_map.c */
 char	**line_to_map(t_game *game, char *line);
@@ -120,10 +121,13 @@ void	print_map(char **map);
 
 /* ==============================    🛠️ UTILS    ============================ */
 
+
 /* ========================    🚧 DEBUG    ======================== */
 void	print_player_data(t_data *d);
+void	print_game(t_game *g);
 
 /*  ======================== 🔦🦇 RAYCASTING ======================== */
 bool	init_player_from_game(t_data *data, t_game *game);
+bool	init_data(t_data **data);
 
 #endif

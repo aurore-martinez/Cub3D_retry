@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 13:43:03 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/04 08:51:24 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/04 09:50:19 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,14 @@ int	main(int argc, char **argv)
 	print_map(game->map);
 	// minilibx-raycasting-exec
 
-	if (!init_player_from_game(&data, game))
+	print_game(game);
+	if (!init_data(&data))
 		return (clean_game(game), 1);
+	if (!init_player_from_game(data, game))
+		return (clean_data(data), 1);
 
-	print_player_data(&data);
+	print_player_data(data);
 
-	clean_game(game);
+	clean_data(data); // j'ai change clean game pour clean data
 	return (0);
 }

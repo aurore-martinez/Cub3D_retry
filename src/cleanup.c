@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 12:09:02 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/03 14:21:39 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/04 09:18:10 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,16 @@ void	clean_game(t_game *game)
 	if (game->map)
 		free_split(game->map);
 	free(game);
+}
+
+void	clean_data(t_data *data)
+{
+	if (!data)
+		return ;
+	if (data->game)
+		clean_game(data->game);
+
+	/* free MLX, textures, buf… */
+
+	free(data);
 }

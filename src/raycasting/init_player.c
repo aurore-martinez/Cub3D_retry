@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:05:48 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/04 08:49:23 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/04 09:55:43 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,64 @@
 |	Taille screen	| Fixe la resolution du rendu initial	|
 */
 
+/* “player” {0} */
+static void	zero_player(t_vec *p)
+{
+	p->pos.x = 0.0;
+	p->pos.y = 0.0;
+	p->dir.x = 0.0;
+	p->dir.y = 0.0;
+	p->plane.x = 0.0;
+	p->plane.y = 0.0;
+}
+
+/* init data */
+bool	init_data(t_data **data)
+{
+	*data = malloc(sizeof(t_data));
+	if (!(*data))
+	{
+		perror("Error");
+		return (false);
+	}
+	ft_memset(*data, 0, sizeof(t_data));
+	(*data)->game = NULL;
+	(*data)->scr_w = 960;
+	(*data)->scr_h = 640;
+	zero_player(&(*data)->player);
+	return (true);
+}
+
 /* oriente la direction et le plan cam selon le spawn */
 static void	set_dir_plane_from_char(t_vec *player, char c)
 {
 	if (c == 'N')
 	{
-		player->dir.x = -1; player->dir.y = 0;
-		player->playerane.x = 0; player->plane.y = 0.66;
+		player->dir.x = -1;
+		player->dir.y = 0;
+		player->plane.x = 0;
+		player->plane.y = 0.66;
 	}
 	else if (c == 'S')
 	{
-		player->dir.x = 1; player->dir.y = 0;
-		player->plane.x = 0; player->plane.y = -0.66;
+		player->dir.x = 1;
+		player->dir.y = 0;
+		player->plane.x = 0;
+		player->plane.y = -0.66;
 	}
 	else if (c == 'E')
 	{
-		player->dir.x = 0; player->dir.y = 1;
-		player->plane.x = 0.66; player->plane.y = 0;
+		player->dir.x = 0;
+		player->dir.y = 1;
+		player->plane.x = 0.66;
+		player->plane.y = 0;
 	}
 	else if (c == 'W')
 	{
-		player->dir.x = 0; player->dir.y = -1;
-		player->plane.x = -0.66; player->plane.y = 0;
+		player->dir.x = 0;
+		player->dir.y = -1;
+		player->plane.x = -0.66;
+		player->plane.y = 0;
 	}
 }
 
@@ -51,8 +87,8 @@ bool	init_player_from_game(t_data *data, t_game *game)
 	int	row;
 	int	col;
 
-	if (!data || !data->game)
-		return ;
+	if (!data || !game)
+		return (false);
 	data->game = game;
 	row = data->game->player.y;
 	col = data->game->player.x;
@@ -68,23 +104,5 @@ bool	init_player_from_game(t_data *data, t_game *game)
 		data->scr_w = 960;
 	if (data->scr_h <= 0)
 		data->scr_h = 640;
-}
-
-void	print_check(t_data *data)
-{
-	double	px;
-	double	py;
-
-	px = data->player.pos.x;
-	py = data->player.pos.y;
-	printf("=== player (from data) ===\n");
-	printf("pos   : x = %.2f | y = %.2f\n", px, py);
-	printf("dir   : x = %.2f | y = %.2f\n",
-		data->player.dir.x, data->player.dir.y);
-	printf("plane : x = %.2f | y = %.2f\n",
-		data->player.plane.x, data->player.plane.y);
-	printf("depart = spawn : row=%d col=%d char=%c\n",
-		data->game->player.y, data->game->player.x, (char)data->game->player_char);
-	printf("scr   : %dx%d\n", data->scr_w, data->scr_h);
-	printf("===\n");
+	return (true);
 }
