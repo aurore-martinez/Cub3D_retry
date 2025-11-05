@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:39:48 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/04 13:55:15 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/05 10:56:51 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,11 @@ void	draw_pixel(t_img *img, t_point p)
 		return ;
 	if (img->addr == NULL)
 		return ;
+	// if (p.x < 0 || p.x >= img->w || p.y < 0 || p.y >= img->h) ??
 	if (p.x < 0 || p.y < 0)
 		return ;
 	dst = img->addr + (p.y * img->line_len + p.x * (img->bpp / 8));
-	*(int *)dst = p.color;
+	*(unsigned int *)dst = p.color;
 }
 
 static void	update_position(t_bresenham *b, t_point *a)
@@ -71,7 +72,7 @@ void	draw_line(t_img *img, t_point a, t_point b_point)
 		update_position(&b, &a);
 	}
 }
-
+/* a sup plus tard c'est pour ma ligne horiz et vertical */
 void	draw_hline(t_img *img, int y, int x0, int x1, int color)
 {
 	t_point	p;
@@ -92,7 +93,7 @@ void	draw_hline(t_img *img, int y, int x0, int x1, int color)
 		x0++;
 	}
 }
-
+/* a sup plus tard c'est pour ma ligne horiz et vertical */
 void	draw_vline(t_img *img, int x, int y0, int y1, int color)
 {
 	t_point	p;

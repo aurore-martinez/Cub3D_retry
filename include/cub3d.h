@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/05 09:31:32 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/05 11:08:41 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define SCR_W 960
 # define SCR_H 640
 # define RGB(r, g, b) ((int)(((r) & 0xFF) << 16 | ((g) & 0xFF) << 8 | ((b) & 0xFF)))
-// int mlx_get_color_value(t_xvar *xvar,int color) ??
+// int mlx_get_color_value(t_xvar *xvar,int color)? voir use col.c ??
 
 /* indices de carte */
 typedef struct s_pos
@@ -56,7 +56,7 @@ typedef struct s_element
 	char	*path_south;
 	char	*path_west;
 	char	*path_east;
-	//RGB floor & ceiling, check 42 doc
+	//RGB floor & ceiling, check 42 doc -> voir color.c ?
 }	t_element;
 
 /* coord reelles du player, rayons, direction */
@@ -186,6 +186,11 @@ void	print_game(t_game *g);
 /*  ======================== 🔦🦇 RAYCASTING ======================== */
 bool	init_player_from_game(t_data *data);
 bool	init_data(t_data **data);
+
+/* comprendre : cast ray 1 col/wall */
+bool	cast_ray_perp_dist(t_data *d, double cameraX, double *perp_dist, int *side_hit, int *out_row, int *out_col);
+void	render_walls(t_data *d);
+
 
 /* ========================== 📊 GFX ========================== */
 bool	init_mlx(t_gfx **gfx, int w, int h, const char *title);
