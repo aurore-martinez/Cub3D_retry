@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:34:10 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/05 12:46:53 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/05 17:16:49 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ static int	mm_color_for_cell(char c)
 {
 	if (c == '1')
 		return (RGB(50, 50, 50));
-	if (c == '0' || c == ' ')
+	if (c == '0')
 		return (RGB(180, 180, 180));
+	if (c == ' ')
+		return (RGB(0, 0, 0));
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 		return (RGB(140, 200, 255));
 	return (RGB(100, 100, 100));
@@ -96,7 +98,7 @@ static void	draw_minimap_player(t_data *d)
 
 	ts = mm_tile_size(d);
 	r = ts / 3; /* rayon (1/3 d'une case) */
-
+	printf("tilesize:%d\n", d->gfx->cam.tile_size);
 	/* position joueur (col = y, row = x) */
 	cx = mm_off_x(d) + (int)(d->player.pos.y * ts + ts / 2);
 	cy = mm_off_y(d) + (int)(d->player.pos.x * ts + ts / 2);

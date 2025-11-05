@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 13:43:03 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/05 16:03:01 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/05 17:03:34 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	main(int argc, char **argv)
 		return (clean_data(data), 1);
 	// print_game(game);
 	// print_player_data(data);
+	data->gfx->cam.tile_size = 10;
 	launch_mlx(data);
 	clean_data(data);
 	return (0);
