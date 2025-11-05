@@ -70,23 +70,22 @@ SRC_DIR = src/
 
 
 SRC_FILES = main.c \
-			check_map.c \
-			cleanup.c \
-			get_map.c \
-			parse_element.c \
-			parse_floor_ceiling.c \
-			parse_game_info.c \
-			parse_wall.c \
-			print_error.c\
-			debug.c \
-			raycasting/init_player.c \
 			debug/print_data.c \
-			raycasting/dda.c \
-			raycasting/ray.c \
 			gfx/draw.c \
 			gfx/render.c \
 			gfx/events.c \
 			gfx/minimap.c \
+			parsing/check_map.c \
+			parsing/get_map.c \
+			parsing/parse_element.c \
+			parsing/parse_floor_ceiling.c \
+			parsing/parse_game_info.c \
+			parsing/parse_wall.c \
+			raycasting/init_player.c \
+			raycasting/dda.c \
+			raycasting/ray.c \
+			utils/cleanup.c \
+			utils/print_error.c\
 
 # Chemins complets des sources et objets
 SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))
