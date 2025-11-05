@@ -6,11 +6,11 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 14:52:54 by eieong            #+#    #+#             */
-/*   Updated: 2025/10/31 16:01:23 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/05 12:46:53 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 static bool	parse_north(t_game *game, char *path)
 {

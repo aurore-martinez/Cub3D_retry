@@ -6,11 +6,11 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 11:47:22 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/03 14:21:39 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/05 12:46:53 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 static bool	is_valid_identifier(char *id)
 {
