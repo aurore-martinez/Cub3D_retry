@@ -6,29 +6,11 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 13:43:03 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/04 16:04:46 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/05 11:38:12 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-static bool	init_game(t_game **game, char *filename)
-{
-	*game = malloc(sizeof(t_game));
-	if (!(*game))
-	{
-		perror("Error");
-		return (false);
-	}
-	ft_memset(*game, 0, sizeof(t_game));
-	(*game)->fd = open(filename, O_RDONLY);
-	if ((*game)->fd < 0)
-	{
-		perror("Error");
-		return (clean_game(*game), false);
-	}
-	return (true);
-}
 
 static bool	check_filename(char *name)
 {

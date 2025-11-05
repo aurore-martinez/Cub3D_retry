@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
+/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/05 09:31:32 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/05 11:38:22 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,9 @@ typedef struct s_data
 	int		scr_w;
 	int		scr_h;
 }	t_data;
+
+
+bool	init_game(t_game **game, char *filename);
 
 /* check_element.c */
 bool	split_the_line(t_game *game, char *line);

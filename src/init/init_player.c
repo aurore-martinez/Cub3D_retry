@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:05:48 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/04 16:01:39 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/05 11:40:09 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,34 +19,6 @@
 |	Plan cam		| FOV ≈ 66°, perpendiculaire à `dir`	|
 |	Taille screen	| Fixe la resolution du rendu initial	|
 */
-
-/* “player” {0} */
-static void	zero_player(t_vec *p)
-{
-	p->pos.x = 0.0;
-	p->pos.y = 0.0;
-	p->dir.x = 0.0;
-	p->dir.y = 0.0;
-	p->plane.x = 0.0;
-	p->plane.y = 0.0;
-}
-
-/* init data */
-bool	init_data(t_data **data)
-{
-	*data = malloc(sizeof(t_data));
-	if (!(*data))
-	{
-		perror("Error");
-		return (false);
-	}
-	ft_memset(*data, 0, sizeof(t_data));
-	(*data)->game = NULL;
-	(*data)->scr_w = SCR_W;
-	(*data)->scr_h = SCR_H;
-	zero_player(&(*data)->player);
-	return (true);
-}
 
 /* oriente la direction et le plan cam selon le spawn */
 static void	set_dir_plane_from_char(t_vec *player, char c)
@@ -100,8 +72,8 @@ bool	init_player_from_game(t_data *data)
 
 	/* taille fenerte ? res ??? */
 	if (data->scr_w <= 0)
-		data->scr_w = 960;
+		data->scr_w = SCR_W;
 	if (data->scr_h <= 0)
-		data->scr_h = 640;
+		data->scr_h = SCR_H;
 	return (true);
 }

@@ -3,38 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
+/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:07:30 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/04 16:36:49 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/05 11:37:47 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-bool	init_mlx(t_gfx **gfx, int w, int h, const char *title)
-{
-	*gfx = malloc(sizeof(t_gfx));
-	if (!(*gfx))
-	{
-		perror("Error");
-		return (false);
-	}
-	(*gfx)->mlx = mlx_init();
-	if ((*gfx)->mlx == NULL)
-		return (false);
-	(*gfx)->win = mlx_new_window((*gfx)->mlx, w, h, (char *)title);
-	if ((*gfx)->win == NULL)
-		return (false);
-	(*gfx)->frame.img = mlx_new_image((*gfx)->mlx, w, h);
-	if ((*gfx)->frame.img == NULL)
-		return (false);
-	(*gfx)->frame.addr = mlx_get_data_addr((*gfx)->frame.img, &(*gfx)->frame.bpp,
-			&(*gfx)->frame.line_len, &(*gfx)->frame.endian);
-	if ((*gfx)->frame.addr == NULL)
-		return (false);
-	return (true);
-}
 
 int	on_destroy_event(t_data *d)
 {

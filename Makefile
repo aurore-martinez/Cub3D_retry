@@ -75,13 +75,14 @@ SRC_FILES = main.c \
 			gfx/render.c \
 			gfx/events.c \
 			gfx/minimap.c \
+			init/init_data.c \
+			init/init_player.c \
 			parsing/check_map.c \
 			parsing/get_map.c \
 			parsing/parse_element.c \
 			parsing/parse_floor_ceiling.c \
 			parsing/parse_game_info.c \
 			parsing/parse_wall.c \
-			raycasting/init_player.c \
 			raycasting/dda.c \
 			raycasting/ray.c \
 			utils/cleanup.c \
