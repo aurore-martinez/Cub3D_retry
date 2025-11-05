@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/05 15:00:30 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/05 16:07:29 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,56 +145,36 @@ typedef struct s_data
 	int		scr_h;
 }	t_data;
 
-
+/* ==============================     INIT    ============================ */
+bool	init_mlx(t_gfx **gfx, int w, int h, const char *title);
 bool	init_game(t_game **game, char *filename);
-
-int		get_rgb(char *c_rgb);
-
-/* check_element.c */
-bool	split_the_line(t_game *game, char *line);
-
-/* check_map.c */
-bool	check_map(t_game *game);
-
-/* cleanup.c */
-void	gnl_clear(t_game *game, char *line);
-void	clean_data(t_data *data);
-
-/* line_to_map.c */
-char	**line_to_map(t_game *game, char *line);
-bool	check_line_char(t_game *game, char *line);
-
-/* parse_element1.c */
-bool	parse_floor_ceiling(t_game *game, char **element);
-
-/* parse_element.c */
-bool	parse_wall(t_game *game, char **element);
-
-/* parse_game_info.c */
-bool	parse_game_info(t_game *game);
-
-/* print_error.c */
-void	print_error(char *str);
-void	exit_error(char *str);
-
-/* debug.c */
-void	print_map(char **map);
+bool	init_data(t_data **data);
+bool	init_player_from_game(t_data *data);
 
 /* ========================    🦄 PARSING    ======================== */
+bool	check_map(t_game *game);
+char	**line_to_map(t_game *game, char *line);
+bool	check_line_char(t_game *game, char *line);
+int		get_rgb(char *c_rgb);
+bool	split_the_line(t_game *game, char *line);
+bool	parse_floor_ceiling(t_game *game, char **element);
+bool	parse_game_info(t_game *game);
+bool	parse_wall(t_game *game, char **element);
 
 /* ==============================    🛠️ UTILS    ============================ */
-
+void	gnl_clear(t_game *game, char *line);
+void	clean_data(t_data *data);
+void	print_error(char *str);
+void	exit_error(char *str);
 
 /* ========================    🚧 DEBUG    ======================== */
 void	print_player_data(t_data *d);
 void	print_game(t_game *g);
+void	print_map(char **map);
 
 /*  ======================== 🔦🦇 RAYCASTING ======================== */
-bool	init_player_from_game(t_data *data);
-bool	init_data(t_data **data);
 
 /* ========================== 📊 GFX ========================== */
-bool	init_mlx(t_gfx **gfx, int w, int h, const char *title);
 int		on_destroy_event(t_data *d);
 void	draw_line(t_img *img, t_point a, t_point b_point);
 void	draw_pixel(t_img *img, t_point p);
