@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 13:43:03 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/05 12:42:05 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/05 15:04:44 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static bool	parsing(char *file, t_game **game)
 		return (false);
 	if (!check_map(*game))
 		return (false);
-	print_map((*game)->map);
+	// print_map((*game)->map);
 	return (true);
 }
 
@@ -69,7 +69,7 @@ int	main(int argc, char **argv)
 	if ((!parsing(argv[1], &data->game)) || !init_3D(data))
 		return (clean_data(data), 1);
 	// print_game(game);
-	print_player_data(data);
+	// print_player_data(data);
 	launch_mlx(data);
 	clean_data(data); // j'ai change clean game pour clean data
 	return (0);

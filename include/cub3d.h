@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/05 11:46:10 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/05 15:00:30 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ typedef struct s_element
 	char	*path_south;
 	char	*path_west;
 	char	*path_east;
+	int		rgb_floor;
+	int		rgb_ceiling;
 	//RGB floor & ceiling, check 42 doc
 }	t_element;
 
@@ -145,6 +147,8 @@ typedef struct s_data
 
 
 bool	init_game(t_game **game, char *filename);
+
+int		get_rgb(char *c_rgb);
 
 /* check_element.c */
 bool	split_the_line(t_game *game, char *line);

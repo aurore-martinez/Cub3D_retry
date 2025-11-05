@@ -79,6 +79,7 @@ SRC_FILES = main.c \
 			init/init_player.c \
 			parsing/check_map.c \
 			parsing/get_map.c \
+			parsing/get_rgb.c \
 			parsing/parse_element.c \
 			parsing/parse_floor_ceiling.c \
 			parsing/parse_game_info.c \

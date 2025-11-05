@@ -6,40 +6,70 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 14:37:01 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/05 12:46:53 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/05 15:41:59 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static bool	parse_ceiling(t_game *game, char *path)
+static bool	check_comma(char *str)
 {
-	(void) path; //change var name
+	int	count;
+	int	i;
+
+	count = 0;
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == ',')
+			count++;
+		i++;
+	}
+	if (count != 2)
+		return (false);
+	return (true);
+}
+
+static bool	parse_ceiling(t_game *game, char *c_rgb)
+{
 	if (game->elements.ceiling)
 	{
 		print_error("Ceiling texture already parsed");
 		return (false);
 	}
+	else if (!check_comma(c_rgb))
+	{
+		print_error("RGB syntax error");
+		return (false);
+	}
 	else
 	{
 		game->elements.ceiling = true;
-		// game->elements.ceiling_texture ?????
+		game->elements.rgb_ceiling = get_rgb(c_rgb);
+		if (game->elements.rgb_ceiling == -1)
+			return (false);
 	}
 	return (true);
 }
 
-static bool	parse_floor(t_game *game, char *path)
+static bool	parse_floor(t_game *game, char *c_rgb)
 {
-	(void) path; //change var name
 	if (game->elements.floor)
 	{
 		print_error("Floor texture already parsed");
 		return (false);
 	}
+	else if (!check_comma(c_rgb))
+	{
+		print_error("RGB syntax error");
+		return (false);
+	}
 	else
 	{
 		game->elements.floor = true;
-		// game->elements.floor_texture ?????
+		game->elements.rgb_floor = get_rgb(c_rgb);
+		if (game->elements.rgb_floor == -1)
+			return (false);
 	}
 	return (true);
 }
