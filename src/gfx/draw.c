@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:39:48 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/05 10:56:51 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/05 13:34:05 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /* WIP copie colle de fdf a adapter pour Cub */
 
-static void	init_bresenham(t_bresenham *b, t_point a, t_point b_point)
+/* static void	init_bresenham(t_bresenham *b, t_point a, t_point b_point)
 {
 	b->dx = ft_abs(b_point.x - a.x);
 	b->dy = ft_abs(b_point.y - a.y);
@@ -27,21 +27,6 @@ static void	init_bresenham(t_bresenham *b, t_point a, t_point b_point)
 	else
 		b->sy = -1;
 	b->err = b->dx - b->dy;
-}
-
-void	draw_pixel(t_img *img, t_point p)
-{
-	char	*dst;
-
-	if (img == NULL)
-		return ;
-	if (img->addr == NULL)
-		return ;
-	// if (p.x < 0 || p.x >= img->w || p.y < 0 || p.y >= img->h) ??
-	if (p.x < 0 || p.y < 0)
-		return ;
-	dst = img->addr + (p.y * img->line_len + p.x * (img->bpp / 8));
-	*(unsigned int *)dst = p.color;
 }
 
 static void	update_position(t_bresenham *b, t_point *a)
@@ -71,8 +56,24 @@ void	draw_line(t_img *img, t_point a, t_point b_point)
 			break ;
 		update_position(&b, &a);
 	}
+} */
+
+void	draw_pixel(t_img *img, t_point p)
+{
+	char	*dst;
+
+	if (img == NULL)
+		return ;
+	if (img->addr == NULL)
+		return ;
+	// if (p.x < 0 || p.x >= img->w || p.y < 0 || p.y >= img->h) ??
+	if (p.x < 0 || p.y < 0)
+		return ;
+	dst = img->addr + (p.y * img->line_len + p.x * (img->bpp / 8));
+	*(unsigned int *)dst = p.color;
 }
-/* a sup plus tard c'est pour ma ligne horiz et vertical */
+
+/* draw line horizontale */
 void	draw_hline(t_img *img, int y, int x0, int x1, int color)
 {
 	t_point	p;
@@ -93,7 +94,7 @@ void	draw_hline(t_img *img, int y, int x0, int x1, int color)
 		x0++;
 	}
 }
-/* a sup plus tard c'est pour ma ligne horiz et vertical */
+/* draw line verticale */
 void	draw_vline(t_img *img, int x, int y0, int y1, int color)
 {
 	t_point	p;
@@ -112,5 +113,31 @@ void	draw_vline(t_img *img, int x, int y0, int y1, int color)
 		p.y = y0;
 		draw_pixel(img, p);
 		y0++;
+	}
+}
+
+/* = draw vline mieux pour raycast */
+void	draw_col(t_data *d, int x, int start, int end, int color)
+{
+	int		y;
+	t_point	p;
+
+	if (!d || x < 0 || x >= d->scr_w)
+		return ;
+	if (start < 0)
+		start = 0;
+	if (end >= d->scr_h)
+		end = d->scr_h - 1;
+	if (start > end)
+		return ;
+	y = start;
+	while (y <= end)
+	{
+		p.x = x;
+		p.y = y;
+		p.z = 0;
+		p.color = color;
+		draw_pixel(&d->gfx->frame, p);
+		y++;
 	}
 }

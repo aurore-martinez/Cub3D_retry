@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/05 11:08:41 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/05 16:38:29 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # include <unistd.h>
 # include <math.h>
 
+# define BIG 4.2e42
 # define SCR_W 960
 # define SCR_H 640
 # define RGB(r, g, b) ((int)(((r) & 0xFF) << 16 | ((g) & 0xFF) << 8 | ((b) & 0xFF)))
@@ -85,18 +86,7 @@ typedef struct s_game
 	int				height;
 }	t_game;
 
-/* === bresenham === */
-typedef struct s_bresenham
-{
-	int	dx;
-	int	dy;
-	int	sx;
-	int	sy;
-	int	err;
-	int	e2;
-}	t_bresenham;
-
-/* === pixel === */
+/* pixel  */
 typedef struct s_point
 {
 	int	x;
@@ -187,7 +177,7 @@ void	print_game(t_game *g);
 bool	init_player_from_game(t_data *data);
 bool	init_data(t_data **data);
 
-/* comprendre : cast ray 1 col/wall */
+/* comprendre : cast 1 ray 1 col/wall */
 bool	cast_ray_perp_dist(t_data *d, double cameraX, double *perp_dist, int *side_hit, int *out_row, int *out_col);
 void	render_walls(t_data *d);
 
@@ -195,10 +185,10 @@ void	render_walls(t_data *d);
 /* ========================== 📊 GFX ========================== */
 bool	init_mlx(t_gfx **gfx, int w, int h, const char *title);
 int		on_destroy_event(t_data *d);
-void	draw_line(t_img *img, t_point a, t_point b_point);
 void	draw_pixel(t_img *img, t_point p);
 void	draw_hline(t_img *img, int y, int x0, int x1, int color);
 void	draw_vline(t_img *img, int x, int y0, int y1, int color);
+void	draw_col(t_data *d, int x, int start, int end, int color);
 int		render_frame(t_data *d);
 void	clear_frame(t_img *img, int w, int h, int color);
 int		on_key_press(int key, t_data *d);

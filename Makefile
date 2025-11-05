@@ -79,11 +79,9 @@ SRC_FILES = main.c \
 			parse_wall.c \
 			print_error.c\
 			debug.c \
-			raycasting/init_player.c \
 			debug/print_data.c \
-			raycasting/dda.c \
-			raycasting/dda_walls.c \
-			raycasting/ray.c \
+			raycasting/init_player.c \
+			raycasting/learn.c \
 			gfx/draw.c \
 			gfx/render.c \
 			gfx/events.c \

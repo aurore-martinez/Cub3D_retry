@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 10:41:07 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/05 11:22:45 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/05 15:42:24 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,32 +31,8 @@ static bool	is_wall(t_game *g, int row, int col)
 	return (false);
 }
 
-static void	draw_wall_col(t_data *d, int x, int drawStart, int drawEnd, int color)
-{
-	int		y;
-	t_point	p;
-
-	if (!d || x < 0 || x >= d->scr_w)
-		return ;
-	if (drawStart < 0)
-		drawStart = 0;
-	if (drawEnd >= d->scr_h)
-		drawEnd = d->scr_h - 1;
-/* 	if (drawStart > drawEnd) // col vide ??
-		return ; */
-	y = drawStart;
-	while (y <= drawEnd)
-	{
-		p.x = x;
-		p.y = y;
-		p.z = 0;
-		p.color = color;
-		draw_pixel(&d->gfx->frame, p);
-		y++;
-	}
-}
-
-/* caster un rayon et renvoyer le distance */
+/* caster un rayon perpendiculaire a modif plus tard avec cam
+et renvoyer le distance */
 /* Return:	hit true/false
 side_hit: 0 si frontiere "row" franchie, 1 si "col" franchie. */
 
@@ -73,7 +49,6 @@ bool	cast_ray_perp_dist(t_data *d, double cameraX, double *perp_dist, int *side_
 	int		stepRow;
 	int		stepCol;
 	bool	hit;
-	const double BIG = 1e30;
 
 	if (d == NULL || d->game == NULL)
 		return (false);
@@ -151,57 +126,4 @@ bool	cast_ray_perp_dist(t_data *d, double cameraX, double *perp_dist, int *side_
 	return (true);
 }
 
-/* dessiner UNE colonne  */
-void render_walls(t_data *d)
-{
-	int		x;
-	double	cameraX;
-	double	perp;
-	int		side;
-	int		hit_r;
-	int		hit_c;
-	int		line_h, top, bot;
-	int		sky    = SKY;
-	int		floor = FLOOR;
-	int		wall;
-
-	x = 0;
-	while (x < d->scr_w)
-	{
-		cameraX = 2.0 * x / (double)d->scr_w - 1.0;
-
-		if (!cast_ray_perp_dist(d, cameraX, &perp, &side, &hit_r, &hit_c))
-		{
-			x++;
-			continue ;
-		}
-		if (perp < 1e-6)
-			perp = 1e-6;
-
-		line_h = (int)(d->scr_h / perp);
-		top = -line_h / 2 + d->scr_h / 2;
-		bot =  line_h / 2 + d->scr_h / 2;
-		if (top < 0)
-			top = 0;
-		if (bot >= d->scr_h)
-			bot = d->scr_h - 1;
-
-		if (side == 1)
-			wall = WALL_MAIN;
-		else
-			wall = WALL_SHADOW;
-
-
-		// plafond
-		if (top > 0)
-			draw_wall_col(d, x, 0, top - 1, sky);
-		// mur
-		draw_wall_col(d, x, top, bot, wall);
-		// sol
-		if (bot + 1 < d->scr_h)
-			draw_wall_col(d, x, bot + 1, d->scr_h - 1, floor);
-
-		x++;
-	}
-}
 
