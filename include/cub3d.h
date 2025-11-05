@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/04 16:45:03 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/05 09:31:32 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include "../lib/libft/libft.h"
 # include "../minilibx/minilibx-linux/mlx.h"
 # include "keys.h"
+# include "color.h"
+# include "palette.h"
 # include <limits.h>
 # include <stdbool.h>
 # include <sys/types.h>
