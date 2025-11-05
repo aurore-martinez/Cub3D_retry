@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 12:09:24 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/05 12:46:53 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/05 15:55:56 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	**line_to_map(t_game *game, char *line)
 	i = 0;
 	tmp = malloc(sizeof(char *) * (game->height + 1));
 	if (!tmp)
-		return (perror ("Error"), NULL); //free **map?
+		return (perror ("Error"), NULL);
 	tmp[game->height] = NULL;
 	while (i < game->height - 1)
 	{

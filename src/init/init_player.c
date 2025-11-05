@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:05:48 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/05 12:46:53 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/05 15:54:08 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,24 @@
 |	Plan cam		| FOV ≈ 66°, perpendiculaire à `dir`	|
 |	Taille screen	| Fixe la resolution du rendu initial	|
 */
+
+static void	set_east_west(t_vec *player, char c)
+{
+	if (c == 'E')
+	{
+		player->dir.x = 0;
+		player->dir.y = 1;
+		player->plane.x = 0.66;
+		player->plane.y = 0;
+	}
+	else if (c == 'W')
+	{
+		player->dir.x = 0;
+		player->dir.y = -1;
+		player->plane.x = -0.66;
+		player->plane.y = 0;
+	}
+}
 
 /* oriente la direction et le plan cam selon le spawn */
 static void	set_dir_plane_from_char(t_vec *player, char c)
@@ -37,20 +55,8 @@ static void	set_dir_plane_from_char(t_vec *player, char c)
 		player->plane.x = 0;
 		player->plane.y = -0.66;
 	}
-	else if (c == 'E')
-	{
-		player->dir.x = 0;
-		player->dir.y = 1;
-		player->plane.x = 0.66;
-		player->plane.y = 0;
-	}
-	else if (c == 'W')
-	{
-		player->dir.x = 0;
-		player->dir.y = -1;
-		player->plane.x = -0.66;
-		player->plane.y = 0;
-	}
+	else if (c == 'E' || c == 'W')
+		set_east_west(player, c);
 }
 
 /* init la cam du joueur depuis sa position dans la map = t_game */

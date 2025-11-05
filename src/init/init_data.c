@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 11:35:49 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/05 12:46:53 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/05 15:51:47 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ bool	init_mlx(t_gfx **gfx, int w, int h, const char *title)
 	(*gfx)->frame.img = mlx_new_image((*gfx)->mlx, w, h);
 	if ((*gfx)->frame.img == NULL)
 		return (false);
-	(*gfx)->frame.addr = mlx_get_data_addr((*gfx)->frame.img, &(*gfx)->frame.bpp,
-			&(*gfx)->frame.line_len, &(*gfx)->frame.endian);
+	(*gfx)->frame.addr = mlx_get_data_addr((*gfx)->frame.img,
+			&(*gfx)->frame.bpp, &(*gfx)->frame.line_len,
+			&(*gfx)->frame.endian);
 	if ((*gfx)->frame.addr == NULL)
 		return (false);
 	return (true);
