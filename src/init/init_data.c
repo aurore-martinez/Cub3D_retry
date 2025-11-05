@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 11:35:49 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/05 11:40:33 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/05 11:45:40 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ bool	init_game(t_game **game, char *filename)
 	if ((*game)->fd < 0)
 	{
 		perror("Error");
-		return (clean_game(*game), false);
+		return (false);
 	}
 	return (true);
 }

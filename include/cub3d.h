@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/05 11:38:22 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/05 11:46:10 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,6 @@ bool	check_map(t_game *game);
 
 /* cleanup.c */
 void	gnl_clear(t_game *game, char *line);
-void	clean_game(t_game *game);
 void	clean_data(t_data *data);
 
 /* line_to_map.c */

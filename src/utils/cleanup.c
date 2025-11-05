@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 12:09:02 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/04 15:43:00 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/05 12:42:23 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	gnl_clear(t_game *game, char *line)
 	free(line);
 }
 
-void	clean_game(t_game *game)
+static void	clean_game(t_game *game)
 {
 	if (game->fd != -1)
 		close(game->fd);
@@ -54,13 +54,11 @@ void	clean_data(t_data *data)
 {
 	if (!data)
 		return ;
-	// on_destroy_event(data);
 	if (data->game)
 		clean_game(data->game);
 	/* free MLX, textures, buf… */
 	if (data->gfx)
 		clean_mlx(data->gfx);
 	
-
 	free(data);
 }
