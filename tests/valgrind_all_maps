@@ -3,15 +3,21 @@
 GRIND=(valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all --track-fds=yes)
 BIN="./cub3D"
 MAPDIR="assets/maps_invalids"
+OUTFILE="test.txt"
+
+> "$OUTFILE"
 
 MAPS=($(find "$MAPDIR" -type f -name "*.cub"))
 
 for map in "${MAPS[@]}"; do
+{
 	echo
 	echo
     echo "========== $map =========="
 	echo
     "${GRIND[@]}" "$BIN" "$map"
     echo
+    echo "========== FIN DU TEST : $map =========="
 	echo
+} >> "$OUTFILE" 2>&1
 done

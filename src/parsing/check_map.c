@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:01:59 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/05 12:46:53 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/06 12:36:34 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static bool	flood_fill(char **map, t_pos pos, t_game *game)
 {
-	if ((pos.y < 0 || pos.x < 0 || pos.x > game->width
-			|| pos.y > game->height) || map[pos.y][pos.x] == ' ')
+	if ((pos.y < 0 || pos.x < 0 || pos.x >= game->width
+			|| pos.y >= game->height) || map[pos.y][pos.x] == ' ')
 		return (false);
 	else if (map[pos.y][pos.x] == '1' || map[pos.y][pos.x] == 'X')
 		return (true);
@@ -66,8 +66,7 @@ static bool	is_map_valid(t_game *game)
 		print_error("The map must be closed by walls");
 		return (false);
 	}
-	// print_map(map_copy);
-	printf("\n");
+	print_map(map_copy);
 	free_split(map_copy);
 	return (true);
 }
