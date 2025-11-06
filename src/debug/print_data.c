@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 17:56:44 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/05 12:46:53 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/06 11:49:02 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	print_map(char **map)
 		printf("\n");
 		y++;
 	}
+	printf("\n");
 }
 
 void	print_game(t_game *g)
