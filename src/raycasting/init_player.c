@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:05:48 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/04 16:01:39 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/06 10:49:05 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static void	zero_player(t_vec *p)
 	p->dir.y = 0.0;
 	p->plane.x = 0.0;
 	p->plane.y = 0.0;
+	p->move_speed = 0.0;
+	p->rot_speed = 0.0;
 }
 
 /* init data */
@@ -103,5 +105,10 @@ bool	init_player_from_game(t_data *data)
 		data->scr_w = 960;
 	if (data->scr_h <= 0)
 		data->scr_h = 640;
+	/* defaults ?? ou en define ??*/
+	if (data->player.move_speed <= 0.0)
+		data->player.move_speed = 0.05;
+	if (data->player.rot_speed <= 0.0)
+		data->player.rot_speed = 0.02;
 	return (true);
 }

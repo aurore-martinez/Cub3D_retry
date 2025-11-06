@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dda_walls.c                                        :+:      :+:    :+:   */
+/*   learn.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 10:41:07 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/05 15:42:24 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/06 10:40:39 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /* caster un rayon DDA et renvoyer le distance -> trouver mur */
 
-static bool	is_wall(t_game *g, int row, int col)
+bool	is_wall(t_game *g, int row, int col)
 {
 	if (g == NULL)
 		return (true);

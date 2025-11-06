@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:07:30 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/04 16:36:49 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/06 10:42:47 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,14 +152,9 @@ int	on_key_press(int key, t_data *d)
 {
 	if (key == KEY_ESC)
 		on_destroy_event(d);
-	/* gestions des touches */
 
-/* 	else if (key == KEY_PLUS || key == KEY_MINUS
-		|| key == KEY_LEFT || key == KEY_RIGHT
-		|| key == KEY_UP || key == KEY_DOWN
-		|| key == KEY_1 || key == KEY_2
-		|| key == KEY_9 || key == KEY_0)
-		change_view(key, d); */
+	/* délègue la logique de mouvement à la fonction dédiée */
+	handle_player_movement(key, d);
 
 	render_frame(d);
 	return (0);

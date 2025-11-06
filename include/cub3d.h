@@ -6,19 +6,21 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/05 16:38:29 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/06 12:15:22 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-/* ==========================    📚 INCLUDE    ========================== */
+/* ==========================	 📚 INCLUDE	 ========================== */
 # include "../lib/ft_printf/ft_printf.h"
 # include "../lib/ft_fprintf/ft_fprintf.h"
 # include "../lib/gnl/get_next_line_bonus.h"
 # include "../lib/libft/libft.h"
 # include "../minilibx/minilibx-linux/mlx.h"
+# include <X11/X.h>
+# include <X11/keysym.h>
 # include "keys.h"
 # include "color.h"
 # include "palette.h"
@@ -33,6 +35,7 @@
 # include <math.h>
 
 # define BIG 4.2e42
+
 # define SCR_W 960
 # define SCR_H 640
 # define RGB(r, g, b) ((int)(((r) & 0xFF) << 16 | ((g) & 0xFF) << 8 | ((b) & 0xFF)))
@@ -41,8 +44,8 @@
 /* indices de carte */
 typedef struct s_pos
 {
-	int		x;
-	int		y;
+	int	x;
+	int	y;
 }	t_pos;
 
 typedef struct s_element
@@ -71,22 +74,24 @@ typedef struct s_dpos
 typedef struct s_vec
 {
 	t_dpos	pos;	// position reelle dans la map
-	t_dpos	dir;	// dir
-	t_dpos	plane;	// plan camera pour champ de vision
-}	t_vec;
+	t_dpos	dir;
+	t_dpos	plane;
+	double	move_speed; // vitesse de deplacement du player (unités/frame ou * dt)
+	double	rot_speed;  // vitesse de rotation (radians/frame)
+}	 t_vec;
 
 typedef struct s_game
 {
-	t_element		elements;
-	char			**map;
-	t_pos			player; // spawn
-	int				player_char;
-	int				fd;
-	int				width;
-	int				height;
+	t_element	elements;
+	char		**map;
+	t_pos		player; /* spawn */
+	int			player_char;
+	int			fd;
+	int			width;
+	int			height;
 }	t_game;
 
-/* pixel  */
+/* pixel	*/
 typedef struct s_point
 {
 	int	x;
@@ -133,6 +138,22 @@ typedef struct s_data
 	int		scr_h;
 }	t_data;
 
+typedef struct s_dda
+{
+	double	ray_row;
+	double	ray_col;
+	int		cell_row;
+	int		cell_col;
+	double	side_dist_row;
+	double	side_dist_col;
+	double	delta_row;
+	double	delta_col;
+	int		step_row;
+	int		step_col;
+	bool	side_hit_col;
+}	t_dda;
+
+
 /* check_element.c */
 bool	split_the_line(t_game *game, char *line);
 
@@ -164,22 +185,37 @@ void	exit_error(char *str);
 /* debug.c */
 void	print_map(char **map);
 
-/* ========================    🦄 PARSING    ======================== */
+/* ========================	 🦄 PARSING	 ======================== */
 
-/* ==============================    🛠️ UTILS    ============================ */
+/* ==============================	 🛠️ UTILS	 ============================ */
 
 
-/* ========================    🚧 DEBUG    ======================== */
+/* ========================	 🚧 DEBUG	 ======================== */
 void	print_player_data(t_data *d);
 void	print_game(t_game *g);
-
-/*  ======================== 🔦🦇 RAYCASTING ======================== */
-bool	init_player_from_game(t_data *data);
-bool	init_data(t_data **data);
+void	print_dda(t_dda *r);
+void	print_map_stats(t_game *g);
+void	print_map_patch(t_game *g, int center_row, int center_col, int radius);
+void	print_ray_debug(t_data *d, int column_index);
+/* player movement helpers */
+void	handle_player_movement(int key, t_data *d);
 
 /* comprendre : cast 1 ray 1 col/wall */
 bool	cast_ray_perp_dist(t_data *d, double cameraX, double *perp_dist, int *side_hit, int *out_row, int *out_col);
 void	render_walls(t_data *d);
+
+/*	======================== 🔦🦇 RAYCASTING ======================== */
+bool	init_player_from_game(t_data *data);
+bool	init_data(t_data **data);
+
+/* calcule la direction du rayon pour une colonne caméra (cameraX in [-1,1]) */
+void	ray_build_dir(const t_vec *pl, double cameraX, t_dda *r);
+void	dda_init(const t_vec *pl, t_dda *r);
+// bool	dda_advance_until_hit(t_game *g, t_dda *r);
+/* avance la DDA (pour UN rayon pré-initialisé dans t_dda) */
+bool	dda_advance_until_hit(t_game *g, t_dda *r);
+double	dda_perp_distance(t_dda *r);
+bool	is_wall(t_game *g, int row, int col);
 
 
 /* ========================== 📊 GFX ========================== */

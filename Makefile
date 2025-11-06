@@ -80,8 +80,10 @@ SRC_FILES = main.c \
 			print_error.c\
 			debug.c \
 			debug/print_data.c \
+			player/player_move.c \
 			raycasting/init_player.c \
-			raycasting/learn.c \
+			raycasting/dda.c \
+			raycasting/ray.c \
 			gfx/draw.c \
 			gfx/render.c \
 			gfx/events.c \

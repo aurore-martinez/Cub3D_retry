@@ -6,90 +6,127 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 10:41:07 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/05 16:36:52 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/06 12:15:22 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
 /* dir du rayon */
-void	ray_build_dir(const t_vec *pl, double cameraX, double *rayRow,
-	double *rayCol)
+/*void	ray_build_dir(const t_vec *pl, double cameraX, t_dda *r, t_point *point)
 {
-	*rayRow = pl->dir.x + pl->plane.x * cameraX;
-	*rayCol = pl->dir.y + pl->plane.y * cameraX;
+	cameraX = 2 * (point->x / SCR_W ) - 1;
+	r->ray_row = pl->dir.x + pl->plane.x * cameraX;
+	r->ray_col = pl->dir.y + pl->plane.y * cameraX;
+}*/
+
+void	ray_build_dir(const t_vec *pl, double cameraX, t_dda *r)
+{
+	/* cameraX expected in [-1,1] : -1 = left, 0 = centre, +1 = right */
+	r->ray_row = pl->dir.x + pl->plane.x * cameraX;
+	r->ray_col = pl->dir.y + pl->plane.y * cameraX;
 }
 
-/* init DDA pour (rayRow, rayCol) */
-void	dda_init(
-	const t_vec *pl,
-	double rayRow, double rayCol,
-	int *cellRow, int *cellCol,
-	double *deltaRow, double *deltaCol,
-	int *stepRow, int *stepCol,
-	double *sideDistRow, double *sideDistCol)
+
+
+/* init DDA pour (r->rayRow, r->rayCol) */
+void	dda_init(const t_vec *pl, t_dda *r)
 {
-	*cellRow = (int)pl->pos.x;
-	*cellCol = (int)pl->pos.y;
-	if (rayRow == 0.0)
-		*deltaRow = BIG;
+	r->cell_row = (int)pl->pos.x;
+	r->cell_col = (int)pl->pos.y;
+	if (r->ray_row == 0.0)
+		r->delta_row = BIG;
 	else
-		*deltaRow = fabs(1.0 / rayRow);
-	if (rayCol == 0.0)
-		*deltaCol = BIG;
+		r->delta_row = fabs(1.0 / r->ray_row);
+	if (r->ray_col == 0.0)
+		r->delta_col = BIG;
 	else
-		*deltaCol = fabs(1.0 / rayCol);
-	if (rayRow < 0.0)
+		r->delta_col = fabs(1.0 / r->ray_col);
+	if (r->ray_row < 0.0)
 	{
-		*stepRow = -1;
-		*sideDistRow = (pl->pos.x - *cellRow) * *deltaRow;
+		r->step_row = -1;
+		r->side_dist_row = (pl->pos.x - r->cell_row) * r->delta_row;
 	}
 	else
 	{
-		*stepRow = 1;
-		*sideDistRow = (*cellRow + 1.0 - pl->pos.x) * *deltaRow;
+		r->step_row = 1;
+		r->side_dist_row = (r->cell_row + 1.0 - pl->pos.x) * r->delta_row;
 	}
-	if (rayCol < 0.0)
+	if (r->ray_col < 0.0)
 	{
-		*stepCol = -1;
-		*sideDistCol = (pl->pos.y - *cellCol) * *deltaCol;
+		r->step_col = -1;
+		r->side_dist_col = (pl->pos.y - r->cell_col) * r->delta_col;
 	}
 	else
 	{
-		*stepCol = 1;
-		*sideDistCol = (*cellCol + 1.0 - pl->pos.y) * *deltaCol;
+		r->step_col = 1;
+		r->side_dist_col = (r->cell_col + 1.0 - pl->pos.y) * r->delta_col;
 	}
 }
 
 /* boucle DDA : avance jusqu'au mur ;
 renvoie hit + side_hit (false=row, true=col) */
-bool	dda_advance_until_hit(t_game *g,
-	int *cellRow, int *cellCol,
-	double *sideDistRow, double *sideDistCol,
-	double deltaRow, double deltaCol,
-	int stepRow, int stepCol,
-	bool *side_hit_col)
+
+/*
+bool	dda_advance_until_hit(t_game *g, t_dda *r)
 {
 	bool	hit;
 	int		guard;
 
 	hit = false;
 	guard = g->width * g->height + 8; // map pas ferm ???
+
 	while (hit == false && guard > 0)
 	{
-		if (*sideDistRow < *sideDistCol)
+		if (r->side_dist_row < r->side_dist_col)
 		{
-			*sideDistRow += deltaRow;
-			*cellRow += stepRow;
-			*side_hit_col = false;
+			r->side_dist_row += r->delta_row;
+			r->cell_row += r->step_row;
+			r->side_hit_col = false;
 		}
 		else
 		{
-			*sideDistCol += deltaCol;
-			*cellCol += stepCol;
-			*side_hit_col = true;
+			r->side_dist_col += r->delta_col;
+			r->cell_col += r->step_col;
+			r->side_hit_col = true;
 		}
-		if (is_wall(g, *cellRow, *cellCol) == true)
+		if (is_wall(g, r->cell_row, r->cell_col) == true)
+			hit = true;
+		guard--;
+	}
+	return (hit);
+}
+*/
+
+
+
+bool	dda_advance_until_hit(t_game *g, t_dda *r)
+{
+	bool	hit;
+	int		guard;
+
+	if (!g || !r)
+		return (false);
+
+	hit = false;
+	guard = g->width * g->height + 8; /* safety guard if map not closed */
+
+	/* r must already contain ray_row/ray_col, cell_row/cell_col and deltas/side_dist/steps */
+	while (hit == false && guard > 0)
+	{
+		if (r->side_dist_row < r->side_dist_col)
+		{
+			r->side_dist_row += r->delta_row;
+			r->cell_row += r->step_row;
+			r->side_hit_col = false;
+		}
+		else
+		{
+			r->side_dist_col += r->delta_col;
+			r->cell_col += r->step_col;
+			r->side_hit_col = true;
+		}
+		if (is_wall(g, r->cell_row, r->cell_col) == true)
 			hit = true;
 		guard--;
 	}
@@ -97,17 +134,14 @@ bool	dda_advance_until_hit(t_game *g,
 }
 
 /* distance perpendiculaire depuis etat DDA et le side_hit */
-double dda_perp_distance(
-	bool side_hit_col,
-	double sideDistRow, double deltaRow,
-	double sideDistCol, double deltaCol)
+double	dda_perp_distance(t_dda *r)
 {
 	double	perp;
 
-	if (side_hit_col == false)
-		perp = sideDistRow - deltaRow;
+	if (r->side_hit_col == false)
+		perp = r->side_dist_row - r->delta_row;
 	else
-		perp = sideDistCol - deltaCol;
+		perp = r->side_dist_col - r->delta_col;
 	if (perp <= 0.0)
 		perp = 0.0001;
 	return (perp);
@@ -116,7 +150,7 @@ double dda_perp_distance(
 /*
                          ^ dir = (-1, 0)
                          |
-        plane (-0.66, 0) | (0.66, 0)
+        plane (-0.66, 0) | (0.66, 0)point
                          |
    rayon gauche   \   |   /   rayon droit
                    \  |  /
