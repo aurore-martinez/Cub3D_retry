@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 14:59:42 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/05 15:41:17 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/06 12:13:05 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,14 @@ static char	*delete_newline(char *str)
 int	get_rgb(char *c_rgb)
 {
 	char	**rgb_split;
-	int		red;
-	int		green;
-	int		blue;
-
-	c_rgb = delete_newline(c_rgb);
+	char	*tmp;
+	t_rgb	rgb;
+	
+	tmp = delete_newline(c_rgb);
 	if (!c_rgb)
 		return (-1);
-	rgb_split = ft_split(c_rgb, ',');
+	rgb_split = ft_split(tmp, ',');
+	free(tmp);
 	if (!rgb_split)
 		return (-1);
 	if (count_split(rgb_split) != 3)
@@ -78,11 +78,11 @@ int	get_rgb(char *c_rgb)
 		free_split(rgb_split);
 		return (-1);
 	}
-	red = atoi_rgb(rgb_split[0]);
-	green = atoi_rgb(rgb_split[1]);
-	blue = atoi_rgb(rgb_split[2]);
+	rgb.red = atoi_rgb(rgb_split[0]);
+	rgb.green = atoi_rgb(rgb_split[1]);
+	rgb.blue = atoi_rgb(rgb_split[2]);
 	free_split(rgb_split);
-	if (red == -1 || green == -1 || blue == -1)
+	if (rgb.red == -1 || rgb.green == -1 || rgb.blue == -1)
 		return (-1);
-	return (red << 16 | green << 8 | blue);
+	return (rgb.red << 16 | rgb.green << 8 | rgb.blue);
 }
