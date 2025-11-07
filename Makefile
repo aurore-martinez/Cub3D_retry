@@ -89,7 +89,6 @@ SRC_PLAYER = \
 
 SRC_INIT = \
 	init/init_data.c \
-	init/init_player.c
 
 SRC_UTILS = \
 	utils/cleanup.c \
