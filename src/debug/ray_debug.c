@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 09:00:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/07 09:32:49 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/07 11:34:18 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,3 +104,4 @@ void	print_ray_debug(t_data *d, int column_index)
 	print_dda_res_advance(&r, perp, hit);
 	print_map_char_at_hit(d, &r);
 }
+
