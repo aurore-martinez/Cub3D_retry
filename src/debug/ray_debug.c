@@ -6,20 +6,51 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 09:00:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/06 14:08:31 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/07 09:32:49 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
+/* summ init state du rayon */
+void	print_dda_init(t_dda *r)
+{
+	if (!r)
+		return ;
+	printf("=== dda init ===\n");
+	printf(" ray=(%.6f,%.6f) start_cell=(%d,%d)\n",
+		r->ray_row, r->ray_col, r->cell_row, r->cell_col);
+}
+
+/* print dda summ apres advance */
+void	print_dda_res_advance(t_dda *r, double perp, bool hit)
+{
+	int			hit_i;
+	const char	*side;
+
+	if (!r)
+		return ;
+	if (hit)
+		hit_i = 1;
+	else
+		hit_i = 0;
+	side = "row";
+	if (r->side_hit_col)
+		side = "col";
+	printf("=== dda summ apres advance ===\n");
+	printf(" result: hit=%d perp=%.6f cell=(%d,%d) side=%s\n",
+		hit_i,
+		perp,
+		r->cell_row,
+		r->cell_col,
+		side);
+}
+
 /*
- * Affiche le caractère présent dans la grille de jeu à la cellule
- * déterminée par r->cell_row et r->cell_col.
- * Paramètres :
- *  - d : contexte principal contenant la map (t_game)
- *  - r : structure DDA contenant les indices de cellule (cell_row, cell_col)
- * Comportement : si la cellule est hors-limites ou la ligne est NULL,
- *                affiche '?' pour indiquer un caractère inconnu.
+ * print char de la cel
+ * determinee par r->cell_row et r->cell_col
+ * si la cel est hors-limit ou la ligne est NULL,
+ * affiche '?' pour char inconnu
  */
 static void	print_map_char_at_hit(t_data *d, t_dda *r)
 {
@@ -35,148 +66,17 @@ static void	print_map_char_at_hit(t_data *d, t_dda *r)
 			if (r->cell_col < len)
 				ch = d->game->map[r->cell_row][r->cell_col];
 		}
-			printf(" map char at hit = %c\n", ch);
-	}
-}
-
-
-/* affiche un résumé compact de l'état initial du rayon (utile, non verbeux) */
-static void	print_dda_summary_init(t_dda *r)
-{
-	if (!r)
-		return ;
-	printf(" ray=(%.6f,%.6f) start_cell=(%d,%d)\n",
-		r->ray_row, r->ray_col, r->cell_row, r->cell_col);
-}
-
-/* affiche un résumé compact du résultat DDA après avance */
-static void	print_dda_summary_result(t_dda *r, double perp, bool hit)
-{
-	int hit_i;
-	const char *side;
-
-	if (!r)
-		return ;
-	if (hit)
-		hit_i = 1;
-	else
-		hit_i = 0;
-	side = "row";
-	if (r->side_hit_col)
-		side = "col";
-	printf(" result: hit=%d perp=%.6f cell=(%d,%d) side=%s\n",
-		hit_i,
-		perp,
-		r->cell_row,
-		r->cell_col,
-		side);
-}
-/*
- * Affiche des statistiques simples sur la map :
- * - largeur/hauteur (données de t_game)
- * - longueur minimale, maximale et moyenne des lignes (utile pour les maps "irrégulières")
- * - nombre total de murs ('1') trouvés dans la grille
- * La fonction est sûre : retourne immédiatement si g ou g->map est NULL.
- */
-void	print_map_stats(t_game *g)
-{
-	int		i;
-	int		min_len;
-	int		max_len;
-	long	total_len;
-	int		rows;
-	int		walls;
-
-	if (!g || !g->map)
-		return ;
-	rows = g->height;
-	min_len = INT_MAX;
-	max_len = 0;
-	total_len = 0;
-	walls = 0;
-	i = 0;
-	while (i < rows)
-	{
-		int len = g->map[i] ? (int)ft_strlen(g->map[i]) : 0;
-		int j = 0;
-		if (len < min_len)
-			min_len = len;
-		if (len > max_len)
-			max_len = len;
-		total_len += len;
-		while (j < len)
-		{
-			if (g->map[i][j] == '1')
-				walls++;
-			j++;
-		}
-		i++;
-	}
-	if (rows == 0)
-		rows = 1;
-	printf("map: width=%d height=%d\n", g->width, g->height);
-	printf("line len: min=%d max=%d avg=%.2f\n", min_len, max_len, (double)total_len / (double)rows);
-	printf("total walls: %d\n", walls);
-}
-
-/*
- * Affiche une petite zone (patch) de la map centrée sur (center_row, center_col).
- * Paramètres :
- *  - g : pointeur vers la structure t_game contenant la map
- *  - center_row/center_col : cellule centrale autour de laquelle afficher
- *  - radius : rayon en cellules à afficher (ex. radius=1 → 3x3)
- * Utilité : inspection rapide locale sans ouvrir l'interface graphique.
- */
-void	print_map_patch(t_game *g, int center_row, int center_col, int radius)
-{
-	int r;
-	int c;
-	int row_min;
-	int row_max;
-	int col_min;
-	int col_max;
-
-	if (!g || !g->map)
-		return ;
-	row_min = center_row - radius;
-	row_max = center_row + radius;
-	col_min = center_col - radius;
-	col_max = center_col + radius;
-	printf("map patch centered at (row=%d,col=%d) radius=%d:\n", center_row, center_col, radius);
-	r = row_min;
-	while (r <= row_max)
-	{
-		c = col_min;
-		while (c <= col_max)
-		{
-			char ch = ' ';
-			if (r >= 0 && r < g->height && g->map[r])
-			{
-				int len = (int)ft_strlen(g->map[r]);
-				if (c >= 0 && c < len)
-					ch = g->map[r][c];
-			}
-			if (r == g->player.y && c == g->player.x)
-				printf("P");
-			else
-				printf("%c", ch == '\0' ? ' ' : ch);
-			c++;
-		}
-		printf("\n");
-		r++;
+		printf(" map char at hit = %c\n", ch);
 	}
 }
 
 /*
- * Routine de debug pour un rayon vertical (colonne d'écran) :
- *  - construit la direction du rayon pour la colonne demandée
- *  - initialise la DDA (position, step, side distances)
- *  - avance la DDA jusqu'à toucher un mur
- *  - affiche les informations principales (état DDA, cellule touchée, distance perpendiculaire, côté touché)
- * Paramètres :
- *  - d : contexte complet (player, game, gfx)
- *  - column_index : indice de colonne écran [0 .. scr_w-1]
- * Remarques : la fonction vérifie les bornes de column_index et retourne si invalide.
+ * Routine de debug pour un rayon vertical (col screen) :
+ * - construit la dir du rayon pour la col demandee
+ * - init la DDA (position, step, side distances)
+ * - avance la DDA jusqu un mur
+ *  - affiche les infos (state DDA, cel hit, distance perp, side hit)
+ *  - check bornes de col_index si invalide
  */
 void	print_ray_debug(t_data *d, int column_index)
 {
@@ -198,12 +98,9 @@ void	print_ray_debug(t_data *d, int column_index)
 	dda_init(&d->player, &r);
 	printf("--- ray debug for column %d ---\n", column_index);
 	printf(" cameraX=%.6f\n", cameraX);
-	/* summary of initial ray */
-	print_dda_summary_init(&r);
+	print_dda_init(&r);
 	hit = dda_advance_until_hit(d->game, &r);
 	perp = dda_perp_distance(&r);
-	/* compact result */
-	print_dda_summary_result(&r, perp, hit);
-	/* Affiche le caractère stocké dans la cellule touchée par le rayon (si disponible) */
+	print_dda_res_advance(&r, perp, hit);
 	print_map_char_at_hit(d, &r);
 }

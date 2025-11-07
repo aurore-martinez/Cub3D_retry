@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/06 13:45:07 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/07 09:30:32 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,10 +194,10 @@ void	print_map(char **map);
 void	print_player_data(t_data *d);
 void	print_game(t_game *g);
 void	print_dda(t_dda *r);
-void	print_map_stats(t_game *g);
-void	print_map_patch(t_game *g, int center_row, int center_col, int radius);
+void	print_dda_init(t_dda *r);
+void	print_dda_res_advance(t_dda *r, double perp, bool hit);
 void	print_ray_debug(t_data *d, int column_index);
-/* player movement helpers */
+
 void	handle_player_moves(int key, t_data *d);
 
 /* comprendre : cast 1 ray 1 col/wall */
