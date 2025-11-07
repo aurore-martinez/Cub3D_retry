@@ -71,6 +71,20 @@ SRC_DIR = src/
 
 SRC_FILES = main.c \
 			debug/print_data.c \
+			check_map.c \
+			cleanup.c \
+			get_map.c \
+			parse_element.c \
+			parse_floor_ceiling.c \
+			parse_game_info.c \
+			parse_wall.c \
+			print_error.c\
+			debug.c \
+			debug/print_data.c \
+			player/player_move.c \
+			player/init_player.c \
+			raycasting/dda.c \
+			raycasting/ray.c \
 			gfx/draw.c \
 			gfx/render.c \
 			gfx/events.c \

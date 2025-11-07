@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 13:43:03 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/05 17:03:34 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/07 10:26:50 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,22 @@ int	main(int argc, char **argv)
 	if ((!parsing(argv[1], &data->game)) || !init_3D(data))
 		return (clean_data(data), 1);
 	// print_game(game);
+	if (!init_player_from_game(data))
+		return (clean_data(data), 1);
+
+	print_player_data(data);
+
+
+	if (!init_mlx(&data->gfx, data->scr_w, data->scr_h, "cub3D"))
+		return (clean_data(data), 1);
+
+	render_frame(data);
+	// mlx_key_hook(data->gfx->win, on_key_press, data);
+	mlx_hook(data->gfx->win, KeyPress, KeyPressMask, on_key_press, data);
+	mlx_hook(data->gfx->win, DestroyNotify, 0, on_destroy_event, data);
+	mlx_loop(data->gfx->mlx);
+
+	clean_data(data); // j'ai change clean game pour clean data
 	// print_player_data(data);
 	data->gfx->cam.tile_size = 10;
 	launch_mlx(data);

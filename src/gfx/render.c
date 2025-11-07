@@ -3,54 +3,98 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:14:56 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/05 12:46:53 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/07 10:17:30 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int	render_frame(t_data *d)
+int render_frame(t_data *d)
 {
-	t_point	a;
-	t_point	b;
-	int		midy;
-	int		midx;
+	int midy;
+	int midx;
 
-	if (d == NULL)
+	if (!d || !d->gfx)
 		return (0);
 
-	clear_frame(&d->gfx->frame, d->scr_w, d->scr_h, RGB(12, 12, 12));
+	/* fond */
+	clear_frame(&d->gfx->frame, d->scr_w, d->scr_h, MAP_BG);
 
+	/* raycasting murs + sky + sol */
+	render_walls(d);
+
+	/* a sup */
 	midy = d->scr_h / 2;
 	midx = d->scr_w / 2;
 
-	/* horizontale blanche au milieu */
-	a.x = 0;
-	a.y = midy;
-	a.z = 0;
-	a.color = RGB(255, 255, 255);
-	b.x = d->scr_w - 1;
-	b.y = midy;
-	b.z = 0;
-	b.color = RGB(255, 255, 255);
-	draw_line(&d->gfx->frame, a, b);
+	/* a sup : horizontale blanche au milieu */
+	draw_hline(&d->gfx->frame, midy, 0, d->scr_w - 1, WHITE);
 
-	/* verticale rouge au milieu */
-	a.x = midx;
-	a.y = 0;
-	a.z = 0;
-	a.color = RGB(255, 0, 0);
-	b.x = midx;
-	b.y = d->scr_h - 1;
-	b.z = 0;
-	b.color = RGB(255, 0, 0);
-	draw_line(&d->gfx->frame, a, b);
+	/* a sup : verticale rouge au milieu */
+	draw_vline(&d->gfx->frame, midx, 0, d->scr_h - 1, RED);
 
+	/* minimap */
 	draw_minimap(d);
-	
+
+	/* push à l’écran */
 	mlx_put_image_to_window(d->gfx->mlx, d->gfx->win, d->gfx->frame.img, 0, 0);
 	return (0);
 }
+
+void render_walls(t_data *d)
+{
+	int		x;
+	double	cameraX;
+	double	perp;
+	int		side;
+	int		hit_r;
+	int		hit_c;
+	int		line_h;
+	int		top;
+	int		bot;
+	int		wall;
+
+	x = 0;
+	while (x < d->scr_w)
+	{
+		cameraX = 2.0 * x / (double)d->scr_w - 1.0;
+
+		if (!cast_ray_perp_dist(d, cameraX, &perp, &side, &hit_r, &hit_c))
+		{
+			x++;
+			continue ;
+		}
+		if (perp < 1e-6)
+			perp = 1e-6;
+
+		line_h = (int)(d->scr_h / perp);
+		top = -line_h / 2 + d->scr_h / 2;
+		bot =  line_h / 2 + d->scr_h / 2;
+		if (top < 0)
+			top = 0;
+		if (bot >= d->scr_h)
+			bot = d->scr_h - 1;
+
+		if (side == 1)
+			wall = WALL_MAIN;
+		else
+			wall = WALL_SHADOW;
+
+		// plafond
+		if (top > 0)
+			draw_col(d, x, 0, top - 1, SKY);
+
+		// mur
+		draw_col(d, x, top, bot, wall);
+
+		// sol
+		if (bot + 1 < d->scr_h)
+			draw_col(d, x, bot + 1, d->scr_h - 1, FLOOR);
+
+		x++;
+	}
+}
+
