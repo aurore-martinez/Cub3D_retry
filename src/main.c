@@ -6,13 +6,13 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 13:43:03 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/06 10:59:13 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/07 11:12:57 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static bool	init_game(t_game **game, char *filename)
+bool	init_game(t_game **game, char *filename)
 {
 	*game = malloc(sizeof(t_game));
 	if (!(*game))
@@ -25,7 +25,9 @@ static bool	init_game(t_game **game, char *filename)
 	if ((*game)->fd < 0)
 	{
 		perror("Error");
-		return (clean_game(*game), false);
+		free(*game);
+		*game = NULL;
+		return (false);
 	}
 	return (true);
 }
