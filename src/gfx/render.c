@@ -6,11 +6,11 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:14:56 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/07 10:17:30 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/07 11:36:30 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../include/cub3d.h"
 
 int render_frame(t_data *d)
 {
@@ -44,6 +44,46 @@ int render_frame(t_data *d)
 	return (0);
 }
 
+/* Helper chat pour debug :
+use :
+env CUB3D_DEBUG=<valeur> timeout <time> ./cub3D <chemin_map>
+
+<valeur> :
+center → affiche le debug uniquement pour la colonne centrale
+all → affiche pour toutes les colonnes (très verbeux)
+<num> → un indice de col précis, ex. 320
+vide / unset → aucun debug
+
+ex :
+env CUB3D_DEBUG=center timeout 2s ./cub3D assets/maps_chat/map_corner.cub
+*/
+
+static void	help_env_print_ray_debug(t_data *d, int x)
+{
+	char	*dbg;
+	int		col;
+
+	if (!d)
+		return ;
+	dbg = getenv("CUB3D_DEBUG");
+	if (!dbg)
+		return ;
+	if (ft_strcmp(dbg, "all") == 0)
+	{
+		print_ray_debug(d, x);
+		return ;
+	}
+	if (ft_strcmp(dbg, "center") == 0)
+	{
+		if (x == d->scr_w / 2)
+			print_ray_debug(d, x);
+		return ;
+	}
+	col = ft_atoi(dbg);
+	if (col == x)
+		print_ray_debug(d, x);
+}
+
 void render_walls(t_data *d)
 {
 	int		x;
@@ -67,12 +107,15 @@ void render_walls(t_data *d)
 			x++;
 			continue ;
 		}
+
+		/* conditional debug printing — a sup */
+		help_env_print_ray_debug(d, x);
 		if (perp < 1e-6)
 			perp = 1e-6;
 
 		line_h = (int)(d->scr_h / perp);
 		top = -line_h / 2 + d->scr_h / 2;
-		bot =  line_h / 2 + d->scr_h / 2;
+		bot = line_h / 2 + d->scr_h / 2;
 		if (top < 0)
 			top = 0;
 		if (bot >= d->scr_h)
@@ -86,6 +129,9 @@ void render_walls(t_data *d)
 		// plafond
 		if (top > 0)
 			draw_col(d, x, 0, top - 1, SKY);
+
+		/* conditional debug printing — a sup */
+		help_env_print_ray_debug(d, x);
 
 		// mur
 		draw_col(d, x, top, bot, wall);
