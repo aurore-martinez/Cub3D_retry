@@ -81,7 +81,7 @@ SRC_FILES = main.c \
 			debug.c \
 			debug/print_data.c \
 			player/player_move.c \
-			raycasting/init_player.c \
+			player/init_player.c \
 			raycasting/dda.c \
 			raycasting/ray.c \
 			gfx/draw.c \

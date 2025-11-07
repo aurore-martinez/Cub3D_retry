@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:07:30 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/06 10:42:47 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/06 13:45:07 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ int	on_key_press(int key, t_data *d)
 		on_destroy_event(d);
 
 	/* délègue la logique de mouvement à la fonction dédiée */
-	handle_player_movement(key, d);
+	handle_player_moves(key, d);
 
 	render_frame(d);
 	return (0);

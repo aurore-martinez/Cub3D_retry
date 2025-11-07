@@ -6,27 +6,18 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 10:41:07 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/06 12:15:22 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/06 13:58:44 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-/* dir du rayon */
-/*void	ray_build_dir(const t_vec *pl, double cameraX, t_dda *r, t_point *point)
-{
-	cameraX = 2 * (point->x / SCR_W ) - 1;
-	r->ray_row = pl->dir.x + pl->plane.x * cameraX;
-	r->ray_col = pl->dir.y + pl->plane.y * cameraX;
-}*/
-
+/* cameraX en [-1,1] :	-1 = left	0 = centre	 +1 = right */
 void	ray_build_dir(const t_vec *pl, double cameraX, t_dda *r)
 {
-	/* cameraX expected in [-1,1] : -1 = left, 0 = centre, +1 = right */
 	r->ray_row = pl->dir.x + pl->plane.x * cameraX;
 	r->ray_col = pl->dir.y + pl->plane.y * cameraX;
 }
-
 
 
 /* init DDA pour (r->rayRow, r->rayCol) */
@@ -64,55 +55,15 @@ void	dda_init(const t_vec *pl, t_dda *r)
 	}
 }
 
-/* boucle DDA : avance jusqu'au mur ;
-renvoie hit + side_hit (false=row, true=col) */
-
-/*
+/* boucle DDA : avance jusuq'a hit == false */
 bool	dda_advance_until_hit(t_game *g, t_dda *r)
 {
 	bool	hit;
-	int		guard;
-
-	hit = false;
-	guard = g->width * g->height + 8; // map pas ferm ???
-
-	while (hit == false && guard > 0)
-	{
-		if (r->side_dist_row < r->side_dist_col)
-		{
-			r->side_dist_row += r->delta_row;
-			r->cell_row += r->step_row;
-			r->side_hit_col = false;
-		}
-		else
-		{
-			r->side_dist_col += r->delta_col;
-			r->cell_col += r->step_col;
-			r->side_hit_col = true;
-		}
-		if (is_wall(g, r->cell_row, r->cell_col) == true)
-			hit = true;
-		guard--;
-	}
-	return (hit);
-}
-*/
-
-
-
-bool	dda_advance_until_hit(t_game *g, t_dda *r)
-{
-	bool	hit;
-	int		guard;
 
 	if (!g || !r)
 		return (false);
-
 	hit = false;
-	guard = g->width * g->height + 8; /* safety guard if map not closed */
-
-	/* r must already contain ray_row/ray_col, cell_row/cell_col and deltas/side_dist/steps */
-	while (hit == false && guard > 0)
+	while (hit == false)
 	{
 		if (r->side_dist_row < r->side_dist_col)
 		{
@@ -128,7 +79,6 @@ bool	dda_advance_until_hit(t_game *g, t_dda *r)
 		}
 		if (is_wall(g, r->cell_row, r->cell_col) == true)
 			hit = true;
-		guard--;
 	}
 	return (hit);
 }

@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 10:41:07 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/06 10:40:39 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/06 13:59:51 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /* caster un rayon DDA et renvoyer le distance -> trouver mur */
 
-bool	is_wall(t_game *g, int row, int col)
+/* bool	is_wall(t_game *g, int row, int col)
 {
 	if (g == NULL)
 		return (true);
@@ -36,7 +36,8 @@ et renvoyer le distance */
 /* Return:	hit true/false
 side_hit: 0 si frontiere "row" franchie, 1 si "col" franchie. */
 
-bool	cast_ray_perp_dist(t_data *d, double cameraX, double *perp_dist, int *side_hit, int *out_row, int *out_col)
+/* bool	cast_ray_perp_dist(t_data *d, double cameraX, double *perp_dist,
+int *side_hit, int *out_row, int *out_col)
 {
 	double	rayRow;
 	double	rayCol;
@@ -55,7 +56,7 @@ bool	cast_ray_perp_dist(t_data *d, double cameraX, double *perp_dist, int *side_
 	if (perp_dist == NULL || side_hit == NULL)
 		return (false);
 
-	/* dir du rayon dans (row/col) */
+	// dir du rayon dans (row/col)
 	rayRow = d->player.dir.x + d->player.plane.x * cameraX;
 	rayCol = d->player.dir.y + d->player.plane.y * cameraX;
 
@@ -124,6 +125,4 @@ bool	cast_ray_perp_dist(t_data *d, double cameraX, double *perp_dist, int *side_
 	if (out_col != NULL)
 		*out_col = cellCol;
 	return (true);
-}
-
-
+} */

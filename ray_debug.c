@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 09:00:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/06 14:08:31 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/06 09:32:31 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,42 +35,10 @@ static void	print_map_char_at_hit(t_data *d, t_dda *r)
 			if (r->cell_col < len)
 				ch = d->game->map[r->cell_row][r->cell_col];
 		}
-			printf(" map char at hit = %c\n", ch);
+		printf(" map char at hit = %c\n", ch);
 	}
 }
 
-
-/* affiche un résumé compact de l'état initial du rayon (utile, non verbeux) */
-static void	print_dda_summary_init(t_dda *r)
-{
-	if (!r)
-		return ;
-	printf(" ray=(%.6f,%.6f) start_cell=(%d,%d)\n",
-		r->ray_row, r->ray_col, r->cell_row, r->cell_col);
-}
-
-/* affiche un résumé compact du résultat DDA après avance */
-static void	print_dda_summary_result(t_dda *r, double perp, bool hit)
-{
-	int hit_i;
-	const char *side;
-
-	if (!r)
-		return ;
-	if (hit)
-		hit_i = 1;
-	else
-		hit_i = 0;
-	side = "row";
-	if (r->side_hit_col)
-		side = "col";
-	printf(" result: hit=%d perp=%.6f cell=(%d,%d) side=%s\n",
-		hit_i,
-		perp,
-		r->cell_row,
-		r->cell_col,
-		side);
-}
 /*
  * Affiche des statistiques simples sur la map :
  * - largeur/hauteur (données de t_game)
@@ -198,12 +166,19 @@ void	print_ray_debug(t_data *d, int column_index)
 	dda_init(&d->player, &r);
 	printf("--- ray debug for column %d ---\n", column_index);
 	printf(" cameraX=%.6f\n", cameraX);
-	/* summary of initial ray */
-	print_dda_summary_init(&r);
+	print_dda(&r);
 	hit = dda_advance_until_hit(d->game, &r);
 	perp = dda_perp_distance(&r);
-	/* compact result */
-	print_dda_summary_result(&r, perp, hit);
+	if (hit)
+		printf(" after advance: hit=1\n");
+	else
+		printf(" after advance: hit=0\n");
+	if (r.side_hit_col)
+		printf(" side=1 (col)\n");
+	else
+		printf(" side=0 (row)\n");
+	printf(" cell=(%d,%d)\n", r.cell_row, r.cell_col);
+	printf(" perp=%.6f\n", perp);
 	/* Affiche le caractère stocké dans la cellule touchée par le rayon (si disponible) */
 	print_map_char_at_hit(d, &r);
 }

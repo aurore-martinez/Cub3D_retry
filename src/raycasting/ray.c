@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 15:37:27 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/06 12:15:22 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/06 14:03:03 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ bool	is_wall(t_game *g, int row, int col)
 		return (true);
 	if (g->map[row] == NULL)
 		return (true);
-	/* protect against ragged lines: if column beyond actual line length, treat as wall */
 	if ((int)ft_strlen(g->map[row]) <= col)
 		return (true);
 	if (g->map[row][col] == '1')
@@ -32,8 +31,7 @@ bool	is_wall(t_game *g, int row, int col)
 	return (false);
 }
 
-/* caster un rayon perpendiculaire a modif plus tard avec cam
-et renvoyer le distance */
+/* caster un rayon perpendiculaire et renvoyer le distance */
 /* Return:	hit true/false
 side_hit: si frontiere "row" franchie, 1 si "col" franchie. */
 
@@ -46,8 +44,6 @@ bool	cast_ray_perp_dist(t_data *d, double cameraX, double *perp_dist, int *side_
 		return (false);
 	if (perp_dist == NULL || side_hit == NULL)
 		return (false);
-
-	/* build ray direction for this cameraX, then init DDA state */
 	ray_build_dir(&d->player, cameraX, &r);
 	dda_init(&d->player, &r);
 	hit = dda_advance_until_hit(d->game, &r);
@@ -55,7 +51,12 @@ bool	cast_ray_perp_dist(t_data *d, double cameraX, double *perp_dist, int *side_
 		return (false);
 	*perp_dist = dda_perp_distance(&r);
 	if (side_hit != NULL)
-		*side_hit = r.side_hit_col ? 1 : 0;
+	{
+		if (r.side_hit_col)
+			*side_hit = 1;
+		else
+			*side_hit = 0;
+	}
 	if (*perp_dist <= 0.0)
 		*perp_dist = 0.0001;
 	if (out_row != NULL)

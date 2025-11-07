@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/06 12:15:22 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/06 13:45:07 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@
 
 # define SCR_W 960
 # define SCR_H 640
+# define MOVE_SPEED 0.15
+# define ROT_SPEED 0.12
 # define RGB(r, g, b) ((int)(((r) & 0xFF) << 16 | ((g) & 0xFF) << 8 | ((b) & 0xFF)))
 // int mlx_get_color_value(t_xvar *xvar,int color)? voir use col.c ??
 
@@ -76,9 +78,7 @@ typedef struct s_vec
 	t_dpos	pos;	// position reelle dans la map
 	t_dpos	dir;
 	t_dpos	plane;
-	double	move_speed; // vitesse de deplacement du player (unités/frame ou * dt)
-	double	rot_speed;  // vitesse de rotation (radians/frame)
-}	 t_vec;
+} 	 t_vec;
 
 typedef struct s_game
 {
@@ -198,7 +198,7 @@ void	print_map_stats(t_game *g);
 void	print_map_patch(t_game *g, int center_row, int center_col, int radius);
 void	print_ray_debug(t_data *d, int column_index);
 /* player movement helpers */
-void	handle_player_movement(int key, t_data *d);
+void	handle_player_moves(int key, t_data *d);
 
 /* comprendre : cast 1 ray 1 col/wall */
 bool	cast_ray_perp_dist(t_data *d, double cameraX, double *perp_dist, int *side_hit, int *out_row, int *out_col);
@@ -212,7 +212,7 @@ bool	init_data(t_data **data);
 void	ray_build_dir(const t_vec *pl, double cameraX, t_dda *r);
 void	dda_init(const t_vec *pl, t_dda *r);
 // bool	dda_advance_until_hit(t_game *g, t_dda *r);
-/* avance la DDA (pour UN rayon pré-initialisé dans t_dda) */
+/* avance la DDA (pour UN rayon preinit dans t_dda) */
 bool	dda_advance_until_hit(t_game *g, t_dda *r);
 double	dda_perp_distance(t_dda *r);
 bool	is_wall(t_game *g, int row, int col);
