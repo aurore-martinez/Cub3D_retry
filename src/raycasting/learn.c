@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 10:41:07 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/06 13:59:51 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/07 10:48:39 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@
 	return (false);
 }
 
-/* caster un rayon perpendiculaire a modif plus tard avec cam
-et renvoyer le distance */
-/* Return:	hit true/false
-side_hit: 0 si frontiere "row" franchie, 1 si "col" franchie. */
+caster un rayon perpendiculaire a modif plus tard avec cam
+et renvoyer le distance
+Return:	hit true/false
+side_hit: 0 si frontiere "row" franchie, 1 si "col" franchie.
 
-/* bool	cast_ray_perp_dist(t_data *d, double cameraX, double *perp_dist,
+bool	cast_ray_perp_dist(t_data *d, double cameraX, double *perp_dist,
 int *side_hit, int *out_row, int *out_col)
 {
 	double	rayRow;
