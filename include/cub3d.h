@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/07 10:13:26 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/07 10:36:16 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,21 @@ typedef struct s_data
 	int		scr_w;
 	int		scr_h;
 }	t_data;
+
+typedef struct s_dda
+{
+	double	ray_row;
+	double	ray_col;
+	int		cell_row;
+	int		cell_col;
+	double	side_dist_row;
+	double	side_dist_col;
+	double	delta_row;
+	double	delta_col;
+	int		step_row;
+	int		step_col;
+	bool	side_hit_col;
+}	t_dda;
 
 /* ==============================     INIT    ============================ */
 bool	init_mlx(t_gfx **gfx, int w, int h, const char *title);

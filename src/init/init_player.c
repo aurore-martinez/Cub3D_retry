@@ -6,17 +6,12 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:05:48 by aumartin          #+#    #+#             */
-<<<<<<<< HEAD:src/init/init_player.c
-/*   Updated: 2025/11/05 15:54:08 by eieong           ###   ########.fr       */
-========
-/*   Updated: 2025/11/06 13:38:44 by aumartin         ###   ########.fr       */
->>>>>>>> wall:src/player/init_player.c
+/*   Updated: 2025/11/07 10:37:59 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-<<<<<<<< HEAD:src/init/init_player.c
 /*|	Step			|	Resultat							|
 |-------------------|---------------------------------------|
 |	Centrage (+0.5)	| Le joueur n’est pas colle au mur		|
@@ -26,10 +21,6 @@
 */
 
 static void	set_east_west(t_vec *player, char c)
-========
-/* “player” {0} */
-static void	zero_player(t_vec *p)
->>>>>>>> wall:src/player/init_player.c
 {
 	if (c == 'E')
 	{
