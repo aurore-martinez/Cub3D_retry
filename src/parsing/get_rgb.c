@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 14:59:42 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/06 12:13:05 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/10 13:32:33 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,23 @@ static char	*delete_newline(char *str)
 	int		len;
 
 	len = ft_strlen(str) - 1;
-	new = malloc(sizeof(char) * (len + 1));
-	if (!new)
+	if (str[len] == '\n')
 	{
-		perror("Error");
-		return (NULL);
+		new = malloc(sizeof(char) * (len + 1));
+		if (!new)
+		{
+			perror("Error");
+			return (NULL);
+		}
+		ft_memcpy(new, str, len);
+		new[len] = '\0';
+		return (new);
 	}
-	ft_memcpy(new, str, len);
-	new[len] = '\0';
-	return (new);
+	else
+	{
+		new = ft_strdup(str);
+		return (new);
+	}
 }
 
 int	get_rgb(char *c_rgb)
@@ -66,7 +74,7 @@ int	get_rgb(char *c_rgb)
 	t_rgb	rgb;
 	
 	tmp = delete_newline(c_rgb);
-	if (!c_rgb)
+	if (!tmp)
 		return (-1);
 	rgb_split = ft_split(tmp, ',');
 	free(tmp);

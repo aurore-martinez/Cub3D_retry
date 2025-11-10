@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:01:59 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/06 12:36:34 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/10 13:37:31 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,11 @@ static bool	fill_short_line(t_game *game)
 
 bool	check_map(t_game *game)
 {
+	if (!game->map)
+	{
+		print_error("Empty map");
+		return (false);
+	}
 	if (!fill_short_line(game))
 		return (false);
 	if (!is_map_valid(game))
