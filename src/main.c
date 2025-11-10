@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 13:43:03 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/10 15:44:34 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:49:20 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ int	main(int argc, char **argv)
 	if (!init_mlx(&data->gfx, data->scr_w, data->scr_h, "cub3D"))
 		return (clean_data(data), 1);
 
-	/* initialiser la caméra de la minimap maintenant que data->gfx est alloué */
 	init_camera(data);
 
 	render_frame(data);
