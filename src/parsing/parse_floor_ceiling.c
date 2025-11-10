@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 14:37:01 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/05 15:41:59 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/10 14:32:05 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static bool	parse_ceiling(t_game *game, char *c_rgb)
 {
 	if (game->elements.ceiling)
 	{
-		print_error("Ceiling texture already parsed");
+		print_error("Ceiling color already parsed");
 		return (false);
 	}
 	else if (!check_comma(c_rgb))
@@ -56,7 +56,7 @@ static bool	parse_floor(t_game *game, char *c_rgb)
 {
 	if (game->elements.floor)
 	{
-		print_error("Floor texture already parsed");
+		print_error("Floor color already parsed");
 		return (false);
 	}
 	else if (!check_comma(c_rgb))
