@@ -84,6 +84,7 @@ SRC_FILES = main.c \
 			parsing/parse_floor_ceiling.c \
 			parsing/parse_game_info.c \
 			parsing/parse_wall.c \
+			parsing/parsing_utils.c \
 			raycasting/dda.c \
 			raycasting/ray.c \
 			utils/cleanup.c \

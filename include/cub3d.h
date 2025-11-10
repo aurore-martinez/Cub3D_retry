@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/06 12:10:47 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/10 14:14:30 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,9 @@ bool	split_the_line(t_game *game, char *line);
 bool	parse_floor_ceiling(t_game *game, char **element);
 bool	parse_game_info(t_game *game);
 bool	parse_wall(t_game *game, char **element);
+bool	skip_line(char *line);
+bool	has_all_element(t_game *game);
+bool	is_line_for_map(char *line);
 
 /* ==============================    🛠️ UTILS    ============================ */
 void	gnl_clear(t_game *game, char *line);

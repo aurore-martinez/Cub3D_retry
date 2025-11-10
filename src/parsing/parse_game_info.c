@@ -6,26 +6,11 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 11:42:41 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/10 14:06:52 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/10 14:23:58 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-static bool	skip_line(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i] && line[i] != '\n')
-	{
-		if (line[i] == ' ')
-			i++;
-		else
-			return (false);
-	}
-	return (true);
-}
 
 static bool	fill_map(t_game *game, char *line)
 {
@@ -38,28 +23,25 @@ static bool	fill_map(t_game *game, char *line)
 	return (true);
 }
 
-static bool	has_all_element(t_game *game)
+static bool	parse_line(t_game *game, char *line)
 {
-	if (game->elements.north && game->elements.south
-		&& game->elements.west && game->elements.east
-		&& game->elements.floor && game->elements.ceiling)
-		return (true);
-	else
-		return (false);
-}
+	bool	line_map;
 
-static bool	is_line_for_map(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i] && line[i] != '\n')
+	line_map = is_line_for_map(line);
+	if (!has_all_element(game))
 	{
-		if (line[i] != '1' && line[i] != '0' && line[i] != ' '
-			&& line[i] != 'N' && line[i] != 'S' && line[i] != 'W'
-			&& line[i] != 'E')
+		if (line_map)
+		{
+			print_error("Some elements are missing");
 			return (false);
-		i++;
+		}
+		if (!split_the_line(game, line))
+			return (false);
+	}
+	else
+	{
+		if (!fill_map(game, line))
+			return (false);
 	}
 	return (true);
 }
@@ -67,7 +49,6 @@ static bool	is_line_for_map(char *line)
 static bool	gnl_loop(t_game *game)
 {
 	char	*line;
-	bool	line_map;
 
 	line = get_next_line(game->fd);
 	if (!line)
@@ -80,22 +61,8 @@ static bool	gnl_loop(t_game *game)
 			line = get_next_line(game->fd);
 			continue ;
 		}
-		line_map = is_line_for_map(line);
-		if (!has_all_element(game))
-		{
-			if (line_map)
-			{
-				print_error("Some elements are missing");
-				return (gnl_clear(game, line), false);
-			}
-			if (!split_the_line(game, line))
-				return (gnl_clear(game, line), false);
-		}
-		else
-		{
-			if (!fill_map(game, line))
-				return (gnl_clear(game, line), false);
-		}
+		if (!parse_line(game, line))
+			return (gnl_clear(game, line), false);
 		free(line);
 		line = get_next_line(game->fd);
 	}
