@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 14:59:42 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/10 13:32:33 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/10 16:28:10 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	get_rgb(char *c_rgb)
 	char	**rgb_split;
 	char	*tmp;
 	t_rgb	rgb;
-	
+
 	tmp = delete_newline(c_rgb);
 	if (!tmp)
 		return (-1);
