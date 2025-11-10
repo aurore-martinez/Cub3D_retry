@@ -3,14 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   main2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
+/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 13:43:03 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/07 11:27:31 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/10 10:52:21 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+bool	init_game(t_game **game, char *filename)
+{
+	*game = malloc(sizeof(t_game));
+	if (!(*game))
+	{
+		perror("Error");
+		return (false);
+	}
+	ft_memset(*game, 0, sizeof(t_game));
+	(*game)->fd = open(filename, O_RDONLY);
+	if ((*game)->fd < 0)
+	{
+		perror("Error");
+		free(*game);
+		*game = NULL;
+		return (false);
+	}
+	return (true);
+}
 
 static bool	check_filename(char *name)
 {
