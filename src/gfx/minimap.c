@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:34:10 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/05 17:16:49 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/10 14:52:07 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ static void	draw_minimap_player(t_data *d)
 
 	ts = mm_tile_size(d);
 	r = ts / 3; /* rayon (1/3 d'une case) */
-	printf("tilesize:%d\n", d->gfx->cam.tile_size);
 	/* position joueur (col = y, row = x) */
 	cx = mm_off_x(d) + (int)(d->player.pos.y * ts + ts / 2);
 	cy = mm_off_y(d) + (int)(d->player.pos.x * ts + ts / 2);

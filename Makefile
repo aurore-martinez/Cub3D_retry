@@ -81,7 +81,8 @@ SRC_PARSING = \
 	parsing/parse_element.c \
 	parsing/parse_floor_ceiling.c \
 	parsing/parse_game_info.c \
-	parsing/parse_wall.c
+	parsing/parse_wall.c \
+	parsing/parsing_utils.c
 
 SRC_PLAYER = \
 	player/player_move.c \
