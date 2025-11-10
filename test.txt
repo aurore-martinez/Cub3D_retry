@@ -1,0 +1,486 @@
+
+>>>>>>>> assets/maps_invalids/bad_color.cub <<<<<<<<
+                                                      |
+Error
+RGB syntax error
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/bad_color.cub ======
+
+
+>>>>>>>> assets/maps_invalids/bad_identifier.cub <<<<<<<<
+                                                      |
+Error
+DA is not a valid identifier
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/bad_identifier.cub ======
+
+
+>>>>>>>> assets/maps_invalids/big_color.cub <<<<<<<<
+                                                      |
+Error
+RGB values muste be between 0 and 255
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/big_color.cub ======
+
+
+>>>>>>>> assets/maps_invalids/duplicate_color.cub <<<<<<<<
+                                                      |
+Error
+RGB values muste be between 0 and 255
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/duplicate_color.cub ======
+
+
+>>>>>>>> assets/maps_invalids/duplicate_player.cub <<<<<<<<
+                                                      |
+Error
+Only one player character required
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/duplicate_player.cub ======
+
+
+>>>>>>>> assets/maps_invalids/duplicate_texture.cub <<<<<<<<
+                                                      |
+Error
+South texture already parsed
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/duplicate_texture.cub ======
+
+
+>>>>>>>> assets/maps_invalids/empty.cub <<<<<<<<
+                                                      |
+Error
+Empty file
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/empty.cub ======
+
+
+>>>>>>>> assets/maps_invalids/empty_closed_line.cub <<<<<<<<
+                                                      |
+1|1|1|1|1|1|1|1|
+1|0|0|0|0|0|0|1|
+1|1|1|1|1|1|1|1|
+1|1|1|1|1|1|1|1|
+1|X|X|X|X|X|X|1|
+1|X|X|X|X|X|X|1|
+1|X|X|X|X|X|X|1|
+1|X|X|X|X|X|X|1|
+1|1|1|1|1|1|1|1|
+
+1|1|1|1|1|1|1|1|
+1|0|0|0|0|0|0|1|
+1|1|1|1|1|1|1|1|
+1|1|1|1|1|1|1|1|
+1|0|0|0|0|0|0|1|
+1|0|0|N|0|0|0|1|
+1|0|0|0|0|0|0|1|
+1|0|0|0|0|0|0|1|
+1|1|1|1|1|1|1|1|
+
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/empty_closed_line.cub ======
+
+
+>>>>>>>> assets/maps_invalids/empty_line.cub <<<<<<<<
+                                                      |
+1|1|1|1|1|1|1|1|
+1|X|X|X|X|X|X|1|
+1|X|X|X|X|X|X|1|
+1|X|X|X|X|X|X|1|
+1|X|X|X|X|X|X|1|
+1|X|X|1|X|X|X|1|
+1|X|X|X|X|X|X|1|
+1|X|X|X|X|X|X|1|
+1|1|1|1|1|1|1|1|
+
+1|1|1|1|1|1|1|1|
+1|0|0|0|0|0|0|1|
+1|0|0|0|0|0|0|1|
+1|0|0|0|0|0|0|1|
+1|0|0|N|0|0|0|1|
+1|0|0|1|0|0|0|1|
+1|0|0|0|0|0|0|1|
+1|0|0|0|0|0|0|1|
+1|1|1|1|1|1|1|1|
+
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/empty_line.cub ======
+
+
+>>>>>>>> assets/maps_invalids/empty_line_in_map.cub <<<<<<<<
+                                                      |
+ | | | | | | | |1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|
+ | | | | | | | |1|0|0|0|0|0|0|0|0|0|1|1|0|0|0|0|0|0|0|0|0|0|0|0|1|
+ | | | | | | | |1|0|1|1|0|0|0|0|0|1|1|1|0|0|0|0|0|0|0|0|0|0|0|0|1|
+ | | | | | | | |1|0|0|1|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|1|
+1|1|1|1|1|1|1|1|1|0|1|1|0|0|0|0|0|1|1|1|0|0|0|0|0|0|0|0|0|0|0|0|1|
+1|0|0|0|0|0|0|0|0|0|1|1|0|0|0|0|0|1|1|1|0|1|1|1|1|1|1|1|1|1|1|1|1|
+1|1|1|1|0|1|1|1|1|1|1|1|1|1|0|1|1|1|0|0|0|0|0|0|1|X|X|X|1| | | | |
+1|1|1|1|0|1|1|1|1|1|1|1|1|1|0|1|1|1|0|1|0|1|0|0|1|X|X|X|1| | | | |
+1|1|0|0|0|0|0|0|1|1|0|1|0|1|0|1|1|1|0|0|0|0|0|0|1|X|X|X|1| | | | |
+1|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|1|1|0|0|0|0|0|0|1|X|X|X|1| | | | |
+1|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|1|1|0|1|0|1|0|0|1|X|X|X|1| | | | |
+1|1|0|0|0|0|0|1|1|1|0|1|0|1|0|1|1|1|1|1|0|1|1|1|1|X|X|X|1|1|1| | |
+1|1|1|1|0|1|1|1| |1|1|1|0|1|0|1| |1|0|1|1|1|1|0|1|X|X|X|1| | | | |
+1|1|1|1|1|1|1|1| |1|1|1|1|1|1|1| |1|1|1|1|1|1|1|1|1|1|1|1| | | | |
+
+ | | | | | | | |1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|
+ | | | | | | | |1|0|0|0|0|0|0|0|0|0|1|1|0|0|0|0|0|0|0|0|0|0|0|0|1|
+ | | | | | | | |1|0|1|1|0|0|0|0|0|1|1|1|0|0|0|0|0|0|0|0|0|0|0|0|1|
+ | | | | | | | |1|0|0|1|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|1|
+1|1|1|1|1|1|1|1|1|0|1|1|0|0|0|0|0|1|1|1|0|0|0|0|0|0|0|0|0|0|0|0|1|
+1|0|0|0|0|0|0|0|0|0|1|1|0|0|0|0|0|1|1|1|0|1|1|1|1|1|1|1|1|1|1|1|1|
+1|1|1|1|0|1|1|1|1|1|1|1|1|1|0|1|1|1|0|0|0|0|0|0|1|0|0|0|1| | | | |
+1|1|1|1|0|1|1|1|1|1|1|1|1|1|0|1|1|1|0|1|0|1|0|0|1|0|0|0|1| | | | |
+1|1|0|0|0|0|0|0|1|1|0|1|0|1|0|1|1|1|0|0|0|0|0|0|1|0|0|0|1| | | | |
+1|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|1|1|0|0|0|0|0|0|1|0|0|0|1| | | | |
+1|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|1|1|0|1|0|1|0|0|1|0|0|0|1| | | | |
+1|1|0|0|0|0|0|1|1|1|0|1|0|1|0|1|1|1|1|1|0|1|1|1|1|0|N|0|1|1|1| | |
+1|1|1|1|0|1|1|1| |1|1|1|0|1|0|1| |1|0|1|1|1|1|0|1|0|0|0|1| | | | |
+1|1|1|1|1|1|1|1| |1|1|1|1|1|1|1| |1|1|1|1|1|1|1|1|1|1|1|1| | | | |
+
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/empty_line_in_map.cub ======
+
+
+>>>>>>>> assets/maps_invalids/empty_line_wall.cub <<<<<<<<
+                                                      |
+1|1|1|1|1|1|1|1|
+1|X|X|X|X|X|X|1|
+1|X|X|X|X|X|X|1|
+1|X|X|X|X|X|X|1|
+1|X|X|X|X|X|X|1|
+1|X|X|1|X|X|X|1|
+1|1|1|1|1|1|1|1|
+1|1|1|1|1|1|1|1|
+1|0|0|0|0|0|0|1|
+1|0|0|0|0|0|0|1|
+1|1|1|1|1|1|1|1|
+
+1|1|1|1|1|1|1|1|
+1|0|0|0|0|0|0|1|
+1|0|0|0|0|0|0|1|
+1|0|0|0|0|0|0|1|
+1|0|0|N|0|0|0|1|
+1|0|0|1|0|0|0|1|
+1|1|1|1|1|1|1|1|
+1|1|1|1|1|1|1|1|
+1|0|0|0|0|0|0|1|
+1|0|0|0|0|0|0|1|
+1|1|1|1|1|1|1|1|
+
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/empty_line_wall.cub ======
+
+
+>>>>>>>> assets/maps_invalids/hexa_color.cub <<<<<<<<
+                                                      |
+Error
+RGB syntax error
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/hexa_color.cub ======
+
+
+>>>>>>>> assets/maps_invalids/invalid_characters.cub <<<<<<<<
+                                                      |
+Error
+Invalid character
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/invalid_characters.cub ======
+
+
+>>>>>>>> assets/maps_invalids/map_not_last.cub <<<<<<<<
+                                                      |
+Error
+Wrong element syntax
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/map_not_last.cub ======
+
+
+            >>>>>>>> assets/maps_invalids/missing_color.cub <<<<<<<<
+                                                                |
+            Error
+            Wrong element syntax
+                                                                |
+            ===== FIN DU TEST : assets/maps_invalids/missing_color.cub ======
+
+
+            >>>>>>>> assets/maps_invalids/missing_map.cub <<<<<<<<
+                                                                |
+            Error
+            RGB syntax error
+                                                                |
+            ===== FIN DU TEST : assets/maps_invalids/missing_map.cub ======
+
+
+>>>>>>>> assets/maps_invalids/missing_player.cub <<<<<<<<
+                                                      |
+Error
+Player character is missing
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/missing_player.cub ======
+
+
+            >>>>>>>> assets/maps_invalids/missing_texture.cub <<<<<<<<
+                                                                |
+            Error
+            Wrong element syntax
+                                                                |
+            ===== FIN DU TEST : assets/maps_invalids/missing_texture.cub ======
+
+
+>>>>>>>> assets/maps_invalids/multiplayer.cub <<<<<<<<
+                                                      |
+Error
+Only one player character required
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/multiplayer.cub ======
+
+
+>>>>>>>> assets/maps_invalids/multiple_map_player.cub <<<<<<<<
+                                                      |
+Error
+Only one player character required
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/multiple_map_player.cub ======
+
+
+>>>>>>>> assets/maps_invalids/neg_color.cub <<<<<<<<
+                                                      |
+Error
+RGB values muste be between 0 and 255
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/neg_color.cub ======
+
+
+            >>>>>>>> assets/maps_invalids/no_info.cub <<<<<<<<
+                                                                |
+            Error
+            Wrong element syntax
+                                                                |
+            ===== FIN DU TEST : assets/maps_invalids/no_info.cub ======
+
+
+            >>>>>>>> assets/maps_invalids/no_map.cub <<<<<<<<
+                                                                |
+            Error
+            Player character is missing
+                                                                |
+            ===== FIN DU TEST : assets/maps_invalids/no_map.cub ======
+
+
+>>>>>>>> assets/maps_invalids/no_player.cub <<<<<<<<
+                                                      |
+Error
+Player character is missing
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/no_player.cub ======
+
+
+>>>>>>>> assets/maps_invalids/one_line.cub <<<<<<<<
+                                                      |
+Error
+The map must be closed by walls
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/one_line.cub ======
+
+
+>>>>>>>> assets/maps_invalids/only_newlines.cub <<<<<<<<
+                                                      |
+Error
+Some elements are missing
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/only_newlines.cub ======
+
+
+>>>>>>>> assets/maps_invalids/open_bottom.cub <<<<<<<<
+                                                      |
+Error
+The map must be closed by walls
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/open_bottom.cub ======
+
+
+>>>>>>>> assets/maps_invalids/open_corner.cub <<<<<<<<
+                                                      |
+Error
+S is not a valid identifier
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/open_corner.cub ======
+
+
+>>>>>>>> assets/maps_invalids/open_hole.cub <<<<<<<<
+                                                      |
+Error
+The map must be closed by walls
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/open_hole.cub ======
+
+
+>>>>>>>> assets/maps_invalids/open_left.cub <<<<<<<<
+                                                      |
+Error
+The map must be closed by walls
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/open_left.cub ======
+
+
+>>>>>>>> assets/maps_invalids/open_right.cub <<<<<<<<
+                                                      |
+Error
+The map must be closed by walls
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/open_right.cub ======
+
+
+>>>>>>>> assets/maps_invalids/open_top.cub <<<<<<<<
+                                                      |
+Error
+The map must be closed by walls
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/open_top.cub ======
+
+
+>>>>>>>> assets/maps_invalids/open_wall.cub <<<<<<<<
+                                                      |
+ | | | | | | | |1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|
+ | | | | | | | |1|0|0|0|0|0|0|0|0|0|1|1|0|0|0|0|0|0|0|0|0|0|0|0|1|
+ | | | | | | | |1|0|1|1|0|0|0|0|0|1|1|1|0|0|0|0|0|0|0|0|0|0|0|0|1|
+ | | | | | | | |1|0|0|1|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
+1|1|1|1|1|1|1|1|1|0|1|1|0|0|0|0|0|1|1|1|0|0|0|0|0|0|0|0|0|0|0|0|1|
+1|0|0|0|0|0|0|0|0|0|1|1|0|0|0|0|0|1|1|1|0|1|1|1|1|1|1|1|1|1|1|1|1|
+1|1|1|1|0|1|1|1|1|1|1|1|1|1|0|1|1|1|0|0|0|0|0|0|1|X|X|X|1| | | | |
+1|1|1|1|0|1|1|1|1|1|1|1|1|1|0|1|1|1|0|1|0|1|0|0|1|X|X|X|1| | | | |
+1|1|0|0|0|0|0|0|1|1|0|1|0|1|0|1|1|1|0|0|0|0|0|0|1|X|X|X|1| | | | |
+1|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|1|1|0|0|0|0|0|0|1|X|X|X|1| | | | |
+1|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|1|1|0|1|0|1|0|0|1|X|X|X|1| | | | |
+1|1|0|0|0|0|0|1|1|1|0|1|0|1|0|1|1|1|1|1|0|1|1|1|1|X|X|X|1|1|1| | |
+1|1|1|1|0|1|1|1| |1|1|1|0|1|0|1| |1|0|1|1|1|1|0|1|X|X|X|1| | | | |
+1|1|1|1|1|1|1|1| |1|1|1|1|1|1|1| |1|1|1|1|1|1|1|1|1|1|1|1| | | | |
+
+ | | | | | | | |1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|
+ | | | | | | | |1|0|0|0|0|0|0|0|0|0|1|1|0|0|0|0|0|0|0|0|0|0|0|0|1|
+ | | | | | | | |1|0|1|1|0|0|0|0|0|1|1|1|0|0|0|0|0|0|0|0|0|0|0|0|1|
+ | | | | | | | |1|0|0|1|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
+1|1|1|1|1|1|1|1|1|0|1|1|0|0|0|0|0|1|1|1|0|0|0|0|0|0|0|0|0|0|0|0|1|
+1|0|0|0|0|0|0|0|0|0|1|1|0|0|0|0|0|1|1|1|0|1|1|1|1|1|1|1|1|1|1|1|1|
+1|1|1|1|0|1|1|1|1|1|1|1|1|1|0|1|1|1|0|0|0|0|0|0|1|0|0|0|1| | | | |
+1|1|1|1|0|1|1|1|1|1|1|1|1|1|0|1|1|1|0|1|0|1|0|0|1|0|0|0|1| | | | |
+1|1|0|0|0|0|0|0|1|1|0|1|0|1|0|1|1|1|0|0|0|0|0|0|1|0|0|0|1| | | | |
+1|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|1|1|0|0|0|0|0|0|1|0|0|0|1| | | | |
+1|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|1|1|0|1|0|1|0|0|1|0|0|0|1| | | | |
+1|1|0|0|0|0|0|1|1|1|0|1|0|1|0|1|1|1|1|1|0|1|1|1|1|0|N|0|1|1|1| | |
+1|1|1|1|0|1|1|1| |1|1|1|0|1|0|1| |1|0|1|1|1|1|0|1|0|0|0|1| | | | |
+1|1|1|1|1|1|1|1| |1|1|1|1|1|1|1| |1|1|1|1|1|1|1|1|1|1|1|1| | | | |
+
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/open_wall.cub ======
+
+
+            >>>>>>>> assets/maps_invalids/outmap_player.cub <<<<<<<<
+                                                                |
+            Error
+            The map must be closed by walls
+                                                                |
+            ===== FIN DU TEST : assets/maps_invalids/outmap_player.cub ======
+
+
+>>>>>>>> assets/maps_invalids/player_in_wall.cub <<<<<<<<
+                                                      |
+Error
+The map must be closed by walls
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/player_in_wall.cub ======
+
+
+>>>>>>>> assets/maps_invalids/simple_no_player.cub <<<<<<<<
+                                                      |
+Error
+Player character is missing
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/simple_no_player.cub ======
+
+
+>>>>>>>> assets/maps_invalids/space_color.cub <<<<<<<<
+                                                      |
+Error
+Wrong element syntax
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/space_color.cub ======
+
+
+>>>>>>>> assets/maps_invalids/texture_in_map.cub <<<<<<<<
+                                                      |
+Error
+Wrong element syntax
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/texture_in_map.cub ======
+
+
+>>>>>>>> assets/maps_invalids/too_many_informations.cub <<<<<<<<
+                                                      |
+Error
+Wrong element syntax
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/too_many_informations.cub ======
+
+
+>>>>>>>> assets/maps_invalids/two.cub <<<<<<<<
+                                                      |
+Error
+Invalid character
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/two.cub ======
+
+
+>>>>>>>> assets/maps_invalids/two_line.cub <<<<<<<<
+                                                      |
+Error
+Player character is missing
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/two_line.cub ======
+
+
+>>>>>>>> assets/maps_invalids/unreadable.cub <<<<<<<<
+                                                      |
+ | | | | | | | |1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|
+ | | | | | | | |1|0|0|0|0|0|0|0|0|0|1|1|0|0|0|0|0|0|0|0|0|0|0|0|1|
+ | | | | | | | |1|0|1|1|0|0|0|0|0|1|1|1|0|0|0|0|0|0|0|0|0|0|0|0|1|
+ | | | | | | | |1|0|0|1|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|1|
+1|1|1|1|1|1|1|1|1|0|1|1|0|0|0|0|0|1|1|1|0|0|0|0|0|0|0|0|0|0|0|0|1|
+1|0|0|0|0|0|0|0|0|0|1|1|0|0|0|0|0|1|1|1|0|1|1|1|1|1|1|1|1|1|1|1|1|
+1|1|1|1|0|1|1|1|1|1|1|1|1|1|0|1|1|1|0|0|0|0|0|0|1|X|X|X|1| | | | |
+1|1|1|1|0|1|1|1|1|1|1|1|1|1|0|1|1|1|0|1|0|1|0|0|1|X|X|X|1| | | | |
+1|1|0|0|0|0|0|0|1|1|0|1|0|1|0|1|1|1|0|0|0|0|0|0|1|X|X|X|1| | | | |
+1|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|1|1|0|0|0|0|0|0|1|X|X|X|1| | | | |
+1|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|1|1|0|1|0|1|0|0|1|X|X|X|1| | | | |
+1|1|0|0|0|0|0|1|1|1|0|1|0|1|0|1|1|1|1|1|0|1|1|1|1|X|X|X|1|1|1| | |
+1|1|1|1|0|1|1|1| |1|1|1|0|1|0|1| |1|0|1|1|1|1|0|1|X|X|X|1| | | | |
+1|1|1|1|1|1|1|1| |1|1|1|1|1|1|1| |1|1|1|1|1|1|1|1|1|1|1|1| | | | |
+
+ | | | | | | | |1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|
+ | | | | | | | |1|0|0|0|0|0|0|0|0|0|1|1|0|0|0|0|0|0|0|0|0|0|0|0|1|
+ | | | | | | | |1|0|1|1|0|0|0|0|0|1|1|1|0|0|0|0|0|0|0|0|0|0|0|0|1|
+ | | | | | | | |1|0|0|1|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|1|
+1|1|1|1|1|1|1|1|1|0|1|1|0|0|0|0|0|1|1|1|0|0|0|0|0|0|0|0|0|0|0|0|1|
+1|0|0|0|0|0|0|0|0|0|1|1|0|0|0|0|0|1|1|1|0|1|1|1|1|1|1|1|1|1|1|1|1|
+1|1|1|1|0|1|1|1|1|1|1|1|1|1|0|1|1|1|0|0|0|0|0|0|1|0|0|0|1| | | | |
+1|1|1|1|0|1|1|1|1|1|1|1|1|1|0|1|1|1|0|1|0|1|0|0|1|0|0|0|1| | | | |
+1|1|0|0|0|0|0|0|1|1|0|1|0|1|0|1|1|1|0|0|0|0|0|0|1|0|0|0|1| | | | |
+1|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|1|1|0|0|0|0|0|0|1|0|0|0|1| | | | |
+1|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|1|1|0|1|0|1|0|0|1|0|0|0|1| | | | |
+1|1|0|0|0|0|0|1|1|1|0|1|0|1|0|1|1|1|1|1|0|1|1|1|1|0|N|0|1|1|1| | |
+1|1|1|1|0|1|1|1| |1|1|1|0|1|0|1| |1|0|1|1|1|1|0|1|0|0|0|1| | | | |
+1|1|1|1|1|1|1|1| |1|1|1|1|1|1|1| |1|1|1|1|1|1|1|1|1|1|1|1| | | | |
+
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/unreadable.cub ======
+
+
+>>>>>>>> assets/maps_invalids/wall_empty.cub <<<<<<<<
+                                                      |
+Error
+The map must be closed by walls
+                                                      |
+===== FIN DU TEST : assets/maps_invalids/wall_empty.cub ======
+

@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 13:43:03 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/05 17:03:34 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/06 12:20:26 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,26 +36,26 @@ static bool	parsing(char *file, t_game **game)
 		return (false);
 	if (!check_map(*game))
 		return (false);
-	// print_map((*game)->map);
+	print_map((*game)->map);
 	return (true);
 }
 
-static bool	init_3D(t_data *data)
-{
-	if (!init_player_from_game(data))
-		return (clean_data(data), 1);
-	if (!init_mlx(&data->gfx, data->scr_w, data->scr_h, "cub3D"))
-		return (clean_data(data), 1);
-	return (true);
-}
+// static bool	init_3D(t_data *data)
+// {
+// 	if (!init_player_from_game(data))
+// 		return (clean_data(data), 1);
+// 	if (!init_mlx(&data->gfx, data->scr_w, data->scr_h, "cub3D"))
+// 		return (clean_data(data), 1);
+// 	return (true);
+// }
 
-static void	launch_mlx(t_data *data)
-{
-	render_frame(data);
-	mlx_key_hook(data->gfx->win, on_key_press, data);
-	mlx_hook(data->gfx->win, 17, 0, on_destroy_event, data);
-	mlx_loop(data->gfx->mlx);
-}
+// static void	launch_mlx(t_data *data)
+// {
+// 	render_frame(data);
+// 	mlx_key_hook(data->gfx->win, on_key_press, data);
+// 	mlx_hook(data->gfx->win, 17, 0, on_destroy_event, data);
+// 	mlx_loop(data->gfx->mlx);
+// }
 
 int	main(int argc, char **argv)
 {
@@ -66,12 +66,14 @@ int	main(int argc, char **argv)
 		exit_error("Usage: ./cub3d [map_file].cub");
 	if (!check_filename(argv[1]) || !init_data(&data))
 		return (1);
-	if ((!parsing(argv[1], &data->game)) || !init_3D(data))
+	// if ((!parsing(argv[1], &data->game)) || !init_3D(data))
+	// 	return (clean_data(data), 1);
+	if ((!parsing(argv[1], &data->game)))
 		return (clean_data(data), 1);
 	// print_game(game);
 	// print_player_data(data);
-	data->gfx->cam.tile_size = 10;
-	launch_mlx(data);
+	// data->gfx->cam.tile_size = 10;
+	// launch_mlx(data);
 	clean_data(data);
 	return (0);
 }
