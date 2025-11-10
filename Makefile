@@ -67,28 +67,46 @@ INCLUDE = $(wildcard $(INCLUDE_DIR)/*.h) \
 SRC_DIR = src/
 
 # Fichiers sources (relatifs à SRC_DIR)
+SRC_MAIN = \
+	main.c
 
+SRC_DEBUG = \
+	debug/print_data.c \
+	debug/ray_debug.c
 
-SRC_FILES = main.c \
-			debug/print_data.c \
-			gfx/draw.c \
-			gfx/render.c \
-			gfx/events.c \
-			gfx/minimap.c \
-			init/init_data.c \
-			init/init_player.c \
-			parsing/check_map.c \
-			parsing/get_map.c \
-			parsing/get_rgb.c \
-			parsing/parse_element.c \
-			parsing/parse_floor_ceiling.c \
-			parsing/parse_game_info.c \
-			parsing/parse_wall.c \
-			parsing/parsing_utils.c \
-			raycasting/dda.c \
-			raycasting/ray.c \
-			utils/cleanup.c \
-			utils/print_error.c\
+SRC_PARSING = \
+	parsing/check_map.c \
+	parsing/get_map.c \
+	parsing/get_rgb.c \
+	parsing/parse_element.c \
+	parsing/parse_floor_ceiling.c \
+	parsing/parse_game_info.c \
+	parsing/parse_wall.c
+
+SRC_PLAYER = \
+	player/player_move.c \
+	player/init_player.c
+
+SRC_INIT = \
+	init/init_data.c \
+
+SRC_UTILS = \
+	utils/cleanup.c \
+	utils/print_error.c
+
+SRC_GFX = \
+	gfx/color.c \
+	gfx/minimap.c \
+	gfx/draw.c \
+	gfx/render.c \
+	gfx/events.c
+
+SRC_RAYCAST = \
+	raycasting/dda.c \
+	raycasting/ray.c \
+	raycasting/learn.c
+
+SRC_FILES = $(SRC_MAIN) $(SRC_DEBUG) $(SRC_PARSING) $(SRC_PLAYER) $(SRC_INIT) $(SRC_UTILS) $(SRC_GFX) $(SRC_RAYCAST)
 
 # Chemins complets des sources et objets
 SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))

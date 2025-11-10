@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:05:48 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/05 15:54:08 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/07 10:52:36 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ static void	set_dir_plane_from_char(t_vec *player, char c)
 		set_east_west(player, c);
 }
 
-/* init la cam du joueur depuis sa position dans la map = t_game */
+/* init la cam du joueur depuis sa position dans la map = t_game
+position reelle = +0.5 centre de la case de depart = spawn */
 bool	init_player_from_game(t_data *data)
 {
 	int	row;
@@ -69,11 +70,8 @@ bool	init_player_from_game(t_data *data)
 		return (false);
 	row = data->game->player.y;
 	col = data->game->player.x;
-
-	/* position reelle = centre de la case de depart = spawn */
 	data->player.pos.x = (double)row + 0.5;
 	data->player.pos.y = (double)col + 0.5;
-
 	set_dir_plane_from_char(&data->player, (char)data->game->player_char);
 
 	/* taille fenerte ? res ??? */

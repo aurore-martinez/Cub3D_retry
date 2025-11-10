@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:07:30 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/05 12:46:53 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/07 10:17:04 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,14 +128,9 @@ int	on_key_press(int key, t_data *d)
 {
 	if (key == KEY_ESC)
 		on_destroy_event(d);
-	/* gestions des touches */
 
-/* 	else if (key == KEY_PLUS || key == KEY_MINUS
-		|| key == KEY_LEFT || key == KEY_RIGHT
-		|| key == KEY_UP || key == KEY_DOWN
-		|| key == KEY_1 || key == KEY_2
-		|| key == KEY_9 || key == KEY_0)
-		change_view(key, d); */
+	/* délègue la logique de mouvement à la fonction dédiée */
+	handle_player_moves(key, d);
 
 	render_frame(d);
 	return (0);
