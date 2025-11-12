@@ -85,7 +85,8 @@ SRC_PARSING = \
 	parsing/parsing_utils.c
 
 SRC_PLAYER = \
-	player/player_move.c
+	player/player_move.c \
+	player/movement.c
 
 SRC_INIT = \
 	init/init_data.c \
