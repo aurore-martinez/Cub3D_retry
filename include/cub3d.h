@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/10 15:31:32 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/12 09:57:27 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,11 +112,11 @@ typedef struct s_point
 /* Cam 2D (mini-map), issue de FdF */
 typedef struct s_cam
 {
-	float	zoom;
+	float	zoom; // init mais pas utilise
 	int		x_offset;
 	int		y_offset;
-	int		color;
-	int		z_scale;
+	int		color; // init mais pas utilise
+	int		z_scale; // init mais pas utilise
 	int		tile_size;
 }	t_cam;
 
