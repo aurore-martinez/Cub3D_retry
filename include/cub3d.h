@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/10 14:46:09 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/12 09:57:27 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,11 +112,11 @@ typedef struct s_point
 /* Cam 2D (mini-map), issue de FdF */
 typedef struct s_cam
 {
-	float	zoom;
+	float	zoom; // init mais pas utilise
 	int		x_offset;
 	int		y_offset;
-	int		color;
-	int		z_scale;
+	int		color; // init mais pas utilise
+	int		z_scale; // init mais pas utilise
 	int		tile_size;
 }	t_cam;
 
@@ -167,6 +167,7 @@ bool	init_mlx(t_gfx **gfx, int w, int h, const char *title);
 bool	init_game(t_game **game, char *filename);
 bool	init_data(t_data **data);
 bool	init_player_from_game(t_data *data);
+void	init_camera(t_data *data);
 
 /* ========================    🦄 PARSING    ======================== */
 bool	check_map(t_game *game);

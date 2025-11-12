@@ -6,11 +6,28 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 11:35:49 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/07 11:23:49 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/12 10:19:32 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+
+static void	init_gfx(t_gfx *gfx)
+{
+	if (!gfx)
+		return ;
+	gfx->frame.img = NULL;
+	gfx->frame.addr = NULL;
+	gfx->frame.bpp = 0;
+	gfx->frame.line_len = 0;
+	gfx->frame.endian = 0;
+	gfx->cam.tile_size = 8;
+	gfx->cam.x_offset = 0;
+	gfx->cam.y_offset = 0;
+	gfx->cam.zoom = 1.0f; // init mais non used
+	gfx->cam.z_scale = 1; // init mais non used
+	gfx->cam.color = 0xFFFFFF; // init mais non used
+}
 
 bool	init_mlx(t_gfx **gfx, int w, int h, const char *title)
 {
@@ -20,6 +37,7 @@ bool	init_mlx(t_gfx **gfx, int w, int h, const char *title)
 		perror("Error");
 		return (false);
 	}
+	init_gfx(*gfx);
 	(*gfx)->mlx = mlx_init();
 	if ((*gfx)->mlx == NULL)
 		return (false);

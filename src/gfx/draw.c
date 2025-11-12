@@ -6,57 +6,11 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:39:48 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/07 10:16:40 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/12 10:19:50 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-/* WIP copie colle de fdf a adapter pour Cub */
-
-/* static void	init_bresenham(t_bresenham *b, t_point a, t_point b_point)
-{
-	b->dx = ft_abs(b_point.x - a.x);
-	b->dy = ft_abs(b_point.y - a.y);
-	if (a.x < b_point.x)
-		b->sx = 1;
-	else
-		b->sx = -1;
-	if (a.y < b_point.y)
-		b->sy = 1;
-	else
-		b->sy = -1;
-	b->err = b->dx - b->dy;
-}
-
-static void	update_position(t_bresenham *b, t_point *a)
-{
-	b->e2 = 2 * b->err;
-	if (b->e2 > -b->dy)
-	{
-		b->err -= b->dy;
-		a->x += b->sx;
-	}
-	if (b->e2 < b->dx)
-	{
-		b->err += b->dx;
-		a->y += b->sy;
-	}
-}
-
-void	draw_line(t_img *img, t_point a, t_point b_point)
-{
-	t_bresenham	b;
-
-	init_bresenham(&b, a, b_point);
-	while (1)
-	{
-		draw_pixel(img, a);
-		if (a.x == b_point.x && a.y == b_point.y)
-			break ;
-		update_position(&b, &a);
-	}
-} */
 
 void	draw_pixel(t_img *img, t_point p)
 {

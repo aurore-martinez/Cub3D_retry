@@ -90,6 +90,7 @@ SRC_PLAYER = \
 
 SRC_INIT = \
 	init/init_data.c \
+	init/init_camera.c
 
 SRC_UTILS = \
 	utils/cleanup.c \
