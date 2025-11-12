@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/12 16:15:51 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/12 16:28:27 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,11 @@
 
 # define BIG 4.2e42
 
-# define SCR_W 960
-# define SCR_H 640
-// # define SCR_W 1920
-// # define SCR_H 1080
+/* # define SCR_W 960
+# define SCR_H 640 */
+# define SCR_W 1920
+# define SCR_H 1080
+
 # define MOVE_SPEED 0.15
 # define ROT_SPEED 0.12
 # define RGB(r, g, b) ((int)(((r) & 0xFF) << 16 | ((g) & 0xFF) << 8 | ((b) & 0xFF)))

@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:14:56 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/12 16:09:19 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/12 16:45:47 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int render_frame(t_data *d)
 	draw_vline(&d->gfx->frame, midx, 0, d->scr_h - 1, RED);//verticale rouge au milieu
 	draw_minimap(d);
 	mlx_put_image_to_window(d->gfx->mlx, d->gfx->win, d->gfx->frame.img, 0, 0);
+	printf("APPEL RENDER FRAME ");
 	return (0);
 }
 
