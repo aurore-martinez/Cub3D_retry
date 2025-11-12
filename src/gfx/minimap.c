@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:34:10 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/12 09:26:37 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/12 10:30:45 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static int	mm_tile_size(t_data *d)
 		return (d->gfx->cam.tile_size);
 	return (8);
 }
+// on peut rapidement imp zoom ici de fdf ???
 
 static int	mm_off_x(t_data *d)
 {
@@ -98,6 +99,7 @@ static void	draw_minimap_player(t_data *d)
 
 	ts = mm_tile_size(d);
 	r = ts / 3;
+	// r = ft_max(1, ts/3); // essayer avec ca plutot radius 1 pixel quand tile tres petit
 	cx = mm_off_x(d) + (int)(d->player.pos.y * ts + 0.5);
 	cy = mm_off_y(d) + (int)(d->player.pos.x * ts + 0.5);
 
