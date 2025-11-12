@@ -6,11 +6,29 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:30:03 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/12 12:23:55 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/12 16:15:18 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+
+bool	set_texture(t_data *data)
+{
+	int	width;
+	int	height;
+
+	data->gfx->texture.north = mlx_xpm_file_to_image(data->gfx->mlx,
+			data->game->elements.path_north, &width, &height);
+	data->gfx->texture.south = mlx_xpm_file_to_image(data->gfx->mlx,
+			data->game->elements.path_south, &width, &height);
+	data->gfx->texture.east = mlx_xpm_file_to_image(data->gfx->mlx,
+			data->game->elements.path_east, &width, &height);
+	data->gfx->texture.west = mlx_xpm_file_to_image(data->gfx->mlx,
+			data->game->elements.path_west, &width, &height);
+	if (!data->gfx->texture.north || !data->gfx->texture.north
+		|| !data->gfx->texture.north || !data->gfx->texture.north)
+		return (false);
+}
 
 /* set camera */
 bool	set_camera(t_data *data)
@@ -54,6 +72,10 @@ static bool	init_gfx(t_gfx *gfx)
 	gfx->cam.zoom = 1.0f; // init mais non used
 	gfx->cam.z_scale = 1; // init mais non used
 	gfx->cam.color = 0xFFFFFF; // init mais non used
+	gfx->texture.north = NULL;
+	gfx->texture.south = NULL;
+	gfx->texture.west = NULL;
+	gfx->texture.east = NULL;
 	return (true);
 }
 

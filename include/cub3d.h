@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
+/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/12 15:55:18 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/12 16:15:51 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,12 +132,21 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
+typedef struct s_tex
+{
+	void	*north;
+	void	*south;
+	void	*west;
+	void	*east;
+}	t_tex;
+
 typedef struct s_gfx
 {
 	void	*mlx;
 	void	*win;
 	t_img	frame;
 	t_cam	cam;
+	t_tex	texture;
 }	t_gfx;
 
 typedef struct s_data
@@ -230,5 +239,6 @@ void	clear_frame(t_img *img, int w, int h, int color);
 int		on_key_press(int key, t_data *d);
 void	draw_minimap(t_data *d);
 int		on_mouse(int x, int y, t_data *d);
+bool	set_texture(t_data *data);
 
 #endif

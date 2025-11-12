@@ -6,11 +6,23 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 12:09:02 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/12 12:09:56 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/12 16:20:46 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+
+static void	destroy_texture(t_gfx *gfx)
+{
+	if (gfx->texture.north)
+		mlx_destroy_image(gfx->mlx, gfx->texture.north);
+	if (gfx->texture.south)
+		mlx_destroy_image(gfx->mlx, gfx->texture.south);
+	if (gfx->texture.west)
+		mlx_destroy_image(gfx->mlx, gfx->texture.west);
+	if (gfx->texture.east)
+		mlx_destroy_image(gfx->mlx, gfx->texture.east);
+}
 
 static void	clean_mlx(t_gfx *gfx)
 {
@@ -21,6 +33,7 @@ static void	clean_mlx(t_gfx *gfx)
 		mlx_destroy_display(gfx->mlx);
 		free(gfx->mlx);
 	}
+	destroy_texture(gfx);
 	free(gfx);
 }
 
