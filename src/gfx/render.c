@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
+/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:14:56 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/07 11:36:30 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/12 13:57:49 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,13 @@ int render_frame(t_data *d)
 
 	if (!d || !d->gfx)
 		return (0);
-
-	/* fond */
-	clear_frame(&d->gfx->frame, d->scr_w, d->scr_h, MAP_BG);
-
-	/* raycasting murs + sky + sol */
-	render_walls(d);
-
-	/* a sup */
+	clear_frame(&d->gfx->frame, d->scr_w, d->scr_h, MAP_BG);//fond
+	render_walls(d);//raycasting murs + sky + sol
 	midy = d->scr_h / 2;
 	midx = d->scr_w / 2;
-
-	/* a sup : horizontale blanche au milieu */
-	draw_hline(&d->gfx->frame, midy, 0, d->scr_w - 1, WHITE);
-
-	/* a sup : verticale rouge au milieu */
-	draw_vline(&d->gfx->frame, midx, 0, d->scr_h - 1, RED);
-
-	/* minimap */
+	draw_hline(&d->gfx->frame, midy, 0, d->scr_w - 1, WHITE);//horizontale blanche au milieu
+	draw_vline(&d->gfx->frame, midx, 0, d->scr_h - 1, RED);//verticale rouge au milieu
 	draw_minimap(d);
-
-	/* push à l’écran */
 	mlx_put_image_to_window(d->gfx->mlx, d->gfx->win, d->gfx->frame.img, 0, 0);
 	return (0);
 }

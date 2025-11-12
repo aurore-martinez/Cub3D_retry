@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
+/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/12 09:57:27 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/12 13:47:22 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,7 @@ bool	init_mlx(t_gfx **gfx, int w, int h, const char *title);
 bool	init_game(t_game **game, char *filename);
 bool	init_data(t_data **data);
 bool	init_player_from_game(t_data *data);
-void	init_camera(t_data *data);
+bool	set_camera(t_data *data);
 
 /* ========================    🦄 PARSING    ======================== */
 bool	check_map(t_game *game);
@@ -221,6 +221,8 @@ void	draw_pixel(t_img *img, t_point p);
 void	draw_hline(t_img *img, int y, int x0, int x1, int color);
 void	draw_vline(t_img *img, int x, int y0, int y1, int color);
 void	draw_col(t_data *d, int x, int start, int end, int color);
+void	apply_walk(t_data *d, double nx, double ny, double margin);
+void	turn_player(t_data *d, double angle);
 int		render_frame(t_data *d);
 void	clear_frame(t_img *img, int w, int h, int color);
 int		on_key_press(int key, t_data *d);

@@ -3,55 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
+/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 11:35:49 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/12 10:19:32 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:17:08 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static void	init_gfx(t_gfx *gfx)
+/* init game */
+bool	init_game(t_game **game, char *filename)
 {
-	if (!gfx)
-		return ;
-	gfx->frame.img = NULL;
-	gfx->frame.addr = NULL;
-	gfx->frame.bpp = 0;
-	gfx->frame.line_len = 0;
-	gfx->frame.endian = 0;
-	gfx->cam.tile_size = 8;
-	gfx->cam.x_offset = 0;
-	gfx->cam.y_offset = 0;
-	gfx->cam.zoom = 1.0f; // init mais non used
-	gfx->cam.z_scale = 1; // init mais non used
-	gfx->cam.color = 0xFFFFFF; // init mais non used
-}
-
-bool	init_mlx(t_gfx **gfx, int w, int h, const char *title)
-{
-	*gfx = malloc(sizeof(t_gfx));
-	if (!(*gfx))
+	*game = malloc(sizeof(t_game));
+	if (!(*game))
 	{
 		perror("Error");
 		return (false);
 	}
-	init_gfx(*gfx);
-	(*gfx)->mlx = mlx_init();
-	if ((*gfx)->mlx == NULL)
+	ft_memset(*game, 0, sizeof(t_game));
+	(*game)->fd = open(filename, O_RDONLY);
+	if ((*game)->fd < 0)
+	{
+		perror("Error");
+		free(*game);
+		*game = NULL;
 		return (false);
-	(*gfx)->win = mlx_new_window((*gfx)->mlx, w, h, (char *)title);
-	if ((*gfx)->win == NULL)
-		return (false);
-	(*gfx)->frame.img = mlx_new_image((*gfx)->mlx, w, h);
-	if ((*gfx)->frame.img == NULL)
-		return (false);
-	(*gfx)->frame.addr = mlx_get_data_addr((*gfx)->frame.img,
-			&(*gfx)->frame.bpp, &(*gfx)->frame.line_len,
-			&(*gfx)->frame.endian);
-	if ((*gfx)->frame.addr == NULL)
-		return (false);
+	}
 	return (true);
 }
 
