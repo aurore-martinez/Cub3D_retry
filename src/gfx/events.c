@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:07:30 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/12 12:30:30 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/12 14:02:36 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,16 +63,11 @@ void	clear_frame(t_img *img, int w, int h, int color)
 	}
 }
 
-
 int	on_key_press(int key, t_data *d)
 {
 	if (key == KEY_ESC)
 		on_destroy_event(d);
-
-	/* délègue la logique de mouvement à la fonction dédiée */
 	handle_player_moves(key, d);
-
 	render_frame(d);
 	return (0);
 }
-
