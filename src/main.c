@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 13:43:03 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/12 12:26:53 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/12 15:40:11 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static void	launch_mlx(t_data *data)
 	render_frame(data);
 	mlx_hook(data->gfx->win, KeyPress, KeyPressMask, on_key_press, data);
 	mlx_hook(data->gfx->win, DestroyNotify, 0, on_destroy_event, data);
+	mlx_hook(data->gfx->win, MotionNotify, PointerMotionMask, on_mouse, data);
 	mlx_loop(data->gfx->mlx);
 }
 

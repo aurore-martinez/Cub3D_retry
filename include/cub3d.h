@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/12 13:47:22 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/12 15:40:44 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,5 +227,6 @@ int		render_frame(t_data *d);
 void	clear_frame(t_img *img, int w, int h, int color);
 int		on_key_press(int key, t_data *d);
 void	draw_minimap(t_data *d);
+int		on_mouse(int x, int y, t_data *d);
 
 #endif

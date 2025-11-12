@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:07:30 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/12 14:02:36 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/12 15:39:55 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,30 @@ int	on_key_press(int key, t_data *d)
 	if (key == KEY_ESC)
 		on_destroy_event(d);
 	handle_player_moves(key, d);
+	render_frame(d);
+	return (0);
+}
+
+int	on_mouse(int x, int y, t_data *d)
+{
+	static int	last_x = -1;
+	int		dx;
+	double	angle;
+
+	(void)y;
+	if (!d)
+		return (0);
+	if (last_x == -1)
+	{
+		last_x = x;
+		return (0);
+	}
+	dx = x - last_x;
+	last_x = x;
+	if (dx == 0)
+		return (0);
+	angle = (double)dx * 0.0035; /* radians per pixel */
+	turn_player(d, angle);
 	render_frame(d);
 	return (0);
 }
