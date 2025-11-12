@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 11:35:49 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/12 09:50:55 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/12 10:19:32 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ static void	init_gfx(t_gfx *gfx)
 	gfx->cam.tile_size = 8;
 	gfx->cam.x_offset = 0;
 	gfx->cam.y_offset = 0;
-	gfx->cam.zoom = 1.0f;
-	gfx->cam.z_scale = 1;
-	gfx->cam.color = 0xFFFFFF;
+	gfx->cam.zoom = 1.0f; // init mais non used
+	gfx->cam.z_scale = 1; // init mais non used
+	gfx->cam.color = 0xFFFFFF; // init mais non used
 }
 
 bool	init_mlx(t_gfx **gfx, int w, int h, const char *title)
