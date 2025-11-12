@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 11:35:49 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/10 15:47:55 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/12 09:50:55 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	init_gfx(t_gfx *gfx)
 	gfx->frame.bpp = 0;
 	gfx->frame.line_len = 0;
 	gfx->frame.endian = 0;
-	gfx->cam.tile_size = 0;
+	gfx->cam.tile_size = 8;
 	gfx->cam.x_offset = 0;
 	gfx->cam.y_offset = 0;
 	gfx->cam.zoom = 1.0f;
