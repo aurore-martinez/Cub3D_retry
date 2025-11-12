@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:14:56 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/12 13:57:49 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/12 16:09:19 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void render_walls(t_data *d)
 
 		// plafond
 		if (top > 0)
-			draw_col(d, x, 0, top - 1, SKY);
+			draw_col(d, x, 0, top - 1, d->game->elements.rgb_ceiling);
 
 		/* conditional debug printing — a sup */
 		help_env_print_ray_debug(d, x);
@@ -124,7 +124,7 @@ void render_walls(t_data *d)
 
 		// sol
 		if (bot + 1 < d->scr_h)
-			draw_col(d, x, bot + 1, d->scr_h - 1, FLOOR);
+			draw_col(d, x, bot + 1, d->scr_h - 1, d->game->elements.rgb_floor);
 
 		x++;
 	}
