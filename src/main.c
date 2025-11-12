@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 13:43:03 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/12 12:24:00 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/12 12:26:53 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ static bool	init_3D(t_data *data)
 	return (true);
 }
 
-// static void	launch_mlx(t_data *data)
-// {
-// 	render_frame(data);
-// 	mlx_key_hook(data->gfx->win, on_key_press, data);
-// 	mlx_hook(data->gfx->win, 17, 0, on_destroy_event, data);
-// 	mlx_loop(data->gfx->mlx);
-// }
+static void	launch_mlx(t_data *data)
+{
+	render_frame(data);
+	mlx_hook(data->gfx->win, KeyPress, KeyPressMask, on_key_press, data);
+	mlx_hook(data->gfx->win, DestroyNotify, 0, on_destroy_event, data);
+	mlx_loop(data->gfx->mlx);
+}
 
 int	main(int argc, char **argv)
 {
@@ -73,24 +73,7 @@ int	main(int argc, char **argv)
 		return (1);
 	if ((!parsing(argv[1], &data->game)) || !init_3D(data))
 		return (clean_data(data), 1);
-	// if ((!parsing(argv[1], &data->game)))
-	// 	return (clean_data(data), 1);
-	// print_game(game);
-	// if (!init_player_from_game(data))
-	// 	return (clean_data(data), 1);
-
-	// print_player_data(data);
-
-	// if (!init_mlx(&data->gfx, data->scr_w, data->scr_h, "cub3D"))
-	// 	return (clean_data(data), 1);
-
-	// init_camera(data);
-	render_frame(data);
-	// mlx_key_hook(data->gfx->win, on_key_press, data);
-	mlx_hook(data->gfx->win, KeyPress, KeyPressMask, on_key_press, data);
-	mlx_hook(data->gfx->win, DestroyNotify, 0, on_destroy_event, data);
-	mlx_loop(data->gfx->mlx);
-
-	clean_data(data); // j'ai change clean game pour clean data
+	launch_mlx(data);
+	clean_data(data);
 	return (0);
 }
