@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:30:03 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/12 16:15:18 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/12 16:24:52 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ bool	set_texture(t_data *data)
 	if (!data->gfx->texture.north || !data->gfx->texture.north
 		|| !data->gfx->texture.north || !data->gfx->texture.north)
 		return (false);
+	return (true);
 }
 
 /* set camera */
