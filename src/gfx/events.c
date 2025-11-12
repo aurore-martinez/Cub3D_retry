@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
+/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:07:30 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/12 10:16:44 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:30:30 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	on_destroy_event(t_data *d)
 		mlx_destroy_image(d->gfx->mlx, d->gfx->frame.img);
 		d->gfx->frame.img = NULL;
 	}
+	/* cette partie peut etre enlevee car deja clean_data*/
 	if (d->gfx->win != NULL)
 	{
 		mlx_destroy_window(d->gfx->mlx, d->gfx->win);
