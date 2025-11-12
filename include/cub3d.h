@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/12 12:24:08 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/12 13:47:22 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,6 +221,8 @@ void	draw_pixel(t_img *img, t_point p);
 void	draw_hline(t_img *img, int y, int x0, int x1, int color);
 void	draw_vline(t_img *img, int x, int y0, int y1, int color);
 void	draw_col(t_data *d, int x, int start, int end, int color);
+void	apply_walk(t_data *d, double nx, double ny, double margin);
+void	turn_player(t_data *d, double angle);
 int		render_frame(t_data *d);
 void	clear_frame(t_img *img, int w, int h, int color);
 int		on_key_press(int key, t_data *d);
