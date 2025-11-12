@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:34:10 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/12 10:30:45 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/12 11:52:55 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ static void	draw_minimap_player(t_data *d)
 }
 
 /* ligne horizontale jaune au centre de la mini-map */
-static void	draw_minimap_horizon(t_data *d)
+/* static void	draw_minimap_horizon(t_data *d)
 {
 	int		ts;
 	int		map_w;
@@ -148,7 +148,7 @@ static void	draw_minimap_horizon(t_data *d)
 		draw_pixel(&d->gfx->frame, p);
 		x++;
 	}
-}
+} */
 
 /* mini-map complète */
 void	draw_minimap(t_data *d)
@@ -168,12 +168,17 @@ void	draw_minimap(t_data *d)
 		while (col < d->game->width)
 		{
 			c = d->game->map[row][col];
+			if (c == ' ')
+			{
+				col++;
+				continue ;
+			}
 			color = mm_color_for_cell(c);
 			draw_minimap_cell(d, row, col, color);
 			col++;
 		}
 		row++;
 	}
-	draw_minimap_horizon(d);
+	// draw_minimap_horizon(d);
 	draw_minimap_player(d);
 }
