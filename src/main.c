@@ -3,34 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
+/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 13:43:03 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/12 09:51:24 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:24:00 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-bool	init_game(t_game **game, char *filename)
-{
-	*game = malloc(sizeof(t_game));
-	if (!(*game))
-	{
-		perror("Error");
-		return (false);
-	}
-	ft_memset(*game, 0, sizeof(t_game));
-	(*game)->fd = open(filename, O_RDONLY);
-	if ((*game)->fd < 0)
-	{
-		perror("Error");
-		free(*game);
-		*game = NULL;
-		return (false);
-	}
-	return (true);
-}
 
 static bool	check_filename(char *name)
 {
@@ -60,14 +40,17 @@ static bool	parsing(char *file, t_game **game)
 	return (true);
 }
 
-// static bool	init_3D(t_data *data)
-// {
-// 	if (!init_player_from_game(data))
-// 		return (clean_data(data), 1);
-// 	if (!init_mlx(&data->gfx, data->scr_w, data->scr_h, "cub3D"))
-// 		return (clean_data(data), 1);
-// 	return (true);
-// }
+static bool	init_3D(t_data *data)
+{
+	if (!init_player_from_game(data))
+		return (false);
+	print_player_data(data);
+	if (!init_mlx(&data->gfx, data->scr_w, data->scr_h, "cub3D"))
+		return (false);
+	if (!set_camera(data))
+		return (false);
+	return (true);
+}
 
 // static void	launch_mlx(t_data *data)
 // {
@@ -88,20 +71,20 @@ int	main(int argc, char **argv)
 		return (1);
 	if (!init_data(&data))
 		return (1);
-	// if ((!parsing(argv[1], &data->game)) || !init_3D(data))
+	if ((!parsing(argv[1], &data->game)) || !init_3D(data))
+		return (clean_data(data), 1);
+	// if ((!parsing(argv[1], &data->game)))
 	// 	return (clean_data(data), 1);
-	if ((!parsing(argv[1], &data->game)))
-		return (clean_data(data), 1);
 	// print_game(game);
-	if (!init_player_from_game(data))
-		return (clean_data(data), 1);
+	// if (!init_player_from_game(data))
+	// 	return (clean_data(data), 1);
 
-	print_player_data(data);
+	// print_player_data(data);
 
-	if (!init_mlx(&data->gfx, data->scr_w, data->scr_h, "cub3D"))
-		return (clean_data(data), 1);
+	// if (!init_mlx(&data->gfx, data->scr_w, data->scr_h, "cub3D"))
+	// 	return (clean_data(data), 1);
 
-	init_camera(data);
+	// init_camera(data);
 	render_frame(data);
 	// mlx_key_hook(data->gfx->win, on_key_press, data);
 	mlx_hook(data->gfx->win, KeyPress, KeyPressMask, on_key_press, data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
+/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/12 09:57:27 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:24:08 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,7 @@ bool	init_mlx(t_gfx **gfx, int w, int h, const char *title);
 bool	init_game(t_game **game, char *filename);
 bool	init_data(t_data **data);
 bool	init_player_from_game(t_data *data);
-void	init_camera(t_data *data);
+bool	set_camera(t_data *data);
 
 /* ========================    🦄 PARSING    ======================== */
 bool	check_map(t_game *game);

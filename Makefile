@@ -85,12 +85,12 @@ SRC_PARSING = \
 	parsing/parsing_utils.c
 
 SRC_PLAYER = \
-	player/player_move.c \
-	player/init_player.c
+	player/player_move.c
 
 SRC_INIT = \
 	init/init_data.c \
-	init/init_camera.c
+	init/init_mlx.c \
+	init/init_player.c
 
 SRC_UTILS = \
 	utils/cleanup.c \
