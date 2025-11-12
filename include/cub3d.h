@@ -6,7 +6,11 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/11/12 15:40:44 by aumartin         ###   ########.fr       */
+=======
+/*   Updated: 2025/11/12 15:40:31 by eieong           ###   ########.fr       */
+>>>>>>> refs/remotes/origin/master
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +42,8 @@
 
 # define SCR_W 960
 # define SCR_H 640
+// # define SCR_W 1920
+// # define SCR_H 1080
 # define MOVE_SPEED 0.15
 # define ROT_SPEED 0.12
 # define RGB(r, g, b) ((int)(((r) & 0xFF) << 16 | ((g) & 0xFF) << 8 | ((b) & 0xFF)))
