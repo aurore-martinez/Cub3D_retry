@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 13:43:03 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/10 15:49:20 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/12 09:39:28 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,9 @@ int	main(int argc, char **argv)
 		return (clean_data(data), 1);
 
 	init_camera(data);
+
+	// data->gfx->cam.tile_size = 10;
+
 
 	render_frame(data);
 	// mlx_key_hook(data->gfx->win, on_key_press, data);

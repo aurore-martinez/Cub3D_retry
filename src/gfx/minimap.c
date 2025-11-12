@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:34:10 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/10 15:33:02 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/12 09:26:37 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,9 @@ static void	draw_minimap_player(t_data *d)
 	t_point	p;
 
 	ts = mm_tile_size(d);
-	r = ts / 3; /* rayon (1/3 d'une case) */
-	/* position joueur (col = y, row = x) */
-	cx = mm_off_x(d) + (int)(d->player.pos.y * ts + ts / 2);
-	cy = mm_off_y(d) + (int)(d->player.pos.x * ts + ts / 2);
+	r = ts / 3;
+	cx = mm_off_x(d) + (int)(d->player.pos.y * ts + 0.5);
+	cy = mm_off_y(d) + (int)(d->player.pos.x * ts + 0.5);
 
 	y = -r;
 	while (y <= r)
