@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 12:09:02 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/05 15:56:16 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/12 12:09:56 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void	clean_mlx(t_gfx *gfx)
 		mlx_destroy_display(gfx->mlx);
 		free(gfx->mlx);
 	}
+	free(gfx);
 }
 
 void	gnl_clear(t_game *game, char *line)
