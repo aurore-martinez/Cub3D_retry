@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:30:03 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/12 16:24:52 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/13 12:50:24 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ bool	set_texture(t_data *data)
 			data->game->elements.path_east, &width, &height);
 	data->gfx->texture.west = mlx_xpm_file_to_image(data->gfx->mlx,
 			data->game->elements.path_west, &width, &height);
-	if (!data->gfx->texture.north || !data->gfx->texture.north
-		|| !data->gfx->texture.north || !data->gfx->texture.north)
+	if (!data->gfx->texture.north || !data->gfx->texture.south
+		|| !data->gfx->texture.west || !data->gfx->texture.east)
 		return (false);
 	return (true);
 }
