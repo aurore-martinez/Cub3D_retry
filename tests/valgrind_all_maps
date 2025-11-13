@@ -12,12 +12,12 @@ MAPS=($(find "$MAPDIR" -type f -name "*.cub"))
 for map in "${MAPS[@]}"; do
 {
 	echo
-    echo ">>>>>>>> $map <<<<<<<<"
+	echo ">>>>>>>> $map <<<<<<<<"
 	echo "                                                      |"
-    # "${GRIND[@]}" "$BIN" "$map"
+    "${GRIND[@]}" "$BIN" "$map"
 	"$BIN" "$map"
 	echo "                                                      |"
     echo "===== FIN DU TEST : $map ======"
-	echo 
+	echo
 } >> "$OUTFILE" 2>&1
 done
