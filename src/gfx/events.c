@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:07:30 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/13 09:23:11 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/13 15:14:14 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	on_destroy_event(t_data *d)
 	return (0);
 }
 
-void	clear_frame(t_img *img, int w, int h, int color)
+/* void	clear_frame(t_img *img, int w, int h, int color)
 {
 	int		x;
 	int		y;
@@ -61,10 +61,16 @@ void	clear_frame(t_img *img, int w, int h, int color)
 		}
 		y++;
 	}
-}
+} */
 
 int	on_key_press(int key, t_data *d)
 {
+	if (key == KEY_M && d && d->gfx)
+	{
+		d->gfx->cam.show_full_minimap = !d->gfx->cam.show_full_minimap;
+		request_redraw(d);
+		return (0);
+	}
 	if (key == KEY_ESC)
 		on_destroy_event(d);
 	handle_player_moves(key, d);

@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/13 09:34:45 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/13 15:01:51 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ typedef struct s_cam
 	int		color; // init mais pas utilise
 	int		z_scale; // init mais pas utilise
 	int		tile_size;
+	bool	show_full_minimap;
 }	t_cam;
 
 /* MiniLibX */
@@ -237,9 +238,9 @@ void	draw_col(t_data *d, int x, int start, int end, int color);
 void	apply_walk(t_data *d, double nx, double ny, double margin);
 void	turn_player(t_data *d, double angle);
 int		render_frame(t_data *d);
-void	clear_frame(t_img *img, int w, int h, int color);
 int		on_key_press(int key, t_data *d);
 void	draw_minimap(t_data *d);
+void	draw_minimap_focus(t_data *d);
 int		on_mouse(int x, int y, t_data *d);
 bool	set_texture(t_data *data);
 void	request_redraw(t_data *d);

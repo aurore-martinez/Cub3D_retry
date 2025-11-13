@@ -99,7 +99,8 @@ SRC_UTILS = \
 
 SRC_GFX = \
 	gfx/color.c \
-	gfx/minimap.c \
+ 	gfx/minimap.c \
+ 	gfx/minimap_focus.c \
 	gfx/draw.c \
 	gfx/render.c \
 	gfx/events.c
