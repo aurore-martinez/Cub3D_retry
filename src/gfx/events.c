@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:07:30 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/12 15:39:55 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/13 09:23:11 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	on_key_press(int key, t_data *d)
 	if (key == KEY_ESC)
 		on_destroy_event(d);
 	handle_player_moves(key, d);
-	render_frame(d);
+	request_redraw(d);
 	return (0);
 }
 
@@ -92,6 +92,25 @@ int	on_mouse(int x, int y, t_data *d)
 		return (0);
 	angle = (double)dx * 0.0035; /* radians per pixel */
 	turn_player(d, angle);
-	render_frame(d);
+	request_redraw(d);
+	return (0);
+}
+
+void	request_redraw(t_data *d)
+{
+	if (!d)
+		return ;
+	d->need_redraw = true;
+}
+
+int	loop_hook(t_data *d)
+{
+	if (!d)
+		return (0);
+	if (d->need_redraw)
+	{
+		render_frame(d);
+		d->need_redraw = false;
+	}
 	return (0);
 }

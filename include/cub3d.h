@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/12 16:28:27 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/13 09:34:45 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,7 @@ typedef struct s_data
 	t_gfx	*gfx;
 	int		scr_w;
 	int		scr_h;
+	bool	need_redraw;
 }	t_data;
 
 typedef struct s_dda
@@ -241,5 +242,7 @@ int		on_key_press(int key, t_data *d);
 void	draw_minimap(t_data *d);
 int		on_mouse(int x, int y, t_data *d);
 bool	set_texture(t_data *data);
+void	request_redraw(t_data *d);
+int		loop_hook(t_data *d);
 
 #endif

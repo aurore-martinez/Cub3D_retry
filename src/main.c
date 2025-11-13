@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 13:43:03 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/12 15:40:11 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/13 09:32:09 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static bool	init_3D(t_data *data)
 static void	launch_mlx(t_data *data)
 {
 	render_frame(data);
+	mlx_loop_hook(data->gfx->mlx, loop_hook, data);
 	mlx_hook(data->gfx->win, KeyPress, KeyPressMask, on_key_press, data);
 	mlx_hook(data->gfx->win, DestroyNotify, 0, on_destroy_event, data);
 	mlx_hook(data->gfx->win, MotionNotify, PointerMotionMask, on_mouse, data);

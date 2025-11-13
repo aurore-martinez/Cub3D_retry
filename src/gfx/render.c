@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:14:56 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/12 16:45:47 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/13 09:32:30 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int render_frame(t_data *d)
 
 	if (!d || !d->gfx)
 		return (0);
-	clear_frame(&d->gfx->frame, d->scr_w, d->scr_h, MAP_BG);//fond
+	// clear_frame(&d->gfx->frame, d->scr_w, d->scr_h, MAP_BG);//fond
 	render_walls(d);//raycasting murs + sky + sol
 	midy = d->scr_h / 2;
 	midx = d->scr_w / 2;
