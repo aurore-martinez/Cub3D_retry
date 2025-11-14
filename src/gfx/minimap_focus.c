@@ -6,11 +6,12 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 16:30:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/14 10:42:08 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/14 10:45:39 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+#include <stdio.h>
 
 static int	mf_tile_size(t_data *d)
 {
@@ -88,6 +89,15 @@ static void	draw_focus_player(t_data *d, int win_x, int win_y, int tile_size, in
 	fy = d->player.pos.x - (int)(d->player.pos.x);
 	cx = win_x + r * tile_size + (int)(tile_size / 2 + fx * tile_size + 0.5);
 	cy = win_y + r * tile_size + (int)(tile_size / 2 + fy * tile_size + 0.5);
+
+	/* debug: print focus player computed positions */
+	{
+		int p_row = (int)d->player.pos.x;
+		int p_col = (int)d->player.pos.y;
+		printf("FOCUS: ts=%d win=(%d,%d) r=%d p=(%.3f,%.3f) p_tile=(%d,%d) cx=%d cy=%d\n",
+			tile_size, win_x, win_y, r, d->player.pos.x, d->player.pos.y,
+			p_row, p_col, cx, cy);
+	}
 
 	pr = tile_size / 3;
 	if (pr < 1)

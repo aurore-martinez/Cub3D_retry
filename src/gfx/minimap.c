@@ -6,11 +6,12 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:34:10 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/13 16:33:22 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/14 10:45:39 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+#include <stdio.h>
 
 /* paramètres mini-map */
 static int	mm_tile_size(t_data *d)
@@ -102,6 +103,10 @@ static void	draw_minimap_player(t_data *d)
 	// r = ft_max(1, ts/3); // essayer avec ca plutot radius 1 pixel quand tile tres petit
 	cx = mm_off_x(d) + (int)(d->player.pos.y * ts + 0.5);
 	cy = mm_off_y(d) + (int)(d->player.pos.x * ts + 0.5);
+
+	/* debug: print full minimap player computed positions */
+	printf("FULL: ts=%d off=(%d,%d) p=(%.3f,%.3f) cx=%d cy=%d\n",
+		 ts, mm_off_x(d), mm_off_y(d), d->player.pos.x, d->player.pos.y, cx, cy);
 
 	y = -r;
 	while (y <= r)
