@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:07:30 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/14 14:24:29 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/14 15:32:02 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	on_mouse(int x, int y, t_data *d)
 	if (dx == 0)
 		return (0);
 	angle = (double)dx * 0.0035; /* radians per pixel */
-	turn_player(d, angle);
+	turn_player(d, -angle);
 	request_redraw(d);
 	return (0);
 }
