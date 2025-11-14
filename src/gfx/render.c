@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:14:56 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/13 15:19:04 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/14 15:41:49 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,14 @@ int render_frame(t_data *d)
 	render_walls(d);//raycasting murs + sky + sol
 	midy = d->scr_h / 2;
 	midx = d->scr_w / 2;
-	draw_hline(&d->gfx->frame, midy, 0, d->scr_w - 1, WHITE);//horizontale blanche au milieu
-	draw_vline(&d->gfx->frame, midx, 0, d->scr_h - 1, RED);//verticale rouge au milieu
-	/* draw minimap according to toggle (show full map when requested) */
+/* 	draw_hline(&d->gfx->frame, midy, 0, d->scr_w - 1, WHITE);//horizontale blanche au milieu
+	draw_vline(&d->gfx->frame, midx, 0, d->scr_h - 1, RED);//verticale rouge au milieu */
+
+	/* crosshair (croix) au centre */
+	draw_hline(&d->gfx->frame, midy, midx - 15, midx - 5, WHITE);
+	draw_hline(&d->gfx->frame, midy, midx + 5, midx + 15, WHITE);
+	draw_vline(&d->gfx->frame, midx, midy - 15, midy - 5, WHITE);
+	draw_vline(&d->gfx->frame, midx, midy + 5, midy + 15, WHITE);
 	if (d->gfx && d->gfx->cam.show_full_minimap)
 		draw_minimap_focus(d);
 	else
