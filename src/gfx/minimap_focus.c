@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 16:30:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/14 10:42:08 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/14 15:21:08 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ static void	draw_focus_cell(t_data *d, int x, int y, int size, int color)
 	}
 }
 
-static void	draw_focus_player(t_data *d, int win_x, int win_y, int tile_size, int r)
+static void	draw_focus_player(t_data *d, int ts)
 {
-	double	fx;
-	double	fy;
+	int		abs_x;
+	int		abs_y;
 	int		cx;
 	int		cy;
 	int		pr;
@@ -84,12 +84,11 @@ static void	draw_focus_player(t_data *d, int win_x, int win_y, int tile_size, in
 
 	if (d == NULL)
 		return ;
-	fx = d->player.pos.y - (int)(d->player.pos.y);
-	fy = d->player.pos.x - (int)(d->player.pos.x);
-	cx = win_x + r * tile_size + (int)(tile_size / 2 + fx * tile_size + 0.5);
-	cy = win_y + r * tile_size + (int)(tile_size / 2 + fy * tile_size + 0.5);
-
-	pr = tile_size / 3;
+	abs_x = mf_off_x(d) + (int)(d->player.pos.y * ts + 0.5);
+	abs_y = mf_off_y(d) + (int)(d->player.pos.x * ts + 0.5);
+	cx = abs_x;
+	cy = abs_y;
+	pr = ts / 3;
 	if (pr < 1)
 		pr = 1;
 	py = -pr;
@@ -112,80 +111,59 @@ static void	draw_focus_player(t_data *d, int win_x, int win_y, int tile_size, in
 	}
 }
 
-/* minimap focus */
+/* minimap focus - crop 11x11 using absolute coordinates */
 void	draw_minimap_focus(t_data *d)
 {
-	int	base_ts;
-	int	tile_size_local;
+	int	ts;
 	int	r;
 	int	p_row;
 	int	p_col;
 	int	start_row;
-	int	end_row;
 	int	start_col;
+	int	end_row;
 	int	end_col;
+	int	crop_x;
+	int	crop_y;
 	int	row;
 	int	col;
-	char	c;
-	int	color;
-	int	win_x;
-	int	win_y;
 
 	if (d == NULL || d->game == NULL || d->game->map == NULL)
 		return ;
-
-	r = 8; // radius
-
-	base_ts = mf_tile_size(d);
-	if (base_ts <= 0)
-		base_ts = 1;
-	tile_size_local = base_ts;
-
-	win_x = mf_off_x(d);
-	win_y = mf_off_y(d);
-
+	r = 15;
+	ts = mf_tile_size(d);
+	if (ts <= 0)
+		ts = 1;
 	p_row = (int)(d->player.pos.x);
 	p_col = (int)(d->player.pos.y);
-
 	start_row = p_row - r;
 	if (start_row < 0)
 		start_row = 0;
 	end_row = p_row + r;
 	if (end_row >= d->game->height)
 		end_row = d->game->height - 1;
-
 	start_col = p_col - r;
 	if (start_col < 0)
 		start_col = 0;
 	end_col = p_col + r;
 	if (end_col >= d->game->width)
 		end_col = d->game->width - 1;
-
+	crop_x = mf_off_x(d) + start_col * ts;
+	crop_y = mf_off_y(d) + start_row * ts;
 	row = start_row;
 	while (row <= end_row)
 	{
 		col = start_col;
 		while (col <= end_col)
 		{
-			c = d->game->map[row][col];
-			if (c == ' ')
+			if (d->game->map[row][col] != ' ')
 			{
-				col++;
-				continue ;
-			}
-			color = mf_color_for_cell(c);
-			/* position relative : (r + dx) centre a r,r */
-			{
-				int dx = col - p_col;
-				int dy = row - p_row;
-				int x = win_x + (r + dx) * tile_size_local;
-				int y = win_y + (r + dy) * tile_size_local;
-
-				draw_focus_cell(d, x, y, tile_size_local, color);
+				draw_focus_cell(d, crop_x + (col - start_col) * ts,
+					crop_y + (row - start_row) * ts, ts,
+					mf_color_for_cell(d->game->map[row][col]));
 			}
 			col++;
 		}
 		row++;
 	}
-	draw_focus_player(d, win_x, win_y, tile_size_local, r);
+	draw_focus_player(d, ts);
 }
