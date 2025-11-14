@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 16:30:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/13 16:48:59 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/14 10:42:08 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,6 @@ void	draw_minimap_focus(t_data *d)
 {
 	int	base_ts;
 	int	tile_size_local;
-	int	factor;
 	int	r;
 	int	p_row;
 	int	p_col;
@@ -136,12 +135,11 @@ void	draw_minimap_focus(t_data *d)
 		return ;
 
 	r = 8; // radius
-	factor = 2; // zoom
 
 	base_ts = mf_tile_size(d);
 	if (base_ts <= 0)
 		base_ts = 1;
-	tile_size_local = base_ts * factor;
+	tile_size_local = base_ts;
 
 	win_x = mf_off_x(d);
 	win_y = mf_off_y(d);
