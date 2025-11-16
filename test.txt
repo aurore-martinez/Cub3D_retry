@@ -1,11 +1,11 @@
 
 >>>>>>>> assets/maps/map1.cub <<<<<<<<
                                                       |
-==120274== Memcheck, a memory error detector
-==120274== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==120274== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==120274== Command: ./cub3D assets/maps/map1.cub
-==120274== 
+==144845== Memcheck, a memory error detector
+==144845== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==144845== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==144845== Command: ./cub3D assets/maps/map1.cub
+==144845== 
 1|1|1|1|1|1|1|1|1|1|
 1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|
 1|[91mX[0m|1|1|1|1|1|1|[91mX[0m|1|
@@ -31,44 +31,41 @@ plane : x = 0.00 | y = 0.66
 spawn : row = 6 | col = 7 | char = N
 scr   : 1920x1080
 ===
-FULL: ts=20 off=(1700,20) p=(6.500,7.500) cx=1850 cy=150
-APPEL RENDER FRAME FULL: ts=20 off=(1700,20) p=(6.500,7.500) cx=1850 cy=150
-APPEL RENDER FRAME FULL: ts=20 off=(1700,20) p=(6.500,7.500) cx=1850 cy=150
-APPEL RENDER FRAME FULL: ts=20 off=(1700,20) p=(6.500,7.500) cx=1850 cy=150
-APPEL RENDER FRAME FULL: ts=20 off=(1700,20) p=(6.500,7.500) cx=1850 cy=150
-APPEL RENDER FRAME FULL: ts=20 off=(1700,20) p=(6.500,7.500) cx=1850 cy=150
-APPEL RENDER FRAME ==120274== 
-==120274== FILE DESCRIPTORS: 10 open (3 std) at exit.
-==120274== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
-==120274==    <inherited from parent>
-==120274== 
-==120274== Open file descriptor 44: /dev/ptmx
-==120274==    <inherited from parent>
-==120274== 
-==120274== Open file descriptor 43: /home/aumartin/.config/Code/logs/20251116T142027/ptyhost.log
-==120274==    <inherited from parent>
-==120274== 
-==120274== Open AF_UNIX socket 36: <unknown>
-==120274==    <inherited from parent>
-==120274== 
-==120274== Open pf-16 socket 35:
-==120274==    <inherited from parent>
-==120274== 
-==120274== Open AF_UNIX socket 34: <unknown>
-==120274==    <inherited from parent>
-==120274== 
-==120274== Open file descriptor 33:
-==120274==    <inherited from parent>
-==120274== 
-==120274== 
-==120274== HEAP SUMMARY:
-==120274==     in use at exit: 0 bytes in 0 blocks
-==120274==   total heap usage: 102,606 allocs, 102,606 frees, 2,592,122 bytes allocated
-==120274== 
-==120274== All heap blocks were freed -- no leaks are possible
-==120274== 
-==120274== For lists of detected and suppressed errors, rerun with: -s
-==120274== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
+FULL: ts=20 off=(20,20) p=(6.500,7.500) cx=170 cy=150
+APPEL RENDER FRAME FULL: ts=20 off=(20,20) p=(6.500,7.500) cx=170 cy=150
+APPEL RENDER FRAME FULL: ts=20 off=(20,20) p=(6.500,7.500) cx=170 cy=150
+APPEL RENDER FRAME ==144845== 
+==144845== FILE DESCRIPTORS: 10 open (3 std) at exit.
+==144845== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
+==144845==    <inherited from parent>
+==144845== 
+==144845== Open file descriptor 44: /dev/ptmx
+==144845==    <inherited from parent>
+==144845== 
+==144845== Open file descriptor 43: /home/aumartin/.config/Code/logs/20251116T142027/ptyhost.log
+==144845==    <inherited from parent>
+==144845== 
+==144845== Open AF_UNIX socket 36: <unknown>
+==144845==    <inherited from parent>
+==144845== 
+==144845== Open pf-16 socket 35:
+==144845==    <inherited from parent>
+==144845== 
+==144845== Open AF_UNIX socket 34: <unknown>
+==144845==    <inherited from parent>
+==144845== 
+==144845== Open file descriptor 33:
+==144845==    <inherited from parent>
+==144845== 
+==144845== 
+==144845== HEAP SUMMARY:
+==144845==     in use at exit: 0 bytes in 0 blocks
+==144845==   total heap usage: 76,386 allocs, 76,386 frees, 1,962,794 bytes allocated
+==144845== 
+==144845== All heap blocks were freed -- no leaks are possible
+==144845== 
+==144845== For lists of detected and suppressed errors, rerun with: -s
+==144845== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
 1|1|1|1|1|1|1|1|1|1|
 1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|
 1|[91mX[0m|1|1|1|1|1|1|[91mX[0m|1|
@@ -94,18 +91,18 @@ plane : x = 0.00 | y = 0.66
 spawn : row = 6 | col = 7 | char = N
 scr   : 1920x1080
 ===
-FULL: ts=20 off=(1700,20) p=(6.500,7.500) cx=1850 cy=150
+FULL: ts=20 off=(20,20) p=(6.500,7.500) cx=170 cy=150
 APPEL RENDER FRAME                                                       |
 ===== FIN DU TEST : assets/maps/map1.cub ======
 
 
 >>>>>>>> assets/maps/map2.cub <<<<<<<<
                                                       |
-==120384== Memcheck, a memory error detector
-==120384== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==120384== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==120384== Command: ./cub3D assets/maps/map2.cub
-==120384== 
+==144913== Memcheck, a memory error detector
+==144913== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==144913== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==144913== Command: ./cub3D assets/maps/map2.cub
+==144913== 
 1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|
 1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|
 1|[91mX[0m|1|1|1|1|1|1|1|1|1|1|1|[91mX[0m|1|
@@ -139,46 +136,39 @@ plane : x = -0.66 | y = 0.00
 spawn : row = 10 | col = 2 | char = W
 scr   : 1920x1080
 ===
-FULL: ts=13 off=(1705,20) p=(10.500,2.500) cx=1738 cy=157
-APPEL RENDER FRAME FULL: ts=13 off=(1705,20) p=(10.500,2.400) cx=1736 cy=157
-APPEL RENDER FRAME FULL: ts=13 off=(1705,20) p=(10.500,2.300) cx=1735 cy=157
-APPEL RENDER FRAME FULL: ts=13 off=(1705,20) p=(10.500,2.100) cx=1732 cy=157
-APPEL RENDER FRAME FULL: ts=13 off=(1705,20) p=(10.500,2.100) cx=1732 cy=157
-APPEL RENDER FRAME FULL: ts=13 off=(1705,20) p=(10.500,2.100) cx=1732 cy=157
-APPEL RENDER FRAME FULL: ts=13 off=(1705,20) p=(10.500,2.100) cx=1732 cy=157
-APPEL RENDER FRAME FULL: ts=13 off=(1705,20) p=(10.500,2.100) cx=1732 cy=157
-APPEL RENDER FRAME ==120384== 
-==120384== FILE DESCRIPTORS: 10 open (3 std) at exit.
-==120384== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
-==120384==    <inherited from parent>
-==120384== 
-==120384== Open file descriptor 44: /dev/ptmx
-==120384==    <inherited from parent>
-==120384== 
-==120384== Open file descriptor 43: /home/aumartin/.config/Code/logs/20251116T142027/ptyhost.log
-==120384==    <inherited from parent>
-==120384== 
-==120384== Open AF_UNIX socket 36: <unknown>
-==120384==    <inherited from parent>
-==120384== 
-==120384== Open pf-16 socket 35:
-==120384==    <inherited from parent>
-==120384== 
-==120384== Open AF_UNIX socket 34: <unknown>
-==120384==    <inherited from parent>
-==120384== 
-==120384== Open file descriptor 33:
-==120384==    <inherited from parent>
-==120384== 
-==120384== 
-==120384== HEAP SUMMARY:
-==120384==     in use at exit: 0 bytes in 0 blocks
-==120384==   total heap usage: 38,740 allocs, 38,740 frees, 1,061,852 bytes allocated
-==120384== 
-==120384== All heap blocks were freed -- no leaks are possible
-==120384== 
-==120384== For lists of detected and suppressed errors, rerun with: -s
-==120384== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
+FULL: ts=16 off=(20,20) p=(10.500,2.500) cx=60 cy=188
+APPEL RENDER FRAME ==144913== 
+==144913== FILE DESCRIPTORS: 10 open (3 std) at exit.
+==144913== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
+==144913==    <inherited from parent>
+==144913== 
+==144913== Open file descriptor 44: /dev/ptmx
+==144913==    <inherited from parent>
+==144913== 
+==144913== Open file descriptor 43: /home/aumartin/.config/Code/logs/20251116T142027/ptyhost.log
+==144913==    <inherited from parent>
+==144913== 
+==144913== Open AF_UNIX socket 36: <unknown>
+==144913==    <inherited from parent>
+==144913== 
+==144913== Open pf-16 socket 35:
+==144913==    <inherited from parent>
+==144913== 
+==144913== Open AF_UNIX socket 34: <unknown>
+==144913==    <inherited from parent>
+==144913== 
+==144913== Open file descriptor 33:
+==144913==    <inherited from parent>
+==144913== 
+==144913== 
+==144913== HEAP SUMMARY:
+==144913==     in use at exit: 0 bytes in 0 blocks
+==144913==   total heap usage: 95,956 allocs, 95,956 frees, 2,434,964 bytes allocated
+==144913== 
+==144913== All heap blocks were freed -- no leaks are possible
+==144913== 
+==144913== For lists of detected and suppressed errors, rerun with: -s
+==144913== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
 1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|
 1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|
 1|[91mX[0m|1|1|1|1|1|1|1|1|1|1|1|[91mX[0m|1|
@@ -212,22 +202,18 @@ plane : x = -0.66 | y = 0.00
 spawn : row = 10 | col = 2 | char = W
 scr   : 1920x1080
 ===
-FULL: ts=13 off=(1705,20) p=(10.500,2.500) cx=1738 cy=157
-APPEL RENDER FRAME FULL: ts=13 off=(1705,20) p=(10.500,2.500) cx=1738 cy=157
-APPEL RENDER FRAME FULL: ts=13 off=(1705,20) p=(10.500,2.500) cx=1738 cy=157
-APPEL RENDER FRAME FULL: ts=13 off=(1705,20) p=(10.500,2.500) cx=1738 cy=157
-APPEL RENDER FRAME FULL: ts=13 off=(1705,20) p=(10.500,2.500) cx=1738 cy=157
+FULL: ts=16 off=(20,20) p=(10.500,2.500) cx=60 cy=188
 APPEL RENDER FRAME                                                       |
 ===== FIN DU TEST : assets/maps/map2.cub ======
 
 
 >>>>>>>> assets/maps/map4.cub <<<<<<<<
                                                       |
-==120453== Memcheck, a memory error detector
-==120453== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==120453== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==120453== Command: ./cub3D assets/maps/map4.cub
-==120453== 
+==144970== Memcheck, a memory error detector
+==144970== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==144970== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==144970== Command: ./cub3D assets/maps/map4.cub
+==144970== 
  | | | | | | | |1|1|1|1|1|1|1|1|
  | | | | | | | |1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|
  | | | | | | | |1|[91mX[0m|1|1|1|[91mX[0m|[91mX[0m|1|
@@ -247,41 +233,49 @@ plane : x = 0.00 | y = 0.66
 spawn : row = 3 | col = 10 | char = N
 scr   : 1920x1080
 ===
-FULL: ts=12 off=(1708,20) p=(3.500,10.500) cx=1834 cy=62
-APPEL RENDER FRAME FULL: ts=12 off=(1708,20) p=(3.500,10.500) cx=1834 cy=62
-APPEL RENDER FRAME FULL: ts=12 off=(1708,20) p=(3.500,10.500) cx=1834 cy=62
-APPEL RENDER FRAME ==120453== 
-==120453== FILE DESCRIPTORS: 10 open (3 std) at exit.
-==120453== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
-==120453==    <inherited from parent>
-==120453== 
-==120453== Open file descriptor 44: /dev/ptmx
-==120453==    <inherited from parent>
-==120453== 
-==120453== Open file descriptor 43: /home/aumartin/.config/Code/logs/20251116T142027/ptyhost.log
-==120453==    <inherited from parent>
-==120453== 
-==120453== Open AF_UNIX socket 36: <unknown>
-==120453==    <inherited from parent>
-==120453== 
-==120453== Open pf-16 socket 35:
-==120453==    <inherited from parent>
-==120453== 
-==120453== Open AF_UNIX socket 34: <unknown>
-==120453==    <inherited from parent>
-==120453== 
-==120453== Open file descriptor 33:
-==120453==    <inherited from parent>
-==120453== 
-==120453== 
-==120453== HEAP SUMMARY:
-==120453==     in use at exit: 0 bytes in 0 blocks
-==120453==   total heap usage: 38,738 allocs, 38,738 frees, 1,059,021 bytes allocated
-==120453== 
-==120453== All heap blocks were freed -- no leaks are possible
-==120453== 
-==120453== For lists of detected and suppressed errors, rerun with: -s
-==120453== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
+FULL: ts=15 off=(20,20) p=(3.500,10.500) cx=178 cy=73
+APPEL RENDER FRAME FULL: ts=15 off=(20,20) p=(3.500,10.500) cx=178 cy=73
+APPEL RENDER FRAME FULL: ts=15 off=(20,20) p=(3.500,10.500) cx=178 cy=73
+APPEL RENDER FRAME FULL: ts=15 off=(20,20) p=(3.411,10.546) cx=178 cy=71
+APPEL RENDER FRAME FULL: ts=15 off=(20,20) p=(3.323,10.592) cx=179 cy=70
+APPEL RENDER FRAME FULL: ts=15 off=(20,20) p=(3.234,10.962) cx=184 cy=69
+APPEL RENDER FRAME FULL: ts=15 off=(20,20) p=(3.234,11.100) cx=187 cy=69
+APPEL RENDER FRAME FULL: ts=15 off=(20,20) p=(3.234,11.193) cx=188 cy=69
+APPEL RENDER FRAME FULL: ts=15 off=(20,20) p=(3.234,11.331) cx=190 cy=69
+APPEL RENDER FRAME FULL: ts=15 off=(20,20) p=(3.234,11.424) cx=191 cy=69
+APPEL RENDER FRAME FULL: ts=15 off=(20,20) p=(3.234,11.516) cx=193 cy=69
+APPEL RENDER FRAME ==144970== 
+==144970== FILE DESCRIPTORS: 10 open (3 std) at exit.
+==144970== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
+==144970==    <inherited from parent>
+==144970== 
+==144970== Open file descriptor 44: /dev/ptmx
+==144970==    <inherited from parent>
+==144970== 
+==144970== Open file descriptor 43: /home/aumartin/.config/Code/logs/20251116T142027/ptyhost.log
+==144970==    <inherited from parent>
+==144970== 
+==144970== Open AF_UNIX socket 36: <unknown>
+==144970==    <inherited from parent>
+==144970== 
+==144970== Open pf-16 socket 35:
+==144970==    <inherited from parent>
+==144970== 
+==144970== Open AF_UNIX socket 34: <unknown>
+==144970==    <inherited from parent>
+==144970== 
+==144970== Open file descriptor 33:
+==144970==    <inherited from parent>
+==144970== 
+==144970== 
+==144970== HEAP SUMMARY:
+==144970==     in use at exit: 0 bytes in 0 blocks
+==144970==   total heap usage: 65,026 allocs, 65,026 frees, 1,690,093 bytes allocated
+==144970== 
+==144970== All heap blocks were freed -- no leaks are possible
+==144970== 
+==144970== For lists of detected and suppressed errors, rerun with: -s
+==144970== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
  | | | | | | | |1|1|1|1|1|1|1|1|
  | | | | | | | |1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|
  | | | | | | | |1|[91mX[0m|1|1|1|[91mX[0m|[91mX[0m|1|
@@ -301,18 +295,18 @@ plane : x = 0.00 | y = 0.66
 spawn : row = 3 | col = 10 | char = N
 scr   : 1920x1080
 ===
-FULL: ts=12 off=(1708,20) p=(3.500,10.500) cx=1834 cy=62
+FULL: ts=15 off=(20,20) p=(3.500,10.500) cx=178 cy=73
 APPEL RENDER FRAME                                                       |
 ===== FIN DU TEST : assets/maps/map4.cub ======
 
 
 >>>>>>>> assets/maps/map5.cub <<<<<<<<
                                                       |
-==120502== Memcheck, a memory error detector
-==120502== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==120502== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==120502== Command: ./cub3D assets/maps/map5.cub
-==120502== 
+==145051== Memcheck, a memory error detector
+==145051== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==145051== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==145051== Command: ./cub3D assets/maps/map5.cub
+==145051== 
 1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|
 1|0|0|0|0|0|0|0|0|0|0|0|0|0|1|1|0|0|0|0|0|0|0|0|1|
 1|0|1|1|1|1|1|1|1|1|1|1|1|0|1|1|0|1|1|1|1|1|1|0|1|
@@ -346,42 +340,39 @@ plane : x = -0.66 | y = 0.00
 spawn : row = 9 | col = 7 | char = W
 scr   : 1920x1080
 ===
-FULL: ts=8 off=(1700,20) p=(9.500,7.500) cx=1760 cy=96
-APPEL RENDER FRAME FULL: ts=8 off=(1700,20) p=(9.500,7.400) cx=1759 cy=96
-APPEL RENDER FRAME FULL: ts=8 off=(1700,20) p=(9.500,7.200) cx=1758 cy=96
-APPEL RENDER FRAME FULL: ts=8 off=(1700,20) p=(9.500,7.000) cx=1756 cy=96
-APPEL RENDER FRAME ==120502== 
-==120502== FILE DESCRIPTORS: 10 open (3 std) at exit.
-==120502== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
-==120502==    <inherited from parent>
-==120502== 
-==120502== Open file descriptor 44: /dev/ptmx
-==120502==    <inherited from parent>
-==120502== 
-==120502== Open file descriptor 43: /home/aumartin/.config/Code/logs/20251116T142027/ptyhost.log
-==120502==    <inherited from parent>
-==120502== 
-==120502== Open AF_UNIX socket 36: <unknown>
-==120502==    <inherited from parent>
-==120502== 
-==120502== Open pf-16 socket 35:
-==120502==    <inherited from parent>
-==120502== 
-==120502== Open AF_UNIX socket 34: <unknown>
-==120502==    <inherited from parent>
-==120502== 
-==120502== Open file descriptor 33:
-==120502==    <inherited from parent>
-==120502== 
-==120502== 
-==120502== HEAP SUMMARY:
-==120502==     in use at exit: 0 bytes in 0 blocks
-==120502==   total heap usage: 67,325 allocs, 67,325 frees, 1,749,373 bytes allocated
-==120502== 
-==120502== All heap blocks were freed -- no leaks are possible
-==120502== 
-==120502== For lists of detected and suppressed errors, rerun with: -s
-==120502== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
+FULL: ts=10 off=(20,20) p=(9.500,7.500) cx=95 cy=115
+APPEL RENDER FRAME ==145051== 
+==145051== FILE DESCRIPTORS: 10 open (3 std) at exit.
+==145051== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
+==145051==    <inherited from parent>
+==145051== 
+==145051== Open file descriptor 44: /dev/ptmx
+==145051==    <inherited from parent>
+==145051== 
+==145051== Open file descriptor 43: /home/aumartin/.config/Code/logs/20251116T142027/ptyhost.log
+==145051==    <inherited from parent>
+==145051== 
+==145051== Open AF_UNIX socket 36: <unknown>
+==145051==    <inherited from parent>
+==145051== 
+==145051== Open pf-16 socket 35:
+==145051==    <inherited from parent>
+==145051== 
+==145051== Open AF_UNIX socket 34: <unknown>
+==145051==    <inherited from parent>
+==145051== 
+==145051== Open file descriptor 33:
+==145051==    <inherited from parent>
+==145051== 
+==145051== 
+==145051== HEAP SUMMARY:
+==145051==     in use at exit: 0 bytes in 0 blocks
+==145051==   total heap usage: 16,525 allocs, 16,525 frees, 530,141 bytes allocated
+==145051== 
+==145051== All heap blocks were freed -- no leaks are possible
+==145051== 
+==145051== For lists of detected and suppressed errors, rerun with: -s
+==145051== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
 1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|
 1|0|0|0|0|0|0|0|0|0|0|0|0|0|1|1|0|0|0|0|0|0|0|0|1|
 1|0|1|1|1|1|1|1|1|1|1|1|1|0|1|1|0|1|1|1|1|1|1|0|1|
@@ -415,52 +406,52 @@ plane : x = -0.66 | y = 0.00
 spawn : row = 9 | col = 7 | char = W
 scr   : 1920x1080
 ===
-FULL: ts=8 off=(1700,20) p=(9.500,7.500) cx=1760 cy=96
+FULL: ts=10 off=(20,20) p=(9.500,7.500) cx=95 cy=115
 APPEL RENDER FRAME                                                       |
 ===== FIN DU TEST : assets/maps/map5.cub ======
 
 
 >>>>>>>> assets/maps/map3.cub <<<<<<<<
                                                       |
-==120553== Memcheck, a memory error detector
-==120553== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==120553== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==120553== Command: ./cub3D assets/maps/map3.cub
-==120553== 
+==145074== Memcheck, a memory error detector
+==145074== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==145074== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==145074== Command: ./cub3D assets/maps/map3.cub
+==145074== 
 Error
 Only one player character required
-==120553== 
-==120553== FILE DESCRIPTORS: 10 open (3 std) at exit.
-==120553== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
-==120553==    <inherited from parent>
-==120553== 
-==120553== Open file descriptor 44: /dev/ptmx
-==120553==    <inherited from parent>
-==120553== 
-==120553== Open file descriptor 43: /home/aumartin/.config/Code/logs/20251116T142027/ptyhost.log
-==120553==    <inherited from parent>
-==120553== 
-==120553== Open AF_UNIX socket 36: <unknown>
-==120553==    <inherited from parent>
-==120553== 
-==120553== Open pf-16 socket 35:
-==120553==    <inherited from parent>
-==120553== 
-==120553== Open AF_UNIX socket 34: <unknown>
-==120553==    <inherited from parent>
-==120553== 
-==120553== Open file descriptor 33:
-==120553==    <inherited from parent>
-==120553== 
-==120553== 
-==120553== HEAP SUMMARY:
-==120553==     in use at exit: 0 bytes in 0 blocks
-==120553==   total heap usage: 134 allocs, 134 frees, 9,863 bytes allocated
-==120553== 
-==120553== All heap blocks were freed -- no leaks are possible
-==120553== 
-==120553== For lists of detected and suppressed errors, rerun with: -s
-==120553== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==145074== 
+==145074== FILE DESCRIPTORS: 10 open (3 std) at exit.
+==145074== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
+==145074==    <inherited from parent>
+==145074== 
+==145074== Open file descriptor 44: /dev/ptmx
+==145074==    <inherited from parent>
+==145074== 
+==145074== Open file descriptor 43: /home/aumartin/.config/Code/logs/20251116T142027/ptyhost.log
+==145074==    <inherited from parent>
+==145074== 
+==145074== Open AF_UNIX socket 36: <unknown>
+==145074==    <inherited from parent>
+==145074== 
+==145074== Open pf-16 socket 35:
+==145074==    <inherited from parent>
+==145074== 
+==145074== Open AF_UNIX socket 34: <unknown>
+==145074==    <inherited from parent>
+==145074== 
+==145074== Open file descriptor 33:
+==145074==    <inherited from parent>
+==145074== 
+==145074== 
+==145074== HEAP SUMMARY:
+==145074==     in use at exit: 0 bytes in 0 blocks
+==145074==   total heap usage: 134 allocs, 134 frees, 9,863 bytes allocated
+==145074== 
+==145074== All heap blocks were freed -- no leaks are possible
+==145074== 
+==145074== For lists of detected and suppressed errors, rerun with: -s
+==145074== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 Error
 Only one player character required
                                                       |
@@ -469,11 +460,11 @@ Only one player character required
 
 >>>>>>>> assets/maps/subject_map.cub <<<<<<<<
                                                       |
-==120556== Memcheck, a memory error detector
-==120556== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==120556== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==120556== Command: ./cub3D assets/maps/subject_map.cub
-==120556== 
+==145087== Memcheck, a memory error detector
+==145087== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==145087== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==145087== Command: ./cub3D assets/maps/subject_map.cub
+==145087== 
  | | | | | | | |1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|
  | | | | | | | |1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|
  | | | | | | | |1|[91mX[0m|1|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|1|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|
@@ -511,41 +502,39 @@ plane : x = 0.00 | y = 0.66
 spawn : row = 11 | col = 26 | char = N
 scr   : 1920x1080
 ===
-FULL: ts=6 off=(1702,20) p=(11.500,26.500) cx=1861 cy=89
-APPEL RENDER FRAME FULL: ts=6 off=(1702,20) p=(11.400,26.500) cx=1861 cy=88
-APPEL RENDER FRAME FULL: ts=6 off=(1702,20) p=(11.200,26.500) cx=1861 cy=87
-APPEL RENDER FRAME ==120556== 
-==120556== FILE DESCRIPTORS: 10 open (3 std) at exit.
-==120556== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
-==120556==    <inherited from parent>
-==120556== 
-==120556== Open file descriptor 44: /dev/ptmx
-==120556==    <inherited from parent>
-==120556== 
-==120556== Open file descriptor 43: /home/aumartin/.config/Code/logs/20251116T142027/ptyhost.log
-==120556==    <inherited from parent>
-==120556== 
-==120556== Open AF_UNIX socket 36: <unknown>
-==120556==    <inherited from parent>
-==120556== 
-==120556== Open pf-16 socket 35:
-==120556==    <inherited from parent>
-==120556== 
-==120556== Open AF_UNIX socket 34: <unknown>
-==120556==    <inherited from parent>
-==120556== 
-==120556== Open file descriptor 33:
-==120556==    <inherited from parent>
-==120556== 
-==120556== 
-==120556== HEAP SUMMARY:
-==120556==     in use at exit: 0 bytes in 0 blocks
-==120556==   total heap usage: 46,612 allocs, 46,612 frees, 1,255,409 bytes allocated
-==120556== 
-==120556== All heap blocks were freed -- no leaks are possible
-==120556== 
-==120556== For lists of detected and suppressed errors, rerun with: -s
-==120556== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
+FULL: ts=7 off=(20,20) p=(11.500,26.500) cx=206 cy=101
+APPEL RENDER FRAME ==145087== 
+==145087== FILE DESCRIPTORS: 10 open (3 std) at exit.
+==145087== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
+==145087==    <inherited from parent>
+==145087== 
+==145087== Open file descriptor 44: /dev/ptmx
+==145087==    <inherited from parent>
+==145087== 
+==145087== Open file descriptor 43: /home/aumartin/.config/Code/logs/20251116T142027/ptyhost.log
+==145087==    <inherited from parent>
+==145087== 
+==145087== Open AF_UNIX socket 36: <unknown>
+==145087==    <inherited from parent>
+==145087== 
+==145087== Open pf-16 socket 35:
+==145087==    <inherited from parent>
+==145087== 
+==145087== Open AF_UNIX socket 34: <unknown>
+==145087==    <inherited from parent>
+==145087== 
+==145087== Open file descriptor 33:
+==145087==    <inherited from parent>
+==145087== 
+==145087== 
+==145087== HEAP SUMMARY:
+==145087==     in use at exit: 0 bytes in 0 blocks
+==145087==   total heap usage: 14,661 allocs, 14,661 frees, 488,753 bytes allocated
+==145087== 
+==145087== All heap blocks were freed -- no leaks are possible
+==145087== 
+==145087== For lists of detected and suppressed errors, rerun with: -s
+==145087== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
  | | | | | | | |1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|
  | | | | | | | |1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|
  | | | | | | | |1|[91mX[0m|1|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|1|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|
@@ -583,18 +572,18 @@ plane : x = 0.00 | y = 0.66
 spawn : row = 11 | col = 26 | char = N
 scr   : 1920x1080
 ===
-FULL: ts=6 off=(1702,20) p=(11.500,26.500) cx=1861 cy=89
+FULL: ts=7 off=(20,20) p=(11.500,26.500) cx=206 cy=101
 APPEL RENDER FRAME                                                       |
 ===== FIN DU TEST : assets/maps/subject_map.cub ======
 
 
 >>>>>>>> assets/maps/map_test.cub <<<<<<<<
                                                       |
-==120611== Memcheck, a memory error detector
-==120611== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==120611== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==120611== Command: ./cub3D assets/maps/map_test.cub
-==120611== 
+==145111== Memcheck, a memory error detector
+==145111== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==145111== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==145111== Command: ./cub3D assets/maps/map_test.cub
+==145111== 
 1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|
 1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|
 1|[91mX[0m|1|1|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|1|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|1|1|1|1|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|
@@ -704,41 +693,40 @@ plane : x = 0.00 | y = 0.66
 spawn : row = 40 | col = 1 | char = N
 scr   : 1920x1080
 ===
-FULL: ts=4 off=(1700,20) p=(40.500,1.500) cx=1706 cy=182
-APPEL RENDER FRAME FULL: ts=4 off=(1700,20) p=(40.500,1.500) cx=1706 cy=182
-APPEL RENDER FRAME FULL: ts=4 off=(1700,20) p=(40.500,1.500) cx=1706 cy=182
-APPEL RENDER FRAME ==120611== 
-==120611== FILE DESCRIPTORS: 10 open (3 std) at exit.
-==120611== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
-==120611==    <inherited from parent>
-==120611== 
-==120611== Open file descriptor 44: /dev/ptmx
-==120611==    <inherited from parent>
-==120611== 
-==120611== Open file descriptor 43: /home/aumartin/.config/Code/logs/20251116T142027/ptyhost.log
-==120611==    <inherited from parent>
-==120611== 
-==120611== Open AF_UNIX socket 36: <unknown>
-==120611==    <inherited from parent>
-==120611== 
-==120611== Open pf-16 socket 35:
-==120611==    <inherited from parent>
-==120611== 
-==120611== Open AF_UNIX socket 34: <unknown>
-==120611==    <inherited from parent>
-==120611== 
-==120611== Open file descriptor 33:
-==120611==    <inherited from parent>
-==120611== 
-==120611== 
-==120611== HEAP SUMMARY:
-==120611==     in use at exit: 0 bytes in 0 blocks
-==120611==   total heap usage: 46,299 allocs, 46,299 frees, 1,263,241 bytes allocated
-==120611== 
-==120611== All heap blocks were freed -- no leaks are possible
-==120611== 
-==120611== For lists of detected and suppressed errors, rerun with: -s
-==120611== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
+FULL: ts=5 off=(20,20) p=(40.500,1.500) cx=28 cy=223
+APPEL RENDER FRAME FULL: ts=5 off=(20,20) p=(40.500,1.500) cx=28 cy=223
+APPEL RENDER FRAME ==145111== 
+==145111== FILE DESCRIPTORS: 10 open (3 std) at exit.
+==145111== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
+==145111==    <inherited from parent>
+==145111== 
+==145111== Open file descriptor 44: /dev/ptmx
+==145111==    <inherited from parent>
+==145111== 
+==145111== Open file descriptor 43: /home/aumartin/.config/Code/logs/20251116T142027/ptyhost.log
+==145111==    <inherited from parent>
+==145111== 
+==145111== Open AF_UNIX socket 36: <unknown>
+==145111==    <inherited from parent>
+==145111== 
+==145111== Open pf-16 socket 35:
+==145111==    <inherited from parent>
+==145111== 
+==145111== Open AF_UNIX socket 34: <unknown>
+==145111==    <inherited from parent>
+==145111== 
+==145111== Open file descriptor 33:
+==145111==    <inherited from parent>
+==145111== 
+==145111== 
+==145111== HEAP SUMMARY:
+==145111==     in use at exit: 0 bytes in 0 blocks
+==145111==   total heap usage: 31,308 allocs, 31,308 frees, 903,633 bytes allocated
+==145111== 
+==145111== All heap blocks were freed -- no leaks are possible
+==145111== 
+==145111== For lists of detected and suppressed errors, rerun with: -s
+==145111== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
 1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|
 1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|
 1|[91mX[0m|1|1|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|1|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|1|1|1|1|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|
@@ -848,20 +836,18 @@ plane : x = 0.00 | y = 0.66
 spawn : row = 40 | col = 1 | char = N
 scr   : 1920x1080
 ===
-FULL: ts=4 off=(1700,20) p=(40.500,1.500) cx=1706 cy=182
-APPEL RENDER FRAME FULL: ts=4 off=(1700,20) p=(40.500,1.500) cx=1706 cy=182
-APPEL RENDER FRAME FULL: ts=4 off=(1700,20) p=(40.500,1.500) cx=1706 cy=182
+FULL: ts=5 off=(20,20) p=(40.500,1.500) cx=28 cy=223
 APPEL RENDER FRAME                                                       |
 ===== FIN DU TEST : assets/maps/map_test.cub ======
 
 
 >>>>>>>> assets/maps/map_test2.cub <<<<<<<<
                                                       |
-==120665== Memcheck, a memory error detector
-==120665== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==120665== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==120665== Command: ./cub3D assets/maps/map_test2.cub
-==120665== 
+==145139== Memcheck, a memory error detector
+==145139== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==145139== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==145139== Command: ./cub3D assets/maps/map_test2.cub
+==145139== 
 1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|
 1|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|
 1|1|[91mX[0m|[91mX[0m|1|[91mX[0m|1|[91mX[0m|1|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|1|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|1|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|1|1|
@@ -1071,41 +1057,43 @@ plane : x = -0.66 | y = 0.00
 spawn : row = 46 | col = 81 | char = W
 scr   : 1920x1080
 ===
-FULL: ts=4 off=(1500,20) p=(46.500,81.500) cx=1826 cy=206
-APPEL RENDER FRAME FULL: ts=4 off=(1500,20) p=(46.500,81.500) cx=1826 cy=206
-APPEL RENDER FRAME FULL: ts=4 off=(1500,20) p=(46.500,81.500) cx=1826 cy=206
-APPEL RENDER FRAME ==120665== 
-==120665== FILE DESCRIPTORS: 10 open (3 std) at exit.
-==120665== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
-==120665==    <inherited from parent>
-==120665== 
-==120665== Open file descriptor 44: /dev/ptmx
-==120665==    <inherited from parent>
-==120665== 
-==120665== Open file descriptor 43: /home/aumartin/.config/Code/logs/20251116T142027/ptyhost.log
-==120665==    <inherited from parent>
-==120665== 
-==120665== Open AF_UNIX socket 36: <unknown>
-==120665==    <inherited from parent>
-==120665== 
-==120665== Open pf-16 socket 35:
-==120665==    <inherited from parent>
-==120665== 
-==120665== Open AF_UNIX socket 34: <unknown>
-==120665==    <inherited from parent>
-==120665== 
-==120665== Open file descriptor 33:
-==120665==    <inherited from parent>
-==120665== 
-==120665== 
-==120665== HEAP SUMMARY:
-==120665==     in use at exit: 0 bytes in 0 blocks
-==120665==   total heap usage: 48,223 allocs, 48,223 frees, 1,370,129 bytes allocated
-==120665== 
-==120665== All heap blocks were freed -- no leaks are possible
-==120665== 
-==120665== For lists of detected and suppressed errors, rerun with: -s
-==120665== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
+FULL: ts=4 off=(20,20) p=(46.500,81.500) cx=346 cy=206
+APPEL RENDER FRAME FULL: ts=4 off=(20,20) p=(46.500,81.500) cx=346 cy=206
+APPEL RENDER FRAME FULL: ts=4 off=(20,20) p=(46.500,81.500) cx=346 cy=206
+APPEL RENDER FRAME FULL: ts=4 off=(20,20) p=(46.500,81.500) cx=346 cy=206
+APPEL RENDER FRAME FULL: ts=4 off=(20,20) p=(46.368,81.350) cx=345 cy=205
+APPEL RENDER FRAME ==145139== 
+==145139== FILE DESCRIPTORS: 10 open (3 std) at exit.
+==145139== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
+==145139==    <inherited from parent>
+==145139== 
+==145139== Open file descriptor 44: /dev/ptmx
+==145139==    <inherited from parent>
+==145139== 
+==145139== Open file descriptor 43: /home/aumartin/.config/Code/logs/20251116T142027/ptyhost.log
+==145139==    <inherited from parent>
+==145139== 
+==145139== Open AF_UNIX socket 36: <unknown>
+==145139==    <inherited from parent>
+==145139== 
+==145139== Open pf-16 socket 35:
+==145139==    <inherited from parent>
+==145139== 
+==145139== Open AF_UNIX socket 34: <unknown>
+==145139==    <inherited from parent>
+==145139== 
+==145139== Open file descriptor 33:
+==145139==    <inherited from parent>
+==145139== 
+==145139== 
+==145139== HEAP SUMMARY:
+==145139==     in use at exit: 0 bytes in 0 blocks
+==145139==   total heap usage: 141,759 allocs, 141,759 frees, 3,615,045 bytes allocated
+==145139== 
+==145139== All heap blocks were freed -- no leaks are possible
+==145139== 
+==145139== For lists of detected and suppressed errors, rerun with: -s
+==145139== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
 1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|
 1|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|
 1|1|[91mX[0m|[91mX[0m|1|[91mX[0m|1|[91mX[0m|1|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|1|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|1|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|1|1|
@@ -1315,18 +1303,28 @@ plane : x = -0.66 | y = 0.00
 spawn : row = 46 | col = 81 | char = W
 scr   : 1920x1080
 ===
-FULL: ts=4 off=(1500,20) p=(46.500,81.500) cx=1826 cy=206
+FULL: ts=4 off=(20,20) p=(46.500,81.500) cx=346 cy=206
+APPEL RENDER FRAME FULL: ts=4 off=(20,20) p=(46.500,81.500) cx=346 cy=206
+APPEL RENDER FRAME FULL: ts=4 off=(20,20) p=(46.500,81.500) cx=346 cy=206
+APPEL RENDER FRAME FULL: ts=4 off=(20,20) p=(46.500,81.500) cx=346 cy=206
+APPEL RENDER FRAME FULL: ts=4 off=(20,20) p=(46.500,81.500) cx=346 cy=206
+APPEL RENDER FRAME FULL: ts=4 off=(20,20) p=(46.500,81.500) cx=346 cy=206
+APPEL RENDER FRAME FULL: ts=4 off=(20,20) p=(46.500,81.500) cx=346 cy=206
+APPEL RENDER FRAME FULL: ts=4 off=(20,20) p=(46.500,81.500) cx=346 cy=206
+APPEL RENDER FRAME FULL: ts=4 off=(20,20) p=(46.500,81.500) cx=346 cy=206
+APPEL RENDER FRAME FULL: ts=4 off=(20,20) p=(46.500,81.500) cx=346 cy=206
+APPEL RENDER FRAME FULL: ts=4 off=(20,20) p=(46.500,81.500) cx=346 cy=206
 APPEL RENDER FRAME                                                       |
 ===== FIN DU TEST : assets/maps/map_test2.cub ======
 
 
 >>>>>>>> assets/maps/map_test3.cub <<<<<<<<
                                                       |
-==120688== Memcheck, a memory error detector
-==120688== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==120688== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==120688== Command: ./cub3D assets/maps/map_test3.cub
-==120688== 
+==145213== Memcheck, a memory error detector
+==145213== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==145213== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==145213== Command: ./cub3D assets/maps/map_test3.cub
+==145213== 
 1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|
 1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|1|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|
 1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|1|1|[91mX[0m|[91mX[0m|[91mX[0m|1|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|1|[91mX[0m|1|[91mX[0m|1|[91mX[0m|[91mX[0m|1|1|1|1|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|1|1|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|1|1|1|1|1|[91mX[0m|[91mX[0m|1|[91mX[0m|1|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|
@@ -1636,43 +1634,39 @@ plane : x = -0.66 | y = 0.00
 spawn : row = 102 | col = 52 | char = W
 scr   : 1920x1080
 ===
-FULL: ts=4 off=(1300,20) p=(102.500,52.500) cx=1510 cy=430
-APPEL RENDER FRAME FULL: ts=4 off=(1300,20) p=(102.500,52.500) cx=1510 cy=430
-APPEL RENDER FRAME FULL: ts=4 off=(1300,20) p=(102.500,52.500) cx=1510 cy=430
-APPEL RENDER FRAME FULL: ts=4 off=(1300,20) p=(102.500,52.500) cx=1510 cy=430
-APPEL RENDER FRAME FULL: ts=4 off=(1300,20) p=(102.500,52.500) cx=1510 cy=430
-APPEL RENDER FRAME ==120688== 
-==120688== FILE DESCRIPTORS: 10 open (3 std) at exit.
-==120688== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
-==120688==    <inherited from parent>
-==120688== 
-==120688== Open file descriptor 44: /dev/ptmx
-==120688==    <inherited from parent>
-==120688== 
-==120688== Open file descriptor 43: /home/aumartin/.config/Code/logs/20251116T142027/ptyhost.log
-==120688==    <inherited from parent>
-==120688== 
-==120688== Open AF_UNIX socket 36: <unknown>
-==120688==    <inherited from parent>
-==120688== 
-==120688== Open pf-16 socket 35:
-==120688==    <inherited from parent>
-==120688== 
-==120688== Open AF_UNIX socket 34: <unknown>
-==120688==    <inherited from parent>
-==120688== 
-==120688== Open file descriptor 33:
-==120688==    <inherited from parent>
-==120688== 
-==120688== 
-==120688== HEAP SUMMARY:
-==120688==     in use at exit: 0 bytes in 0 blocks
-==120688==   total heap usage: 52,949 allocs, 52,949 frees, 1,603,490 bytes allocated
-==120688== 
-==120688== All heap blocks were freed -- no leaks are possible
-==120688== 
-==120688== For lists of detected and suppressed errors, rerun with: -s
-==120688== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
+FULL: ts=4 off=(20,20) p=(102.500,52.500) cx=230 cy=430
+APPEL RENDER FRAME ==145213== 
+==145213== FILE DESCRIPTORS: 10 open (3 std) at exit.
+==145213== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
+==145213==    <inherited from parent>
+==145213== 
+==145213== Open file descriptor 44: /dev/ptmx
+==145213==    <inherited from parent>
+==145213== 
+==145213== Open file descriptor 43: /home/aumartin/.config/Code/logs/20251116T142027/ptyhost.log
+==145213==    <inherited from parent>
+==145213== 
+==145213== Open AF_UNIX socket 36: <unknown>
+==145213==    <inherited from parent>
+==145213== 
+==145213== Open pf-16 socket 35:
+==145213==    <inherited from parent>
+==145213== 
+==145213== Open AF_UNIX socket 34: <unknown>
+==145213==    <inherited from parent>
+==145213== 
+==145213== Open file descriptor 33:
+==145213==    <inherited from parent>
+==145213== 
+==145213== 
+==145213== HEAP SUMMARY:
+==145213==     in use at exit: 0 bytes in 0 blocks
+==145213==   total heap usage: 2,403 allocs, 2,403 frees, 390,346 bytes allocated
+==145213== 
+==145213== All heap blocks were freed -- no leaks are possible
+==145213== 
+==145213== For lists of detected and suppressed errors, rerun with: -s
+==145213== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
 1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|
 1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|1|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|
 1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|1|1|[91mX[0m|[91mX[0m|[91mX[0m|1|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|1|[91mX[0m|1|[91mX[0m|1|[91mX[0m|[91mX[0m|1|1|1|1|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|1|1|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|[91mX[0m|1|1|1|1|1|[91mX[0m|[91mX[0m|1|[91mX[0m|1|[91mX[0m|1|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|[91mX[0m|1|[91mX[0m|[91mX[0m|1|
@@ -1982,7 +1976,7 @@ plane : x = -0.66 | y = 0.00
 spawn : row = 102 | col = 52 | char = W
 scr   : 1920x1080
 ===
-FULL: ts=4 off=(1300,20) p=(102.500,52.500) cx=1510 cy=430
+FULL: ts=4 off=(20,20) p=(102.500,52.500) cx=230 cy=430
 APPEL RENDER FRAME                                                       |
 ===== FIN DU TEST : assets/maps/map_test3.cub ======
 

@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:30:03 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/13 15:53:58 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/16 15:39:43 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ bool	set_camera(t_data *data)
 
 	if (!data || !data->game || !data->gfx)
 		return (false);
-	minimap_size = 200;
+	minimap_size = 250;
 	// minimap_size = SCR_W / 4;
 	max_map_dim = data->game->width;
 	if (data->game->height > max_map_dim)
@@ -53,7 +53,7 @@ bool	set_camera(t_data *data)
 		data->gfx->cam.tile_size = 20;
 	minimap_w = data->game->width * data->gfx->cam.tile_size;
 	minimap_h = data->game->height * data->gfx->cam.tile_size;
-	data->gfx->cam.x_offset = data->scr_w - minimap_w - 20;
+	data->gfx->cam.x_offset = 20;
 	data->gfx->cam.y_offset = 20;
 	return (true);
 }

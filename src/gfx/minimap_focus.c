@@ -6,23 +6,52 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 16:30:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/16 15:06:37 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/16 16:01:33 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 #include <stdio.h>
 
+/* Calcule le facteur de zoom optimal pour éviter débordement */
+static double	calculate_zoom_factor(t_data *d, int r, int base_ts)
+{
+	int		crop_w;
+	int		crop_h;
+	double	zoom;
+	double	max_zoom;
+	int		available_w;
+	int		available_h;
+
+	zoom = 1.5;
+	available_w = d->scr_w - 40;
+	available_h = d->scr_h - 40;
+	crop_w = (r * 2 + 1) * base_ts * zoom;
+	crop_h = (r * 2 + 1) * base_ts * zoom;
+	while ((crop_w > available_w || crop_h > available_h) && zoom > 1.0)
+	{
+		zoom -= 0.1;
+		crop_w = (r * 2 + 1) * base_ts * zoom;
+		crop_h = (r * 2 + 1) * base_ts * zoom;
+	}
+	if (zoom < 1.0)
+		zoom = 1.0;
+	max_zoom = 2.5;
+	if (zoom > max_zoom)
+		zoom = max_zoom;
+	return (zoom);
+}
+
 static int	mf_color_for_cell(t_data *d, char c)
 {
 	if (c == '1')
 		return (DARKGRAY);
 	if (c == '0')
-		return (d->game->elements.rgb_floor);
+		return (BEIGE);
 	if (c == ' ')
 		return (BLACK);
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
-		return (d->game->elements.rgb_ceiling);
+		return (d->game->elements.rgb_floor);
 	return (GRAY);
 }
 
@@ -51,10 +80,11 @@ static void	draw_focus_cell(t_data *d, int x, int y, int size, int color)
 	}
 }
 
-static void	draw_focus_player(t_data *d, int ts)
+static void	draw_focus_player(t_data *d, int ts, int crop_x, int crop_y,
+	int start_row, int start_col)
 {
-	int		abs_x;
-	int		abs_y;
+	int		player_screen_x;
+	int		player_screen_y;
 	int		cx;
 	int		cy;
 	int		pr;
@@ -64,10 +94,10 @@ static void	draw_focus_player(t_data *d, int ts)
 
 	if (d == NULL)
 		return ;
-	abs_x = mm_off_x(d) + (int)(d->player.pos.y * ts + 0.5);
-	abs_y = mm_off_y(d) + (int)(d->player.pos.x * ts + 0.5);
-	cx = abs_x;
-	cy = abs_y;
+	player_screen_x = (int)(d->player.pos.y) - start_col;
+	player_screen_y = (int)(d->player.pos.x) - start_row;
+	cx = crop_x + player_screen_x * ts + ts / 2;
+	cy = crop_y + player_screen_y * ts + ts / 2;
 	pr = ts / 3;
 	if (pr < 1)
 		pr = 1;
@@ -91,26 +121,30 @@ static void	draw_focus_player(t_data *d, int ts)
 	}
 }
 
-/* minimap focus - crop 11x11 using absolute coordinates */
+/* minimap focus - crop with dynamic zoom */
 void	draw_minimap_focus(t_data *d)
 {
-	int	ts;
-	int	r;
-	int	p_row;
-	int	p_col;
-	int	start_row;
-	int	start_col;
-	int	end_row;
-	int	end_col;
-	int	crop_x;
-	int	crop_y;
-	int	row;
-	int	col;
+	int		ts;
+	int		r;
+	int		p_row;
+	int		p_col;
+	int		start_row;
+	int		start_col;
+	int		end_row;
+	int		end_col;
+	int		crop_x;
+	int		crop_y;
+	int		row;
+	int		col;
+	int		base_ts;
+	double	zoom;
 
 	if (d == NULL || d->game == NULL || d->game->map == NULL)
 		return ;
-	r = 15;
-	ts = mm_tile_size(d);
+	r = 8;
+	base_ts = mm_tile_size(d);
+	zoom = calculate_zoom_factor(d, r, base_ts);
+	ts = (int)(base_ts * zoom);
 	if (ts <= 0)
 		ts = 1;
 	p_row = (int)(d->player.pos.x);
@@ -127,8 +161,8 @@ void	draw_minimap_focus(t_data *d)
 	end_col = p_col + r;
 	if (end_col >= d->game->width)
 		end_col = d->game->width - 1;
-	crop_x = mm_off_x(d) + start_col * ts;
-	crop_y = mm_off_y(d) + start_row * ts;
+	crop_x = 20;
+	crop_y = 20;
 	row = start_row;
 	while (row <= end_row)
 	{
@@ -145,5 +179,6 @@ void	draw_minimap_focus(t_data *d)
 		}
 		row++;
 	}
-	draw_focus_player(d, ts);
+	draw_focus_player(d, ts, crop_x, crop_y, start_row, start_col);
+	draw_minimap_fov(d);
 }

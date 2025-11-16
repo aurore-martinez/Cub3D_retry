@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:14:56 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/16 14:34:15 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/16 16:01:37 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int render_frame(t_data *d)
 		draw_minimap_focus(d);
 	else
 		draw_minimap(d);
-	draw_minimap_fov(d);
 	mlx_put_image_to_window(d->gfx->mlx, d->gfx->win, d->gfx->frame.img, 0, 0);
 	printf("APPEL RENDER FRAME ");
 	return (0);

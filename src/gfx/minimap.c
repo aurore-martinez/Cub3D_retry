@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:34:10 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/16 15:09:05 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/16 16:01:34 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,4 +186,5 @@ void	draw_minimap(t_data *d)
 	}
 	// draw_minimap_horizon(d);
 	draw_minimap_player(d);
+	draw_minimap_fov(d);
 }

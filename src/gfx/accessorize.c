@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 11:00:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/16 15:11:55 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/16 16:54:15 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,43 @@ void	draw_minimap_fov(t_data *d)
 	t_point	p0;
 	t_point	p1;
 
+	int		r;
+	int		p_row;
+	int		p_col;
+	int		start_row;
+	int		start_col;
+	int		player_screen_x;
+	int		player_screen_y;
+	int		base_ts;
+	double	zoom;
+
 	if (!d || !d->gfx)
 		return ;
-	ts = mm_tile_size(d);
-	cx = mm_off_x(d) + (int)(d->player.pos.y * ts + 0.5);
-	cy = mm_off_y(d) + (int)(d->player.pos.x * ts + 0.5);
+	base_ts = mm_tile_size(d);
+	if (d->gfx->cam.show_full_minimap)
+	{
+		r = 8;
+		p_row = (int)(d->player.pos.x);
+		p_col = (int)(d->player.pos.y);
+		start_row = p_row - r;
+		if (start_row < 0)
+			start_row = 0;
+		start_col = p_col - r;
+		if (start_col < 0)
+			start_col = 0;
+		zoom = 1.5;
+		ts = (int)(base_ts * zoom);
+		player_screen_x = (int)(d->player.pos.y) - start_col;
+		player_screen_y = (int)(d->player.pos.x) - start_row;
+		cx = 20 + player_screen_x * ts + ts / 2;
+		cy = 20 + player_screen_y * ts + ts / 2;
+	}
+	else
+	{
+		ts = base_ts;
+		cx = mm_off_x(d) + (int)(d->player.pos.y * ts + 0.5);
+		cy = mm_off_y(d) + (int)(d->player.pos.x * ts + 0.5);
+	}
 	num_rays = 13;
 	length = ts * 1.5;
 	i = 0;
