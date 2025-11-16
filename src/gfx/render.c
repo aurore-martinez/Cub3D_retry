@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:14:56 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/16 17:26:54 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/16 17:42:25 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,11 @@ static void	render_textured_wall(t_data *d, int x, int top, int bot,
 	double			wall_x;
 
 	params.texture = select_texture(d, ray, side);
+	if (!params.texture)
+	{
+		draw_col(d, x, top, bot, 0xFF00FF);
+		return ;
+	}
 	wall_x = get_wall_x(d, ray, perp, side);
 	params.tex_x = get_texture_x(ray, wall_x, side);
 	params.tex_height = 32;
@@ -132,7 +137,6 @@ void render_walls(t_data *d)
 		help_env_print_ray_debug(d, x);
 
 		// mur
-		//draw_col(d, x, top, bot, wall);
 		render_textured_wall(d, x, top, bot, &ray, perp, side);
 
 		// sol

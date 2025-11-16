@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:07:30 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/14 15:32:02 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/16 17:42:24 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,6 @@ int	on_destroy_event(t_data *d)
 {
 	if (d == NULL)
 		return (0);
-	if (d->gfx->frame.img != NULL)
-	{
-		mlx_destroy_image(d->gfx->mlx, d->gfx->frame.img);
-		d->gfx->frame.img = NULL;
-	}
-	/* cette partie peut etre enlevee car deja clean_data*/
-	if (d->gfx->win != NULL)
-	{
-		mlx_destroy_window(d->gfx->mlx, d->gfx->win);
-		d->gfx->win = NULL;
-	}
-	if (d->gfx->mlx)
-	{
-		mlx_destroy_display(d->gfx->mlx);
-		free(d->gfx->mlx);
-		d->gfx->mlx = NULL;
-	}
 	clean_data(d);
 	exit(EXIT_SUCCESS);
 	return (0);

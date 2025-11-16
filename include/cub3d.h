@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/16 17:26:54 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/16 17:42:24 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+
+/* Texture constants */
+# define TEX_WIDTH 32
+# define TEX_HEIGHT 32
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>

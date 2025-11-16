@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 17:15:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/16 17:26:54 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/16 17:42:23 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	draw_textured_col(t_data *d, int x, int top, int bot, t_tex_params *p)
 	int		tex_line_len;
 	int		tex_endian;
 
-	if (!d || !p || !p->texture)
+	if (!d || !p || !p->texture || p->line_h <= 0 || top > bot)
 		return ;
 	tex_addr = mlx_get_data_addr(p->texture, &tex_bpp, &tex_line_len, &tex_endian);
 	if (!tex_addr)
@@ -122,7 +122,7 @@ void	draw_textured_col(t_data *d, int x, int top, int bot, t_tex_params *p)
 			tex_y = 0;
 		if (tex_y >= p->tex_height)
 			tex_y = p->tex_height - 1;
-		if (p->tex_x >= 0 && p->tex_x < 32 && tex_y >= 0 && tex_y < 32)
+		if (p->tex_x >= 0 && p->tex_x < TEX_WIDTH && tex_y >= 0 && tex_y < TEX_HEIGHT)
 			color = *(int *)(tex_addr + (tex_y * tex_line_len + p->tex_x * (tex_bpp / 8)));
 		else
 			color = 0xFF00FF;
