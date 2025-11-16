@@ -6,41 +6,30 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 16:30:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/16 16:01:33 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/16 17:02:11 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 #include <stdio.h>
 
-/* Calcule le facteur de zoom optimal pour éviter débordement */
-static double	calculate_zoom_factor(t_data *d, int r, int base_ts)
+/* Calcule le facteur de zoom en fonction de la taille de la carte */
+static double	get_zoom_by_map_size(t_data *d)
 {
-	int		crop_w;
-	int		crop_h;
-	double	zoom;
-	double	max_zoom;
-	int		available_w;
-	int		available_h;
+	int	max_dim;
 
-	zoom = 1.5;
-	available_w = d->scr_w - 40;
-	available_h = d->scr_h - 40;
-	crop_w = (r * 2 + 1) * base_ts * zoom;
-	crop_h = (r * 2 + 1) * base_ts * zoom;
-	while ((crop_w > available_w || crop_h > available_h) && zoom > 1.0)
-	{
-		zoom -= 0.1;
-		crop_w = (r * 2 + 1) * base_ts * zoom;
-		crop_h = (r * 2 + 1) * base_ts * zoom;
-	}
-	if (zoom < 1.0)
-		zoom = 1.0;
-	max_zoom = 2.5;
-	if (zoom > max_zoom)
-		zoom = max_zoom;
-	return (zoom);
+	max_dim = d->game->width;
+	if (d->game->height > max_dim)
+		max_dim = d->game->height;
+	if (max_dim > 100)
+		return (3.0);
+	if (max_dim > 60)
+		return (2.5);
+	if (max_dim > 30)
+		return (2.0);
+	return (1.5);
 }
+
 
 static int	mf_color_for_cell(t_data *d, char c)
 {
@@ -143,7 +132,7 @@ void	draw_minimap_focus(t_data *d)
 		return ;
 	r = 8;
 	base_ts = mm_tile_size(d);
-	zoom = calculate_zoom_factor(d, r, base_ts);
+	zoom = mf_get_zoom_factor(d, r, base_ts);
 	ts = (int)(base_ts * zoom);
 	if (ts <= 0)
 		ts = 1;
