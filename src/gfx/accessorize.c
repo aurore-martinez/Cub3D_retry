@@ -6,13 +6,13 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 11:00:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/16 17:02:40 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/16 17:08:33 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-/* Draw crosshair (croix) at screen center */
+/* Croix */
 void	draw_crosshair(t_data *d)
 {
 	int	midy;
@@ -28,7 +28,7 @@ void	draw_crosshair(t_data *d)
 	draw_vline(&d->gfx->frame, midx, midy + 5, midy + 15, UI_CROSSHAIR_COLOR);
 }
 
-/* Calculate ray angle for FOV cone */
+/* Calcule angle Rayon cOne FOV */
 static double	calculate_ray_angle(t_data *d, int ray_idx, int num_rays)
 {
 	double	fov;
@@ -72,7 +72,7 @@ double	mf_get_zoom_factor(t_data *d, int r, int base_ts)
 	return (zoom);
 }
 
-/* Draw field of view (FOV) cone on minimap */
+/* dessin rayon FOV */
 void	draw_minimap_fov(t_data *d)
 {
 	int		ts;
