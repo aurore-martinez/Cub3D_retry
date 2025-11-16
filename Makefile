@@ -103,7 +103,8 @@ SRC_GFX = \
  	gfx/minimap_focus.c \
 	gfx/draw.c \
 	gfx/render.c \
-	gfx/events.c
+	gfx/events.c \
+	gfx/accessorize.c
 
 SRC_RAYCAST = \
 	raycasting/dda.c \

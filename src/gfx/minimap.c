@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:34:10 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/14 10:45:39 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/16 15:09:05 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 
 /* paramètres mini-map */
-static int	mm_tile_size(t_data *d)
+int	mm_tile_size(t_data *d)
 {
 	if (d->gfx->cam.tile_size > 0)
 		return (d->gfx->cam.tile_size);
@@ -22,28 +22,28 @@ static int	mm_tile_size(t_data *d)
 }
 // on peut rapidement imp zoom ici de fdf ???
 
-static int	mm_off_x(t_data *d)
+int	mm_off_x(t_data *d)
 {
 	return (d->gfx->cam.x_offset);
 }
 
-static int	mm_off_y(t_data *d)
+int	mm_off_y(t_data *d)
 {
 	return (d->gfx->cam.y_offset);
 }
 
 /* couleur selon le char de la map */
-static int	mm_color_for_cell(char c)
+static int	mm_color_for_cell(t_data *d, char c)
 {
 	if (c == '1')
-		return (RGB(50, 50, 50));
+		return (DARKGRAY);
 	if (c == '0')
-		return (RGB(180, 180, 180));
+		return (BEIGE);
 	if (c == ' ')
-		return (RGB(0, 0, 0));
+		return (BLACK);
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
-		return (RGB(140, 200, 255));
-	return (RGB(100, 100, 100));
+		return (d->game->elements.rgb_floor);
+	return (GRAY);
 }
 
 void	draw_square(t_img *img, int x, int y, int size, int color)
@@ -119,7 +119,7 @@ static void	draw_minimap_player(t_data *d)
 				p.x = cx + x;
 				p.y = cy + y;
 				p.z = 0;
-				p.color = RGB(255, 50, 50);
+				p.color = UI_PLAYER_COLOR;
 				draw_pixel(&d->gfx->frame, p);
 			}
 			x++;
@@ -178,7 +178,7 @@ void	draw_minimap(t_data *d)
 				col++;
 				continue ;
 			}
-			color = mm_color_for_cell(c);
+			color = mm_color_for_cell(d, c);
 			draw_minimap_cell(d, row, col, color);
 			col++;
 		}

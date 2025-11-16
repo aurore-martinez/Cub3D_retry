@@ -1,0 +1,81 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   accessorize.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/16 11:00:00 by aumartin          #+#    #+#             */
+/*   Updated: 2025/11/16 15:11:55 by aumartin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../include/cub3d.h"
+
+/* Draw crosshair (croix) at screen center */
+void	draw_crosshair(t_data *d)
+{
+	int	midy;
+	int	midx;
+
+	if (!d || !d->gfx)
+		return ;
+	midy = d->scr_h / 2;
+	midx = d->scr_w / 2;
+	draw_hline(&d->gfx->frame, midy, midx - 15, midx - 5, UI_CROSSHAIR_COLOR);
+	draw_hline(&d->gfx->frame, midy, midx + 5, midx + 15, UI_CROSSHAIR_COLOR);
+	draw_vline(&d->gfx->frame, midx, midy - 15, midy - 5, UI_CROSSHAIR_COLOR);
+	draw_vline(&d->gfx->frame, midx, midy + 5, midy + 15, UI_CROSSHAIR_COLOR);
+}
+
+/* Calculate ray angle for FOV cone */
+static double	calculate_ray_angle(t_data *d, int ray_idx, int num_rays)
+{
+	double	fov;
+	double	angle_start;
+	double	angle_step;
+	double	player_angle;
+
+	fov = 1.047;
+	player_angle = atan2(d->player.dir.x, d->player.dir.y);
+	angle_start = player_angle - fov / 2.0;
+	angle_step = fov / (double)(num_rays - 1);
+	return (angle_start + ray_idx * angle_step);
+}
+
+/* Draw field of view (FOV) cone on minimap */
+void	draw_minimap_fov(t_data *d)
+{
+	int		ts;
+	int		cx;
+	int		cy;
+	int		num_rays;
+	int		i;
+	double	ray_angle;
+	double	length;
+	t_point	p0;
+	t_point	p1;
+
+	if (!d || !d->gfx)
+		return ;
+	ts = mm_tile_size(d);
+	cx = mm_off_x(d) + (int)(d->player.pos.y * ts + 0.5);
+	cy = mm_off_y(d) + (int)(d->player.pos.x * ts + 0.5);
+	num_rays = 13;
+	length = ts * 1.5;
+	i = 0;
+	while (i < num_rays)
+	{
+		ray_angle = calculate_ray_angle(d, i, num_rays);
+		p0.x = cx;
+		p0.y = cy;
+		p0.z = 0;
+		p0.color = UI_FOV_COLOR;
+		p1.x = cx + (int)(cos(ray_angle) * length);
+		p1.y = cy + (int)(sin(ray_angle) * length);
+		p1.z = 0;
+		p1.color = UI_FOV_COLOR;
+		draw_line(&d->gfx->frame, p0, p1);
+		i++;
+	}
+}

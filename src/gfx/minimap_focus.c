@@ -3,48 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_focus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 16:30:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/14 15:39:22 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/16 15:06:37 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 #include <stdio.h>
 
-static int	mf_tile_size(t_data *d)
-{
-	if (d && d->gfx && d->gfx->cam.tile_size > 0)
-		return (d->gfx->cam.tile_size);
-	return (8);
-}
-
-static int	mf_off_x(t_data *d)
-{
-	if (d && d->gfx)
-		return (d->gfx->cam.x_offset);
-	return (0);
-}
-
-static int	mf_off_y(t_data *d)
-{
-	if (d && d->gfx)
-		return (d->gfx->cam.y_offset);
-	return (0);
-}
-
-static int	mf_color_for_cell(char c)
+static int	mf_color_for_cell(t_data *d, char c)
 {
 	if (c == '1')
-		return (RGB(50, 50, 50));
+		return (DARKGRAY);
 	if (c == '0')
-		return (RGB(180, 180, 180));
+		return (d->game->elements.rgb_floor);
 	if (c == ' ')
-		return (RGB(0, 0, 0));
+		return (BLACK);
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
-		return (RGB(140, 200, 255));
-	return (RGB(100, 100, 100));
+		return (d->game->elements.rgb_ceiling);
+	return (GRAY);
 }
 
 static void	draw_focus_cell(t_data *d, int x, int y, int size, int color)
@@ -85,8 +64,8 @@ static void	draw_focus_player(t_data *d, int ts)
 
 	if (d == NULL)
 		return ;
-	abs_x = mf_off_x(d) + (int)(d->player.pos.y * ts + 0.5);
-	abs_y = mf_off_y(d) + (int)(d->player.pos.x * ts + 0.5);
+	abs_x = mm_off_x(d) + (int)(d->player.pos.y * ts + 0.5);
+	abs_y = mm_off_y(d) + (int)(d->player.pos.x * ts + 0.5);
 	cx = abs_x;
 	cy = abs_y;
 	pr = ts / 3;
@@ -103,7 +82,7 @@ static void	draw_focus_player(t_data *d, int ts)
 				p.x = cx + px;
 				p.y = cy + py;
 				p.z = 0;
-				p.color = RGB(255, 50, 50);
+				p.color = UI_PLAYER_COLOR;
 				draw_pixel(&d->gfx->frame, p);
 			}
 			px++;
@@ -131,7 +110,7 @@ void	draw_minimap_focus(t_data *d)
 	if (d == NULL || d->game == NULL || d->game->map == NULL)
 		return ;
 	r = 15;
-	ts = mf_tile_size(d);
+	ts = mm_tile_size(d);
 	if (ts <= 0)
 		ts = 1;
 	p_row = (int)(d->player.pos.x);
@@ -148,8 +127,8 @@ void	draw_minimap_focus(t_data *d)
 	end_col = p_col + r;
 	if (end_col >= d->game->width)
 		end_col = d->game->width - 1;
-	crop_x = mf_off_x(d) + start_col * ts;
-	crop_y = mf_off_y(d) + start_row * ts;
+	crop_x = mm_off_x(d) + start_col * ts;
+	crop_y = mm_off_y(d) + start_row * ts;
 	row = start_row;
 	while (row <= end_row)
 	{
@@ -158,9 +137,9 @@ void	draw_minimap_focus(t_data *d)
 		{
 			if (d->game->map[row][col] != ' ')
 			{
-				draw_focus_cell(d, crop_x + (col - start_col) * ts,
-					crop_y + (row - start_row) * ts, ts,
-					mf_color_for_cell(d->game->map[row][col]));
+			draw_focus_cell(d, crop_x + (col - start_col) * ts,
+				crop_y + (row - start_row) * ts, ts,
+				mf_color_for_cell(d, d->game->map[row][col]));
 			}
 			col++;
 		}

@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 09:16:17 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/05 09:30:08 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/16 15:02:15 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,13 @@
 # define GOLD          0xFFD700
 # define KHAKI         0xF0E68C
 # define SILVER        0xC0C0C0
+
+/* UI / Minimap colors */
+# define UI_PLAYER_COLOR    YELLOW       // Point joueur (jaune)
+# define UI_FOV_COLOR       GOLD         // Rayons du cône FOV (doré)
+# define UI_CROSSHAIR_COLOR WHITE        // Croix centrale (blanc)
+# define UI_SPAWN_COLOR     TAN          // Spawn (beige foncé)
+# define UI_FLOOR_COLOR     BEIGE        // Sol/vide (beige clair)
 
 int		color_rgb(int r, int g, int b);
 int		color_for_mlx(void *mlx_ptr, int color);

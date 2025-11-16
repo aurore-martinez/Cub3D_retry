@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/14 14:30:46 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/16 14:44:17 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,12 +235,18 @@ void	draw_pixel(t_img *img, t_point p);
 void	draw_hline(t_img *img, int y, int x0, int x1, int color);
 void	draw_vline(t_img *img, int x, int y0, int y1, int color);
 void	draw_col(t_data *d, int x, int start, int end, int color);
+void	draw_line(t_img *img, t_point p0, t_point p1);
 void	apply_walk(t_data *d, double nx, double ny, double margin);
 void	turn_player(t_data *d, double angle);
 int		render_frame(t_data *d);
 int		on_key_press(int key, t_data *d);
 void	draw_minimap(t_data *d);
 void	draw_minimap_focus(t_data *d);
+void	draw_crosshair(t_data *d);
+void	draw_minimap_fov(t_data *d);
+int		mm_tile_size(t_data *d);
+int		mm_off_x(t_data *d);
+int		mm_off_y(t_data *d);
 int		on_mouse(int x, int y, t_data *d);
 bool	set_texture(t_data *data);
 void	request_redraw(t_data *d);
