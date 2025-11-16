@@ -1,7 +1,7 @@
-NO ./assets/textures/mur.xpm
-SO ./assets/textures/texture.xpm
-WE ./assets/textures/pigeon.xpm
-EA ./assets/textures/rff.xpm
+NO ./assets/textures/mur_64.xpm
+SO ./assets/textures/texture_64.xpm
+WE ./assets/textures/pigeon_64.xpm
+EA ./assets/textures/rff_64.xpm
 
 F 220,100,0
 C 225,30,0

@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:30:03 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/16 17:42:22 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/16 17:50:32 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,23 @@
 
 bool	set_texture(t_data *data)
 {
-	int	width;
-	int	height;
+	int	w;
+	int	h;
 
 	data->gfx->texture.north = mlx_xpm_file_to_image(data->gfx->mlx,
-			data->game->elements.path_north, &width, &height);
+			data->game->elements.path_north, &w, &h);
+	if (!data->gfx->texture.north)
+		return (false);
+	data->gfx->texture.width = w;
+	data->gfx->texture.height = h;
 	data->gfx->texture.south = mlx_xpm_file_to_image(data->gfx->mlx,
-			data->game->elements.path_south, &width, &height);
+			data->game->elements.path_south, &w, &h);
 	data->gfx->texture.east = mlx_xpm_file_to_image(data->gfx->mlx,
-			data->game->elements.path_east, &width, &height);
+			data->game->elements.path_east, &w, &h);
 	data->gfx->texture.west = mlx_xpm_file_to_image(data->gfx->mlx,
-			data->game->elements.path_west, &width, &height);
-	if (!data->gfx->texture.north || !data->gfx->texture.south
-		|| !data->gfx->texture.west || !data->gfx->texture.east)
+			data->game->elements.path_west, &w, &h);
+	if (!data->gfx->texture.south || !data->gfx->texture.west
+		|| !data->gfx->texture.east)
 		return (false);
 	return (true);
 }/* set camera */
@@ -77,6 +81,8 @@ static bool	init_gfx(t_gfx *gfx)
 	gfx->texture.south = NULL;
 	gfx->texture.west = NULL;
 	gfx->texture.east = NULL;
+	gfx->texture.width = 0;
+	gfx->texture.height = 0;
 	return (true);
 }
 

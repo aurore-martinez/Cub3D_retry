@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:14:56 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/16 17:42:25 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/16 17:50:32 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,10 @@ static void	render_textured_wall(t_data *d, int x, int top, int bot,
 		draw_col(d, x, top, bot, 0xFF00FF);
 		return ;
 	}
+	params.tex_width = d->gfx->texture.width;
+	params.tex_height = d->gfx->texture.height;
 	wall_x = get_wall_x(d, ray, perp, side);
-	params.tex_x = get_texture_x(ray, wall_x, side);
-	params.tex_height = 32;
+	params.tex_x = get_texture_x(ray, wall_x, side, params.tex_width);
 	params.line_h = bot - top + 1;
 	params.side = side;
 	draw_textured_col(d, x, top, bot, &params);

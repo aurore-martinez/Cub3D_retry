@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/16 17:42:24 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/16 17:50:32 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,6 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-/* Texture constants */
-# define TEX_WIDTH 32
-# define TEX_HEIGHT 32
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -144,12 +141,15 @@ typedef struct s_tex
 	void	*south;
 	void	*west;
 	void	*east;
+	int		width;
+	int		height;
 }	t_tex;
 
 typedef struct s_tex_params
 {
 	void	*texture;
 	int		tex_x;
+	int		tex_width;
 	int		tex_height;
 	int		line_h;
 	int		side;
@@ -272,7 +272,7 @@ int		get_texture_pixel(void *img, int x, int y);
 int		darken_color(int color);
 void	*select_texture(t_data *d, t_dda *ray, int side);
 double	get_wall_x(t_data *d, t_dda *ray, double perp, int side);
-int		get_texture_x(t_dda *ray, double wall_x, int side);
+int		get_texture_x(t_dda *ray, double wall_x, int side, int tex_width);
 void	draw_textured_col(t_data *d, int x, int top, int bot,
 			t_tex_params *p);
 

@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 17:15:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/16 17:42:23 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/16 17:50:32 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,11 @@ double	get_wall_x(t_data *d, t_dda *ray, double perp, int side)
 	return (wall_x);
 }
 
-/* Calcule la coordonnée X dans la texture (0 à 31) */
-int	get_texture_x(t_dda *ray, double wall_x, int side)
+/* Calcule la coordonnée X dans la texture */
+int	get_texture_x(t_dda *ray, double wall_x, int side, int tex_width)
 {
 	int	tex_x;
-	int	tex_width;
 
-	tex_width = 32;
 	tex_x = (int)(wall_x * tex_width);
 	if ((side == 0 && ray->ray_col > 0) || (side == 1 && ray->ray_row < 0))
 		tex_x = tex_width - tex_x - 1;
@@ -122,7 +120,7 @@ void	draw_textured_col(t_data *d, int x, int top, int bot, t_tex_params *p)
 			tex_y = 0;
 		if (tex_y >= p->tex_height)
 			tex_y = p->tex_height - 1;
-		if (p->tex_x >= 0 && p->tex_x < TEX_WIDTH && tex_y >= 0 && tex_y < TEX_HEIGHT)
+		if (p->tex_x >= 0 && p->tex_x < p->tex_width && tex_y >= 0 && tex_y < p->tex_height)
 			color = *(int *)(tex_addr + (tex_y * tex_line_len + p->tex_x * (tex_bpp / 8)));
 		else
 			color = 0xFF00FF;
