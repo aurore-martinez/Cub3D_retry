@@ -104,7 +104,8 @@ SRC_GFX = \
 	gfx/draw.c \
 	gfx/render.c \
 	gfx/events.c \
-	gfx/accessorize.c
+	gfx/accessorize.c \
+	gfx/texture.c
 
 SRC_RAYCAST = \
 	raycasting/dda.c \

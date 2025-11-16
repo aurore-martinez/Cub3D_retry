@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/16 17:06:46 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/16 17:26:54 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,15 @@ typedef struct s_tex
 	void	*east;
 }	t_tex;
 
+typedef struct s_tex_params
+{
+	void	*texture;
+	int		tex_x;
+	int		tex_height;
+	int		line_h;
+	int		side;
+}	t_tex_params;
+
 typedef struct s_gfx
 {
 	void	*mlx;
@@ -247,9 +256,20 @@ void	draw_minimap_fov(t_data *d);
 int		mm_tile_size(t_data *d);
 int		mm_off_x(t_data *d);
 int		mm_off_y(t_data *d);
+double	get_zoom_by_map_size(t_data *d);
+double	mf_get_zoom_factor(t_data *d, int r, int base_ts);
 int		on_mouse(int x, int y, t_data *d);
 bool	set_texture(t_data *data);
 void	request_redraw(t_data *d);
 int		loop_hook(t_data *d);
+
+/* ========================== 🎨 TEXTURE ========================== */
+int		get_texture_pixel(void *img, int x, int y);
+int		darken_color(int color);
+void	*select_texture(t_data *d, t_dda *ray, int side);
+double	get_wall_x(t_data *d, t_dda *ray, double perp, int side);
+int		get_texture_x(t_dda *ray, double wall_x, int side);
+void	draw_textured_col(t_data *d, int x, int top, int bot,
+			t_tex_params *p);
 
 #endif

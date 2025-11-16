@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 16:30:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/16 17:02:11 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/16 17:26:54 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 
 /* Calcule le facteur de zoom en fonction de la taille de la carte */
-static double	get_zoom_by_map_size(t_data *d)
+double	get_zoom_by_map_size(t_data *d)
 {
 	int	max_dim;
 
@@ -30,6 +30,30 @@ static double	get_zoom_by_map_size(t_data *d)
 	return (1.5);
 }
 
+/* Calcule le facteur de zoom optimal pour éviter débordement */
+double	mf_get_zoom_factor(t_data *d, int r, int base_ts)
+{
+	int		crop_w;
+	int		crop_h;
+	double	zoom;
+	int		available_w;
+	int		available_h;
+
+	zoom = get_zoom_by_map_size(d);
+	available_w = d->scr_w - 40;
+	available_h = d->scr_h - 40;
+	crop_w = (r * 2 + 1) * base_ts * zoom;
+	crop_h = (r * 2 + 1) * base_ts * zoom;
+	while ((crop_w > available_w || crop_h > available_h) && zoom > 1.0)
+	{
+		zoom -= 0.1;
+		crop_w = (r * 2 + 1) * base_ts * zoom;
+		crop_h = (r * 2 + 1) * base_ts * zoom;
+	}
+	if (zoom < 1.0)
+		zoom = 1.0;
+	return (zoom);
+}
 
 static int	mf_color_for_cell(t_data *d, char c)
 {

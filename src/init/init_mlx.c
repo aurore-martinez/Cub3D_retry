@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:30:03 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/16 15:39:43 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/16 17:26:54 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,34 @@ bool	set_texture(t_data *data)
 	int	width;
 	int	height;
 
+	printf("Loading textures:\n");
+	printf("  NO: %s\n", data->game->elements.path_north);
 	data->gfx->texture.north = mlx_xpm_file_to_image(data->gfx->mlx,
 			data->game->elements.path_north, &width, &height);
+	printf("  North loaded: %p (size: %dx%d)\n", data->gfx->texture.north, width, height);
+
+	printf("  SO: %s\n", data->game->elements.path_south);
 	data->gfx->texture.south = mlx_xpm_file_to_image(data->gfx->mlx,
 			data->game->elements.path_south, &width, &height);
+	printf("  South loaded: %p (size: %dx%d)\n", data->gfx->texture.south, width, height);
+
+	printf("  EA: %s\n", data->game->elements.path_east);
 	data->gfx->texture.east = mlx_xpm_file_to_image(data->gfx->mlx,
 			data->game->elements.path_east, &width, &height);
+	printf("  East loaded: %p (size: %dx%d)\n", data->gfx->texture.east, width, height);
+
+	printf("  WE: %s\n", data->game->elements.path_west);
 	data->gfx->texture.west = mlx_xpm_file_to_image(data->gfx->mlx,
 			data->game->elements.path_west, &width, &height);
+	printf("  West loaded: %p (size: %dx%d)\n", data->gfx->texture.west, width, height);
+
 	if (!data->gfx->texture.north || !data->gfx->texture.south
 		|| !data->gfx->texture.west || !data->gfx->texture.east)
+	{
+		printf("ERROR: Some textures failed to load!\n");
 		return (false);
+	}
+	printf("All textures loaded successfully!\n");
 	return (true);
 }
 

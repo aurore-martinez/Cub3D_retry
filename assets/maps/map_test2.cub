@@ -1,7 +1,7 @@
-NO ./texture/NO.xpm
-SO ./texture/SO.xpm
-EA ./texture/EA.xpm
-WE ./texture/WE.xpm
+NO ./assets/textures/mur.xpm
+SO ./assets/textures/texture.xpm
+EA ./assets/textures/fleur.xpm
+WE ./assets/textures/pigeon.xpm
 C 100,100,100
 F 25,50,200
 
