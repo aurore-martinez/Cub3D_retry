@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:14:56 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/17 16:24:27 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/17 16:30:38 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ static void	render_column(t_data *d, int x)
 	dda_init(&d->player, &ray);
 	if (!dda_advance_until_hit(d->game, &ray))
 		return ;
-	fill_slice_bounds(d, &ray, &s);
+	fill_t_render(d, &ray, &s);
 	s.x = x;
 	if (s.top > 0)
 		draw_col(d, x, 0, s.top - 1, d->game->elements.rgb_ceiling);
