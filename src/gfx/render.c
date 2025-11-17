@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:14:56 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/17 16:03:31 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/17 16:18:35 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,116 +60,82 @@ Notes :
 - TEX_SIZE use pour mapping vertical (suppose textures 256x256).
 - perp distance secure avant appel
 */
-static void	render_textured_wall(t_data *d, int x, int top, int bot,
-	t_dda *ray, double perp, int side)
+static void	render_tex_wall(t_data *d, t_dda *ray, t_render *s)
 {
-	t_tex_params	params;
+	t_tex_params	p;
 	double			wall_x;
 	int				orig_line_h;
 	int				orig_top;
-	int				orig_bot;
-	int				tex_offset;
+	int				tex_off;
 
-	params.texture = select_texture(d, ray, side);
-	if (!params.texture)
+	p.texture = select_texture(d, ray, s->side);
+	if (!p.texture)
 	{
-		draw_col(d, x, top, bot, 0xFF00FF);
+		draw_col(d, s->x, s->top, s->bot, 0xFF00FF);
 		return ;
 	}
-	wall_x = get_wall_x(d, ray, perp, side);
-	params.tex_x = get_texture_x(ray, wall_x, side);
-
-	/* hauteur non clampée du mur (celle utilisée pour le mapping vertical) */
-	orig_line_h = (int)(d->scr_h / perp);
+	wall_x = get_wall_x(d, ray, s->perp, s->side);
+	p.tex_x = get_texture_x(ray, wall_x, s->side);
+	orig_line_h = (int)(d->scr_h / s->perp);
 	orig_top = -orig_line_h / 2 + d->scr_h / 2;
-	orig_bot = orig_line_h / 2 + d->scr_h / 2;
-
-	/* si le top a été tronqué à 0 (ou bot à scr_h-1), calculer l'offset dans la texture */
-	if (top > orig_top)
-		tex_offset = (int)(((double)(top - orig_top) * TEX_SIZE) / (double)orig_line_h);
+	if (s->top > orig_top)
+		tex_off = (int)(((double)(s->top - orig_top) * TEX_SIZE) / (double)orig_line_h);
 	else
-		tex_offset = 0;
-
-	params.line_h = bot - top + 1; /* hauteur réelle dessinée (clampée) */
-	params.orig_line_h = orig_line_h;
-	params.tex_y_offset = tex_offset;
-	params.side = side;
-	draw_textured_col(d, x, top, bot, &params);
+		tex_off = 0;
+	p.line_h = s->bot - s->top + 1;
+	p.orig_line_h = orig_line_h;
+	p.tex_y_offset = tex_off;
+	p.side = s->side;
+	draw_textured_col(d, s->x, s->top, s->bot, &p);
 }
 
 /*
-While sur chaque colonne ecran et faire un raycast pour deter et dessiner plafond/mur/sol.
+Calcule et dessine plafond/mur/sol d’une colonne écran.
+*/
+static void	render_column(t_data *d, int x)
+{
+	t_dda		ray;
+	t_render	s;
+	double		camera_x;
 
-Étapes par colonne x:
-1. cameraX ∈ [-1;1] : position relative horizontale.
-2. ray_build_dir() : construit direction rayon (dir_x/dir_y) avec plan caméra.
-3. dda_init() : initialise deltaDist / sideDist / step.
-4. dda_advance_until_hit() : avance jusqu'au mur ('1') ou rien (skip).
-5. dda_perp_distance() : distance perpendiculaire (corrige fish-eye).
-6. Calcule line_h puis top/bot centré; clamp aux bornes écran.
-7. Dessine plafond (au-dessus de top) via draw_col().
-8. render_textured_wall() pour le mur.
-9. Dessine sol (sous bot) via draw_col().
-Boucle jusqu'à scr_w.
+	camera_x = 2.0 * x / (double)d->scr_w - 1.0;
+	ray_build_dir(&d->player, camera_x, &ray);
+	dda_init(&d->player, &ray);
+	if (!dda_advance_until_hit(d->game, &ray))
+		return ;
+	s.perp = dda_perp_distance(&ray);
+	if (s.perp < 1e-6)
+		s.perp = 1e-6;
+	s.line_h = (int)(d->scr_h / s.perp);
+	s.top = -s.line_h / 2 + d->scr_h / 2;
+	s.bot = s.line_h / 2 + d->scr_h / 2;
+	if (s.top < 0)
+		s.top = 0;
+	if (s.bot >= d->scr_h)
+		s.bot = d->scr_h - 1;
+	if (ray.side_hit_col)
+		s.side = 0;
+	else
+		s.side = 1;
+	s.x = x;
+	if (s.top > 0)
+		draw_col(d, x, 0, s.top - 1, d->game->elements.rgb_ceiling);
+	render_tex_wall(d, &ray, &s);
+	if (s.bot + 1 < d->scr_h)
+		draw_col(d, x, s.bot + 1, d->scr_h - 1, d->game->elements.rgb_floor);
+}
 
-Notes:
-- side dérivé de ray.side_hit_col (utilisé pour inversion texture ou shading).
-- Protection distance minimale (perp < 1e-6).
-
-DEBUG : help_env_print_ray_debug(d, x);
+/*
+Boucle écran: lance render_column() pour chaque x.
 */
 void	render_walls(t_data *d)
 {
-	int		x;
-	double	cameraX;
-	double	perp;
-	int		side;
-	int		line_h;
-	int		top;
-	int		bot;
-	t_dda	ray;
+	int	x;
 
 	x = 0;
 	while (x < d->scr_w)
 	{
-		cameraX = 2.0 * x / (double)d->scr_w - 1.0;
-
-		// Construire le rayon complet
-		ray_build_dir(&d->player, cameraX, &ray);
-		dda_init(&d->player, &ray);
-
-		if (!dda_advance_until_hit(d->game, &ray))
-		{
-			x++;
-			continue ;
-		}
-
-		perp = dda_perp_distance(&ray);
-		side = ray.side_hit_col ? 0 : 1;
-
-		if (perp < 1e-6)
-			perp = 1e-6;
-
-		line_h = (int)(d->scr_h / perp);
-		top = -line_h / 2 + d->scr_h / 2;
-		bot = line_h / 2 + d->scr_h / 2;
-		if (top < 0)
-			top = 0;
-		if (bot >= d->scr_h)
-			bot = d->scr_h - 1;
-
-		// plafond
-		if (top > 0)
-			draw_col(d, x, 0, top - 1, d->game->elements.rgb_ceiling);
-
-
-		// mur
-		render_textured_wall(d, x, top, bot, &ray, perp, side);
-
-		// sol
-		if (bot + 1 < d->scr_h)
-			draw_col(d, x, bot + 1, d->scr_h - 1, d->game->elements.rgb_floor);
-
+		render_column(d, x);
 		x++;
 	}
 }

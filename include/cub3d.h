@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/17 11:55:01 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/17 16:14:53 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,6 +190,16 @@ typedef struct s_dda
 	int		step_col;
 	bool	side_hit_col;
 }	t_dda;
+
+typedef struct s_render
+{
+	int		x;
+	int		top;
+	int		bot;
+	int		line_h;
+	int		side;
+	double	perp;
+}	t_render;
 
 /* ==============================     INIT    ============================ */
 bool	init_mlx(t_gfx **gfx, int w, int h, const char *title);
