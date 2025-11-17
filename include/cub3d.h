@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/17 16:14:53 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/17 16:29:25 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,7 @@ typedef struct s_dda
 	bool	side_hit_col;
 }	t_dda;
 
+/* REFACtO render.c*/
 typedef struct s_render
 {
 	int		x;
@@ -200,6 +201,7 @@ typedef struct s_render
 	int		side;
 	double	perp;
 }	t_render;
+
 
 /* ==============================     INIT    ============================ */
 bool	init_mlx(t_gfx **gfx, int w, int h, const char *title);

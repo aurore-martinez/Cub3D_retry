@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:14:56 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/17 16:18:35 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/17 16:24:27 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,27 @@ static void	render_tex_wall(t_data *d, t_dda *ray, t_render *s)
 }
 
 /*
+Remplis s (t_render) avec distances, bornes verticales clampées et side.
+*/
+static void	fill_t_render(t_data *d, t_dda *ray, t_render *s)
+{
+	s->perp = dda_perp_distance(ray);
+	if (s->perp < 1e-6)
+		s->perp = 1e-6;
+	s->line_h = (int)(d->scr_h / s->perp);
+	s->top = -s->line_h / 2 + d->scr_h / 2;
+	s->bot = s->line_h / 2 + d->scr_h / 2;
+	if (s->top < 0)
+		s->top = 0;
+	if (s->bot >= d->scr_h)
+		s->bot = d->scr_h - 1;
+	if (ray->side_hit_col)
+		s->side = 0;
+	else
+		s->side = 1;
+}
+
+/*
 Calcule et dessine plafond/mur/sol d’une colonne écran.
 */
 static void	render_column(t_data *d, int x)
@@ -103,20 +124,7 @@ static void	render_column(t_data *d, int x)
 	dda_init(&d->player, &ray);
 	if (!dda_advance_until_hit(d->game, &ray))
 		return ;
-	s.perp = dda_perp_distance(&ray);
-	if (s.perp < 1e-6)
-		s.perp = 1e-6;
-	s.line_h = (int)(d->scr_h / s.perp);
-	s.top = -s.line_h / 2 + d->scr_h / 2;
-	s.bot = s.line_h / 2 + d->scr_h / 2;
-	if (s.top < 0)
-		s.top = 0;
-	if (s.bot >= d->scr_h)
-		s.bot = d->scr_h - 1;
-	if (ray.side_hit_col)
-		s.side = 0;
-	else
-		s.side = 1;
+	fill_slice_bounds(d, &ray, &s);
 	s.x = x;
 	if (s.top > 0)
 		draw_col(d, x, 0, s.top - 1, d->game->elements.rgb_ceiling);
