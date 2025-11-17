@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
+/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 13:43:03 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/16 17:26:54 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/17 15:09:13 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ static bool	init_3D(t_data *data)
 	print_player_data(data);
 	if (!init_mlx(&data->gfx, data->scr_w, data->scr_h, "cub3D"))
 		return (false);
+	// mlx_mouse_hide(data->gfx->mlx, data->gfx->win); // function leaks
+	mlx_mouse_move(data->gfx->mlx, data->gfx->win, data->scr_w / 2, data->scr_h / 2);
 	if (!set_texture(data))
 	{
 		printf("Error: Failed to load textures\n");
