@@ -1,11 +1,10 @@
-NO  ./assets/textures/walls/wall_1.xpm
-SO  ./assets/textures/walls/wall2.xpm
-WE  ./assets/textures/walls/wall_4.xpm
-EA  ./assets/textures/walls/wall_3.xpm
+NO ./assets/textures/lab_dirt/tile089_256.xpm
+SO ./assets/textures/lab_blue/tile065_256.xpm
+WE ./assets/textures/lab_green/tile119_256.xpm
+EA ./assets/textures/lab_blue/tile081_256.xpm
 
-
-F 220,100,0
-C 225,30,0
+F 110,70,40
+C 240,240,230
 
         1111111111111111111111111
         1000000000110000000000001

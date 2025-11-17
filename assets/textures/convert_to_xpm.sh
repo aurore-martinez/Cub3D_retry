@@ -24,7 +24,7 @@
 
 # Dossier source (images à convertir) et dossier cible
 SRC_DIR="assets/img_to_convert"
-OUT_DIR="assets/textures"
+OUT_DIR="assets/textures/lab_blue"
 mkdir -p "$OUT_DIR" 2>/dev/null
 
 # Choix du filtre (change juste cette valeur)

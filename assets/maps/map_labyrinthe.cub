@@ -1,7 +1,7 @@
-NO ./assets/textures_256/plaster-wall-texture-background_256.xpm
-SO ./assets/textures_256/background-made-from-bricks_256.xpm
-WE ./assets/textures_256/blue_one_brick_256.xpm
-EA ./assets/textures_256/col_wall_brick_256.xpm
+NO  ./assets/textures/lab_blue/tile065_256.xpm
+SO  ./assets/textures/lab_blue/tile070_256.xpm
+WE  ./assets/textures/lab_blue/tile071_256.xpm
+EA  ./assets/textures/lab_blue/tile072_256.xpm
 
 F 90,90,90
 C 200,210,220
