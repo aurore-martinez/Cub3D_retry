@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 17:20:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/16 17:26:54 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/17 10:33:52 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ static void	render_textured_wall(t_data *d, int x, int top, int bot,
 	// 3. Calculer la coordonnée X dans la texture
 	params.tex_x = get_texture_x(ray, wall_x, side);
 
-	// 4. Paramètres pour dessiner la colonne
-	params.tex_height = 64;  // Hauteur de ta texture
+	// 4. Paramètres pour dessiner la colonne (textures fixes TEX_SIZE)
 	params.line_h = bot - top + 1;
 	params.side = side;
 

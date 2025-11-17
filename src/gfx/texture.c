@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 17:15:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/16 17:50:32 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/17 10:33:52 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	get_texture_pixel(void *img, int x, int y)
 
 	if (!img)
 		return (0);
-	if (x < 0 || x >= 32 || y < 0 || y >= 32)
+	if (x < 0 || x >= TEX_SIZE || y < 0 || y >= TEX_SIZE)
 		return (0);
 	addr = mlx_get_data_addr(img, &bpp, &line_len, &endian);
 	if (!addr)
@@ -81,17 +81,17 @@ double	get_wall_x(t_data *d, t_dda *ray, double perp, int side)
 }
 
 /* Calcule la coordonnée X dans la texture */
-int	get_texture_x(t_dda *ray, double wall_x, int side, int tex_width)
+int	get_texture_x(t_dda *ray, double wall_x, int side)
 {
 	int	tex_x;
 
-	tex_x = (int)(wall_x * tex_width);
+	tex_x = (int)(wall_x * TEX_SIZE);
 	if ((side == 0 && ray->ray_col > 0) || (side == 1 && ray->ray_row < 0))
-		tex_x = tex_width - tex_x - 1;
+		tex_x = TEX_SIZE - tex_x - 1;
 	if (tex_x < 0)
 		tex_x = 0;
-	if (tex_x >= tex_width)
-		tex_x = tex_width - 1;
+	if (tex_x >= TEX_SIZE)
+		tex_x = TEX_SIZE - 1;
 	return (tex_x);
 }
 
@@ -115,12 +115,12 @@ void	draw_textured_col(t_data *d, int x, int top, int bot, t_tex_params *p)
 	y = top;
 	while (y <= bot)
 	{
-		tex_y = ((y - top) * p->tex_height) / p->line_h;
+		tex_y = ((y - top) * TEX_SIZE) / p->line_h;
 		if (tex_y < 0)
 			tex_y = 0;
-		if (tex_y >= p->tex_height)
-			tex_y = p->tex_height - 1;
-		if (p->tex_x >= 0 && p->tex_x < p->tex_width && tex_y >= 0 && tex_y < p->tex_height)
+		if (tex_y >= TEX_SIZE)
+			tex_y = TEX_SIZE - 1;
+		if (p->tex_x >= 0 && p->tex_x < TEX_SIZE && tex_y >= 0 && tex_y < TEX_SIZE)
 			color = *(int *)(tex_addr + (tex_y * tex_line_len + p->tex_x * (tex_bpp / 8)));
 		else
 			color = 0xFF00FF;

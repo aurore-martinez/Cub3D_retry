@@ -6,34 +6,50 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:30:03 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/16 17:50:32 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/17 10:33:52 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
+static bool load_tex_checked(void *mlx, char *path, void **dst)
+{
+	int w;
+	int h;
+
+	*dst = mlx_xpm_file_to_image(mlx, path, &w, &h);
+	if (!*dst)
+		return (false);
+	if (w != TEX_SIZE || h != TEX_SIZE)
+	{
+		print_error("Texture size mismatch");
+		ft_fprintf(2, "%s (%dx%d expected %d)\n", path, w, h, TEX_SIZE);
+		mlx_destroy_image(mlx, *dst);
+		*dst = NULL;
+		return (false);
+	}
+	return (true);
+}
+
 bool	set_texture(t_data *data)
 {
-	int	w;
-	int	h;
-
-	data->gfx->texture.north = mlx_xpm_file_to_image(data->gfx->mlx,
-			data->game->elements.path_north, &w, &h);
-	if (!data->gfx->texture.north)
+	if (!load_tex_checked(data->gfx->mlx, data->game->elements.path_north,
+		&data->gfx->texture.north))
 		return (false);
-	data->gfx->texture.width = w;
-	data->gfx->texture.height = h;
-	data->gfx->texture.south = mlx_xpm_file_to_image(data->gfx->mlx,
-			data->game->elements.path_south, &w, &h);
-	data->gfx->texture.east = mlx_xpm_file_to_image(data->gfx->mlx,
-			data->game->elements.path_east, &w, &h);
-	data->gfx->texture.west = mlx_xpm_file_to_image(data->gfx->mlx,
-			data->game->elements.path_west, &w, &h);
-	if (!data->gfx->texture.south || !data->gfx->texture.west
-		|| !data->gfx->texture.east)
+	if (!load_tex_checked(data->gfx->mlx, data->game->elements.path_south,
+		&data->gfx->texture.south))
 		return (false);
+	if (!load_tex_checked(data->gfx->mlx, data->game->elements.path_west,
+		&data->gfx->texture.west))
+		return (false);
+	if (!load_tex_checked(data->gfx->mlx, data->game->elements.path_east,
+		&data->gfx->texture.east))
+		return (false);
+	data->gfx->texture.width = TEX_SIZE;
+	data->gfx->texture.height = TEX_SIZE;
 	return (true);
-}/* set camera */
+}
+/* set camera */
 bool	set_camera(t_data *data)
 {
 	int		max_map_dim;

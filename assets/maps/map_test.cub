@@ -2,6 +2,7 @@ NO ./textures/NO.xpm
 SO ./textures/SO.xpm
 EA ./textures/EA.xpm
 WE ./textures/WE.xpm
+
 C 50,50,150
 F 150,150,50
 

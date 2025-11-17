@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/16 17:50:32 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/17 10:33:52 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@
 # include <math.h>
 
 # define BIG 4.2e42
+/* Taille fixe des textures murales */
+# define TEX_SIZE 256
 
 /* # define SCR_W 960
 # define SCR_H 640 */
@@ -145,14 +147,13 @@ typedef struct s_tex
 	int		height;
 }	t_tex;
 
+/* Paramètres temporaires pour dessiner une colonne texturée */
 typedef struct s_tex_params
 {
 	void	*texture;
-	int		tex_x;
-	int		tex_width;
-	int		tex_height;
-	int		line_h;
-	int		side;
+	int		tex_x;     /* coordonnée X dans la texture */
+	int		line_h;    /* hauteur en pixels de la colonne mur à l'écran */
+	int		side;      /* 0: mur vertical, 1: mur horizontal (assombrir) */
 }	t_tex_params;
 
 typedef struct s_gfx
@@ -272,8 +273,8 @@ int		get_texture_pixel(void *img, int x, int y);
 int		darken_color(int color);
 void	*select_texture(t_data *d, t_dda *ray, int side);
 double	get_wall_x(t_data *d, t_dda *ray, double perp, int side);
-int		get_texture_x(t_dda *ray, double wall_x, int side, int tex_width);
+int		get_texture_x(t_dda *ray, double wall_x, int side);
 void	draw_textured_col(t_data *d, int x, int top, int bot,
-			t_tex_params *p);
+					 t_tex_params *p);
 
 #endif
