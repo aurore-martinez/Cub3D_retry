@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
+/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:14:56 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/17 10:33:52 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/17 12:56:04 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,10 @@ static void	render_textured_wall(t_data *d, int x, int top, int bot,
 {
 	t_tex_params	params;
 	double			wall_x;
+	int				orig_line_h;
+	int				orig_top;
+	int				orig_bot;
+	int				tex_offset;
 
 	params.texture = select_texture(d, ray, side);
 	if (!params.texture)
@@ -81,7 +85,21 @@ static void	render_textured_wall(t_data *d, int x, int top, int bot,
 	}
 	wall_x = get_wall_x(d, ray, perp, side);
 	params.tex_x = get_texture_x(ray, wall_x, side);
-	params.line_h = bot - top + 1;
+
+	/* hauteur non clampée du mur (celle utilisée pour le mapping vertical) */
+	orig_line_h = (int)(d->scr_h / perp);
+	orig_top = -orig_line_h / 2 + d->scr_h / 2;
+	orig_bot = orig_line_h / 2 + d->scr_h / 2;
+
+	/* si le top a été tronqué à 0 (ou bot à scr_h-1), calculer l'offset dans la texture */
+	if (top > orig_top)
+		tex_offset = (int)(((double)(top - orig_top) * TEX_SIZE) / (double)orig_line_h);
+	else
+		tex_offset = 0;
+
+	params.line_h = bot - top + 1; /* hauteur réelle dessinée (clampée) */
+	params.orig_line_h = orig_line_h;
+	params.tex_y_offset = tex_offset;
 	params.side = side;
 	draw_textured_col(d, x, top, bot, &params);
 }

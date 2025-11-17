@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
+/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 17:15:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/17 10:33:52 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/17 12:56:21 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,28 +102,29 @@ void	draw_textured_col(t_data *d, int x, int top, int bot, t_tex_params *p)
 	int		tex_y;
 	int		color;
 	t_point	pixel;
-	char	*tex_addr;
-	int		tex_bpp;
-	int		tex_line_len;
-	int		tex_endian;
+	double	step;
 
-	if (!d || !p || !p->texture || p->line_h <= 0 || top > bot)
+	if (!d || !p || !p->texture)
 		return ;
-	tex_addr = mlx_get_data_addr(p->texture, &tex_bpp, &tex_line_len, &tex_endian);
-	if (!tex_addr)
+	if (top > bot)
 		return ;
+	/* step = nombre de pixels texture par pixel écran en Y,
+	   calculé à partir de la hauteur originelle (non clampée) */
+	if (p->orig_line_h <= 0)
+		return ;
+	step = (double)TEX_SIZE / (double)p->orig_line_h;
+
 	y = top;
 	while (y <= bot)
 	{
-		tex_y = ((y - top) * TEX_SIZE) / p->line_h;
+		/* position dans la portion visible de la colonne (0..line_h_draw-1) */
+		tex_y = (int)(((double)(y - top) * (double)TEX_SIZE) / (double)p->orig_line_h)
+				+ p->tex_y_offset;
 		if (tex_y < 0)
 			tex_y = 0;
 		if (tex_y >= TEX_SIZE)
 			tex_y = TEX_SIZE - 1;
-		if (p->tex_x >= 0 && p->tex_x < TEX_SIZE && tex_y >= 0 && tex_y < TEX_SIZE)
-			color = *(int *)(tex_addr + (tex_y * tex_line_len + p->tex_x * (tex_bpp / 8)));
-		else
-			color = 0xFF00FF;
+		color = get_texture_pixel(p->texture, p->tex_x, tex_y);
 		if (p->side == 1)
 			color = darken_color(color);
 		pixel.x = x;

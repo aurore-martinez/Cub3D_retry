@@ -149,10 +149,12 @@ typedef struct s_tex
 /* Paramètres temporaires pour dessiner une colonne texturée */
 typedef struct s_tex_params
 {
-	void	*texture;
-	int		tex_x;     /* coordonnée X dans la texture */
-	int		line_h;    /* hauteur en pixels de la colonne mur à l'écran */
-	int		side;      /* 0: mur vertical, 1: mur horizontal (assombrir) */
+    void	*texture;
+    int		tex_x;     /* coordonnée X dans la texture */
+    int		line_h;    /* hauteur en pixels de la colonne mur à l'écran (clampée pour le dessin) */
+    int		orig_line_h; /* hauteur originale calculée avant clamp (pour mapping) */
+    int		tex_y_offset; /* offset Y (en pixels dans la texture) à appliquer si top a été tronqué */
+    int		side;      /* 0: mur vertical, 1: mur horizontal (assombrir) */
 }	t_tex_params;
 
 typedef struct s_gfx
