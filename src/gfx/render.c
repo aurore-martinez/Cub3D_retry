@@ -3,16 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:14:56 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/17 12:56:04 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/17 16:03:31 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int render_frame(t_data *d)
+/*
+Draw frame complet puis pousser l'image à la fenetre.
+Étapes:
+1. Vérifie la validité de d et de d->gfx.
+2. Appelle render_walls: lance le raycasting colonne par colonne.
+3. Dessine un réticule (draw_crosshair) si présent.
+4. Affiche soit la minimap complète soit la minimap focus selon
+le flag show_full_minimap.
+5. Transfère le buffer image vers la fenêtre (mlx_put_image_to_window).
+6. printf debug (peut être retiré pour éviter le spam).
+
+DEBUG : apel et callback 	printf("APPEL RENDER FRAME ");
+TODO : Retour: 0 ? passer en bool ?
+*/
+
+int	render_frame(t_data *d)
 {
 	if (!d || !d->gfx)
 		return (0);
@@ -23,50 +38,28 @@ int render_frame(t_data *d)
 	else
 		draw_minimap(d);
 	mlx_put_image_to_window(d->gfx->mlx, d->gfx->win, d->gfx->frame.img, 0, 0);
-	printf("APPEL RENDER FRAME ");
 	return (0);
 }
 
-/* Helper chat pour debug :
-use :
-env CUB3D_DEBUG=<valeur> timeout <time> ./cub3D <chemin_map>
+/*
+Draw la portion mur pour une colonne (x) avec la texture
+Étapes:
+1. select_texture() selon le côté touché (side) → params.texture.
+2. get_wall_x() : position de collision fractionnelle sur la face → [0;1).
+3. get_texture_x() : index horizontal dans la texture (flip si orientation).
+4. Calcule orig_line_h/top/bot (hauteur théorique non clampée).
+5. Si clamp top > orig_top → calcule tex_offset pour commencer
+plus bas dans la texture.
+6. Prépare t_tex_params (line_h clampée, offset vertical,
+side pour shading éventuel).
+7. draw_textured_col(): copie pixels texture → frame.
+Fallback:
+- Si texture introuvable → colonne magenta (debug).
 
-<valeur> :
-center → affiche le debug uniquement pour la colonne centrale
-all → affiche pour toutes les colonnes (très verbeux)
-<num> → un indice de col précis, ex. 320
-vide / unset → aucun debug
-
-ex :
-env CUB3D_DEBUG=center timeout 2s ./cub3D assets/maps_chat/map_corner.cub
+Notes :
+- TEX_SIZE use pour mapping vertical (suppose textures 256x256).
+- perp distance secure avant appel
 */
-
-static void	help_env_print_ray_debug(t_data *d, int x)
-{
-	char	*dbg;
-	int		col;
-
-	if (!d)
-		return ;
-	dbg = getenv("CUB3D_DEBUG");
-	if (!dbg)
-		return ;
-	if (ft_strcmp(dbg, "all") == 0)
-	{
-		print_ray_debug(d, x);
-		return ;
-	}
-	if (ft_strcmp(dbg, "center") == 0)
-	{
-		if (x == d->scr_w / 2)
-			print_ray_debug(d, x);
-		return ;
-	}
-	col = ft_atoi(dbg);
-	if (col == x)
-		print_ray_debug(d, x);
-}
-
 static void	render_textured_wall(t_data *d, int x, int top, int bot,
 	t_dda *ray, double perp, int side)
 {
@@ -104,7 +97,28 @@ static void	render_textured_wall(t_data *d, int x, int top, int bot,
 	draw_textured_col(d, x, top, bot, &params);
 }
 
-void render_walls(t_data *d)
+/*
+While sur chaque colonne ecran et faire un raycast pour deter et dessiner plafond/mur/sol.
+
+Étapes par colonne x:
+1. cameraX ∈ [-1;1] : position relative horizontale.
+2. ray_build_dir() : construit direction rayon (dir_x/dir_y) avec plan caméra.
+3. dda_init() : initialise deltaDist / sideDist / step.
+4. dda_advance_until_hit() : avance jusqu'au mur ('1') ou rien (skip).
+5. dda_perp_distance() : distance perpendiculaire (corrige fish-eye).
+6. Calcule line_h puis top/bot centré; clamp aux bornes écran.
+7. Dessine plafond (au-dessus de top) via draw_col().
+8. render_textured_wall() pour le mur.
+9. Dessine sol (sous bot) via draw_col().
+Boucle jusqu'à scr_w.
+
+Notes:
+- side dérivé de ray.side_hit_col (utilisé pour inversion texture ou shading).
+- Protection distance minimale (perp < 1e-6).
+
+DEBUG : help_env_print_ray_debug(d, x);
+*/
+void	render_walls(t_data *d)
 {
 	int		x;
 	double	cameraX;
@@ -133,8 +147,6 @@ void render_walls(t_data *d)
 		perp = dda_perp_distance(&ray);
 		side = ray.side_hit_col ? 0 : 1;
 
-		/* conditional debug printing — a sup */
-		help_env_print_ray_debug(d, x);
 		if (perp < 1e-6)
 			perp = 1e-6;
 
@@ -150,8 +162,6 @@ void render_walls(t_data *d)
 		if (top > 0)
 			draw_col(d, x, 0, top - 1, d->game->elements.rgb_ceiling);
 
-		/* conditional debug printing — a sup */
-		help_env_print_ray_debug(d, x);
 
 		// mur
 		render_textured_wall(d, x, top, bot, &ray, perp, side);
@@ -164,3 +174,42 @@ void render_walls(t_data *d)
 	}
 }
 
+/* Helper chat pour debug :
+use :
+env CUB3D_DEBUG=<valeur> timeout <time> ./cub3D <chemin_map>
+
+<valeur> :
+center → affiche le debug uniquement pour la colonne centrale
+all → affiche pour toutes les colonnes (très verbeux)
+<num> → un indice de col précis, ex. 320
+vide / unset → aucun debug
+
+ex :
+env CUB3D_DEBUG=center timeout 2s ./cub3D assets/maps_chat/map_corner.cub
+*/
+
+/* static void	help_env_print_ray_debug(t_data *d, int x)
+{
+	char	*dbg;
+	int		col;
+
+	if (!d)
+		return ;
+	dbg = getenv("CUB3D_DEBUG");
+	if (!dbg)
+		return ;
+	if (ft_strcmp(dbg, "all") == 0)
+	{
+		print_ray_debug(d, x);
+		return ;
+	}
+	if (ft_strcmp(dbg, "center") == 0)
+	{
+		if (x == d->scr_w / 2)
+			print_ray_debug(d, x);
+		return ;
+	}
+	col = ft_atoi(dbg);
+	if (col == x)
+		print_ray_debug(d, x);
+} */
