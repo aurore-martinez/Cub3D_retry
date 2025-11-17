@@ -1,6 +1,6 @@
-NO ./assets/textures/image_128.xpm
-SO ./assets/textures/texture_64.xpm
-WE ./assets/textures/pigeon_64.xpm
+NO ./assets/textures_256/plaster-wall-texture-background_256.xpm
+SO ./assets/textures_256/background-made-from-bricks_256.xpm
+WE ./assets/textures_256/blue_one_brick_256.xpm
 EA ./assets/textures/rff_64.xpm
 
 F 220,100,0
