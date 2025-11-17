@@ -97,10 +97,8 @@ SRC_UTILS = \
 	utils/cleanup.c \
 	utils/print_error.c
 
-SRC_GFX = \
-	gfx/color.c \
- 	gfx/minimap.c \
- 	gfx/minimap_focus.c \
+SRC_GFX = gfx/minimap.c \
+	gfx/minimap_focus.c \
 	gfx/draw.c \
 	gfx/render.c \
 	gfx/events.c \
