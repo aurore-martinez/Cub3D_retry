@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 17:20:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/17 10:33:52 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/17 11:08:45 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
  * Par ceci :
  */
 
-static void	render_textured_wall(t_data *d, int x, int top, int bot,
+/* static void	render_textured_wall(t_data *d, int x, int top, int bot,
 	t_dda *ray, double perp, int side)
 {
 	t_tex_params	params;
@@ -50,7 +50,7 @@ static void	render_textured_wall(t_data *d, int x, int top, int bot,
  * EXEMPLE COMPLET de render_walls() avec textures :
  */
 
-void render_walls_with_textures(t_data *d)
+/* void render_walls_with_textures(t_data *d)
 {
 	int		x;
 	double	cameraX;
@@ -105,4 +105,4 @@ void render_walls_with_textures(t_data *d)
 
 		x++;
 	}
-}
+} */
