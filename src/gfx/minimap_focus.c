@@ -6,12 +6,14 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 16:30:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/16 17:26:54 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/17 09:24:43 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-#include <stdio.h>
+/* Changer start_col/row = crop.
+Changer tile_size = zoom.
+Changer offset_x/y = pan (position fixe coin sup gauche). */
 
 /* Calcule le facteur de zoom en fonction de la taille de la carte */
 double	get_zoom_by_map_size(t_data *d)
