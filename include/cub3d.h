@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/17 10:33:52 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/17 11:55:01 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,8 @@
 # define SCR_W 1920
 # define SCR_H 1080
 
-# define MOVE_SPEED 0.1
+# define MOVE_SPEED 0.05
 # define ROT_SPEED 0.12
-# define RGB(r, g, b) ((int)(((r) & 0xFF) << 16 | ((g) & 0xFF) << 8 | ((b) & 0xFF)))
 // int mlx_get_color_value(t_xvar *xvar,int color)? voir use col.c ??
 
 typedef struct s_rgb

@@ -110,7 +110,6 @@ SRC_GFX = \
 SRC_RAYCAST = \
 	raycasting/dda.c \
 	raycasting/ray.c \
-	raycasting/learn.c
 
 SRC_FILES = $(SRC_MAIN) $(SRC_DEBUG) $(SRC_PARSING) $(SRC_PLAYER) $(SRC_INIT) $(SRC_UTILS) $(SRC_GFX) $(SRC_RAYCAST)
 
