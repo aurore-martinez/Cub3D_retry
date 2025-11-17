@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:07:30 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/17 15:04:21 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/17 17:57:53 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,31 +21,6 @@ int	on_destroy_event(t_data *d)
 	return (0);
 }
 
-/* void	clear_frame(t_img *img, int w, int h, int color)
-{
-	int		x;
-	int		y;
-	t_point	p;
-
-	if (img == NULL)
-		return ;
-	y = 0;
-	while (y < h)
-	{
-		x = 0;
-		while (x < w)
-		{
-			p.x = x;
-			p.y = y;
-			p.z = 0;
-			p.color = color;
-			draw_pixel(img, p);
-			x++;
-		}
-		y++;
-	}
-} */
-
 int	on_key_press(int key, t_data *d)
 {
 	if (key == KEY_M && d && d->gfx)
@@ -54,40 +29,54 @@ int	on_key_press(int key, t_data *d)
 		request_redraw(d);
 		return (0);
 	}
-	if (key == KEY_ESC)
+	else if (key == KEY_ESC)
 		on_destroy_event(d);
-	handle_player_moves(key, d);
-	request_redraw(d);
+	else if (key == KEY_W)
+		d->key.w = true;
+	else if (key == KEY_A)
+		d->key.a = true;
+	else if (key == KEY_S)
+		d->key.s = true;
+	else if (key == KEY_D)
+		d->key.d = true;
+	else if (key == KEY_UP)
+		d->key.up = true;
+	else if (key == KEY_DOWN)
+		d->key.down = true;
+	else if (key == KEY_LEFT)
+		d->key.left = true;
+	else if (key == KEY_RIGHT)
+		d->key.right = true;
+	return (0);
+}
+
+int	on_key_release(int key, t_data *d)
+{
+	if (key == KEY_W)
+		d->key.w = false;
+	else if (key == KEY_A)
+		d->key.a = false;
+	else if (key == KEY_S)
+		d->key.s = false;
+	else if (key == KEY_D)
+		d->key.d = false;
+	else if (key == KEY_UP)
+		d->key.up = false;
+	else if (key == KEY_DOWN)
+		d->key.down = false;
+	else if (key == KEY_LEFT)
+		d->key.left = false;
+	else if (key == KEY_RIGHT)
+		d->key.right = false;
 	return (0);
 }
 
 int	on_mouse(int x, int y, t_data *d)
 {
-	// static int	last_x = -1;
-	// int		dx;
-	// double	angle;
-
-	// (void)y;
-	// if (!d)
-	// 	return (0);
-	// if (last_x == -1)
-	// {
-	// 	last_x = x;
-	// 	return (0);
-	// }
-	// dx = x - last_x;
-	// last_x = x;
-	// if (dx == 0)
-	// 	return (0);
-	// angle = (double)dx * 0.0035; /* radians per pixel */
-	// turn_player(d, -angle);
-	// request_redraw(d);
-	// return (0);
-
 	int	center_x;
 	int	center_y;
 	int	dx;
-	const double	angle = 0.0035; // radians per pixel
+	const double	angle = 0.0015; // radians per pixel
 
 	center_x = d->scr_w / 2;
 	center_y = d->scr_h / 2;
@@ -111,6 +100,8 @@ int	loop_hook(t_data *d)
 {
 	if (!d)
 		return (0);
+	if (handle_player_moves(d))
+		request_redraw(d);
 	if (d->need_redraw)
 	{
 		render_frame(d);

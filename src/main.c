@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 13:43:03 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/17 15:09:13 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/17 17:15:52 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ static void	launch_mlx(t_data *data)
 	render_frame(data);
 	mlx_loop_hook(data->gfx->mlx, loop_hook, data);
 	mlx_hook(data->gfx->win, KeyPress, KeyPressMask, on_key_press, data);
+	mlx_hook(data->gfx->win, KeyRelease, KeyReleaseMask, on_key_release, data);
 	mlx_hook(data->gfx->win, DestroyNotify, 0, on_destroy_event, data);
 	mlx_hook(data->gfx->win, MotionNotify, PointerMotionMask, on_mouse, data);
 	mlx_loop(data->gfx->mlx);

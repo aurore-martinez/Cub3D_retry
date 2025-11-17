@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
+/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/17 11:55:01 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/17 17:54:48 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 # define SCR_H 1080
 
 # define MOVE_SPEED 0.05
-# define ROT_SPEED 0.12
+# define ROT_SPEED 0.05
 // int mlx_get_color_value(t_xvar *xvar,int color)? voir use col.c ??
 
 typedef struct s_rgb
@@ -166,11 +166,24 @@ typedef struct s_gfx
 	t_tex	texture;
 }	t_gfx;
 
+typedef struct s_keypress
+{
+	bool	w;
+	bool	a;
+	bool	s;
+	bool	d;
+	bool	up;
+	bool	down;
+	bool	left;
+	bool	right;
+}	t_keypress;
+
 typedef struct s_data
 {
 	t_game	*game;
 	t_vec	player;
 	t_gfx	*gfx;
+	t_keypress	key;
 	int		scr_w;
 	int		scr_h;
 	bool	need_redraw;
@@ -226,7 +239,7 @@ void	print_dda_init(t_dda *r);
 void	print_dda_res_advance(t_dda *r, double perp, bool hit);
 void	print_ray_debug(t_data *d, int column_index);
 
-void	handle_player_moves(int key, t_data *d);
+bool	handle_player_moves(t_data *d);
 
 /* comprendre : cast 1 ray 1 col/wall */
 bool	cast_ray_perp_dist(t_data *d, double cameraX, double *perp_dist, int *side_hit, int *out_row, int *out_col);
@@ -255,6 +268,7 @@ void	apply_walk(t_data *d, double nx, double ny, double margin);
 void	turn_player(t_data *d, double angle);
 int		render_frame(t_data *d);
 int		on_key_press(int key, t_data *d);
+int		on_key_release(int key, t_data *d);
 void	draw_minimap(t_data *d);
 void	draw_minimap_focus(t_data *d);
 void	draw_crosshair(t_data *d);
