@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 10:41:07 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/18 13:16:52 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/18 13:27:29 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,8 @@ void	ray_build_dir(const t_vec *pl, double cameraX, t_dda *r)
 	r->ray_col = pl->dir.y + pl->plane.y * cameraX;
 }
 
-/* init DDA pour (r->rayRow, r->rayCol) */
-void	dda_init(const t_vec *pl, t_dda *r)
+void	dda_init2(const t_vec *pl, t_dda *r)
 {
-	r->cell_row = (int)pl->pos.x;
-	r->cell_col = (int)pl->pos.y;
-	if (r->ray_row == 0.0)
-		r->delta_row = BIG;
-	else
-		r->delta_row = fabs(1.0 / r->ray_row);
-	if (r->ray_col == 0.0)
-		r->delta_col = BIG;
-	else
-		r->delta_col = fabs(1.0 / r->ray_col);
 	if (r->ray_row < 0.0)
 	{
 		r->step_row = -1;
@@ -52,6 +41,22 @@ void	dda_init(const t_vec *pl, t_dda *r)
 		r->step_col = 1;
 		r->side_dist_col = (r->cell_col + 1.0 - pl->pos.y) * r->delta_col;
 	}
+}
+
+/* init DDA pour (r->rayRow, r->rayCol) */
+void	dda_init(const t_vec *pl, t_dda *r)
+{
+	r->cell_row = (int)pl->pos.x;
+	r->cell_col = (int)pl->pos.y;
+	if (r->ray_row == 0.0)
+		r->delta_row = BIG;
+	else
+		r->delta_row = fabs(1.0 / r->ray_row);
+	if (r->ray_col == 0.0)
+		r->delta_col = BIG;
+	else
+		r->delta_col = fabs(1.0 / r->ray_col);
+	dda_init2(pl, r);
 }
 
 /* boucle DDA : avance jusuq'a hit == false */
