@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_debug.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
+/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 09:00:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/07 11:34:18 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/18 12:18:13 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void	print_map_char_at_hit(t_data *d, t_dda *r)
 void	print_ray_debug(t_data *d, int column_index)
 {
 	t_dda	r;
-	double	cameraX;
+	double	camerax;
 	double	perp;
 	bool	hit;
 
@@ -93,15 +93,14 @@ void	print_ray_debug(t_data *d, int column_index)
 		printf(" valid range: 0 .. %d\n", d->scr_w - 1);
 		return ;
 	}
-	cameraX = 2.0 * column_index / (double)d->scr_w - 1.0;
-	ray_build_dir(&d->player, cameraX, &r);
+	camerax = 2.0 * column_index / (double)d->scr_w - 1.0;
+	ray_build_dir(&d->player, camerax, &r);
 	dda_init(&d->player, &r);
 	printf("--- ray debug for column %d ---\n", column_index);
-	printf(" cameraX=%.6f\n", cameraX);
+	printf(" camerax=%.6f\n", camerax);
 	print_dda_init(&r);
 	hit = dda_advance_until_hit(d->game, &r);
 	perp = dda_perp_distance(&r);
 	print_dda_res_advance(&r, perp, hit);
 	print_map_char_at_hit(d, &r);
 }
-

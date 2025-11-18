@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 13:43:03 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/17 17:15:52 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/18 12:16:38 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,13 @@ static bool	parsing(char *file, t_game **game)
 	return (true);
 }
 
-static bool	init_3D(t_data *data)
+static bool	init_3d(t_data *data)
 {
 	if (!init_player_from_game(data))
 		return (false);
 	print_player_data(data);
 	if (!init_mlx(&data->gfx, data->scr_w, data->scr_h, "cub3D"))
 		return (false);
-	// mlx_mouse_hide(data->gfx->mlx, data->gfx->win); // function leaks
-	mlx_mouse_move(data->gfx->mlx, data->gfx->win, data->scr_w / 2, data->scr_h / 2);
 	if (!set_texture(data))
 	{
 		printf("Error: Failed to load textures\n");
@@ -62,6 +60,8 @@ static bool	init_3D(t_data *data)
 static void	launch_mlx(t_data *data)
 {
 	render_frame(data);
+	mlx_mouse_move(data->gfx->mlx, data->gfx->win,
+		data->scr_w / 2, data->scr_h / 2);
 	mlx_loop_hook(data->gfx->mlx, loop_hook, data);
 	mlx_hook(data->gfx->win, KeyPress, KeyPressMask, on_key_press, data);
 	mlx_hook(data->gfx->win, KeyRelease, KeyReleaseMask, on_key_release, data);
@@ -81,7 +81,7 @@ int	main(int argc, char **argv)
 		return (1);
 	if (!init_data(&data))
 		return (1);
-	if ((!parsing(argv[1], &data->game)) || !init_3D(data))
+	if ((!parsing(argv[1], &data->game)) || !init_3d(data))
 		return (clean_data(data), 1);
 	launch_mlx(data);
 	clean_data(data);
