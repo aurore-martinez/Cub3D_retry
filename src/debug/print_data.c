@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_data.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 17:56:44 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/10 14:47:18 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/18 16:10:34 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,20 @@
 
 void	print_player_data(t_data *d)
 {
-	double	px;
-	double	py;
-	double	dirX;
-	double	dirY;
-	double	plX;
-	double	plY;
+	t_vec	pl;
 
 	if (!d)
 		return ;
-	px = d->player.pos.x;
-	py = d->player.pos.y;
-	dirX = d->player.dir.x;
-	dirY = d->player.dir.y;
-	plX = d->player.plane.x;
-	plY = d->player.plane.y;
+	pl.pos.x = d->player.pos.x;
+	pl.pos.y = d->player.pos.y;
+	pl.dir.x = d->player.dir.x;
+	pl.dir.y = d->player.dir.y;
+	pl.plane.x = d->player.plane.x;
+	pl.plane.y = d->player.plane.y;
 	printf("=== player from d ===\n");
-	printf("pos   : x = %.2f | y = %.2f\n", px, py);
-	printf("dir   : x = %.2f | y = %.2f\n", dirX, dirY);
-	printf("plane : x = %.2f | y = %.2f\n", plX, plY);
+	printf("pos   : x = %.2f | y = %.2f\n", pl.pos.x, pl.pos.y);
+	printf("dir   : x = %.2f | y = %.2f\n", pl.dir.x, pl.dir.y);
+	printf("plane : x = %.2f | y = %.2f\n", pl.plane.x, pl.plane.y);
 	printf("spawn : row = %d | col = %d | char = %c\n",
 		d->game->player.y, d->game->player.x, (char)d->game->player_char);
 	printf("scr   : %dx%d\n", d->scr_w, d->scr_h);
