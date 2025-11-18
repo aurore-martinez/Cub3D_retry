@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 11:00:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/18 15:19:32 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/18 15:58:20 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	draw_crosshair(t_data *d)
 
 /* Calcule angle Rayon cOne FOV: voir minimap_utils.c */
 
-/* helper center en mode minimap focus/zoom */
+/* center en mode minimap focus/zoom */
 static void	fov_prepare_full_center(t_data *d, t_fov_prep *p,
 				int *ts, t_pos *center)
 {
@@ -74,16 +74,24 @@ static void	fov_prepare(t_data *d, int *ts, t_pos *center)
 /* trace un rayon depuis center avec angle ang et longueur len */
 static void	fov_draw_one(t_data *d, t_pos center, double len, double ang)
 {
-	t_point	p0;
-	t_point	p1;
+	t_dpos	dir;
+	t_dpos	cur;
+	int		i;
+	t_point	p;
 
-	p0.x = center.x;
-	p0.y = center.y;
-	p0.color = UI_FOV_COLOR;
-	p1.x = center.x + (int)(cos(ang) * len);
-	p1.y = center.y + (int)(sin(ang) * len);
-	p1.color = UI_FOV_COLOR;
-	draw_line(&d->gfx->frame, p0, p1);
+	dir.x = cos(ang);
+	dir.y = sin(ang);
+	cur.x = center.x;
+	cur.y = center.y;
+	i = 0;
+	while (i < (int)len)
+	{
+		p.x = (int)(cur.x + dir.x * i);
+		p.y = (int)(cur.y + dir.y * i);
+		p.color = UI_FOV_COLOR;
+		draw_pixel(&d->gfx->frame, p);
+		i++;
+	}
 }
 
 /* dessin rayon FOV */

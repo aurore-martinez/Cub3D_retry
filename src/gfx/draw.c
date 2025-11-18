@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:39:48 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/18 15:17:52 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/18 15:32:26 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,36 +95,9 @@ void	draw_col(t_data *d, int x, int start, int end, int color)
 	}
 }
 
-/* Bresenham line algorithm */
-void	draw_line(t_img *img, t_point p0, t_point p1)
+void	request_redraw(t_data *d)
 {
-	int	dx;
-	int	dy;
-	int	sx;
-	int	sy;
-	int	err;
-	int	e2;
-
-	dx = ft_abs(p1.x - p0.x);
-	dy = ft_abs(p1.y - p0.y);
-	sx = (p0.x < p1.x) ? 1 : -1;
-	sy = (p0.y < p1.y) ? 1 : -1;
-	err = dx - dy;
-	while (1)
-	{
-		draw_pixel(img, p0);
-		if (p0.x == p1.x && p0.y == p1.y)
-			break ;
-		e2 = 2 * err;
-		if (e2 > -dy)
-		{
-			err -= dy;
-			p0.x += sx;
-		}
-		if (e2 < dx)
-		{
-			err += dx;
-			p0.y += sy;
-		}
-	}
+	if (!d)
+		return ;
+	d->need_redraw = true;
 }
