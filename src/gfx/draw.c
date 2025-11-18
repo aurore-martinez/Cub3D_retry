@@ -6,12 +6,13 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:39:48 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/16 14:33:02 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/18 15:05:46 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
+// if (p.x < 0 || p.x >= img->w || p.y < 0 || p.y >= img->h) ??
 void	draw_pixel(t_img *img, t_point p)
 {
 	char	*dst;
@@ -20,7 +21,6 @@ void	draw_pixel(t_img *img, t_point p)
 		return ;
 	if (img->addr == NULL)
 		return ;
-	// if (p.x < 0 || p.x >= img->w || p.y < 0 || p.y >= img->h) ??
 	if (p.x < 0 || p.y < 0)
 		return ;
 	dst = img->addr + (p.y * img->line_len + p.x * (img->bpp / 8));

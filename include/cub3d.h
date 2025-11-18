@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/18 11:55:00 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/18 15:00:46 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,6 +215,19 @@ typedef struct s_render
 	double	perp;
 }	t_render;
 
+/* REFACTO accessorize.c*/
+typedef struct s_fov_prep
+{
+	int		base_ts;
+	int		r;
+	int		p_row;
+	int		p_col;
+	int		start_row;
+	int		start_col;
+	int		player_screen_x;
+	int		player_screen_y;
+	double	zoom;
+}	t_fov_prep;
 
 /* ==============================     INIT    ============================ */
 bool	init_mlx(t_gfx **gfx, int w, int h, const char *title);
@@ -294,6 +307,7 @@ int		on_mouse(int x, int y, t_data *d);
 bool	set_texture(t_data *data);
 void	request_redraw(t_data *d);
 int		loop_hook(t_data *d);
+double	calculate_ray_angle(t_data *d, int ray_idx, int num_rays);
 
 /* ========================== 🎨 TEXTURE ========================== */
 int		get_texture_pixel(void *img, int x, int y);

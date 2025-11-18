@@ -6,11 +6,12 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 16:30:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/17 09:24:43 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/18 15:01:20 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+
 /* Changer start_col/row = crop.
 Changer tile_size = zoom.
 Changer offset_x/y = pan (position fixe coin sup gauche). */
