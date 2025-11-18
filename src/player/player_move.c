@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 10:30:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/17 17:50:05 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/18 14:44:31 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,10 @@ static bool	apply_move(t_data *d, double forward, double side, double margin)
 
 	if (forward != 0.0 || side != 0.0)
 	{
-		nx = d->player.pos.x + (d->player.dir.x * forward + d->player.plane.x * side) * MOVE_SPEED;
-		ny = d->player.pos.y + (d->player.dir.y * forward + d->player.plane.y * side) * MOVE_SPEED;
+		nx = d->player.pos.x + (d->player.dir.x * forward
+				+ d->player.plane.x * side) * MOVE_SPEED;
+		ny = d->player.pos.y + (d->player.dir.y * forward
+				+ d->player.plane.y * side) * MOVE_SPEED;
 		apply_walk(d, nx, ny, margin);
 		return (true);
 	}
