@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:34:10 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/18 14:37:51 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/18 15:18:06 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	draw_square(t_img *img, int x, int y, int size, int color)
 		{
 			p.x = x + i;
 			p.y = y + j;
-			p.z = 0;
 			p.color = color;
 			draw_pixel(img, p);
 			i++;
@@ -118,7 +117,6 @@ static void	draw_minimap_player(t_data *d)
 			{
 				p.x = cx + x;
 				p.y = cy + y;
-				p.z = 0;
 				p.color = UI_PLAYER_COLOR;
 				draw_pixel(&d->gfx->frame, p);
 			}

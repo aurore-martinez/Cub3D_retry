@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 17:15:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/17 12:56:21 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/18 15:15:56 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void	draw_textured_col(t_data *d, int x, int top, int bot, t_tex_params *p)
 			color = darken_color(color);
 		pixel.x = x;
 		pixel.y = y;
-		pixel.z = 0;
+		// pixel.z = 0;
 		pixel.color = color;
 		draw_pixel(&d->gfx->frame, pixel);
 		y++;

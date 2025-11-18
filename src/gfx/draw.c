@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:39:48 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/18 15:05:46 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/18 15:17:52 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	draw_hline(t_img *img, int y, int x0, int x1, int color)
 	if (x0 > x1)
 		ft_swap(&x0, &x1);
 	p.y = y;
-	p.z = 0;
 	p.color = color;
 	while (x0 <= x1)
 	{
@@ -48,6 +47,7 @@ void	draw_hline(t_img *img, int y, int x0, int x1, int color)
 		x0++;
 	}
 }
+
 /* draw line verticale */
 void	draw_vline(t_img *img, int x, int y0, int y1, int color)
 {
@@ -60,7 +60,7 @@ void	draw_vline(t_img *img, int x, int y0, int y1, int color)
 	if (y0 > y1)
 		ft_swap(&y0, &y1);
 	p.x = x;
-	p.z = 0;
+
 	p.color = color;
 	while (y0 <= y1)
 	{
@@ -89,7 +89,6 @@ void	draw_col(t_data *d, int x, int start, int end, int color)
 	{
 		p.x = x;
 		p.y = y;
-		p.z = 0;
 		p.color = color;
 		draw_pixel(&d->gfx->frame, p);
 		y++;

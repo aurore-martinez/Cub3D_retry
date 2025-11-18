@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/18 15:00:46 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/18 15:18:11 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,6 @@ typedef struct s_point
 {
 	int	x;
 	int	y;
-	int	z;
 	int	color;
 }	t_point;
 

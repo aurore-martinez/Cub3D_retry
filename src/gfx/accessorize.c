@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 11:00:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/18 15:00:46 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/18 15:16:49 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,11 @@ static void	fov_draw_one(t_data *d, t_pos center, double len, double ang)
 
 	p0.x = center.x;
 	p0.y = center.y;
-	p0.z = 0;
+	// p0.z = 0;
 	p0.color = UI_FOV_COLOR;
 	p1.x = center.x + (int)(cos(ang) * len);
 	p1.y = center.y + (int)(sin(ang) * len);
-	p1.z = 0;
+	// p1.z = 0;
 	p1.color = UI_FOV_COLOR;
 	draw_line(&d->gfx->frame, p0, p1);
 }
