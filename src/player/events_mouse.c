@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 17:29:38 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/18 17:30:36 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/18 17:36:19 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	on_mouse(int x, int y, t_data *d)
 	return (0);
 }
 
-int on_clic(int button, int x, int y, t_data *d)
+int	on_clic(int button, int x, int y, t_data *d)
 {
 	(void)x;
 	(void)y;
@@ -48,4 +48,3 @@ int on_clic(int button, int x, int y, t_data *d)
 	}
 	return (0);
 }
-
