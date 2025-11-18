@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:07:30 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/17 17:57:53 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/18 15:26:04 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,13 @@ int	on_key_release(int key, t_data *d)
 	return (0);
 }
 
+// radians per pixel fixe 0.0015
 int	on_mouse(int x, int y, t_data *d)
 {
-	int	center_x;
-	int	center_y;
-	int	dx;
-	const double	angle = 0.0015; // radians per pixel
+	int				center_x;
+	int				center_y;
+	int				dx;
+	const double	angle = 0.0015;
 
 	center_x = d->scr_w / 2;
 	center_y = d->scr_h / 2;
@@ -87,13 +88,6 @@ int	on_mouse(int x, int y, t_data *d)
 	mlx_mouse_move(d->gfx->mlx, d->gfx->win, center_x, center_y);
 	request_redraw(d);
 	return (0);
-}
-
-void	request_redraw(t_data *d)
-{
-	if (!d)
-		return ;
-	d->need_redraw = true;
 }
 
 int	loop_hook(t_data *d)
