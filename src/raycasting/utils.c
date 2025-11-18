@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 15:37:27 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/07 10:25:50 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/18 14:27:13 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ bool	is_wall(t_game *g, int row, int col)
 /* Return:	hit true/false
 side_hit: si frontiere "row" franchie, 1 si "col" franchie. */
 
-bool	cast_ray_perp_dist(t_data *d, double cameraX, double *perp_dist, int *side_hit, int *out_row, int *out_col)
+/* bool	cast_ray_perp_dist(t_data *d, double cameraX, double *perp_dist,
+int *side_hit, int *out_row, int *out_col)
 {
 	t_dda	r;
 	bool	hit;
@@ -64,4 +65,4 @@ bool	cast_ray_perp_dist(t_data *d, double cameraX, double *perp_dist, int *side_
 	if (out_col != NULL)
 		*out_col = r.cell_col;
 	return (true);
-}
+} */

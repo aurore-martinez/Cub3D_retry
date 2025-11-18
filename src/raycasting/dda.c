@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 10:41:07 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/18 13:27:29 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/18 14:10:38 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ray_build_dir(const t_vec *pl, double cameraX, t_dda *r)
 	r->ray_col = pl->dir.y + pl->plane.y * cameraX;
 }
 
-void	dda_init2(const t_vec *pl, t_dda *r)
+static void	dda_init2(const t_vec *pl, t_dda *r)
 {
 	if (r->ray_row < 0.0)
 	{
