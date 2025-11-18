@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 11:35:49 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/12 12:17:08 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/17 17:18:03 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,18 @@ static void	zero_player(t_vec *p)
 	p->plane.y = 0.0;
 }
 
+static void	init_keypress(t_keypress *key)
+{
+	key->w = false;
+	key->a = false;
+	key->s = false;
+	key->d = false;
+	key->up = false;
+	key->down = false;
+	key->left = false;
+	key->right = false;
+}
+
 /* init data */
 bool	init_data(t_data **data)
 {
@@ -59,5 +71,7 @@ bool	init_data(t_data **data)
 	(*data)->scr_w = SCR_W;
 	(*data)->scr_h = SCR_H;
 	zero_player(&(*data)->player);
+	init_keypress(&(*data)->key);
+	(*data)->need_redraw = true;
 	return (true);
 }

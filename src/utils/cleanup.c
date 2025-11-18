@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
+/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 12:09:02 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/16 17:42:24 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/18 10:46:06 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static void	destroy_texture(t_gfx *gfx)
 static void	clean_mlx(t_gfx *gfx)
 {
 	destroy_texture(gfx);
+	if (gfx->frame.img)
+		mlx_destroy_image(gfx->mlx, gfx->frame.img);
 	if (gfx->win)
 		mlx_destroy_window(gfx->mlx, gfx->win);
 	if (gfx->mlx)

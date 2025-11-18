@@ -3,73 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
+/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 10:30:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/17 12:05:42 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/17 17:50:05 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static bool	handle_ad_keys(int key, t_data *d, double move_speed, double margin)
+static void	get_input_vector(t_data *d, double *forward, double *side)
+{
+	if (d->key.w || d->key.up)
+		*forward += 1.0;
+	if (d->key.s || d->key.down)
+		*forward -= 1.0;
+	if (d->key.d)
+		*side += 1.0;
+	if (d->key.a)
+		*side -= 1.0;
+}
+
+/* garde la meme vitesse sur les deplacements diagonaux */
+static void	diagonal_move(double *forward, double *side)
+{
+	double	len;
+
+	len = sqrt((*forward) * (*forward) + (*side) * (*side));
+	if (len > 1.0)
+	{
+		*forward /= len;
+		*side /= len;
+	}
+}
+
+static bool	apply_move(t_data *d, double forward, double side, double margin)
 {
 	double	nx;
 	double	ny;
 
-	if (!d)
-		return (false);
-	if (key == KEY_A)
+	if (forward != 0.0 || side != 0.0)
 	{
-		nx = d->player.pos.x - d->player.plane.x * move_speed;
-		ny = d->player.pos.y - d->player.plane.y * move_speed;
-		apply_walk(d, nx, ny, margin);
-		return (true);
-	}
-	if (key == KEY_D)
-	{
-		nx = d->player.pos.x + d->player.plane.x * move_speed;
-		ny = d->player.pos.y + d->player.plane.y * move_speed;
+		nx = d->player.pos.x + (d->player.dir.x * forward + d->player.plane.x * side) * MOVE_SPEED;
+		ny = d->player.pos.y + (d->player.dir.y * forward + d->player.plane.y * side) * MOVE_SPEED;
 		apply_walk(d, nx, ny, margin);
 		return (true);
 	}
 	return (false);
 }
 
-static bool	handle_ws_keys(int key, t_data *d, double move_speed, double margin)
+static bool	rotation_move(t_data *d, double rot_speed)
 {
-	double	nx;
-	double	ny;
-
-	if (!d)
-		return (false);
-	if (key == KEY_W || key == KEY_UP)
-	{
-		nx = d->player.pos.x + d->player.dir.x * move_speed;
-		ny = d->player.pos.y + d->player.dir.y * move_speed;
-		apply_walk(d, nx, ny, margin);
-		return (true);
-	}
-	if (key == KEY_S || key == KEY_DOWN)
-	{
-		nx = d->player.pos.x - d->player.dir.x * move_speed;
-		ny = d->player.pos.y - d->player.dir.y * move_speed;
-		apply_walk(d, nx, ny, margin);
-		return (true);
-	}
-	return (false);
-}
-
-static bool	handle_turn_keys(int key, t_data *d, double rot_speed)
-{
-	if (!d)
-		return (false);
-	if (key == KEY_LEFT)
+	if (d->key.left)
 	{
 		turn_player(d, rot_speed);
 		return (true);
 	}
-	if (key == KEY_RIGHT)
+	if (d->key.right)
 	{
 		turn_player(d, -rot_speed);
 		return (true);
@@ -77,21 +67,24 @@ static bool	handle_turn_keys(int key, t_data *d, double rot_speed)
 	return (false);
 }
 
-void	handle_player_moves(int key, t_data *d)
+bool	handle_player_moves(t_data *d)
 {
-	double	move_speed;
-	double	rot_speed;
 	double	margin;
+	double	forward;
+	double	side;
+	bool	moved;
 
 	if (!d)
-		return ;
-	move_speed = MOVE_SPEED;
-	rot_speed = ROT_SPEED;
-	margin = 0.2; // a 0.2 cell du mur suffit ??
-	if (handle_ws_keys(key, d, move_speed, margin))
-		return ;
-	if (handle_ad_keys(key, d, move_speed, margin))
-		return ;
-	if (handle_turn_keys(key, d, rot_speed))
-		return ;
+		return (false);
+	margin = 0.2;
+	forward = 0.0;
+	side = 0.0;
+	moved = false;
+	get_input_vector(d, &forward, &side);
+	diagonal_move(&forward, &side);
+	if (apply_move(d, forward, side, margin))
+		moved = true;
+	if (rotation_move(d, ROT_SPEED))
+		moved = true;
+	return (moved);
 }
