@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
+/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:07:30 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/18 15:26:04 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/18 17:30:50 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,9 @@ int	on_destroy_event(t_data *d)
 	return (0);
 }
 
-int	on_key_press(int key, t_data *d)
+static void	change_key_flag(int key, t_data *d)
 {
-	if (key == KEY_M && d && d->gfx)
-	{
-		d->gfx->cam.show_full_minimap = !d->gfx->cam.show_full_minimap;
-		request_redraw(d);
-		return (0);
-	}
-	else if (key == KEY_ESC)
-		on_destroy_event(d);
-	else if (key == KEY_W)
+	if (key == KEY_W)
 		d->key.w = true;
 	else if (key == KEY_A)
 		d->key.a = true;
@@ -47,6 +39,19 @@ int	on_key_press(int key, t_data *d)
 		d->key.left = true;
 	else if (key == KEY_RIGHT)
 		d->key.right = true;
+}
+
+int	on_key_press(int key, t_data *d)
+{
+	if (key == KEY_M && d && d->gfx)
+	{
+		d->gfx->cam.show_full_minimap = !d->gfx->cam.show_full_minimap;
+		request_redraw(d);
+		return (0);
+	}
+	else if (key == KEY_ESC)
+		on_destroy_event(d);
+	change_key_flag(key, d);
 	return (0);
 }
 
@@ -68,25 +73,6 @@ int	on_key_release(int key, t_data *d)
 		d->key.left = false;
 	else if (key == KEY_RIGHT)
 		d->key.right = false;
-	return (0);
-}
-
-// radians per pixel fixe 0.0015
-int	on_mouse(int x, int y, t_data *d)
-{
-	int				center_x;
-	int				center_y;
-	int				dx;
-	const double	angle = 0.0015;
-
-	center_x = d->scr_w / 2;
-	center_y = d->scr_h / 2;
-	dx = x - center_x;
-	if (x == center_x && y == center_y)
-		return (0);
-	turn_player(d, -((double)dx * angle));
-	mlx_mouse_move(d->gfx->mlx, d->gfx->win, center_x, center_y);
-	request_redraw(d);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 11:35:49 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/17 17:18:03 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/18 16:26:07 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static void	init_keypress(t_keypress *key)
 	key->down = false;
 	key->left = false;
 	key->right = false;
+	key->mouse = false;
 }
 
 /* init data */
