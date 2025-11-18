@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:39:48 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/18 15:32:26 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/18 16:32:00 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,46 +27,51 @@ void	draw_pixel(t_img *img, t_point p)
 	*(unsigned int *)dst = p.color;
 }
 
-/* draw line horizontale */
-void	draw_hline(t_img *img, int y, int x0, int x1, int color)
+/* draw line horizontale: p0.y fixé, x de p0.x à x1 */
+void	draw_hline(t_img *img, t_pos p0, int x1, int color)
 {
 	t_point	p;
+	int		tmp;
 
-	if (img == NULL)
+	if (!img || p0.y < 0)
 		return ;
-	if (y < 0)
-		return ;
-	if (x0 > x1)
-		ft_swap(&x0, &x1);
-	p.y = y;
-	p.color = color;
-	while (x0 <= x1)
+	if (p0.x > x1)
 	{
-		p.x = x0;
+		tmp = p0.x;
+		p0.x = x1;
+		x1 = tmp;
+	}
+	p.y = p0.y;
+	p.color = color;
+	while (p0.x <= x1)
+	{
+		p.x = p0.x;
 		draw_pixel(img, p);
-		x0++;
+		p0.x++;
 	}
 }
 
-/* draw line verticale */
-void	draw_vline(t_img *img, int x, int y0, int y1, int color)
+/* draw line verticale: p0.x fixé, y de p0.y à y1 */
+void	draw_vline(t_img *img, t_pos p0, int y1, int color)
 {
 	t_point	p;
+	int		tmp;
 
-	if (img == NULL)
+	if (!img || p0.x < 0)
 		return ;
-	if (x < 0)
-		return ;
-	if (y0 > y1)
-		ft_swap(&y0, &y1);
-	p.x = x;
-
-	p.color = color;
-	while (y0 <= y1)
+	if (p0.y > y1)
 	{
-		p.y = y0;
+		tmp = p0.y;
+		p0.y = y1;
+		y1 = tmp;
+	}
+	p.x = p0.x;
+	p.color = color;
+	while (p0.y <= y1)
+	{
+		p.y = p0.y;
 		draw_pixel(img, p);
-		y0++;
+		p0.y++;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 11:00:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/18 15:58:20 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/18 16:30:24 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,14 @@ void	draw_crosshair(t_data *d)
 		return ;
 	midy = d->scr_h / 2;
 	midx = d->scr_w / 2;
-	draw_hline(&d->gfx->frame, midy, midx - 15, midx - 5, UI_CROSSHAIR_COLOR);
-	draw_hline(&d->gfx->frame, midy, midx + 5, midx + 15, UI_CROSSHAIR_COLOR);
-	draw_vline(&d->gfx->frame, midx, midy - 15, midy - 5, UI_CROSSHAIR_COLOR);
-	draw_vline(&d->gfx->frame, midx, midy + 5, midy + 15, UI_CROSSHAIR_COLOR);
+	draw_hline(&d->gfx->frame, (t_pos){midx - 15, midy}, midx - 5,
+		UI_CROSSHAIR_COLOR);
+	draw_hline(&d->gfx->frame, (t_pos){midx + 5, midy}, midx + 15,
+		UI_CROSSHAIR_COLOR);
+	draw_vline(&d->gfx->frame, (t_pos){midx, midy - 15}, midy - 5,
+		UI_CROSSHAIR_COLOR);
+	draw_vline(&d->gfx->frame, (t_pos){midx, midy + 5}, midy + 15,
+		UI_CROSSHAIR_COLOR);
 }
 
 /* Calcule angle Rayon cOne FOV: voir minimap_utils.c */
