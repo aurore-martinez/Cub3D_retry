@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/19 15:39:41 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/19 15:59:38 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,12 +125,18 @@ typedef struct s_cam
 	bool	show_full_minimap;
 }	t_cam;
 
+/*
+	start = cellule haut-gauche (row=x, col=y)
+	end = cellule bas-droite
+	crop = decalage pixel (off_x/off_y ou 20/20 focus)
+	ts = tile_size = taille tuile (pixels)
+*/
 typedef struct s_mview
 {
-	t_pos	start;     // cellule haut-gauche (row=x, col=y)
-	t_pos	end;       // cellule bas-droite
-	t_pos	crop;      // décalage pixel (off_x/off_y ou 20/20 focus)
-	int		ts;        // taille tuile (pixels)
+	t_pos	start;
+	t_pos	end;
+	t_pos	crop;
+	int		ts;
 }	t_mview;
 
 /* MiniLibX */
@@ -303,7 +309,7 @@ int		get_texture_pixel(void *img, int x, int y);
 void	*select_texture(t_data *d, t_dda *ray, int side);
 double	get_wall_x(t_data *d, t_dda *ray, double perp, int side);
 int		get_texture_x(t_dda *ray, double wall_x, int side);
-void	draw_textured_col(t_data *d, int x, int top, int bot, t_tex_params *p);
+void	draw_textured_col(t_data *d, t_render *r, t_tex_params *p);
 
 /* ============================    🎮 EVENTS    =========================== */
 int		on_destroy_event(t_data *d);
@@ -332,6 +338,5 @@ void	draw_minimap_cell(t_img *img, t_point cell, int size);
 void	draw_player_disc(t_img *img, t_pos center, int radius, int color);
 void	draw_minimap_focus(t_data *d);
 void	draw_minimap(t_data *d);
-
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:14:56 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/19 09:59:31 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/19 16:01:29 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static void	render_tex_wall(t_data *d, t_dda *ray, t_render *s)
 	p.orig_line_h = s->line_h;
 	p.tex_y_offset = tex_off;
 	p.side = s->side;
-	draw_textured_col(d, s->x, s->top, s->bot, &p);
+	draw_textured_col(d, s, &p);
 }
 
 /*

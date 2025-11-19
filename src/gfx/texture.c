@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 17:15:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/19 15:31:27 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/19 15:57:55 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,41 +80,33 @@ int	get_texture_x(t_dda *ray, double wall_x, int side)
 }
 
 /* Dessine une colonne de texture sur l'écran */
-void	draw_textured_col(t_data *d, int x, int top, int bot, t_tex_params *p)
+/* step = nombre de pixels texture par pixel ecran en Y,
+		calculé à partir de la hauteur originelle */
+/* tex_y = (int)(((double)(y - top) * (double)TX_SIZE) / (double)p->orig_line_h)
+= > position dans la portion visible de la colonne (0..line_h_draw-1) */
+void	draw_textured_col(t_data *d, t_render *r, t_tex_params *p)
 {
 	int		y;
 	int		tex_y;
 	int		color;
 	t_point	pixel;
-	double	step;
 
-	if (!d || !p || !p->texture)
-		return ;
-	if (top > bot)
-		return ;
-	/* step = nombre de pixels texture par pixel écran en Y,
-	   calculé à partir de la hauteur originelle (non clampée) */
 	if (p->orig_line_h <= 0)
 		return ;
-	step = (double)TEX_SIZE / (double)p->orig_line_h;
-
-	y = top;
-	while (y <= bot)
+	y = r->top;
+	while (y <= r->bot)
 	{
-		/* position dans la portion visible de la colonne (0..line_h_draw-1) */
-		tex_y = (int)(((double)(y - top) * (double)TEX_SIZE) / (double)p->orig_line_h)
-				+ p->tex_y_offset;
+		tex_y = (int)(((double)(y - r->top) * (double)TEX_SIZE)
+				/ (double)p->orig_line_h);
+		tex_y += p->tex_y_offset;
 		if (tex_y < 0)
 			tex_y = 0;
 		if (tex_y >= TEX_SIZE)
 			tex_y = TEX_SIZE - 1;
 		color = get_texture_pixel(p->texture, p->tex_x, tex_y);
-		if (p->side == 1)
+		if (r->side == 1)
 			color = darken_color(color);
-		pixel.x = x;
-		pixel.y = y;
-		// pixel.z = 0;
-		pixel.color = color;
+		pixel = (t_point){r->x, y, color};
 		draw_pixel(&d->gfx->frame, pixel);
 		y++;
 	}
