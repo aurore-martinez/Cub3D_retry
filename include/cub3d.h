@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/19 11:29:43 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/19 11:51:13 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -300,7 +300,7 @@ void	draw_minimap_fov(t_data *d);
 int		mm_tile_size(t_data *d);
 int		mm_off_x(t_data *d);
 int		mm_off_y(t_data *d);
-/* minimap focus helpers (focus/zoom view) */
+int		mm_color_for_cell(t_data *d, char c);
 int		mf_tile_size(t_data *d);
 int		mf_off_x(t_data *d);
 int		mf_off_y(t_data *d);

@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 16:30:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/19 11:32:15 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/19 11:56:18 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,75 +16,7 @@
 Changer tile_size = zoom.
 Changer offset_x/y = pan (position fixe coin sup gauche). */
 
-/* ================= Minimap Focus helpers ================= */
-/* Taille d'une tuile en mode focus (base_ts * zoom), clampée à >= 1 */
-int	mf_tile_size(t_data *d)
-{
-	int		base_ts;
-	double	zoom;
-	int		ts;
 
-	if (!d)
-		return (1);
-	base_ts = mm_tile_size(d);
-	zoom = mf_get_zoom_factor(d, 8, base_ts);
-	ts = (int)(base_ts * zoom);
-	if (ts <= 0)
-		ts = 1;
-	return (ts);
-}
-
-/* Décalage X (pixels) du coin haut-gauche du viewport focus */
-int	mf_off_x(t_data *d)
-{
-	int ts;
-	int r;
-	int p_col;
-	int start_col;
-
-	if (!d || !d->game)
-		return (20);
-	ts = mf_tile_size(d);
-	r = 8;
-	p_col = (int)d->player.pos.y;
-	start_col = p_col - r;
-	if (start_col < 0)
-		start_col = 0;
-	/* Même logique de bord que le dessin: fenêtre peut se réduire près des bords */
-	return (20 - start_col * ts);
-}
-
-/* Décalage Y (pixels) du coin haut-gauche du viewport focus */
-int	mf_off_y(t_data *d)
-{
-	int ts;
-	int r;
-	int p_row;
-	int start_row;
-
-	if (!d || !d->game)
-		return (20);
-	ts = mf_tile_size(d);
-	r = 8;
-	p_row = (int)d->player.pos.x;
-	start_row = p_row - r;
-	if (start_row < 0)
-		start_row = 0;
-	return (20 - start_row * ts);
-}
-
-static int	mf_color_for_cell(t_data *d, char c)
-{
-	if (c == '1')
-		return (DARKGRAY);
-	if (c == '0')
-		return (BEIGE);
-	if (c == ' ')
-		return (BLACK);
-	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
-		return (d->game->elements.rgb_floor);
-	return (GRAY);
-}
 
 /* static void	draw_focus_cell(t_data *d, int x, int y, int size, int color) */
 /* cell (x,y,color) -> dessine une cell size x size */
@@ -222,7 +154,7 @@ void	draw_minimap_focus(t_data *d)
 					(t_point){
 						crop.x + (col - start.y) * ts,
 						crop.y + (row - start.x) * ts,
-						mf_color_for_cell(d, d->game->map[row][col])
+						mm_color_for_cell(d, d->game->map[row][col])
 					},
 					ts
 				);

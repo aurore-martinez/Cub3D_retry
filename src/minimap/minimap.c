@@ -6,45 +6,11 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:34:10 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/19 11:31:56 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/19 11:50:33 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-#include <stdio.h>
-
-/* paramètres mini-map */
-int	mm_tile_size(t_data *d)
-{
-	if (d->gfx->cam.tile_size > 0)
-		return (d->gfx->cam.tile_size);
-	return (8);
-}
-// on peut rapidement imp zoom ici de fdf ???
-
-int	mm_off_x(t_data *d)
-{
-	return (d->gfx->cam.x_offset);
-}
-
-int	mm_off_y(t_data *d)
-{
-	return (d->gfx->cam.y_offset);
-}
-
-/* couleur selon le char de la map */
-static int	mm_color_for_cell(t_data *d, char c)
-{
-	if (c == '1')
-		return (DARKGRAY);
-	if (c == '0')
-		return (BEIGE);
-	if (c == ' ')
-		return (BLACK);
-	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
-		return (d->game->elements.rgb_floor);
-	return (GRAY);
-}
 
 void	draw_square(t_img *img, int x, int y, int size, int color)
 {

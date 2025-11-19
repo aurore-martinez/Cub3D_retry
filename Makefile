@@ -100,19 +100,24 @@ SRC_UTILS = \
 	utils/print_error.c \
 	utils/utils.c
 
-SRC_GFX = gfx/minimap.c \
-	gfx/minimap_focus.c \
-	gfx/minimap_utils.c \
+SRC_GFX = \
 	gfx/draw.c \
 	gfx/accessorize.c \
 	gfx/texture.c \
-	gfx/accessorize_fov.c
+
+SRC_MINIMAP = \
+	minimap/minimap.c \
+	minimap/minimap_focus.c \
+	minimap/minimap_utils.c \
+	minimap/accessorize_fov.c \
+	minimap/param_cam_minimap.c \
+	minimap/param_cam_minimap_focus.c \
 
 SRC_RAYCAST = \
 	raycasting/dda.c \
 	render/render.c \
 
-SRC_FILES = $(SRC_MAIN) $(SRC_DEBUG) $(SRC_PARSING) $(SRC_PLAYER) $(SRC_INIT) $(SRC_UTILS) $(SRC_GFX) $(SRC_RAYCAST)
+SRC_FILES = $(SRC_MAIN) $(SRC_DEBUG) $(SRC_PARSING) $(SRC_PLAYER) $(SRC_INIT) $(SRC_UTILS) $(SRC_GFX) $(SRC_RAYCAST) $(SRC_MINIMAP)
 
 # Chemins complets des sources et objets
 SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))
