@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 10:39:48 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/18 16:32:00 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/19 09:43:27 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	draw_pixel(t_img *img, t_point p)
 }
 
 /* draw line horizontale: p0.y fixé, x de p0.x à x1 */
+/* void	draw_hline(t_img *img, int y, int x0, int x1, int color) */
 void	draw_hline(t_img *img, t_pos p0, int x1, int color)
 {
 	t_point	p;
@@ -52,6 +53,7 @@ void	draw_hline(t_img *img, t_pos p0, int x1, int color)
 }
 
 /* draw line verticale: p0.x fixé, y de p0.y à y1 */
+/* void	draw_vline(t_img *img, int x, int y0, int y1, int color) */
 void	draw_vline(t_img *img, t_pos p0, int y1, int color)
 {
 	t_point	p;
@@ -76,23 +78,24 @@ void	draw_vline(t_img *img, t_pos p0, int y1, int color)
 }
 
 /* = draw vline mieux pour raycast */
-void	draw_col(t_data *d, int x, int start, int end, int color)
+/* void	draw_col(t_data *d, int x, int start, int end, int color) */
+void	draw_col(t_data *d, t_pos start, int end, int color)
 {
 	int		y;
 	t_point	p;
 
-	if (!d || x < 0 || x >= d->scr_w)
+	if (!d || start.x < 0 || start.x >= d->scr_w)
 		return ;
-	if (start < 0)
-		start = 0;
+	if (start.y < 0)
+		start.y = 0;
 	if (end >= d->scr_h)
 		end = d->scr_h - 1;
-	if (start > end)
+	if (start.y > end)
 		return ;
-	y = start;
+	y = start.y;
 	while (y <= end)
 	{
-		p.x = x;
+		p.x = start.x;
 		p.y = y;
 		p.color = color;
 		draw_pixel(&d->gfx->frame, p);

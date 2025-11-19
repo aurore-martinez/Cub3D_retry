@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:14:56 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/17 16:30:38 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/19 09:59:31 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,26 +64,25 @@ static void	render_tex_wall(t_data *d, t_dda *ray, t_render *s)
 {
 	t_tex_params	p;
 	double			wall_x;
-	int				orig_line_h;
 	int				orig_top;
 	int				tex_off;
 
 	p.texture = select_texture(d, ray, s->side);
 	if (!p.texture)
 	{
-		draw_col(d, s->x, s->top, s->bot, 0xFF00FF);
+		draw_col(d, (t_pos){s->x, s->top}, s->bot, 0xFF00FF);
 		return ;
 	}
 	wall_x = get_wall_x(d, ray, s->perp, s->side);
 	p.tex_x = get_texture_x(ray, wall_x, s->side);
-	orig_line_h = (int)(d->scr_h / s->perp);
-	orig_top = -orig_line_h / 2 + d->scr_h / 2;
+	orig_top = -s->line_h / 2 + d->scr_h / 2;
 	if (s->top > orig_top)
-		tex_off = (int)(((double)(s->top - orig_top) * TEX_SIZE) / (double)orig_line_h);
+		tex_off = (int)(((double)(s->top - orig_top) * TEX_SIZE)
+				/ (double)s->line_h);
 	else
 		tex_off = 0;
 	p.line_h = s->bot - s->top + 1;
-	p.orig_line_h = orig_line_h;
+	p.orig_line_h = s->line_h;
 	p.tex_y_offset = tex_off;
 	p.side = s->side;
 	draw_textured_col(d, s->x, s->top, s->bot, &p);
@@ -127,10 +126,11 @@ static void	render_column(t_data *d, int x)
 	fill_t_render(d, &ray, &s);
 	s.x = x;
 	if (s.top > 0)
-		draw_col(d, x, 0, s.top - 1, d->game->elements.rgb_ceiling);
+		draw_col(d, (t_pos){x, 0}, s.top - 1, d->game->elements.rgb_ceiling);
 	render_tex_wall(d, &ray, &s);
 	if (s.bot + 1 < d->scr_h)
-		draw_col(d, x, s.bot + 1, d->scr_h - 1, d->game->elements.rgb_floor);
+		draw_col(d, (t_pos){x, s.bot + 1}, d->scr_h - 1,
+			d->game->elements.rgb_floor);
 }
 
 /*

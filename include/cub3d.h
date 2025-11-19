@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/19 09:08:40 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/19 09:47:30 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -287,7 +287,7 @@ int		on_destroy_event(t_data *d);
 void	draw_pixel(t_img *img, t_point p);
 void	draw_hline(t_img *img, t_pos p0, int x1, int color);
 void	draw_vline(t_img *img, t_pos p0, int y1, int color);
-void	draw_col(t_data *d, int x, int start, int end, int color);
+void	draw_col(t_data *d, t_pos start, int end, int color);
 void	apply_walk(t_data *d, double nx, double ny, double margin);
 void	turn_player(t_data *d, double angle);
 int		render_frame(t_data *d);
