@@ -109,7 +109,6 @@ SRC_MINIMAP = \
 	minimap/minimap.c \
 	minimap/draw_utils.c \
 	minimap/minimap_focus.c \
-	minimap/minimap_utils.c \
 	minimap/accessorize_fov.c \
 	minimap/param_cam_minimap.c \
 	minimap/param_cam_minimap_focus.c \

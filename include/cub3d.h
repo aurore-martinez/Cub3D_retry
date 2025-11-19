@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/19 14:23:41 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/19 14:56:45 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ typedef struct s_vec
 	t_dpos	pos;	// position reelle dans la map
 	t_dpos	dir;
 	t_dpos	plane;
-} 	 t_vec;
+}	t_vec;
 
 typedef struct s_game
 {
@@ -124,6 +124,14 @@ typedef struct s_cam
 	int		tile_size;
 	bool	show_full_minimap;
 }	t_cam;
+
+typedef struct s_mview
+{
+	t_pos	start;     // cellule haut-gauche (row=x, col=y)
+	t_pos	end;       // cellule bas-droite
+	t_pos	crop;      // décalage pixel (off_x/off_y ou 20/20 focus)
+	int		ts;        // taille tuile (pixels)
+}	t_mview;
 
 /* MiniLibX */
 typedef struct s_img
@@ -304,8 +312,6 @@ int		mm_color_for_cell(t_data *d, char c);
 int		mf_tile_size(t_data *d);
 int		mf_off_x(t_data *d);
 int		mf_off_y(t_data *d);
-double	get_zoom_by_map_size(t_data *d);
-double	mf_get_zoom_factor(t_data *d, int r, int base_ts);
 int		on_mouse(int x, int y, t_data *d);
 int		on_clic(int button, int x, int y, t_data *d);
 bool	set_texture(t_data *data);
