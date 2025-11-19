@@ -24,7 +24,7 @@
 
 # Dossier source (images à convertir) et dossier cible
 SRC_DIR="assets/img_to_convert"
-OUT_DIR="assets/textures/lab_blue"
+OUT_DIR="assets/textures/steampunk"
 mkdir -p "$OUT_DIR" 2>/dev/null
 
 # Choix du filtre (change juste cette valeur)
@@ -37,10 +37,10 @@ FLAGS=( -resize 256x256^ -gravity center -extent 256x256 \
 # Ajust esthétique léger (luminosité) — enlève/modifie si tu veux / si ça sature trop; descends 115 à 105 pour plus neutre
 EXTRA_FLAGS=( -modulate 115,100,100 )
 
-for f in $SRC_DIR/*.png $SRC_DIR/*.jpg $SRC_DIR/*.jpeg(N); do
+for f in $SRC_DIR/*.jpg; do
   [ -e "$f" ] || continue
   name="${f##*/}"; base="${name%.*}"
-  out="$OUT_DIR/${base}_256.xpm"
+  out="$OUT_DIR/${base}.xpm"
   if convert "$f" -auto-orient -filter "$FILTER_NAME" "${FLAGS[@]}" "${EXTRA_FLAGS[@]}" -background '#000000' -alpha remove -alpha off "$out"; then
     echo "OK: $out"
   else
