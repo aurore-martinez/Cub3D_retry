@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/19 15:59:38 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/19 16:04:27 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,15 +269,6 @@ void	clean_data(t_data *data);
 void	print_error(char *str);
 void	exit_error(char *str);
 
-/* =============================    🚧 DEBUG    ============================= */
-void	print_player_data(t_data *d);
-void	print_game(t_game *g);
-void	print_map(char **map);
-void	print_dda(t_dda *r);
-void	print_dda_init(t_dda *r);
-void	print_dda_res_advance(t_dda *r, double perp, bool hit);
-void	print_ray_debug(t_data *d, int column_index);
-
 bool	handle_player_moves(t_data *d);
 
 /* comprendre : cast 1 ray 1 col/wall */
@@ -338,5 +329,14 @@ void	draw_minimap_cell(t_img *img, t_point cell, int size);
 void	draw_player_disc(t_img *img, t_pos center, int radius, int color);
 void	draw_minimap_focus(t_data *d);
 void	draw_minimap(t_data *d);
+
+/* =============================    🚧 DEBUG    ============================= */
+void	print_player_data(t_data *d);
+void	print_game(t_game *g);
+void	print_map(char **map);
+void	print_dda(t_dda *r);
+void	print_dda_init(t_dda *r);
+void	print_dda_res_advance(t_dda *r, double perp, bool hit);
+void	print_ray_debug(t_data *d, int column_index);
 
 #endif
