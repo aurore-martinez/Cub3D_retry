@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 09:16:17 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/17 12:13:33 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/19 11:36:39 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,12 @@
 # define KHAKI         0xF0E68C
 # define SILVER        0xC0C0C0
 
+# define LIGHTYELLOW 0xFFFFE0
+# define SOFTYELLOW  0xFFFF80
+
 /* UI / Minimap colors */
-# define UI_PLAYER_COLOR    YELLOW       // Point joueur (jaune)
-# define UI_FOV_COLOR       GOLD         // Rayons du cône FOV (doré)
+# define UI_PLAYER_COLOR    GOLD          // Point joueur (jaune)
+# define UI_FOV_COLOR       SOFTYELLOW    // Rayons FOV (jaune moyen)
 # define UI_CROSSHAIR_COLOR WHITE        // Croix centrale (blanc)
 # define UI_SPAWN_COLOR     TAN          // Spawn (beige foncé)
 # define UI_FLOOR_COLOR     BEIGE        // Sol/vide (beige clair)

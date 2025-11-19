@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_fov_ray_minimap.c                             :+:      :+:    :+:   */
+/*   accessorize_fov.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 10:12:31 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/19 10:15:39 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/19 11:29:43 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,12 @@ static double	calculate_ray_angle(t_data *d, int ray_idx, int num_rays)
 	return (angle_start + ray_idx * angle_step);
 }
 
-/* center en mode minimap focus/zoom */
-static void	fov_prepare_full_center(t_data *d, t_fov_prep *p,
-				int *ts, t_pos *center)
+/* centre en mode minimap focus/zoom (mêmes conversions que minimap_focus) */
+static void	fov_prepare_full_center(t_data *d, int *ts, t_pos *center)
 {
-	p->zoom = mf_get_zoom_factor(d, p->r, p->base_ts);
-	*ts = (int)(p->base_ts * p->zoom);
-	p->player_screen_x = (int)d->player.pos.y - p->start_col;
-	p->player_screen_y = (int)d->player.pos.x - p->start_row;
-	center->x = 20 + p->player_screen_x * (*ts) + (*ts) / 2;
-	center->y = 20 + p->player_screen_y * (*ts) + (*ts) / 2;
+	*ts = mf_tile_size(d);
+	center->x = mf_off_x(d) + (int)(d->player.pos.y * (*ts) + 0.5);
+	center->y = mf_off_y(d) + (int)(d->player.pos.x * (*ts) + 0.5);
 }
 
 /* prep ts et centre selon mode minimap */
@@ -47,18 +43,7 @@ static void	fov_prepare(t_data *d, int *ts, t_pos *center)
 
 	p.base_ts = mm_tile_size(d);
 	if (d->gfx->cam.show_full_minimap)
-	{
-		p.r = 8;
-		p.p_row = (int)d->player.pos.x;
-		p.p_col = (int)d->player.pos.y;
-		p.start_row = p.p_row - p.r;
-		if (p.start_row < 0)
-			p.start_row = 0;
-		p.start_col = p.p_col - p.r;
-		if (p.start_col < 0)
-			p.start_col = 0;
-		fov_prepare_full_center(d, &p, ts, center);
-	}
+		fov_prepare_full_center(d, ts, center);
 	else
 	{
 		*ts = p.base_ts;

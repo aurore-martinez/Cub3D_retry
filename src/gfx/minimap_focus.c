@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 16:30:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/19 10:40:57 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/19 11:32:15 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,63 @@
 /* Changer start_col/row = crop.
 Changer tile_size = zoom.
 Changer offset_x/y = pan (position fixe coin sup gauche). */
+
+/* ================= Minimap Focus helpers ================= */
+/* Taille d'une tuile en mode focus (base_ts * zoom), clampée à >= 1 */
+int	mf_tile_size(t_data *d)
+{
+	int		base_ts;
+	double	zoom;
+	int		ts;
+
+	if (!d)
+		return (1);
+	base_ts = mm_tile_size(d);
+	zoom = mf_get_zoom_factor(d, 8, base_ts);
+	ts = (int)(base_ts * zoom);
+	if (ts <= 0)
+		ts = 1;
+	return (ts);
+}
+
+/* Décalage X (pixels) du coin haut-gauche du viewport focus */
+int	mf_off_x(t_data *d)
+{
+	int ts;
+	int r;
+	int p_col;
+	int start_col;
+
+	if (!d || !d->game)
+		return (20);
+	ts = mf_tile_size(d);
+	r = 8;
+	p_col = (int)d->player.pos.y;
+	start_col = p_col - r;
+	if (start_col < 0)
+		start_col = 0;
+	/* Même logique de bord que le dessin: fenêtre peut se réduire près des bords */
+	return (20 - start_col * ts);
+}
+
+/* Décalage Y (pixels) du coin haut-gauche du viewport focus */
+int	mf_off_y(t_data *d)
+{
+	int ts;
+	int r;
+	int p_row;
+	int start_row;
+
+	if (!d || !d->game)
+		return (20);
+	ts = mf_tile_size(d);
+	r = 8;
+	p_row = (int)d->player.pos.x;
+	start_row = p_row - r;
+	if (start_row < 0)
+		start_row = 0;
+	return (20 - start_row * ts);
+}
 
 static int	mf_color_for_cell(t_data *d, char c)
 {
@@ -55,13 +112,34 @@ static void	draw_focus_cell(t_data *d, t_point cell, int size)
 	}
 }
 
+/* c = pos pl en px sur la minimap (centre), apres mise a l echelle (ts)
+et decalage (crop)*/
+
+/*
+** Dessine le joueur sur la minimap focus comme un disque rempli.
+**
+** Paramètres:
+** - d     : contexte (frame buffer, position du joueur).
+** - ts    : taille d'une tuile (pixels) sur la minimap focus.
+** - crop  : décalage en pixels du coin haut-gauche de la minimap dans
+** la fenêtre.
+** - start : cellule (ligne/colonne) du coin haut-gauche de la fenêtre
+** de carte affichée.
+**
+** Etapes:
+** 1) Calcule l'offset du joueur par rapport à 'start' (en tuiles), puis
+** convertit en pixels et décale par 'crop' pour obtenir le centre du disque.
+** 2) Rayon r = max(1, ts/3).
+** 3) Parcourt un carré centré et remplit le disque via px^2 + py^2 <= r^2.
+**
+** Couleur: UI_PLAYER_COLOR. Complexité: O(r^2).
+*/
 static void	draw_focus_player(t_data *d, int ts, t_pos crop, t_pos start)
 {
 	int		pr;
 	int		px;
 	int		py;
-	int		cx;
-	int		cy;
+	t_pos	c;
 	double	fx;
 	double	fy;
 	t_point	p;
@@ -70,8 +148,7 @@ static void	draw_focus_player(t_data *d, int ts, t_pos crop, t_pos start)
 		return ;
 	fx = d->player.pos.y - start.y;
 	fy = d->player.pos.x - start.x;
-	cx = crop.x + (int)(fx * ts + 0.5);
-	cy = crop.y + (int)(fy * ts + 0.5);
+	c = (t_pos){crop.x + (int)(fx * ts + 0.5), crop.y + (int)(fy * ts + 0.5)};
 	pr = ts / 3;
 	if (pr < 1)
 		pr = 1;
@@ -83,9 +160,9 @@ static void	draw_focus_player(t_data *d, int ts, t_pos crop, t_pos start)
 		{
 			if (px * px + py * py <= pr * pr)
 			{
-				p.x = cx + px;
-				p.y = cy + py;
-				p.color = UI_PLAYER_COLOR;
+				p.x = c.x + px;
+				p.y = c.y + py;
+				p.color = UI_PLAYER_COLOR;;
 				draw_pixel(&d->gfx->frame, p);
 			}
 			px++;
