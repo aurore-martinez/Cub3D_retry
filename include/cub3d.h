@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/19 11:51:13 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/19 14:23:41 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -311,6 +311,10 @@ int		on_clic(int button, int x, int y, t_data *d);
 bool	set_texture(t_data *data);
 void	request_redraw(t_data *d);
 int		loop_hook(t_data *d);
+
+/* ========================== 🗺️ MINIMAP ========================== */
+void	draw_minimap_cell(t_img *img, t_point cell, int size);
+void	draw_player_disc(t_img *img, t_pos center, int radius, int color);
 
 /* ========================== 🎨 TEXTURE ========================== */
 int		get_texture_pixel(void *img, int x, int y);

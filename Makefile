@@ -107,6 +107,7 @@ SRC_GFX = \
 
 SRC_MINIMAP = \
 	minimap/minimap.c \
+	minimap/draw_utils.c \
 	minimap/minimap_focus.c \
 	minimap/minimap_utils.c \
 	minimap/accessorize_fov.c \
