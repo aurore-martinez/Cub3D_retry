@@ -6,13 +6,13 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:34:10 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/19 11:50:33 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/19 13:06:32 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	draw_square(t_img *img, int x, int y, int size, int color)
+static void	draw_square(t_img *img, int x, int y, int size, int color)
 {
 	int		i;
 	int		j;
@@ -22,7 +22,6 @@ void	draw_square(t_img *img, int x, int y, int size, int color)
 		return ;
 	if (size <= 0)
 		return ;
-
 	j = 0;
 	while (j < size)
 	{
@@ -56,6 +55,9 @@ static void	draw_minimap_cell(t_data *d, int row, int col, int color)
 printf("FULL: ts=%d off=(%d,%d) p=(%.3f,%.3f) cx=%d cy=%d\n",
 ts, mm_off_x(d), mm_off_y(d), d->player.pos.x, d->player.pos.y, cx, cy); */
 
+/* r = ft_max(1, ts/3); // essayer avec ca plutot radius 1 pixel
+quand tile tres petit */
+
 /* petit cercle rempli pour le joueur */
 static void	draw_minimap_player(t_data *d)
 {
@@ -69,7 +71,6 @@ static void	draw_minimap_player(t_data *d)
 
 	ts = mm_tile_size(d);
 	r = ts / 3;
-	// r = ft_max(1, ts/3); // essayer avec ca plutot radius 1 pixel quand tile tres petit
 	cx = mm_off_x(d) + (int)(d->player.pos.y * ts + 0.5);
 	cy = mm_off_y(d) + (int)(d->player.pos.x * ts + 0.5);
 
@@ -90,6 +91,38 @@ static void	draw_minimap_player(t_data *d)
 		}
 		y++;
 	}
+}
+
+/* mini-map complète */
+void	draw_minimap(t_data *d)
+{
+	int		row;
+	int		col;
+	int		color;
+	char	c;
+
+	if (d == NULL || d->game == NULL || d->game->map == NULL)
+		return ;
+	row = 0;
+	while (row < d->game->height && d->game->map[row] != NULL)
+	{
+		col = 0;
+		while (col < d->game->width)
+		{
+			c = d->game->map[row][col];
+			if (c == ' ')
+			{
+				col++;
+				continue ;
+			}
+			color = mm_color_for_cell(d, c);
+			draw_minimap_cell(d, row, col, color);
+			col++;
+		}
+		row++;
+	}
+	draw_minimap_player(d);
+	draw_minimap_fov(d);
 }
 
 /* ligne horizontale jaune au centre de la mini-map */
@@ -118,37 +151,3 @@ static void	draw_minimap_player(t_data *d)
 		x++;
 	}
 } */
-
-/* mini-map complète */
-void	draw_minimap(t_data *d)
-{
-	int		row;
-	int		col;
-	int		color;
-	char	c;
-
-	if (d == NULL || d->game == NULL || d->game->map == NULL)
-		return ;
-
-	row = 0;
-	while (row < d->game->height && d->game->map[row] != NULL)
-	{
-		col = 0;
-		while (col < d->game->width)
-		{
-			c = d->game->map[row][col];
-			if (c == ' ')
-			{
-				col++;
-				continue ;
-			}
-			color = mm_color_for_cell(d, c);
-			draw_minimap_cell(d, row, col, color);
-			col++;
-		}
-		row++;
-	}
-	// draw_minimap_horizon(d);
-	draw_minimap_player(d);
-	draw_minimap_fov(d);
-}
