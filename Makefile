@@ -105,7 +105,8 @@ SRC_GFX = gfx/minimap.c \
 	gfx/minimap_utils.c \
 	gfx/draw.c \
 	gfx/accessorize.c \
-	gfx/texture.c
+	gfx/texture.c \
+	gfx/accessorize_fov.c
 
 SRC_RAYCAST = \
 	raycasting/dda.c \

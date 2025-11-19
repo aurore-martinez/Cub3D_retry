@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/19 09:47:30 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/19 10:21:05 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -307,7 +307,6 @@ int		on_clic(int button, int x, int y, t_data *d);
 bool	set_texture(t_data *data);
 void	request_redraw(t_data *d);
 int		loop_hook(t_data *d);
-double	calculate_ray_angle(t_data *d, int ray_idx, int num_rays);
 
 /* ========================== 🎨 TEXTURE ========================== */
 int		get_texture_pixel(void *img, int x, int y);
