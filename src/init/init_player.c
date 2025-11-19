@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:05:48 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/17 12:00:15 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/19 16:21:11 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ bool	init_player_from_game(t_data *data)
 	data->player.pos.x = (double)row + 0.5;
 	data->player.pos.y = (double)col + 0.5;
 	set_dir_plane_from_char(&data->player, (char)data->game->player_char);
-
 	/* taille fenerte ? res ??? */
 	if (data->scr_w <= 0)
 		data->scr_w = SCR_W;

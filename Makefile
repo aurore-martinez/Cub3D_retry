@@ -104,6 +104,7 @@ SRC_GFX = \
 	gfx/draw.c \
 	gfx/extra.c \
 	gfx/texture.c \
+	gfx/render.c \
 
 SRC_MINIMAP = \
 	minimap/minimap.c \
@@ -115,7 +116,6 @@ SRC_MINIMAP = \
 
 SRC_RAYCAST = \
 	raycasting/dda.c \
-	render/render.c \
 
 SRC_FILES = $(SRC_MAIN) $(SRC_DEBUG) $(SRC_PARSING) $(SRC_PLAYER) $(SRC_INIT) $(SRC_UTILS) $(SRC_GFX) $(SRC_RAYCAST) $(SRC_MINIMAP)
 

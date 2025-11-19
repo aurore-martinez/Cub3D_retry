@@ -6,13 +6,14 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 10:41:07 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/18 14:10:38 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/19 16:17:21 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
 /* cameraX en [-1,1] :	-1 = left	0 = centre	 +1 = right */
+/* calcule la direction du rayon pour une colonne caméra (cameraX in [-1,1]) */
 void	ray_build_dir(const t_vec *pl, double cameraX, t_dda *r)
 {
 	r->ray_row = pl->dir.x + pl->plane.x * cameraX;

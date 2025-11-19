@@ -6,16 +6,16 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:30:03 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/19 15:22:50 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/19 16:20:30 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static bool load_tex_checked(void *mlx, char *path, void **dst)
+static bool	load_tex_checked(void *mlx, char *path, void **dst)
 {
-	int w;
-	int h;
+	int	w;
+	int	h;
 
 	*dst = mlx_xpm_file_to_image(mlx, path, &w, &h);
 	if (!*dst)
@@ -34,16 +34,16 @@ static bool load_tex_checked(void *mlx, char *path, void **dst)
 bool	set_texture(t_data *data)
 {
 	if (!load_tex_checked(data->gfx->mlx, data->game->elements.path_north,
-		&data->gfx->texture.north))
+			&data->gfx->texture.north))
 		return (false);
 	if (!load_tex_checked(data->gfx->mlx, data->game->elements.path_south,
-		&data->gfx->texture.south))
+			&data->gfx->texture.south))
 		return (false);
 	if (!load_tex_checked(data->gfx->mlx, data->game->elements.path_west,
-		&data->gfx->texture.west))
+			&data->gfx->texture.west))
 		return (false);
 	if (!load_tex_checked(data->gfx->mlx, data->game->elements.path_east,
-		&data->gfx->texture.east))
+			&data->gfx->texture.east))
 		return (false);
 	data->gfx->texture.width = TEX_SIZE;
 	data->gfx->texture.height = TEX_SIZE;

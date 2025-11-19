@@ -6,14 +6,14 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 17:15:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/19 15:57:55 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/19 16:09:23 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
 /* Récupère la couleur d'un pixel dans une texture */
-int	get_texture_pixel(void *img, int x, int y)
+static int	get_texture_pixel(void *img, int x, int y)
 {
 	char	*addr;
 	int		bpp;
