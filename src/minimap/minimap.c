@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:34:10 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/19 13:06:32 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/19 13:25:46 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,32 +94,34 @@ static void	draw_minimap_player(t_data *d)
 }
 
 /* mini-map complète */
+/*
+x = col
+y = row
+*/
 void	draw_minimap(t_data *d)
 {
-	int		row;
-	int		col;
-	int		color;
+	t_point	p;
 	char	c;
 
 	if (d == NULL || d->game == NULL || d->game->map == NULL)
 		return ;
-	row = 0;
-	while (row < d->game->height && d->game->map[row] != NULL)
+	p.y = 0;
+	while (p.y < d->game->height && d->game->map[p.y] != NULL)
 	{
-		col = 0;
-		while (col < d->game->width)
+		p.x = 0;
+		while (p.x < d->game->width)
 		{
-			c = d->game->map[row][col];
+			c = d->game->map[p.y][p.x];
 			if (c == ' ')
 			{
-				col++;
+				p.x++;
 				continue ;
 			}
-			color = mm_color_for_cell(d, c);
-			draw_minimap_cell(d, row, col, color);
-			col++;
+			p.color = mm_color_for_cell(d, c);
+			draw_minimap_cell(d, p.y, p.x, p.color);
+			p.x++;
 		}
-		row++;
+		p.y++;
 	}
 	draw_minimap_player(d);
 	draw_minimap_fov(d);
