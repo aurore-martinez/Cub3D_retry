@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/19 15:14:46 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/19 15:39:41 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,14 +237,14 @@ typedef struct s_fov_prep
 	double	zoom;
 }	t_fov_prep;
 
-/* ==============================     INIT    ============================ */
+/* ==============================     ⚙️ INIT    ============================ */
 bool	init_mlx(t_gfx **gfx, int w, int h, const char *title);
 bool	init_game(t_game **game, char *filename);
 bool	init_data(t_data **data);
 bool	init_player_from_game(t_data *data);
 bool	set_camera(t_data *data);
 
-/* ========================    🦄 PARSING    ======================== */
+/* =============================   🦄 PARSING   ============================= */
 bool	check_map(t_game *game);
 char	**line_to_map(t_game *game, char *line);
 bool	check_line_char(t_game *game, char *line);
@@ -263,7 +263,7 @@ void	clean_data(t_data *data);
 void	print_error(char *str);
 void	exit_error(char *str);
 
-/* ========================	 🚧 DEBUG	 ======================== */
+/* =============================    🚧 DEBUG    ============================= */
 void	print_player_data(t_data *d);
 void	print_game(t_game *g);
 void	print_map(char **map);
@@ -278,7 +278,7 @@ bool	handle_player_moves(t_data *d);
 bool	cast_ray_perp_dist(t_data *d, double cameraX, double *perp_dist, int *side_hit, int *out_row, int *out_col);
 void	render_walls(t_data *d);
 
-/*	======================== 🔦🦇 RAYCASTING ======================== */
+/* ========================    🔦🦇 RAYCASTING    ======================== */
 
 /* calcule la direction du rayon pour une colonne caméra (cameraX in [-1,1]) */
 void	ray_build_dir(const t_vec *pl, double cameraX, t_dda *r);
@@ -289,26 +289,37 @@ bool	dda_advance_until_hit(t_game *g, t_dda *r);
 double	dda_perp_distance(t_dda *r);
 bool	is_wall(t_game *g, int row, int col);
 
-
-/* ========================== 📊 GFX ========================== */
-int		on_destroy_event(t_data *d);
+/* ============================    📊 GFX    ============================ */
+void	draw_crosshair(t_data *d);
+int		darken_color(int color);
 void	draw_pixel(t_img *img, t_point p);
 void	draw_hline(t_img *img, t_pos p0, int x1, int color);
 void	draw_vline(t_img *img, t_pos p0, int y1, int color);
 void	draw_col(t_data *d, t_pos start, int end, int color);
+void	request_redraw(t_data *d);
+
+/* ===========================    🎨 TEXTURE    =========================== */
+int		get_texture_pixel(void *img, int x, int y);
+void	*select_texture(t_data *d, t_dda *ray, int side);
+double	get_wall_x(t_data *d, t_dda *ray, double perp, int side);
+int		get_texture_x(t_dda *ray, double wall_x, int side);
+void	draw_textured_col(t_data *d, int x, int top, int bot, t_tex_params *p);
+
+/* ============================    🎮 EVENTS    =========================== */
+int		on_destroy_event(t_data *d);
 void	apply_walk(t_data *d, double nx, double ny, double margin);
 void	turn_player(t_data *d, double angle);
 int		render_frame(t_data *d);
 int		on_key_press(int key, t_data *d);
 int		on_key_release(int key, t_data *d);
-void	draw_crosshair(t_data *d);
+
 int		on_mouse(int x, int y, t_data *d);
 int		on_clic(int button, int x, int y, t_data *d);
 bool	set_texture(t_data *data);
-void	request_redraw(t_data *d);
+
 int		loop_hook(t_data *d);
 
-/* ========================== 🗺️ MINIMAP ========================== */
+/* ==========================    🗺️ MINIMAP    ========================== */
 int		mm_tile_size(t_data *d);
 int		mm_off_x(t_data *d);
 int		mm_off_y(t_data *d);
@@ -322,12 +333,5 @@ void	draw_player_disc(t_img *img, t_pos center, int radius, int color);
 void	draw_minimap_focus(t_data *d);
 void	draw_minimap(t_data *d);
 
-/* ========================== 🎨 TEXTURE ========================== */
-int		get_texture_pixel(void *img, int x, int y);
-int		darken_color(int color);
-void	*select_texture(t_data *d, t_dda *ray, int side);
-double	get_wall_x(t_data *d, t_dda *ray, double perp, int side);
-int		get_texture_x(t_dda *ray, double wall_x, int side);
-void	draw_textured_col(t_data *d, int x, int top, int bot, t_tex_params *p);
 
 #endif

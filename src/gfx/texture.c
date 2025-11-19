@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 17:15:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/18 15:15:56 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/19 15:31:27 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,6 @@ int	get_texture_pixel(void *img, int x, int y)
 		return (0);
 	offset = y * line_len + x * (bpp / 8);
 	return (*(int *)(addr + offset));
-}
-
-/* Assombrit une couleur (divise par 2) pour les côtés */
-int	darken_color(int color)
-{
-	int	r;
-	int	g;
-	int	b;
-
-	r = (color >> 16) & 0xFF;
-	g = (color >> 8) & 0xFF;
-	b = color & 0xFF;
-	r /= 2;
-	g /= 2;
-	b /= 2;
-	return ((r << 16) | (g << 8) | b);
 }
 
 /* Choisit la texture selon la direction du mur */

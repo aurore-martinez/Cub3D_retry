@@ -102,7 +102,7 @@ SRC_UTILS = \
 
 SRC_GFX = \
 	gfx/draw.c \
-	gfx/accessorize.c \
+	gfx/extra.c \
 	gfx/texture.c \
 
 SRC_MINIMAP = \
