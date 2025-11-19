@@ -85,6 +85,8 @@ SRC_PARSING = \
 	parsing/parsing_utils.c
 
 SRC_PLAYER = \
+	player/events.c \
+	player/events_mouse.c \
 	player/player_move.c \
 	player/movement.c
 
@@ -95,20 +97,19 @@ SRC_INIT = \
 
 SRC_UTILS = \
 	utils/cleanup.c \
-	utils/print_error.c
+	utils/print_error.c \
+	utils/utils.c
 
 SRC_GFX = gfx/minimap.c \
 	gfx/minimap_focus.c \
 	gfx/minimap_utils.c \
 	gfx/draw.c \
-	gfx/render.c \
-	gfx/events.c \
 	gfx/accessorize.c \
 	gfx/texture.c
 
 SRC_RAYCAST = \
 	raycasting/dda.c \
-	raycasting/ray.c \
+	render/render.c \
 
 SRC_FILES = $(SRC_MAIN) $(SRC_DEBUG) $(SRC_PARSING) $(SRC_PLAYER) $(SRC_INIT) $(SRC_UTILS) $(SRC_GFX) $(SRC_RAYCAST)
 

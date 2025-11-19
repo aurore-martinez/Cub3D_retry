@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/18 16:32:48 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/19 09:08:40 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@
 /* Taille fixe des textures murales */
 # define TEX_SIZE 256
 
-/* # define SCR_W 960
-# define SCR_H 640 */
-# define SCR_W 1920
-# define SCR_H 1080
+# define SCR_W 960
+# define SCR_H 640
+// # define SCR_W 1920
+// # define SCR_H 1080
 
 # define MOVE_SPEED 0.05
 # define ROT_SPEED 0.05
@@ -175,17 +175,18 @@ typedef struct s_keypress
 	bool	down;
 	bool	left;
 	bool	right;
+	bool	mouse;
 }	t_keypress;
 
 typedef struct s_data
 {
-	t_game	*game;
-	t_vec	player;
-	t_gfx	*gfx;
+	t_game		*game;
+	t_vec		player;
+	t_gfx		*gfx;
 	t_keypress	key;
-	int		scr_w;
-	int		scr_h;
-	bool	need_redraw;
+	int			scr_w;
+	int			scr_h;
+	bool		need_redraw;
 }	t_data;
 
 typedef struct s_dda
@@ -302,6 +303,7 @@ int		mm_off_y(t_data *d);
 double	get_zoom_by_map_size(t_data *d);
 double	mf_get_zoom_factor(t_data *d, int r, int base_ts);
 int		on_mouse(int x, int y, t_data *d);
+int		on_clic(int button, int x, int y, t_data *d);
 bool	set_texture(t_data *data);
 void	request_redraw(t_data *d);
 int		loop_hook(t_data *d);
