@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/19 14:59:55 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/19 15:14:46 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -302,13 +302,6 @@ int		render_frame(t_data *d);
 int		on_key_press(int key, t_data *d);
 int		on_key_release(int key, t_data *d);
 void	draw_crosshair(t_data *d);
-int		mm_tile_size(t_data *d);
-int		mm_off_x(t_data *d);
-int		mm_off_y(t_data *d);
-int		mm_color_for_cell(t_data *d, char c);
-int		mf_tile_size(t_data *d);
-int		mf_off_x(t_data *d);
-int		mf_off_y(t_data *d);
 int		on_mouse(int x, int y, t_data *d);
 int		on_clic(int button, int x, int y, t_data *d);
 bool	set_texture(t_data *data);
@@ -316,6 +309,13 @@ void	request_redraw(t_data *d);
 int		loop_hook(t_data *d);
 
 /* ========================== 🗺️ MINIMAP ========================== */
+int		mm_tile_size(t_data *d);
+int		mm_off_x(t_data *d);
+int		mm_off_y(t_data *d);
+int		mm_color_for_cell(t_data *d, char c);
+int		mf_tile_size(t_data *d);
+int		mf_off_x(t_data *d);
+int		mf_off_y(t_data *d);
 void	draw_minimap_fov(t_data *d);
 void	draw_minimap_cell(t_img *img, t_point cell, int size);
 void	draw_player_disc(t_img *img, t_pos center, int radius, int color);
@@ -328,7 +328,6 @@ int		darken_color(int color);
 void	*select_texture(t_data *d, t_dda *ray, int side);
 double	get_wall_x(t_data *d, t_dda *ray, double perp, int side);
 int		get_texture_x(t_dda *ray, double wall_x, int side);
-void	draw_textured_col(t_data *d, int x, int top, int bot,
-					 t_tex_params *p);
+void	draw_textured_col(t_data *d, int x, int top, int bot, t_tex_params *p);
 
 #endif
