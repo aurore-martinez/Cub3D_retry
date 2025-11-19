@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/19 14:56:45 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/19 14:59:55 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -301,10 +301,7 @@ void	turn_player(t_data *d, double angle);
 int		render_frame(t_data *d);
 int		on_key_press(int key, t_data *d);
 int		on_key_release(int key, t_data *d);
-void	draw_minimap(t_data *d);
-void	draw_minimap_focus(t_data *d);
 void	draw_crosshair(t_data *d);
-void	draw_minimap_fov(t_data *d);
 int		mm_tile_size(t_data *d);
 int		mm_off_x(t_data *d);
 int		mm_off_y(t_data *d);
@@ -319,8 +316,11 @@ void	request_redraw(t_data *d);
 int		loop_hook(t_data *d);
 
 /* ========================== 🗺️ MINIMAP ========================== */
+void	draw_minimap_fov(t_data *d);
 void	draw_minimap_cell(t_img *img, t_point cell, int size);
 void	draw_player_disc(t_img *img, t_pos center, int radius, int color);
+void	draw_minimap_focus(t_data *d);
+void	draw_minimap(t_data *d);
 
 /* ========================== 🎨 TEXTURE ========================== */
 int		get_texture_pixel(void *img, int x, int y);
