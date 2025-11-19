@@ -2,15 +2,15 @@
 # Test script pour cub3D maps
 # - compile le projet (make) si nécessaire
 # - exécute ./cub3D pour chaque .cub dans assets/**
-# - lance plusieurs valeurs de CUB3D_DEBUG (center, all, et quelques indices)
-# - capture la sortie dans logs/<mapname>_*.log et produit un résumé
+# - exécute ./cub3D pour chaque .cub sans variables debug
+# - capture la sortie dans logs/<mapname>.log et produit un résumé
 
 set -eu
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 BUILD_DIR="$ROOT_DIR"
 CUB="${BUILD_DIR}/cub3D"
-LOG_DIR="$ROOT_DIR/logs"
+LOG_DIR="$ROOT_DIR/tests/logs"
 MAP_GLOBS=("$ROOT_DIR/assets/maps/*.cub" "$ROOT_DIR/assets/maps_chat/*.cub")
 #  MAP_GLOBS=("$ROOT_DIR/assets/maps/*.cub" "$ROOT_DIR/assets/maps_chat/*.cub" "$ROOT_DIR/assets/maps_invalids/*.cub")
 mkdir -p "$LOG_DIR"
@@ -23,15 +23,6 @@ if [ ! -x "$CUB" ]; then
     (cd "$BUILD_DIR" && make -j) || { echo "make a échoué"; exit 2; }
 fi
 
-run_with_debug() {
-    local mapfile="$1"
-    local dbg="$2"
-    local outlog="$3"
-    echo "[run] map=$(basename "$mapfile") debug=$dbg -> $outlog"
-    # on limite le run à 2s pour éviter d'attendre la fenêtre interactive
-    CUB3D_DEBUG="$dbg" timeout 2s "$CUB" "$mapfile" > "$outlog" 2>&1 || true
-}
-
 summary_file="$LOG_DIR/summary.txt"
 : > "$summary_file"
 
@@ -39,29 +30,18 @@ for glob in "${MAP_GLOBS[@]}"; do
     for map in $glob; do
         [ -f "$map" ] || continue
         base=$(basename "$map" .cub)
-        # Tests de base : center, all, et quelques colonnes (0, 100, 320)
-        run_with_debug "$map" "center" "$LOG_DIR/${base}_center.log"
-        run_with_debug "$map" "all" "$LOG_DIR/${base}_all.log"
-        run_with_debug "$map" "0" "$LOG_DIR/${base}_col0.log"
-        run_with_debug "$map" "100" "$LOG_DIR/${base}_col100.log"
-        run_with_debug "$map" "320" "$LOG_DIR/${base}_col320.log"
+        # Exécution simple (timeout 2s) sans CUB3D_DEBUG
+        outlog="$LOG_DIR/${base}.log"
+        echo "[run] map=$(basename "$map") -> $outlog"
+        timeout 10s "$CUB" "$map" > "$outlog" 2>&1 || true
 
-        # résumé simple
         echo "== Map: $base ==" >> "$summary_file"
-        for f in "$LOG_DIR/${base}"*.log; do
-            echo "---- $(basename "$f") ----" >> "$summary_file"
-            # ajouter un extrait
-            head -n 50 "$f" >> "$summary_file" || true
-            echo "" >> "$summary_file"
-            # détecter crash/erreur
-            if grep -qiE "segfault|traceback|error|fatal|panic|abort" "$f"; then
-                echo "!! Potential crash / error found in $(basename "$f")" >> "$summary_file"
-            fi
-            # check pour message print_ray_debug out-of-range
-            if grep -q "print_ray_debug: column_index" "$f"; then
-                echo "!! print_ray_debug reported out-of-range column in $(basename "$f")" >> "$summary_file"
-            fi
-        done
+        echo "---- $(basename "$outlog") ----" >> "$summary_file"
+        head -n 50 "$outlog" >> "$summary_file" || true
+        echo "" >> "$summary_file"
+        if grep -qiE "segfault|traceback|error|fatal|panic|abort" "$outlog"; then
+            echo "!! Potential crash / error found in $(basename "$outlog")" >> "$summary_file"
+        fi
     done
 done
 

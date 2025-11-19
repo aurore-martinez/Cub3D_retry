@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 16:30:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/19 10:09:57 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/19 10:40:57 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,15 @@ static int	mf_color_for_cell(t_data *d, char c)
 	return (GRAY);
 }
 
-static void	draw_focus_cell(t_data *d, int x, int y, int size, int color)
+/* static void	draw_focus_cell(t_data *d, int x, int y, int size, int color) */
+/* cell (x,y,color) -> dessine une cell size x size */
+static void	draw_focus_cell(t_data *d, t_point cell, int size)
 {
-	int	i;
-	int	j;
+	int		j;
+	int		i;
 	t_point	p;
 
-	if (size <= 0 || d == NULL)
+	if (!d || size <= 0)
 		return ;
 	j = 0;
 	while (j < size)
@@ -43,9 +45,9 @@ static void	draw_focus_cell(t_data *d, int x, int y, int size, int color)
 		i = 0;
 		while (i < size)
 		{
-			p.x = x + i;
-			p.y = y + j;
-			p.color = color;
+			p.x = cell.x + i;
+			p.y = cell.y + j;
+			p.color = cell.color;
 			draw_pixel(&d->gfx->frame, p);
 			i++;
 		}
@@ -53,24 +55,23 @@ static void	draw_focus_cell(t_data *d, int x, int y, int size, int color)
 	}
 }
 
-static void	draw_focus_player(t_data *d, int ts, int crop_x, int crop_y,
-	int start_row, int start_col)
+static void	draw_focus_player(t_data *d, int ts, t_pos crop, t_pos start)
 {
-	int		player_screen_x;
-	int		player_screen_y;
-	int		cx;
-	int		cy;
 	int		pr;
 	int		px;
 	int		py;
+	int		cx;
+	int		cy;
+	double	fx;
+	double	fy;
 	t_point	p;
 
-	if (d == NULL)
+	if (!d)
 		return ;
-	player_screen_x = (int)(d->player.pos.y) - start_col;
-	player_screen_y = (int)(d->player.pos.x) - start_row;
-	cx = crop_x + player_screen_x * ts + ts / 2;
-	cy = crop_y + player_screen_y * ts + ts / 2;
+	fx = d->player.pos.y - start.y;
+	fy = d->player.pos.x - start.x;
+	cx = crop.x + (int)(fx * ts + 0.5);
+	cy = crop.y + (int)(fy * ts + 0.5);
 	pr = ts / 3;
 	if (pr < 1)
 		pr = 1;
@@ -100,18 +101,15 @@ void	draw_minimap_focus(t_data *d)
 	int		r;
 	int		p_row;
 	int		p_col;
-	int		start_row;
-	int		start_col;
-	int		end_row;
-	int		end_col;
-	int		crop_x;
-	int		crop_y;
+	t_pos	start;
+	t_pos	end;
+	t_pos	crop;
 	int		row;
 	int		col;
 	int		base_ts;
 	double	zoom;
 
-	if (d == NULL || d->game == NULL || d->game->map == NULL)
+	if (!d || !d->game || !d->game->map)
 		return ;
 	r = 8;
 	base_ts = mm_tile_size(d);
@@ -119,38 +117,42 @@ void	draw_minimap_focus(t_data *d)
 	ts = (int)(base_ts * zoom);
 	if (ts <= 0)
 		ts = 1;
-	p_row = (int)(d->player.pos.x);
-	p_col = (int)(d->player.pos.y);
-	start_row = p_row - r;
-	if (start_row < 0)
-		start_row = 0;
-	end_row = p_row + r;
-	if (end_row >= d->game->height)
-		end_row = d->game->height - 1;
-	start_col = p_col - r;
-	if (start_col < 0)
-		start_col = 0;
-	end_col = p_col + r;
-	if (end_col >= d->game->width)
-		end_col = d->game->width - 1;
-	crop_x = 20;
-	crop_y = 20;
-	row = start_row;
-	while (row <= end_row)
+	p_row = (int)d->player.pos.x;
+	p_col = (int)d->player.pos.y;
+	start.x = p_row - r;
+	if (start.x < 0)
+		start.x = 0;
+	end.x = p_row + r;
+	if (end.x >= d->game->height)
+		end.x = d->game->height - 1;
+	start.y = p_col - r;
+	if (start.y < 0)
+		start.y = 0;
+	end.y = p_col + r;
+	if (end.y >= d->game->width)
+		end.y = d->game->width - 1;
+	crop.x = 20;
+	crop.y = 20;
+	row = start.x;
+	while (row <= end.x)
 	{
-		col = start_col;
-		while (col <= end_col)
+		col = start.y;
+		while (col <= end.y)
 		{
 			if (d->game->map[row][col] != ' ')
-			{
-			draw_focus_cell(d, crop_x + (col - start_col) * ts,
-				crop_y + (row - start_row) * ts, ts,
-				mf_color_for_cell(d, d->game->map[row][col]));
-			}
+				draw_focus_cell(
+					d,
+					(t_point){
+						crop.x + (col - start.y) * ts,
+						crop.y + (row - start.x) * ts,
+						mf_color_for_cell(d, d->game->map[row][col])
+					},
+					ts
+				);
 			col++;
 		}
 		row++;
 	}
-	draw_focus_player(d, ts, crop_x, crop_y, start_row, start_col);
+	draw_focus_player(d, ts, crop, start);
 	draw_minimap_fov(d);
 }
