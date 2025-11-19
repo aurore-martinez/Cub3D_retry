@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 11:00:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/19 10:14:59 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/19 10:55:44 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,3 @@ void	draw_crosshair(t_data *d)
 	draw_vline(&d->gfx->frame, (t_pos){midx, midy + 5}, midy + 15,
 		UI_CROSSHAIR_COLOR);
 }
-
-
