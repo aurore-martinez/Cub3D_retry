@@ -6,21 +6,20 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:34:10 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/19 13:25:46 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/19 13:47:59 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static void	draw_square(t_img *img, int x, int y, int size, int color)
+/* dessine une cell*/
+static void	draw_minimap_cell(t_img *img, t_point cell, int size)
 {
 	int		i;
 	int		j;
 	t_point	p;
 
-	if (img == NULL)
-		return ;
-	if (size <= 0)
+	if (!img || size <= 0)
 		return ;
 	j = 0;
 	while (j < size)
@@ -28,9 +27,9 @@ static void	draw_square(t_img *img, int x, int y, int size, int color)
 		i = 0;
 		while (i < size)
 		{
-			p.x = x + i;
-			p.y = y + j;
-			p.color = color;
+			p.x = cell.x + i;
+			p.y = cell.y + j;
+			p.color = cell.color;
 			draw_pixel(img, p);
 			i++;
 		}
@@ -38,58 +37,71 @@ static void	draw_square(t_img *img, int x, int y, int size, int color)
 	}
 }
 
-/* dessine 1 cellule */
-static void	draw_minimap_cell(t_data *d, int row, int col, int color)
-{
-	int	x;
-	int	y;
-	int	ts;
-
-	ts = mm_tile_size(d);
-	x = mm_off_x(d) + col * ts;
-	y = mm_off_y(d) + row * ts;
-	draw_square(&d->gfx->frame, x, y, ts, color);
-}
-
 /* debug: print full minimap player computed positions
 printf("FULL: ts=%d off=(%d,%d) p=(%.3f,%.3f) cx=%d cy=%d\n",
 ts, mm_off_x(d), mm_off_y(d), d->player.pos.x, d->player.pos.y, cx, cy); */
 
 /* r = ft_max(1, ts/3); // essayer avec ca plutot radius 1 pixel
-quand tile tres petit */
+quand tile tres petit
+
+c => center : position pixel du centre (joueur).
+rel => va de -radius a +radius (distance horiz/vert par rapport au centre). */
 
 /* petit cercle rempli pour le joueur */
 static void	draw_minimap_player(t_data *d)
 {
 	int		ts;
 	int		r;
-	int		cx;
-	int		cy;
-	int		x;
-	int		y;
+	t_pos	c;
+	t_pos	rel;
 	t_point	p;
 
 	ts = mm_tile_size(d);
 	r = ts / 3;
-	cx = mm_off_x(d) + (int)(d->player.pos.y * ts + 0.5);
-	cy = mm_off_y(d) + (int)(d->player.pos.x * ts + 0.5);
-
-	y = -r;
-	while (y <= r)
+	c = (t_pos){mm_off_x(d) + (int)(d->player.pos.y * ts + 0.5),
+		mm_off_y(d) + (int)(d->player.pos.x * ts + 0.5)};
+	rel.y = -r;
+	while (rel.y <= r)
 	{
-		x = -r;
-		while (x <= r)
+		rel.x = -r;
+		while (rel.x <= r)
 		{
-			if (x * x + y * y <= r * r)
+			if (rel.x * rel.x + rel.y * rel.y <= r * r)
 			{
-				p.x = cx + x;
-				p.y = cy + y;
-				p.color = UI_PLAYER_COLOR;
+				p = (t_point){c.x + rel.x, c.y + rel.y, UI_PLAYER_COLOR};
 				draw_pixel(&d->gfx->frame, p);
 			}
-			x++;
+			rel.x++;
 		}
-		y++;
+		rel.y++;
+	}
+}
+
+/* boucle de dessin des cellules */
+static void	draw_cells(t_data *d, int ts, int off_x, int off_y)
+{
+	int		row;
+	int		col;
+	char	c;
+	t_point	p;
+
+	row = 0;
+	while (row < d->game->height && d->game->map[row])
+	{
+		col = 0;
+		while (col < d->game->width)
+		{
+			c = d->game->map[row][col];
+			if (c != ' ')
+			{
+				p.x = off_x + col * ts;
+				p.y = off_y + row * ts;
+				p.color = mm_color_for_cell(d, c);
+				draw_minimap_cell(&d->gfx->frame, p, ts);
+			}
+			col++;
+		}
+		row++;
 	}
 }
 
@@ -100,29 +112,16 @@ y = row
 */
 void	draw_minimap(t_data *d)
 {
-	t_point	p;
-	char	c;
+	int	ts;
+	int	off_x;
+	int	off_y;
 
-	if (d == NULL || d->game == NULL || d->game->map == NULL)
+	if (!d || !d->game || !d->game->map)
 		return ;
-	p.y = 0;
-	while (p.y < d->game->height && d->game->map[p.y] != NULL)
-	{
-		p.x = 0;
-		while (p.x < d->game->width)
-		{
-			c = d->game->map[p.y][p.x];
-			if (c == ' ')
-			{
-				p.x++;
-				continue ;
-			}
-			p.color = mm_color_for_cell(d, c);
-			draw_minimap_cell(d, p.y, p.x, p.color);
-			p.x++;
-		}
-		p.y++;
-	}
+	ts = mm_tile_size(d);
+	off_x = mm_off_x(d);
+	off_y = mm_off_y(d);
+	draw_cells(d, ts, off_x, off_y);
 	draw_minimap_player(d);
 	draw_minimap_fov(d);
 }
