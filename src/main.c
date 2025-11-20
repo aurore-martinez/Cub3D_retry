@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 13:43:03 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/18 17:29:52 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/20 11:37:46 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ static bool	init_3d(t_data *data)
 {
 	if (!init_player_from_game(data))
 		return (false);
-	print_player_data(data);
 	if (!init_mlx(&data->gfx, data->scr_w, data->scr_h, "cub3D"))
 		return (false);
 	if (!set_texture(data))

@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:30:03 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/19 16:20:30 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/20 11:26:53 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,6 @@ static bool	init_gfx(t_gfx *gfx)
 	gfx->cam.x_offset = 0;
 	gfx->cam.y_offset = 0;
 	gfx->cam.show_full_minimap = false;
-	gfx->cam.zoom = 1.0f; // init mais non used
-	gfx->cam.z_scale = 1; // init mais non used
-	gfx->cam.color = 0xFFFFFF; // init mais non used
 	gfx->texture.north = NULL;
 	gfx->texture.south = NULL;
 	gfx->texture.west = NULL;

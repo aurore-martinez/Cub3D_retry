@@ -105,6 +105,7 @@ SRC_GFX = \
 	gfx/extra.c \
 	gfx/texture.c \
 	gfx/render.c \
+	gfx/dda.c \
 
 SRC_MINIMAP = \
 	minimap/minimap.c \
@@ -114,10 +115,7 @@ SRC_MINIMAP = \
 	minimap/param_cam_minimap.c \
 	minimap/param_cam_minimap_focus.c \
 
-SRC_RAYCAST = \
-	raycasting/dda.c \
-
-SRC_FILES = $(SRC_MAIN) $(SRC_DEBUG) $(SRC_PARSING) $(SRC_PLAYER) $(SRC_INIT) $(SRC_UTILS) $(SRC_GFX) $(SRC_RAYCAST) $(SRC_MINIMAP)
+SRC_FILES = $(SRC_MAIN) $(SRC_DEBUG) $(SRC_PARSING) $(SRC_PLAYER) $(SRC_INIT) $(SRC_UTILS) $(SRC_GFX) $(SRC_MINIMAP)
 
 # Chemins complets des sources et objets
 SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))
@@ -213,6 +211,7 @@ fclean: clean
 	@$(RM) $(NAME)
 	@$(MAKE) $(LIB_DIR) fclean
 	@$(MAKE) $(MLX_DIR) clean > /dev/null 2>&1
+	@$(RM) $(MLX_BASE)
 	@echo -e "$(CLEAR_LINE) Nettoyage complet fclean réussi (✔)"
 
 re: fclean all

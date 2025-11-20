@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/19 16:28:51 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/20 11:46:09 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # include <X11/keysym.h>
 # include "keys.h"
 # include "color.h"
-# include "palette.h"
 # include <limits.h>
 # include <stdbool.h>
 # include <sys/types.h>
@@ -117,11 +116,8 @@ typedef struct s_point
 /* Cam 2D (mini-map), issue de FdF */
 typedef struct s_cam
 {
-	float	zoom; // init mais pas utilise
 	int		x_offset;
 	int		y_offset;
-	int		color; // init mais pas utilise
-	int		z_scale; // init mais pas utilise
 	int		tile_size;
 	bool	show_full_minimap;
 }	t_cam;

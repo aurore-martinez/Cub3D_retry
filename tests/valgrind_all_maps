@@ -3,7 +3,7 @@
 GRIND=(valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all --track-fds=yes)
 BIN="./cub3D"
 MAPDIR="assets/maps/"
-OUTFILE="test.txt"
+OUTFILE="tests/test.txt"
 
 > "$OUTFILE"
 

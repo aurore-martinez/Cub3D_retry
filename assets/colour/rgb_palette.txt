@@ -1,0 +1,80 @@
+# Palette RGB / HEX additionnelle pour Cub3D
+# Format: NOM;HEX;R;G;B;NOTE (commentaire d'usage)
+# Tu peux parser facilement en séparant par ';'.
+# =============================================================
+# --- Couleurs neutres & UI ---
+BLANC_NEUTRE;0xFFFFFF;255;255;255;Fond neutre / highlight
+NOIR_PROFOND;0x000000;0;0;0;Texte contrasté / outlines
+GRIS_25;0x404040;64;64;64;Ombres fortes
+GRIS_50;0x7F7F7F;127;127;127;UI désactivée / neutre
+GRIS_75;0xBFBFBF;191;191;191;Cadres / séparateurs
+GRIS_BLEUTE;0xA8B4C4;168;180;196;Alternative métal froid
+
+# --- Pastels doux (ambiances lumineuses) ---
+PASTEL_ROSE;0xFFCCE1;255;204;225;Ambiance douce / zone safe
+PASTEL_BLEU;0xCDE9FF;205;233;255;Ciel / halo magique
+PASTEL_VERT;0xCFF7D4;207;247;212;Zones de soin / herbe légère
+PASTEL_JAUNE;0xFFF7C2;255;247;194;Lumière chaude diffuse
+PASTEL_LILAS;0xE6D4FF;230;212;255;Effet mystique / portail
+
+# --- Couleurs d'alerte / feedback ---
+ALERTE_ROUGE;0xFF2D2D;255;45;45;Dégâts / danger immédiat
+ALERTE_ORANGE;0xFF7A1F;255;122;31;Attention / avertissement
+ALERTE_JAUNE;0xFFE233;255;226;51;Interaction possible
+ALERTE_VERT;0x33D98C;51;217;140;Succès / validation
+ALERTE_BLEU;0x339DFF;51;157;255;Info / notification
+
+# --- Couleurs de profondeur (dégradés / ombres) ---
+SHADOW_1;0x1A1A1A;26;26;26;Ombre très sombre
+SHADOW_2;0x262626;38;38;38;Ombre sombre
+SHADOW_3;0x333333;51;51;51;Ombre moyenne
+SHADOW_4;0x3F3F3F;63;63;63;Transition vers mur
+SHADOW_SOFT;0x494949;73;73;73;Ombre douce large
+
+# --- Couleurs spéciaux (glow / énergie / fantasy) ---
+GLOW_CYAN;0x66FCFF;102;252;255;Énergie / cristaux
+GLOW_MAGENTA;0xFF3CD9;255;60;217;Magie / portail
+GLOW_LIME;0xB6FF3C;182;255;60;Champ de force / buff
+GLOW_GOLD;0xFFD94D;255;217;77;Trésor / rare
+GLOW_PURPLE;0x9F56FF;159;86;255;Aura / vortex
+
+# --- Terre / matériaux ---
+TERRE_BRUNE;0x7B4F27;123;79;39;Sol naturel
+TERRE_ARGILE;0xA66E3B;166;110;59;Parois / mur rustique
+PIERRE_FROIDE;0x7F8B91;127;139;145;Roche / métal terni
+PIERRE_CLAIRE;0xB8C4CC;184;196;204;Pierre éclairée
+SABLE_CHAUD;0xD9C29A;217;194;154;Sol désert / plage
+
+# --- Eau / liquides ---
+EAU_CLAIRE;0x62C6FF;98;198;255;Surface eau claire
+EAU_PROFONDE;0x0F4F73;15;79;115;Eau profonde / océan
+EAU_LAGON;0x25B8C8;37;184;200;Eau tropicale
+TOXIQUE_VERT;0x3CD946;60;217;70;Liquide corrosif
+LAVE_ROUGE;0xFF3C1F;255;60;31;Lave / zone mortelle
+
+# --- Bonus mini-map (contraste) ---
+MM_FOND_DARK;0x1E1E24;30;30;36;Fond map sombre
+MM_FOND_LIGHT;0xECECEC;236;236;236;Fond map clair
+MM_WALL_LIGHT;0x909090;144;144;144;Mur accessible / vision
+MM_WALL_SOLID;0x5A5A5A;90;90;90;Mur solide
+MM_PLAYER;0xFF66B2;255;102;178;Joueur (reprend PLAYER_COLOR)
+MM_ENEMY;0xFF4040;255;64;64;Ennemi
+MM_ITEM;0xF5E663;245;230;99;Item
+
+# --- Dégradés utilitaires (progress bar / santé) ---
+HP_GREEN;0x4BD64B;75;214;75;Vie élevée
+HP_YELLOW;0xFFD94D;255;217;77;Vie moyenne
+HP_ORANGE;0xFF9A30;255;154;48;Vie basse
+HP_RED;0xFF3C30;255;60;48;Critique
+
+# --- Nuits / ambiance sombre ---
+NUIT_BLEU;0x0F1E3A;15;30;58;Nuit froide
+NUIT_VIOLET;0x1E0F3A;30;15;58;Nuit mystique
+NUIT_BRUME;0x2A3542;42;53;66;Brume / lointain
+
+# =============================================================
+# Astuce pour l'ajout dans le code C:
+# - Conversion hex -> int déjà prête (0xXXXXXXXX)
+# - Pour générer un assombrissement: (couleur & 0xFEFEFE) >> 1  (rapide) ou fonction facteur.
+# - Évite de multiplier les defines: tu peux regrouper ces noms dans un loader ou parser CSV.
+# =============================================================
