@@ -1,8 +1,8 @@
-SO ./texture/wolftextures.xpm
-WE ./texture/wolftextures.xpm
-EA ./texture/wolftextures.xpm
+SO ./assets/textures/mario/north.xpm
+WE ./assets/textures/mario/south.xpm
+EA ./assets/textures/mario/east.xpm
 
-NO ./texture/eagle.xpm
+NO ./assets/textures/mario/west.xpm
 F 220,100,0
 C 225,30,0
 

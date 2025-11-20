@@ -1,19 +1,19 @@
-NO  ./assets/textures/mario/north.xpm
-SO  ./assets/textures/mario/south.xpm
-F 220,100,0
+NO ./assets/textures/mario/north.xpm
+SO ./assets/textures/mario/south.xpm
+WE ./assets/textures/mario/east.xpm
+EA ./assets/textures/mario/west.xpm
 
-WE  ./assets/textures/mario/east.xpm
-EA  ./assets/textures/mario/west.xpm
 
-F 220,100,0
-C 225,30,0
+F 110,70,40
+C 240,240,230
 
         1111111111111111111111111
         1000000000110000000000001
         1011000001110000000000001
         1001000000000000000000001
 111111111011000001110000000000001
-100000000011000001110111111111111
+100000000011000001110111110011111
+
 11110111111111011100000010001
 11110111111111011101010010001
 11000000110101011100000010001
