@@ -3,3 +3,4 @@ minilibx/minilibx_macos_opengl/
 ./cub3D
 ./tests/logs
 ./minilibx
+./src/.vscode
