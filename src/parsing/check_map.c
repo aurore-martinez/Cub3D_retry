@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:01:59 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/10 14:29:23 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/20 12:02:51 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ static bool	is_map_valid(t_game *game)
 		print_error("The playable area must be enclosed by walls");
 		return (false);
 	}
-	print_map(map_copy);
 	free_split(map_copy);
 	return (true);
 }

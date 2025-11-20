@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/20 11:46:09 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/20 12:03:35 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@
 /* Taille fixe des textures murales */
 # define TEX_SIZE 256
 
-# define SCR_W 960
-# define SCR_H 640
-// # define SCR_W 1920
-// # define SCR_H 1080
+/* # define SCR_W 960
+# define SCR_H 640 */
+# define SCR_W 1280
+# define SCR_H 720
 
-# define MOVE_SPEED 0.05
+# define MOVE_SPEED 0.15
 # define ROT_SPEED 0.05
 // int mlx_get_color_value(t_xvar *xvar,int color)? voir use col.c ??
 

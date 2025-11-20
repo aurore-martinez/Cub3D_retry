@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 13:43:03 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/20 11:37:46 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/20 12:02:48 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static bool	parsing(char *file, t_game **game)
 		return (false);
 	if (!check_map(*game))
 		return (false);
-	print_map((*game)->map);
 	return (true);
 }
 

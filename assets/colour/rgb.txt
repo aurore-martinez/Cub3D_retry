@@ -1,0 +1,111 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                            rgb_defs.h                                      */
+/*                                                                            */
+/*  Définitions de couleurs au format RGB(r,g,b) -> int 0xRRGGBB              */
+/*  Usage: inclure ce fichier APRÈS avoir défini le macro RGB ci-dessous      */
+/*                                                                            */
+/* ************************************************************************** */
+#ifndef RGB_DEFS_H
+# define RGB_DEFS_H
+
+/* Macro de conversion (r,g,b) -> 0xRRGGBB */
+# ifndef RGB
+#  define RGB(r,g,b) (((r & 0xFF) << 16) | ((g & 0xFF) << 8) | (b & 0xFF))
+# endif
+
+/* === Couleurs basiques === */
+# define C_BLACK          RGB(0,0,0)
+# define C_WHITE          RGB(255,255,255)
+# define C_RED            RGB(255,0,0)
+# define C_GREEN          RGB(0,255,0)
+# define C_BLUE           RGB(0,0,255)
+# define C_YELLOW         RGB(255,255,0)
+# define C_CYAN           RGB(0,255,255)
+# define C_MAGENTA        RGB(255,0,255)
+
+/* === Gris / neutres === */
+# define C_GRAY_LIGHT     RGB(191,191,191)
+# define C_GRAY           RGB(128,128,128)
+# define C_GRAY_DARK      RGB(64,64,64)
+# define C_SHADOW_SOFT    RGB(73,73,73)
+# define C_SHADOW_DEEP    RGB(26,26,26)
+
+/* === Tons chauds === */
+# define C_ORANGE         RGB(255,165,0)
+# define C_DARKORANGE     RGB(255,140,0)
+# define C_GOLD           RGB(255,215,0)
+# define C_TAN            RGB(210,180,140)
+# define C_BEIGE          RGB(245,245,220)
+# define C_BROWN          RGB(139,69,19)
+# define C_SIENNA         RGB(160,82,45)
+
+/* === Variantes rouges / roses === */
+# define C_DARKRED        RGB(139,0,0)
+# define C_CRIMSON        RGB(220,20,60)
+# define C_PINK           RGB(255,192,203)
+# define C_HOTPINK        RGB(255,105,180)
+# define C_PLAYER_PINK    RGB(255,102,178) /* joueur mini-map */
+
+/* === Violets / pourpre === */
+# define C_PURPLE         RGB(128,0,128)
+# define C_VIOLET         RGB(238,130,238)
+# define C_LILAC_SOFT     RGB(230,212,255)
+# define C_GLOW_PURPLE    RGB(159,86,255)
+
+/* === Bleus === */
+# define C_DARKBLUE       RGB(0,0,139)
+# define C_STEELBLUE      RGB(70,130,180)
+# define C_SKYBLUE        RGB(135,206,235)
+# define C_LIGHTBLUE      RGB(173,216,230)
+# define C_WATER          RGB(127,200,227)
+# define C_DEEPWATER      RGB(15,79,115)
+# define C_CYAN_GLOW      RGB(102,252,255)
+
+/* === Verts === */
+# define C_DARKGREEN      RGB(0,100,0)
+# define C_FORESTGREEN    RGB(34,139,34)
+# define C_LIMEGREEN      RGB(50,205,50)
+# define C_PALEGREEN      RGB(152,251,152)
+# define C_GRASS_SOFT     RGB(143,209,125)
+# define C_TOXIC_GREEN    RGB(60,217,70)
+
+/* === Pastels ambiance === */
+# define C_PASTEL_ROSE    RGB(255,204,225)
+# define C_PASTEL_BLUE    RGB(205,233,255)
+# define C_PASTEL_GREEN   RGB(207,247,212)
+# define C_PASTEL_YELLOW  RGB(255,247,194)
+
+/* === Alertes / feedback === */
+# define C_ALERT_RED      RGB(255,45,45)
+# define C_ALERT_ORANGE   RGB(255,122,31)
+# define C_ALERT_YELLOW   RGB(255,226,51)
+# define C_ALERT_GREEN    RGB(51,217,140)
+# define C_ALERT_BLUE     RGB(51,157,255)
+
+/* === Énergie / glow === */
+# define C_GLOW_MAGENTA   RGB(255,60,217)
+# define C_GLOW_LIME      RGB(182,255,60)
+# define C_GLOW_GOLD      RGB(255,217,77)
+
+/* === Santé (barre HP) === */
+# define C_HP_HIGH        RGB(75,214,75)
+# define C_HP_MED         RGB(255,217,77)
+# define C_HP_LOW         RGB(255,154,48)
+# define C_HP_CRIT        RGB(255,60,48)
+
+/* === Nuit / ambiance sombre === */
+# define C_NIGHT_BLUE     RGB(15,30,58)
+# define C_NIGHT_VIOLET   RGB(30,15,58)
+# define C_NIGHT_MIST     RGB(42,53,66)
+
+/* === Mini-map contraste === */
+# define C_MM_BG_DARK     RGB(30,30,36)
+# define C_MM_BG_LIGHT    RGB(236,236,236)
+# define C_MM_WALL_LIGHT  RGB(144,144,144)
+# define C_MM_WALL_SOLID  RGB(90,90,90)
+# define C_MM_PLAYER      C_PLAYER_PINK
+# define C_MM_ENEMY       C_ALERT_RED
+# define C_MM_ITEM        RGB(245,230,99)
+
+#endif /* RGB_DEFS_H */
