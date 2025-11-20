@@ -214,6 +214,8 @@ fclean: clean
 	@$(RM) $(MLX_BASE)
 	@echo -e "$(CLEAR_LINE) Nettoyage complet fclean réussi (✔)"
 
+bonus: all
+
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
