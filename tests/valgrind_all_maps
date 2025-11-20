@@ -1,23 +1,51 @@
 #!/bin/bash
 
-GRIND=(valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all --track-fds=yes)
+GRIND_BASE=(valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all --track-fds=yes)
 BIN="./cub3D"
 MAPDIR="assets/maps/"
-OUTFILE="tests/test.txt"
+SUMMARY="tests/valgrind_summary.txt"
 
-> "$OUTFILE"
+> "$SUMMARY"
 
 MAPS=($(find "$MAPDIR" -type f -name "*.cub"))
+total=0
+leaky=0
 
 for map in "${MAPS[@]}"; do
-{
-	echo
-	echo ">>>>>>>> $map <<<<<<<<"
-	echo "                                                      |"
-    "${GRIND[@]}" "$BIN" "$map"
-	"$BIN" "$map"
-	echo "                                                      |"
-    echo "===== FIN DU TEST : $map ======"
-	echo
-} >> "$OUTFILE" 2>&1
+    total=$((total+1))
+    base_name="${map##*/}"
+    # Capture sortie Valgrind (stderr) sans conserver un log par map
+    vg_out=$("${GRIND_BASE[@]}" "$BIN" "$map" 2>&1 >/dev/null || true)
+
+    # Extraire lignes clés
+    line_def=$(echo "$vg_out" | grep -E "definitely lost:" || true)
+    line_ind=$(echo "$vg_out" | grep -E "indirectly lost:" || true)
+    line_pos=$(echo "$vg_out" | grep -E "possibly lost:" || true)
+    line_rea=$(echo "$vg_out" | grep -E "still reachable:" || true)
+
+    # Détermination statut
+    status="CHECK"
+    if echo "$line_def" | grep -q "definitely lost: 0 bytes" && echo "$line_ind" | grep -q "indirectly lost: 0 bytes"; then
+        status="OK"
+    else
+        leaky=$((leaky+1))
+    fi
+
+    {
+        echo "> $base_name"
+        [ -n "$line_def" ] && echo "$line_def" || echo "definitely lost: (absent)"
+        [ -n "$line_ind" ] && echo "$line_ind" || echo "indirectly lost: (absent)"
+        [ -n "$line_pos" ] && echo "$line_pos" || echo "possibly lost: (absent)"
+        [ -n "$line_rea" ] && echo "$line_rea" || echo "still reachable: (absent)"
+        echo "STATUS: $status"
+        echo
+    } >> "$SUMMARY"
 done
+
+echo "===== BILAN LEAKS =====" >> "$SUMMARY"
+echo "Maps testées : $total" >> "$SUMMARY"
+echo "Maps avec fuite potentielle : $leaky" >> "$SUMMARY"
+echo "Maps clean : $((total - leaky))" >> "$SUMMARY"
+echo "=======================" >> "$SUMMARY"
+
+echo "Résumé global disponible dans $SUMMARY"

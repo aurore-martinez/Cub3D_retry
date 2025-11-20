@@ -1,0 +1,3 @@
+[WARN] Programme terminé avec rc=124 (timeout?)
+[PASS] pas de fuite mémoire détectée
+[RESULT] test_07_memory_leaks OK

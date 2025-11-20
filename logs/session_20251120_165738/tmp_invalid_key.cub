@@ -1,0 +1,10 @@
+NO ./assets/textures/mario/north.xpm
+SO ./assets/textures/mario/south.xpm
+WE ./assets/textures/mario/east.xpm
+EA ./assets/textures/mario/west.xpm
+F 300,10,10
+C 200,200,200
+
+111
+1N1
+111

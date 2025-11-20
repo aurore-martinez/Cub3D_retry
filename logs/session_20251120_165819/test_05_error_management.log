@@ -1,0 +1,4 @@
+[PASS] Erreur sur trop d'arguments
+[PASS] Erreur fichier inexistant
+[PASS] Erreur fichier vide
+[FAIL] Carte ouverte acceptée

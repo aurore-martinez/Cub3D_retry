@@ -1,0 +1,780 @@
+==219935== Memcheck, a memory error detector
+==219935== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==219935== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==219935== Command: ./cub3D assets/maps/subject_map.cub
+==219935== 
+==219935== 
+==219935== Process terminating with default action of signal 15 (SIGTERM)
+==219935==    at 0x4BE6C05: poll (poll.c:29)
+==219935==    by 0x4D037E1: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==219935==    by 0x4D03EB0: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==219935==    by 0x4D04EA5: xcb_wait_for_reply64 (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==219935==    by 0x49D231B: _XReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49D277E: XSync (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A787: mlx_loop (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x4029C9: launch_mlx (main.c:67)
+==219935==    by 0x4026B1: main (main.c:83)
+==219935== 
+==219935== HEAP SUMMARY:
+==219935==     in use at exit: 111,899 bytes in 139 blocks
+==219935==   total heap usage: 173,700 allocs, 173,561 frees, 4,305,816 bytes allocated
+==219935== 
+==219935== 3 bytes in 1 blocks are still reachable in loss record 1 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x4B7658E: strdup (strdup.c:42)
+==219935==    by 0x49BBB45: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A3F7: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 8 bytes in 1 blocks are still reachable in loss record 2 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x4B7658E: strdup (strdup.c:42)
+==219935==    by 0x49B89AE: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x497D820: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x49829E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x40A233: mlx_int_deal_shm (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40A4B1: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 8 bytes in 1 blocks are still reachable in loss record 3 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x497BB34: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x497D9DF: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x49829E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x40A233: mlx_int_deal_shm (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40A4B1: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 10 bytes in 1 blocks are still reachable in loss record 4 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x4B7658E: strdup (strdup.c:42)
+==219935==    by 0x49B89AE: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A22213: XkbUseExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49BC6A8: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A3F7: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 16 bytes in 1 blocks are still reachable in loss record 5 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x4D062EE: xcb_connect_to_fd (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==219935==    by 0x4D06E6B: xcb_connect_to_display_with_auth_info (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==219935==    by 0x49CBEE9: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49BBB68: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A3F7: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 21 bytes in 1 blocks are still reachable in loss record 6 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x49BC03E: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A3F7: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 24 bytes in 1 blocks are still reachable in loss record 7 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x497D041: XextCreateExtension (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x497D4CC: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x497D9C8: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x49829E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x40A233: mlx_int_deal_shm (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40A4B1: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 24 bytes in 1 blocks are still reachable in loss record 8 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x4B7658E: strdup (strdup.c:42)
+==219935==    by 0x49B89AE: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x497D820: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x497D50A: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x497D9C8: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x49829E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x40A233: mlx_int_deal_shm (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40A4B1: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 24 bytes in 1 blocks are still reachable in loss record 9 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x497D9F5: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x49829E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x40A233: mlx_int_deal_shm (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40A4B1: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 29 bytes in 1 blocks are still reachable in loss record 10 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x49B50CD: _XUpdateAtomCache (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49B7929: XInternAtom (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A4A2: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 32 bytes in 1 blocks are still reachable in loss record 11 of 73
+==219935==    at 0x48487A9: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x4D0A15E: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==219935==    by 0x4D0A237: xcb_get_extension_data (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==219935==    by 0x4D0A2EE: xcb_prefetch_maximum_request_length (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==219935==    by 0x4D0A364: xcb_get_maximum_request_length (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==219935==    by 0x49BC52B: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A3F7: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 32 bytes in 1 blocks are still reachable in loss record 12 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x4D031B7: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==219935==    by 0x4D03A08: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==219935==    by 0x4D03EB0: ??? (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==219935==    by 0x4D04E44: xcb_wait_for_reply (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==219935==    by 0x4D0A292: xcb_get_extension_data (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==219935==    by 0x4D0A2EE: xcb_prefetch_maximum_request_length (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==219935==    by 0x4D0A364: xcb_get_maximum_request_length (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==219935==    by 0x49BC52B: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A3F7: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935== 
+==219935== 32 bytes in 1 blocks are still reachable in loss record 13 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x497D7FF: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x49829E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x40A233: mlx_int_deal_shm (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40A4B1: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 32 bytes in 1 blocks are still reachable in loss record 14 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x497D7FF: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x497D50A: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x497D9C8: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x49829E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x40A233: mlx_int_deal_shm (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40A4B1: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 33 bytes in 1 blocks are still reachable in loss record 15 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x409370: ft_substr (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x404BBC: parse_west (parse_wall.c:78)
+==219935==    by 0x40491A: parse_wall (parse_wall.c:129)
+==219935==    by 0x40412C: parse_element (parse_element.c:36)
+==219935==    by 0x403FBE: split_the_line (parse_element.c:88)
+==219935==    by 0x4046DD: parse_line (parse_game_info.c:49)
+==219935==    by 0x404620: gnl_loop (parse_game_info.c:75)
+==219935==    by 0x404524: parse_game_info (parse_game_info.c:85)
+==219935==    by 0x4027B9: parsing (main.c:35)
+==219935==    by 0x402675: main (main.c:81)
+==219935== 
+==219935== 33 bytes in 1 blocks are still reachable in loss record 16 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x409370: ft_substr (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x404C9C: parse_east (parse_wall.c:103)
+==219935==    by 0x404965: parse_wall (parse_wall.c:134)
+==219935==    by 0x40412C: parse_element (parse_element.c:36)
+==219935==    by 0x403FBE: split_the_line (parse_element.c:88)
+==219935==    by 0x4046DD: parse_line (parse_game_info.c:49)
+==219935==    by 0x404620: gnl_loop (parse_game_info.c:75)
+==219935==    by 0x404524: parse_game_info (parse_game_info.c:85)
+==219935==    by 0x4027B9: parsing (main.c:35)
+==219935==    by 0x402675: main (main.c:81)
+==219935== 
+==219935== 33 bytes in 1 blocks are still reachable in loss record 17 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x49B50CD: _XUpdateAtomCache (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49B7929: XInternAtom (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A48B: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 34 bytes in 1 blocks are still reachable in loss record 18 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x409370: ft_substr (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x4049FA: parse_north (parse_wall.c:28)
+==219935==    by 0x404884: parse_wall (parse_wall.c:119)
+==219935==    by 0x40412C: parse_element (parse_element.c:36)
+==219935==    by 0x403FBE: split_the_line (parse_element.c:88)
+==219935==    by 0x4046DD: parse_line (parse_game_info.c:49)
+==219935==    by 0x404620: gnl_loop (parse_game_info.c:75)
+==219935==    by 0x404524: parse_game_info (parse_game_info.c:85)
+==219935==    by 0x4027B9: parsing (main.c:35)
+==219935==    by 0x402675: main (main.c:81)
+==219935== 
+==219935== 34 bytes in 1 blocks are still reachable in loss record 19 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x409370: ft_substr (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x404ADC: parse_south (parse_wall.c:53)
+==219935==    by 0x4048CF: parse_wall (parse_wall.c:124)
+==219935==    by 0x40412C: parse_element (parse_element.c:36)
+==219935==    by 0x403FBE: split_the_line (parse_element.c:88)
+==219935==    by 0x4046DD: parse_line (parse_game_info.c:49)
+==219935==    by 0x404620: gnl_loop (parse_game_info.c:75)
+==219935==    by 0x404524: parse_game_info (parse_game_info.c:85)
+==219935==    by 0x4027B9: parsing (main.c:35)
+==219935==    by 0x402675: main (main.c:81)
+==219935== 
+==219935== 40 bytes in 1 blocks are still reachable in loss record 20 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x49CC1F1: _XPollfdCacheInit (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49BBE71: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A3F7: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 48 bytes in 1 blocks are still reachable in loss record 21 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x49CBE71: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49BBB68: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A3F7: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 48 bytes in 1 blocks are still reachable in loss record 22 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x49CBE87: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49BBB68: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A3F7: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 48 bytes in 1 blocks are still reachable in loss record 23 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x4A1A4C0: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A1A542: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A1A8AF: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40BFA7: mlx_int_param_KeyPress (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40A7F5: mlx_loop (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x4029C9: launch_mlx (main.c:67)
+==219935==    by 0x4026B1: main (main.c:83)
+==219935== 
+==219935== 48 bytes in 2 blocks are still reachable in loss record 24 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x49C9A65: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49D22C6: _XReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49D277E: XSync (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A787: mlx_loop (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x4029C9: launch_mlx (main.c:67)
+==219935==    by 0x4026B1: main (main.c:83)
+==219935== 
+==219935== 72 bytes in 1 blocks are still reachable in loss record 25 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x49BBF20: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A3F7: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 72 bytes in 1 blocks are still reachable in loss record 26 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x4A1A4A4: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A1A542: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A1A8AF: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40BFA7: mlx_int_param_KeyPress (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40A7F5: mlx_loop (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x4029C9: launch_mlx (main.c:67)
+==219935==    by 0x4026B1: main (main.c:83)
+==219935== 
+==219935== 80 bytes in 1 blocks are still reachable in loss record 27 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x405BF9: init_game (init_data.c:18)
+==219935==    by 0x40279C: parsing (main.c:33)
+==219935==    by 0x402675: main (main.c:81)
+==219935== 
+==219935== 88 bytes in 1 blocks are still reachable in loss record 28 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x405CD5: init_data (init_data.c:64)
+==219935==    by 0x402650: main (main.c:79)
+==219935== 
+==219935== 88 bytes in 1 blocks are still reachable in loss record 29 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x40AA9B: mlx_int_new_xshm_image (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40ADC2: mlx_new_image (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406296: init_mlx (init_mlx.c:120)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 88 bytes in 1 blocks are still reachable in loss record 30 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x40AA9B: mlx_int_new_xshm_image (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40ADC2: mlx_new_image (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40B697: mlx_int_parse_xpm (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40BAD1: mlx_xpm_file_to_image (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x405FC8: load_tex_checked (init_mlx.c:20)
+==219935==    by 0x405EA2: set_texture (init_mlx.c:36)
+==219935==    by 0x402864: init_3d (main.c:48)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 88 bytes in 1 blocks are still reachable in loss record 31 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x40AA9B: mlx_int_new_xshm_image (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40ADC2: mlx_new_image (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40B697: mlx_int_parse_xpm (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40BAD1: mlx_xpm_file_to_image (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x405FC8: load_tex_checked (init_mlx.c:20)
+==219935==    by 0x405EDE: set_texture (init_mlx.c:39)
+==219935==    by 0x402864: init_3d (main.c:48)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 88 bytes in 1 blocks are still reachable in loss record 32 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x40AA9B: mlx_int_new_xshm_image (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40ADC2: mlx_new_image (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40B697: mlx_int_parse_xpm (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40BAD1: mlx_xpm_file_to_image (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x405FC8: load_tex_checked (init_mlx.c:20)
+==219935==    by 0x405F1A: set_texture (init_mlx.c:42)
+==219935==    by 0x402864: init_3d (main.c:48)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 88 bytes in 1 blocks are still reachable in loss record 33 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x40AA9B: mlx_int_new_xshm_image (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40ADC2: mlx_new_image (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40B697: mlx_int_parse_xpm (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40BAD1: mlx_xpm_file_to_image (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x405FC8: load_tex_checked (init_mlx.c:20)
+==219935==    by 0x405F56: set_texture (init_mlx.c:45)
+==219935==    by 0x402864: init_3d (main.c:48)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 104 bytes in 1 blocks are still reachable in loss record 34 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x4061BF: init_mlx (init_mlx.c:106)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 112 bytes in 1 blocks are still reachable in loss record 35 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x49CBD72: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49BBB68: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A3F7: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 112 bytes in 1 blocks are still reachable in loss record 36 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x49BC200: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A3F7: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 120 bytes in 1 blocks are still reachable in loss record 37 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x40379C: line_to_map (get_map.c:56)
+==219935==    by 0x4047F6: fill_map (parse_game_info.c:30)
+==219935==    by 0x404700: parse_line (parse_game_info.c:54)
+==219935==    by 0x404620: gnl_loop (parse_game_info.c:75)
+==219935==    by 0x404524: parse_game_info (parse_game_info.c:85)
+==219935==    by 0x4027B9: parsing (main.c:35)
+==219935==    by 0x402675: main (main.c:81)
+==219935== 
+==219935== 128 bytes in 1 blocks are still reachable in loss record 38 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x49BC12E: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A3F7: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 128 bytes in 1 blocks are still reachable in loss record 39 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x49B899E: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A22213: XkbUseExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49BC6A8: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A3F7: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 128 bytes in 1 blocks are still reachable in loss record 40 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x49B899E: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x497D820: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x49829E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x40A233: mlx_int_deal_shm (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40A4B1: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 128 bytes in 1 blocks are still reachable in loss record 41 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x49B899E: XInitExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x497D820: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x497D50A: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x497D9C8: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x49829E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x40A233: mlx_int_deal_shm (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40A4B1: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 136 bytes in 1 blocks are still reachable in loss record 42 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x40A3DF: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 136 bytes in 1 blocks are still reachable in loss record 43 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x497C0C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x40AAC6: mlx_int_new_xshm_image (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40ADC2: mlx_new_image (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406296: init_mlx (init_mlx.c:120)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 136 bytes in 1 blocks are still reachable in loss record 44 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x497C0C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x40AAC6: mlx_int_new_xshm_image (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40ADC2: mlx_new_image (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40B697: mlx_int_parse_xpm (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40BAD1: mlx_xpm_file_to_image (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x405FC8: load_tex_checked (init_mlx.c:20)
+==219935==    by 0x405EA2: set_texture (init_mlx.c:36)
+==219935==    by 0x402864: init_3d (main.c:48)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 136 bytes in 1 blocks are still reachable in loss record 45 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x497C0C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x40AAC6: mlx_int_new_xshm_image (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40ADC2: mlx_new_image (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40B697: mlx_int_parse_xpm (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40BAD1: mlx_xpm_file_to_image (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x405FC8: load_tex_checked (init_mlx.c:20)
+==219935==    by 0x405EDE: set_texture (init_mlx.c:39)
+==219935==    by 0x402864: init_3d (main.c:48)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 136 bytes in 1 blocks are still reachable in loss record 46 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x497C0C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x40AAC6: mlx_int_new_xshm_image (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40ADC2: mlx_new_image (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40B697: mlx_int_parse_xpm (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40BAD1: mlx_xpm_file_to_image (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x405FC8: load_tex_checked (init_mlx.c:20)
+==219935==    by 0x405F1A: set_texture (init_mlx.c:42)
+==219935==    by 0x402864: init_3d (main.c:48)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 136 bytes in 1 blocks are still reachable in loss record 47 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x497C0C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x40AAC6: mlx_int_new_xshm_image (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40ADC2: mlx_new_image (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40B697: mlx_int_parse_xpm (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40BAD1: mlx_xpm_file_to_image (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x405FC8: load_tex_checked (init_mlx.c:20)
+==219935==    by 0x405F56: set_texture (init_mlx.c:45)
+==219935==    by 0x402864: init_3d (main.c:48)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 149 bytes in 1 blocks are still reachable in loss record 48 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x49BC710: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A3F7: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 152 bytes in 1 blocks are still reachable in loss record 49 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x4A2240E: XkbUseExtension (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49BC6A8: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A3F7: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 160 bytes in 1 blocks are still reachable in loss record 50 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x49AA9EF: XCreateGC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49BC5A4: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A3F7: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 160 bytes in 1 blocks are still reachable in loss record 51 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x49AA9EF: XCreateGC (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A62E: mlx_new_window (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406258: init_mlx (init_mlx.c:117)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 168 bytes in 1 blocks are still reachable in loss record 52 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x49BC0B2: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A3F7: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 204 bytes in 6 blocks are still reachable in loss record 53 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x409370: ft_substr (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x4038D9: copy_map (get_map.c:39)
+==219935==    by 0x4037EE: line_to_map (get_map.c:62)
+==219935==    by 0x4047F6: fill_map (parse_game_info.c:30)
+==219935==    by 0x404700: parse_line (parse_game_info.c:54)
+==219935==    by 0x404620: gnl_loop (parse_game_info.c:75)
+==219935==    by 0x404524: parse_game_info (parse_game_info.c:85)
+==219935==    by 0x4027B9: parsing (main.c:35)
+==219935==    by 0x402675: main (main.c:81)
+==219935== 
+==219935== 208 bytes in 1 blocks are still reachable in loss record 54 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x497BAE9: ??? (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x497D9DF: XextAddDisplay (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x49829E2: XShmQueryVersion (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==219935==    by 0x40A233: mlx_int_deal_shm (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40A4B1: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 208 bytes in 1 blocks are still reachable in loss record 55 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x49CDFAE: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49D0BB6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49D1EC0: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49D2205: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A935: mlx_int_wait_first_expose (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40A66D: mlx_new_window (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406258: init_mlx (init_mlx.c:117)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 256 bytes in 1 blocks are still reachable in loss record 56 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x4A1F55D: XkbAllocClientMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A1A0DE: _XkbReadGetMapReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A1A41E: XkbGetUpdatedMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A1A4F4: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A1A542: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A1A8AF: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40BFA7: mlx_int_param_KeyPress (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40A7F5: mlx_loop (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x4029C9: launch_mlx (main.c:67)
+==219935==    by 0x4026B1: main (main.c:83)
+==219935== 
+==219935== 272 bytes in 8 blocks are still reachable in loss record 57 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x40333E: fill_short_line (check_map.c:84)
+==219935==    by 0x40325B: check_map (check_map.c:109)
+==219935==    by 0x4027D6: parsing (main.c:37)
+==219935==    by 0x402675: main (main.c:81)
+==219935== 
+==219935== 344 bytes in 6 blocks are still reachable in loss record 58 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x4A198F5: _XkbReadGetMapReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A1A41E: XkbGetUpdatedMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A1A4F4: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A1A542: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A1A8AF: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40BFA7: mlx_int_param_KeyPress (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40A7F5: mlx_loop (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x4029C9: launch_mlx (main.c:67)
+==219935==    by 0x4026B1: main (main.c:83)
+==219935== 
+==219935== 416 bytes in 2 blocks are still reachable in loss record 59 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x49CDFAE: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49D0BB6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49D1EC0: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49D21D0: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A935: mlx_int_wait_first_expose (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40A66D: mlx_new_window (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406258: init_mlx (init_mlx.c:117)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 512 bytes in 1 blocks are still reachable in loss record 60 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x49B746A: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49B784E: XInternAtom (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A48B: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 832 bytes in 4 blocks are still reachable in loss record 61 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x49CDFAE: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49D0BB6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49D240C: _XReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49D277E: XSync (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40AB87: mlx_int_new_xshm_image (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40ADC2: mlx_new_image (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406296: init_mlx (init_mlx.c:120)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 936 bytes in 1 blocks are still reachable in loss record 62 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x40A590: mlx_new_window (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406258: init_mlx (init_mlx.c:117)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 1,120 bytes in 1 blocks are still reachable in loss record 63 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x4A1F619: XkbAllocClientMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A19EB7: _XkbReadGetMapReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A1A41E: XkbGetUpdatedMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A1A4F4: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A1A542: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A1A8AF: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40BFA7: mlx_int_param_KeyPress (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40A7F5: mlx_loop (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x4029C9: launch_mlx (main.c:67)
+==219935==    by 0x4026B1: main (main.c:83)
+==219935== 
+==219935== 1,456 bytes in 7 blocks are still reachable in loss record 64 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x49CDFAE: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49D0BB6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49D1F01: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49D21D0: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A935: mlx_int_wait_first_expose (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40A66D: mlx_new_window (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406258: init_mlx (init_mlx.c:117)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 2,016 bytes in 27 blocks are still reachable in loss record 65 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x4A197DD: _XkbReadGetMapReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A1A41E: XkbGetUpdatedMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A1A4F4: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A1A542: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A1A8AF: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40BFA7: mlx_int_param_KeyPress (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40A7F5: mlx_loop (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x4029C9: launch_mlx (main.c:67)
+==219935==    by 0x4026B1: main (main.c:83)
+==219935== 
+==219935== 2,048 bytes in 1 blocks are still reachable in loss record 66 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x4A19914: _XkbReadGetMapReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A1A41E: XkbGetUpdatedMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A1A4F4: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A1A542: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A1A8AF: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40BFA7: mlx_int_param_KeyPress (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40A7F5: mlx_loop (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x4029C9: launch_mlx (main.c:67)
+==219935==    by 0x4026B1: main (main.c:83)
+==219935== 
+==219935== 2,496 bytes in 12 blocks are still reachable in loss record 67 of 73
+==219935==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x49CDFAE: _XEnq (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49D0BB6: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49D1F01: _XReadEvents (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49D2205: XWindowEvent (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A935: mlx_int_wait_first_expose (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40A66D: mlx_new_window (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406258: init_mlx (init_mlx.c:117)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 4,096 bytes in 1 blocks are still reachable in loss record 68 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x4A1A13E: _XkbReadGetMapReply (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A1A41E: XkbGetUpdatedMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A1A4F4: XkbGetMap (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A1A542: ??? (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x4A1A8AF: XkbKeycodeToKeysym (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40BFA7: mlx_int_param_KeyPress (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x40A7F5: mlx_loop (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x4029C9: launch_mlx (main.c:67)
+==219935==    by 0x4026B1: main (main.c:83)
+==219935== 
+==219935== 4,704 bytes in 1 blocks are still reachable in loss record 69 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x49BBB31: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A3F7: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 14,612 bytes in 1 blocks are still reachable in loss record 70 of 73
+==219935==    at 0x484DCD3: realloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x4D064FB: xcb_connect_to_fd (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==219935==    by 0x4D06E6B: xcb_connect_to_display_with_auth_info (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==219935==    by 0x49CBEE9: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49BBB68: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A3F7: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 16,384 bytes in 1 blocks are still reachable in loss record 71 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x49BBEBE: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A3F7: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 21,168 bytes in 1 blocks are still reachable in loss record 72 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x4D06204: xcb_connect_to_fd (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==219935==    by 0x4D06E6B: xcb_connect_to_display_with_auth_info (in /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0)
+==219935==    by 0x49CBEE9: _XConnectXCB (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x49BBB68: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A3F7: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== 33,600 bytes in 2 blocks are still reachable in loss record 73 of 73
+==219935==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==219935==    by 0x49BC290: XOpenDisplay (in /usr/lib/x86_64-linux-gnu/libX11.so.6.4.0)
+==219935==    by 0x40A3F7: mlx_init (in /home/aumartin/Documents/11_Cub3D/cub3D)
+==219935==    by 0x406218: init_mlx (init_mlx.c:114)
+==219935==    by 0x40284A: init_3d (main.c:46)
+==219935==    by 0x40268B: main (main.c:81)
+==219935== 
+==219935== LEAK SUMMARY:
+==219935==    definitely lost: 0 bytes in 0 blocks
+==219935==    indirectly lost: 0 bytes in 0 blocks
+==219935==      possibly lost: 0 bytes in 0 blocks
+==219935==    still reachable: 111,899 bytes in 139 blocks
+==219935==         suppressed: 0 bytes in 0 blocks
+==219935== 
+==219935== For lists of detected and suppressed errors, rerun with: -s
+==219935== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 1 from 1)
