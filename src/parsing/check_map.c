@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
+/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:01:59 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/20 12:02:51 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/20 12:32:43 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ static bool	fill_short_line(t_game *game)
 			game->map[y] = malloc(sizeof(char) * (game->width + 1));
 			if (!game->map[y])
 			{
-				perror("Error");
+				ft_fprintf(2, "Error\n");
+				perror("Malloc");
 				game->map[y] = tmp_line;
 				return (false);
 			}

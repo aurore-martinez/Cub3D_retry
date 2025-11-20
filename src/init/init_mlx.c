@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
+/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:30:03 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/20 11:26:53 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/20 12:32:40 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,8 @@ bool	init_mlx(t_gfx **gfx, int w, int h, const char *title)
 	*gfx = malloc(sizeof(t_gfx));
 	if (!(*gfx))
 	{
-		perror("Error");
+		ft_fprintf(2, "Error\n");
+		perror("Malloc");
 		return (false);
 	}
 	init_gfx(*gfx);

@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 11:47:22 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/05 12:46:53 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/20 12:44:27 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,10 @@ bool	split_the_line(t_game *game, char *line)
 
 	split_line = ft_split(line, ' ');
 	if (!split_line)
-		return (perror("Error"), false);
+	{
+		ft_fprintf(2, "Error\n");
+		return (perror("Malloc"), false);
+	}
 	if (!split_line[0])
 		return (proper_free_split(split_line), true);
 	if (!ft_strncmp(split_line[0], "\n", INT_MAX))

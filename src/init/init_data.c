@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 11:35:49 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/18 16:26:07 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/20 12:44:00 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,16 @@ bool	init_game(t_game **game, char *filename)
 	*game = malloc(sizeof(t_game));
 	if (!(*game))
 	{
-		perror("Error");
+		ft_fprintf(2, "Error\n");
+		perror("Malloc");
 		return (false);
 	}
 	ft_memset(*game, 0, sizeof(t_game));
 	(*game)->fd = open(filename, O_RDONLY);
 	if ((*game)->fd < 0)
 	{
-		perror("Error");
+		ft_fprintf(2, "Error\n");
+		perror("Malloc");
 		free(*game);
 		*game = NULL;
 		return (false);
@@ -63,7 +65,8 @@ bool	init_data(t_data **data)
 	*data = malloc(sizeof(t_data));
 	if (!(*data))
 	{
-		perror("Error");
+		ft_fprintf(2, "Error\n");
+		perror("Malloc");
 		return (false);
 	}
 	ft_memset(*data, 0, sizeof(t_data));

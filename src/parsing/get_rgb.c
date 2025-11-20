@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 14:59:42 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/10 16:28:10 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/20 12:44:43 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ static char	*delete_newline(char *str)
 		new = malloc(sizeof(char) * (len + 1));
 		if (!new)
 		{
-			perror("Error");
+			ft_fprintf(2, "Error\n");
+			perror("Malloc");
 			return (NULL);
 		}
 		ft_memcpy(new, str, len);

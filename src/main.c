@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
+/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 13:43:03 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/20 12:02:48 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/20 12:46:43 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static bool	init_3d(t_data *data)
 		return (false);
 	if (!set_texture(data))
 	{
-		printf("Error: Failed to load textures\n");
+		print_error("Failed to load textures\n");
 		return (false);
 	}
 	if (!set_camera(data))
