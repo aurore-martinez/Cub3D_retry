@@ -1,7 +1,7 @@
-NO  ./assets/textures/torch/torch1_wall_1.xpm
-SO  ./assets/textures/torch/torch1_wall_2.xpm
-WE  ./assets/textures/torch/torch1_wall_3.xpm
-EA  ./assets/textures/torch/torch1_wall_4.xpm
+NO ./assets/textures/univers2/north.xpm
+SO ./assets/textures/univers2/south.xpm
+WE ./assets/textures/univers2/east.xpm
+EA ./assets/textures/univers2/west.xpm
 
 F 85,85,85
 C 210,210,230

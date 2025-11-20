@@ -1,0 +1,17 @@
+NO ./assets/textures/steampunk/north.xpm
+SO ./assets/textures/steampunk/south.xpm
+WE ./assets/textures/steampunk/east.xpm
+EA ./assets/textures/steampunk/west.xpm
+
+C 155,155,155
+F 0,0,0
+
+1111
+1S11
+1001
+1111
+        1
+1111
+1001
+1001
+1111
