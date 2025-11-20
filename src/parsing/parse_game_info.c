@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 11:42:41 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/20 14:57:18 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/20 15:14:08 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static bool	fill_map(t_game *game, char *line)
 {
 	static bool	start_map;
-	
+
 	if (!start_map && skip_line(line))
 		return (true);
 	else if (start_map && skip_line(line))
@@ -31,7 +31,7 @@ static bool	fill_map(t_game *game, char *line)
 		if (!game->map)
 			return (false);
 	}
-		return (true);
+	return (true);
 }
 
 static bool	parse_line(t_game *game, char *line)
