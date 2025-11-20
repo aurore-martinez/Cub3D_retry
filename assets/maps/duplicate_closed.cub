@@ -3,8 +3,8 @@ SO ./assets/textures/univers1/south.xpm
 WE ./assets/textures/univers1/east.xpm
 EA ./assets/textures/univers1/west.xpm
 
-F 220,100,0
-C 225,30,0
+F 102,252,255
+C 230,212,255
 
 11111111   11111111
 10000001   10000001

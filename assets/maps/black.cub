@@ -1,0 +1,16 @@
+NO ./assets/textures/black/black_n_256.xpm
+SO ./assets/textures/black/black_s_256.xpm
+WE ./assets/textures/black/black_w_256.xpm
+EA ./assets/textures/black/black_e_256.xpm
+
+F 1,1,1
+C 1,1,1
+
+11111111
+101011
+10100111
+101N00111
+10000001
+11000011
+10000101
+11111111

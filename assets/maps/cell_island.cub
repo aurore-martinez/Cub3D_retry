@@ -3,15 +3,17 @@ SO ./assets/textures/steampunk/south.xpm
 WE ./assets/textures/steampunk/east.xpm
 EA ./assets/textures/steampunk/west.xpm
 
-C 155,155,155
+C 42,53,66
 F 0,0,0
 
-1111
-1S11
-1001
-1111
-        1
-1111
-1001
-1001
-1111
+1111111
+100S001
+1000001
+1000001
+1111111
+         1
+1111111
+1000001
+1000001
+1000001
+1111111

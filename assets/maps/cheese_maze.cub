@@ -1,10 +1,10 @@
-NO  ./assets/textures/walls/wall_1.xpm
-SO  ./assets/textures/walls/wall_2.xpm
-WE  ./assets/textures/walls/wall_3.xpm
-EA  ./assets/textures/walls/wall_4.xpm
+NO  ./assets/textures/tile/tile13.xpm
+SO  ./assets/textures/tile/tile16.xpm
+WE  ./assets/textures/tile/tile1005.xpm
+EA  ./assets/textures/tile/tile13.xpm
 
 F 164,169,20
-C 153,204,255
+C 205,233,255
 
 111111111111111111111
 101000001000000000001
