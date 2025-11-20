@@ -1,5 +1,0 @@
-[INFO] Lancement compilation make
-[INFO] Compilation effectuée (voir make_build_output.txt)
-[PASS] binaire cub3D présent
-[PASS] Pas de recompilation inutile
-[RESULT] test_01_compile OK

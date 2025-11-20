@@ -1,6 +1,0 @@
-[PASS] Execution map valide
-[PASS] Erreur extension non .cub détectée
-[PASS] Erreur clé dupliquée détectée
-[PASS] Erreur clé inconnue détectée
-[PASS] Erreur couleur hors range détectée
-[RESULT] test_02_config_parsing OK
