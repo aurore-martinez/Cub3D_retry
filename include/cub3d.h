@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
+/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/20 12:03:35 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/20 13:03:23 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,6 +259,7 @@ bool	parse_wall(t_game *game, char **element);
 bool	skip_line(char *line);
 bool	has_all_element(t_game *game);
 bool	is_line_for_map(char *line);
+bool	test_file(char *path);
 
 /* ==============================     ⚙️ INIT    ============================ */
 bool	init_mlx(t_gfx **gfx, int w, int h, const char *title);

@@ -6,11 +6,27 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 14:13:22 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/10 14:14:09 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/20 13:03:37 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+
+bool	test_file(char *path)
+{
+	int	fd;
+
+	fd = 0;
+	fd = open(path, O_RDONLY, 0644);
+	if (fd < 0)
+	{
+		print_error("Texture file not found");
+		return (false);
+	}
+	else
+		close(fd);
+	return (true);
+}
 
 bool	skip_line(char *line)
 {

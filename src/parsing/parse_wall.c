@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 14:52:54 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/05 12:46:53 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/20 13:05:56 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@ static bool	parse_north(t_game *game, char *path)
 		path_len = ft_strlen(path) - 1;
 		game->elements.north = true;
 		game->elements.path_north = ft_substr(path, 0, path_len);
+		if (!game->elements.path_north)
+		{
+			ft_fprintf(2, "Error\n");
+			return (perror("Malloc"), false);
+		}
+		if (!test_file(game->elements.path_north))
+			return (false);
 	}
 	return (true);
 }
@@ -44,6 +51,13 @@ static bool	parse_south(t_game *game, char *path)
 		path_len = ft_strlen(path) - 1;
 		game->elements.south = true;
 		game->elements.path_south = ft_substr(path, 0, path_len);
+		if (!game->elements.path_south)
+		{
+			ft_fprintf(2, "Error\n");
+			return (perror("Malloc"), false);
+		}
+		if (!test_file(game->elements.path_south))
+			return (false);
 	}
 	return (true);
 }
@@ -62,6 +76,13 @@ static bool	parse_west(t_game *game, char *path)
 		path_len = ft_strlen(path) - 1;
 		game->elements.west = true;
 		game->elements.path_west = ft_substr(path, 0, path_len);
+		if (!game->elements.path_west)
+		{
+			ft_fprintf(2, "Error\n");
+			return (perror("Malloc"), false);
+		}
+		if (!test_file(game->elements.path_west))
+			return (false);
 	}
 	return (true);
 }
@@ -80,6 +101,13 @@ static bool	parse_east(t_game *game, char *path)
 		path_len = ft_strlen(path) - 1;
 		game->elements.east = true;
 		game->elements.path_east = ft_substr(path, 0, path_len);
+		if (!game->elements.path_east)
+		{
+			ft_fprintf(2, "Error\n");
+			return (perror("Malloc"), false);
+		}
+		if (!test_file(game->elements.path_east))
+			return (false);
 	}
 	return (true);
 }
