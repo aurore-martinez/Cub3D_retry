@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 11:42:41 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/10 14:23:58 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/20 13:22:04 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static bool	gnl_loop(t_game *game)
 		return (print_error("Empty file"), false);
 	while (line)
 	{
-		if (skip_line(line))
+		if (skip_line(line) && !has_all_element(game))
 		{
 			free(line);
 			line = get_next_line(game->fd);

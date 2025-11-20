@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:01:59 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/20 12:32:43 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/20 14:05:35 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,11 @@ bool	check_map(t_game *game)
 	}
 	if (!fill_short_line(game))
 		return (false);
+	if (game->width > 100 || game->height > 100)
+	{
+		print_error("Max map size is 100x100");
+		return (false);
+	}
 	if (!is_map_valid(game))
 		return (false);
 	return (true);
