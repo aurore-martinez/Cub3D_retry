@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 11:35:49 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/20 12:44:00 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/20 14:51:07 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ bool	init_game(t_game **game, char *filename)
 	(*game)->fd = open(filename, O_RDONLY);
 	if ((*game)->fd < 0)
 	{
-		ft_fprintf(2, "Error\n");
-		perror("Malloc");
+		print_error("Failed to open file");
 		free(*game);
 		*game = NULL;
 		return (false);
