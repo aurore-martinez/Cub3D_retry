@@ -24,7 +24,7 @@
 
 # Dossier source (images à convertir) et dossier cible
 SRC_DIR="assets/img_to_convert"
-OUT_DIR="assets/textures/steampunk"
+OUT_DIR="assets/textures/mario"
 mkdir -p "$OUT_DIR" 2>/dev/null
 
 # Choix du filtre (change juste cette valeur)
@@ -37,7 +37,7 @@ FLAGS=( -resize 256x256^ -gravity center -extent 256x256 \
 # Ajust esthétique léger (luminosité) — enlève/modifie si tu veux / si ça sature trop; descends 115 à 105 pour plus neutre
 EXTRA_FLAGS=( -modulate 115,100,100 )
 
-for f in $SRC_DIR/*.jpg; do
+for f in $SRC_DIR/*.png; do
   [ -e "$f" ] || continue
   name="${f##*/}"; base="${name%.*}"
   out="$OUT_DIR/${base}.xpm"
