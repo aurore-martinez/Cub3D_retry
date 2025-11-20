@@ -3,43 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
+/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:14:56 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/19 16:01:29 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/20 15:45:09 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-/*
-Draw frame complet puis pousser l'image à la fenetre.
-Étapes:
-1. Vérifie la validité de d et de d->gfx.
-2. Appelle render_walls: lance le raycasting colonne par colonne.
-3. Dessine un réticule (draw_crosshair) si présent.
-4. Affiche soit la minimap complète soit la minimap focus selon
-le flag show_full_minimap.
-5. Transfère le buffer image vers la fenêtre (mlx_put_image_to_window).
-6. printf debug (peut être retiré pour éviter le spam).
-
-DEBUG : apel et callback 	printf("APPEL RENDER FRAME ");
-TODO : Retour: 0 ? passer en bool ?
-*/
-
-int	render_frame(t_data *d)
-{
-	if (!d || !d->gfx)
-		return (0);
-	render_walls(d);
-	draw_crosshair(d);
-	if (d->gfx && d->gfx->cam.show_full_minimap)
-		draw_minimap_focus(d);
-	else
-		draw_minimap(d);
-	mlx_put_image_to_window(d->gfx->mlx, d->gfx->win, d->gfx->frame.img, 0, 0);
-	return (0);
-}
 
 /*
 Draw la portion mur pour une colonne (x) avec la texture
@@ -136,7 +107,7 @@ static void	render_column(t_data *d, int x)
 /*
 Boucle écran: lance render_column() pour chaque x.
 */
-void	render_walls(t_data *d)
+static void	render_walls(t_data *d)
 {
 	int	x;
 
@@ -146,6 +117,35 @@ void	render_walls(t_data *d)
 		render_column(d, x);
 		x++;
 	}
+}
+
+/*
+Draw frame complet puis pousser l'image à la fenetre.
+Étapes:
+1. Vérifie la validité de d et de d->gfx.
+2. Appelle render_walls: lance le raycasting colonne par colonne.
+3. Dessine un réticule (draw_crosshair) si présent.
+4. Affiche soit la minimap complète soit la minimap focus selon
+le flag show_full_minimap.
+5. Transfère le buffer image vers la fenêtre (mlx_put_image_to_window).
+6. printf debug (peut être retiré pour éviter le spam).
+
+DEBUG : apel et callback 	printf("APPEL RENDER FRAME ");
+TODO : Retour: 0 ? passer en bool ?
+*/
+
+int	render_frame(t_data *d)
+{
+	if (!d || !d->gfx)
+		return (0);
+	render_walls(d);
+	draw_crosshair(d);
+	if (d->gfx && d->gfx->cam.show_full_minimap)
+		draw_minimap_focus(d);
+	else
+		draw_minimap(d);
+	mlx_put_image_to_window(d->gfx->mlx, d->gfx->win, d->gfx->frame.img, 0, 0);
+	return (0);
 }
 
 /* Helper chat pour debug :

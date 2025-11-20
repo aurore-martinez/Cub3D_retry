@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/20 15:39:47 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/20 15:45:04 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -283,7 +283,6 @@ void	request_redraw(t_data *d);
 void	draw_crosshair(t_data *d);
 int		darken_color(int color);
 int		render_frame(t_data *d);
-void	render_walls(t_data *d);
 
 /* ===========================    🎨 TEXTURE    =========================== */
 void	*select_texture(t_data *d, t_dda *ray, int side);
