@@ -1,7 +1,7 @@
-NO  ./assets/textures/north.xpm
-SO  ./assets/textures/south.xpm
-WE  ./assets/textures/west.xpm
-EA  ./assets/textures/east.xpm
+NO  ./assets/textures/univers5/north.xpm
+SO  ./assets/textures/univers5/south.xpm
+WE  ./assets/textures/univers5/west.xpm
+EA  ./assets/textures/univers5/east.xpm
 
 F 140,110,80
 C 170,200,230
