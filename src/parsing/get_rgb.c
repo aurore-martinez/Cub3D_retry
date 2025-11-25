@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 14:59:42 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/25 11:27:16 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/25 15:40:10 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	atoi_rgb(char *c_rgb)
 {
 	int	rgb;
 
-	if (!c_rgb || (*c_rgb) == '\n')
+	if (!c_rgb || (*c_rgb) == '\n' || !ft_isnumber(c_rgb))
 	{
 		print_error("RGB syntax error");
 		return (-1);
@@ -68,12 +68,39 @@ static char	*delete_newline(char *str)
 	}
 }
 
+static int	get_rgb_value(char **rgb_split)
+{
+	t_rgb	rgb;
+	
+	rgb.red = atoi_rgb(rgb_split[0]);
+	if (rgb.red < 0)
+	{
+		free_split(rgb_split);
+		return (-1);
+	}
+	rgb.green = atoi_rgb(rgb_split[1]);
+	if (rgb.green < 0)
+	{
+		free_split(rgb_split);
+		return (-1);
+	}
+	rgb.blue = atoi_rgb(rgb_split[2]);
+	if (rgb.blue < 0)
+	{
+		free_split(rgb_split);
+		return (-1);
+	}
+	free_split(rgb_split);
+	return (rgb.red << 16 | rgb.green << 8 | rgb.blue);
+}
+
 int	get_rgb(char *c_rgb)
 {
 	char	**rgb_split;
 	char	*tmp;
-	t_rgb	rgb;
+	int		result;
 
+	result = 0;
 	tmp = delete_newline(c_rgb);
 	if (!tmp)
 		return (-1);
@@ -87,11 +114,6 @@ int	get_rgb(char *c_rgb)
 		free_split(rgb_split);
 		return (-1);
 	}
-	rgb.red = atoi_rgb(rgb_split[0]);
-	rgb.green = atoi_rgb(rgb_split[1]);
-	rgb.blue = atoi_rgb(rgb_split[2]);
-	free_split(rgb_split);
-	if (rgb.red == -1 || rgb.green == -1 || rgb.blue == -1)
-		return (-1);
-	return (rgb.red << 16 | rgb.green << 8 | rgb.blue);
+	result = get_rgb_value(rgb_split);
+	return (result);
 }
