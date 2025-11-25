@@ -11,7 +11,7 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 BUILD_DIR="$ROOT_DIR"
 CUB="${BUILD_DIR}/cub3D"
 LOG_DIR="$ROOT_DIR/tests/logs"
-MAP_GLOBS=("$ROOT_DIR/assets/maps/*.cub" "$ROOT_DIR/assets/maps_chat/*.cub")
+MAP_GLOBS=("$ROOT_DIR/assets/maps/*.cub" "$ROOT_DIR/assets/maps_invalids/*.cub")
 #  MAP_GLOBS=("$ROOT_DIR/assets/maps/*.cub" "$ROOT_DIR/assets/maps_chat/*.cub" "$ROOT_DIR/assets/maps_invalids/*.cub")
 mkdir -p "$LOG_DIR"
 

@@ -42,10 +42,9 @@ for map in "${MAPS[@]}"; do
     } >> "$SUMMARY"
 done
 
-echo "===== BILAN LEAKS =====" >> "$SUMMARY"
-echo "Maps testées : $total" >> "$SUMMARY"
-echo "Maps avec fuite potentielle : $leaky" >> "$SUMMARY"
-echo "Maps clean : $((total - leaky))" >> "$SUMMARY"
-echo "=======================" >> "$SUMMARY"
+echo "===== BILAN LEAKS ====="
+echo "Maps testées : $total"
+echo "Maps avec leaks : $((total - $leaky))"
+echo "======================="
 
 echo "Résumé global disponible dans $SUMMARY"
