@@ -43,6 +43,19 @@ else
 fi
 
 ########################################
+say "1b. Norminette"
+if command -v norminette >/dev/null 2>&1; then
+  # On ajoute la sortie complète dans le log, puis on cherche 'Error'
+  if norminette 2>&1 | tee -a "$LOG" | grep -q "Error"; then
+    fail "Norminette erreurs détectées"
+  else
+    ok "Norminette OK"
+  fi
+else
+  warn "norminette non trouvée dans PATH"
+fi
+
+########################################
 say "2. Fichier configuration (.cub extension)"
 if [[ "$MAP" != *.cub ]]; then fail "Nom de map n'a pas extension .cub"; else ok "Extension .cub OK"; fi
 if [ -f "$MAP" ]; then ok "Map existe: $MAP"; else fail "Map introuvable: $MAP"; fi
