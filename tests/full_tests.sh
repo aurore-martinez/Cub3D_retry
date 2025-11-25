@@ -3,7 +3,7 @@
 set -euo pipefail
 EXE=${1:-./cub3D}
 MAP=${2:-assets/maps/subject_map.cub}
-TMPDIR="tests/tmp_defense"
+TMPDIR="tests/logs"
 mkdir -p "$TMPDIR"
 LOG="$TMPDIR/defense.log"
 : > "$LOG"

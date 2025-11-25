@@ -3,7 +3,7 @@
 GRIND_BASE=(valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all --track-fds=yes)
 BIN="./cub3D"
 MAPDIR="assets/maps/"
-SUMMARY="tests/valgrind_summary.txt"
+SUMMARY="tests/logs/valgrind_summary.txt"
 
 > "$SUMMARY"
 
