@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 14:59:42 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/25 15:40:10 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/25 15:42:26 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static char	*delete_newline(char *str)
 static int	get_rgb_value(char **rgb_split)
 {
 	t_rgb	rgb;
-	
+
 	rgb.red = atoi_rgb(rgb_split[0]);
 	if (rgb.red < 0)
 	{
