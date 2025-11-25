@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 14:59:42 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/20 12:44:43 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/25 11:27:16 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	atoi_rgb(char *c_rgb)
 	rgb = ft_atoi(c_rgb);
 	if (ft_strlen(c_rgb) > 3 || rgb < 0 || rgb > 255)
 	{
-		print_error("RGB values muste be between 0 and 255");
+		print_error("RGB values must be between 0 and 255");
 		return (-1);
 	}
 	return (rgb);
