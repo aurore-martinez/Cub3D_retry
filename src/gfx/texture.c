@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
+/*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 17:15:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/26 14:33:02 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/26 15:59:33 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,16 @@ void	*select_texture(t_data *d, t_dda *ray, int side)
 	if (side == 0)
 	{
 		if (ray->ray_col < 0)
-			return (d->gfx->texture.west);
-		else
 			return (d->gfx->texture.east);
+		else
+			return (d->gfx->texture.west);
 	}
 	else
 	{
 		if (ray->ray_row < 0)
-			return (d->gfx->texture.north);
-		else
 			return (d->gfx->texture.south);
+		else
+			return (d->gfx->texture.north);
 	}
 }
 
