@@ -12,6 +12,10 @@ NAME = cub3D
 # Compilation
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3 #-fsanitize=address
+
+# Génération automatique des dépendances pour les headers
+CFLAGS += -MMD -MP
+
 OS = $(shell uname | tr '[:upper:]' '[:lower:]')
 
 MAKE = make -sC
@@ -55,13 +59,20 @@ endif
 
 # Includes
 INCLUDE_DIR = include
-LIB_SUBDIR = $(wildcard $(LIB_DIR)/*)
+LIB_SUBDIR = lib/ft_fprintf lib/ft_printf lib/gnl lib/libft
 
 INCLUDE_FLAG = -I$(INCLUDE_DIR) \
 			   $(foreach dir, $(LIB_SUBDIR), -I$(dir))
 
-INCLUDE = $(wildcard $(INCLUDE_DIR)/*.h) \
-		  $(foreach dir, $(LIB_SUBDIR), $(wildcard $(dir)/*.h))
+INCLUDE_FLAG += $(INCLUDES_FLAG)
+
+INCLUDE = $(INCLUDE_DIR)/color.h \
+		$(INCLUDE_DIR)/cub3d.h \
+		$(INCLUDE_DIR)/keys.h \
+		$(LIB_DIR)/ft_fprintf/ft_fprintf.h \
+		$(LIB_DIR)/ft_printf/ft_printf.h \
+		$(LIB_DIR)/gnl/get_next_line_bonus.h \
+		$(LIB_DIR)/libft/libft.h
 
 # Dossiers sources
 SRC_DIR = src/
@@ -120,7 +131,14 @@ SRC_FILES = $(SRC_MAIN) $(SRC_DEBUG) $(SRC_PARSING) $(SRC_PLAYER) $(SRC_INIT) $(
 # Chemins complets des sources et objets
 SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJS_DIR = objs/
-OBJS = $(addprefix $(OBJS_DIR), $(SRC_FILES:.c=.o))
+#OBJS = $(addprefix $(OBJS_DIR), $(*.=.o))
+OBJS = $(patsubst $(SRC_DIR)%.c,$(OBJS_DIR)%.o,$(SRCS))
+
+# fichiers de dépendances .d générés automatiquement
+DEPS = $(OBJS:.o=.d)
+
+# inclure les fichiers de dépendances (ne pas échouer s'ils n'existent pas)
+-include $(DEPS)
 
 # Couleurs ANSI
 GREEN = \033[32m
@@ -136,6 +154,7 @@ logo ?=on   # on => affiche le logo, off => masque
 
 PRINT_LOGO = \
     if [ "$(logo)" != "off" ]; then \
+    $(TERM_RESET); \
     echo ""; \
     printf "$(PINK)"; \
     printf "\n"; \
@@ -146,7 +165,7 @@ PRINT_LOGO = \
     printf "░██        ░██    ░██ ░██    ░██          ░██ ░██    ░██ \n"; \
     printf " ░██   ░██ ░██   ░███ ░███   ░██    ░██   ░██ ░██   ░██  \n"; \
     printf "  ░██████   ░█████░██ ░██░█████      ░██████  ░███████   \n"; \
-	printf "\n"; \
+    printf "\n"; \
     printf "$(RESET)\n"; \
     echo "	  ┌─────────────────────────────┐"; \
     echo "	  │                             │"; \
@@ -155,7 +174,7 @@ PRINT_LOGO = \
     echo "	  └─────────────────────────────┘"; \
     echo "	                                           "; \
     echo "	        eieong 🤝 aumartin"; \
-	printf "\n"; \
+    printf "\n"; \
     fi
 
 PRINT_CLEAN_LOGO = \
@@ -175,7 +194,6 @@ TERM_RESET = printf "\033[2J\033[H"
 
 # Compilation principale
 all: $(LIB) $(MLX) $(NAME)
-	@$(TERM_RESET)
 	@$(PRINT_LOGO)
 
 
@@ -226,8 +244,8 @@ fclean: clean
 	@echo "$(YELLOW)🧼 Nettoyage complet fclean en cours...$(RESET)\r"
 	@$(RM) $(NAME)
 	@$(MAKE) $(LIB_DIR) fclean
-	@$(MAKE) $(MLX_DIR) clean > /dev/null 2>&1
-	@$(RM) $(MLX_BASE)
+	@if [ -d "$(MLX_DIR)" ]; then $(MAKE) $(MLX_DIR) clean > /dev/null 2>&1; fi
+	@if [ -d "$(MLX_BASE)" ]; then $(RM) $(MLX_BASE); fi
 	@echo -e "$(CLEAR_LINE) Nettoyage complet fclean réussi (✔)"
 	$(PRINT_CLEAN_LOGO)
 
