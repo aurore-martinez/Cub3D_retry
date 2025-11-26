@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 14:52:54 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/20 13:05:56 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/26 15:06:23 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static bool	parse_north(t_game *game, char *path)
 	}
 	else
 	{
-		path_len = ft_strlen(path) - 1;
+		path_len = ft_strlen(path);
 		game->elements.north = true;
 		game->elements.path_north = ft_substr(path, 0, path_len);
 		if (!game->elements.path_north)
@@ -48,7 +48,7 @@ static bool	parse_south(t_game *game, char *path)
 	}
 	else
 	{
-		path_len = ft_strlen(path) - 1;
+		path_len = ft_strlen(path);
 		game->elements.south = true;
 		game->elements.path_south = ft_substr(path, 0, path_len);
 		if (!game->elements.path_south)
@@ -73,7 +73,7 @@ static bool	parse_west(t_game *game, char *path)
 	}
 	else
 	{
-		path_len = ft_strlen(path) - 1;
+		path_len = ft_strlen(path);
 		game->elements.west = true;
 		game->elements.path_west = ft_substr(path, 0, path_len);
 		if (!game->elements.path_west)
@@ -98,7 +98,7 @@ static bool	parse_east(t_game *game, char *path)
 	}
 	else
 	{
-		path_len = ft_strlen(path) - 1;
+		path_len = ft_strlen(path);
 		game->elements.east = true;
 		game->elements.path_east = ft_substr(path, 0, path_len);
 		if (!game->elements.path_east)

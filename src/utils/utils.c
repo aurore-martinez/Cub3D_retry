@@ -6,11 +6,37 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 15:37:27 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/25 15:40:18 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/26 15:06:38 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+char	*delete_newline(char *str)
+{
+	char	*new;
+	int		len;
+
+	len = ft_strlen(str) - 1;
+	if (str[len] == '\n')
+	{
+		new = malloc(sizeof(char) * (len + 1));
+		if (!new)
+		{
+			ft_fprintf(2, "Error\n");
+			perror("Malloc");
+			return (NULL);
+		}
+		ft_memcpy(new, str, len);
+		new[len] = '\0';
+		return (new);
+	}
+	else
+	{
+		new = ft_strdup(str);
+		return (new);
+	}
+}
 
 bool	ft_isnumber(char *str)
 {

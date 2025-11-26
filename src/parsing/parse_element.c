@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 11:47:22 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/20 12:44:27 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/26 15:05:50 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,37 +57,50 @@ static int	count_split_elem(char **split_tab)
 	return (count);
 }
 
-static void	proper_free_split(char **split_line)
+static bool	check_elem_errors(char **split_line)
 {
-	free_split(split_line);
-	split_line = NULL;
-}
-
-bool	split_the_line(t_game *game, char *line)
-{
-	char	**split_line;
-
-	split_line = ft_split(line, ' ');
 	if (!split_line)
 	{
 		ft_fprintf(2, "Error\n");
 		return (perror("Malloc"), false);
 	}
 	if (!split_line[0])
-		return (proper_free_split(split_line), true);
-	if (!ft_strncmp(split_line[0], "\n", INT_MAX))
-		return (proper_free_split(split_line), true);
+		return (true);
 	if (count_split_elem(split_line) != 2)
 	{
 		print_error("Wrong element syntax");
-		proper_free_split(split_line);
+		free_split(split_line);
+		split_line = NULL;
 		return (false);
 	}
+	return (true);
+}
+
+bool	split_the_line(t_game *game, char *line)
+{
+	char	**split_line;
+	char	*tmp_line;
+
+	if (!ft_isalpha(line[0]))
+	{
+		print_error("Wrong element syntax");
+		return (false);
+	}
+	tmp_line = delete_newline(line);
+	split_line = ft_split(tmp_line, ' ');
+	free(tmp_line);
+	if (!check_elem_errors(split_line))
+		return (false);
 	else if (split_line[0])
 	{
 		if (!parse_element(game, split_line))
-			return (proper_free_split(split_line), false);
+		{
+			free_split(split_line);
+			split_line = NULL;
+			return (false);
+		}
 	}
-	proper_free_split(split_line);
+	free_split(split_line);
+	split_line = NULL;
 	return (true);
 }

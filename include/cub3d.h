@@ -6,7 +6,7 @@
 /*   By: eieong <eieong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 14:06:04 by eieong            #+#    #+#             */
-/*   Updated: 2025/11/25 15:40:36 by eieong           ###   ########.fr       */
+/*   Updated: 2025/11/26 15:03:46 by eieong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -322,6 +322,7 @@ void	print_error(char *str);
 void	exit_error(char *str);
 bool	is_wall(t_game *g, int row, int col);
 bool	ft_isnumber(char *str);
+char	*delete_newline(char *str);
 
 /* =============================    🚧 DEBUG    ============================= */
 void	print_player_data(t_data *d);
