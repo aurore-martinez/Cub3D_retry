@@ -6,7 +6,7 @@
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 17:15:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/19 16:09:23 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/26 14:33:02 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,13 @@ double	get_wall_x(t_data *d, t_dda *ray, double perp, int side)
 }
 
 /* Calcule la coordonnée X dans la texture */
+// if ((side == 0 && ray->ray_col > 0) || (side == 1 && ray->ray_row < 0))
 int	get_texture_x(t_dda *ray, double wall_x, int side)
 {
 	int	tex_x;
 
 	tex_x = (int)(wall_x * TEX_SIZE);
-	if ((side == 0 && ray->ray_col > 0) || (side == 1 && ray->ray_row < 0))
+	if ((side == 0 && ray->ray_col < 0) || (side == 1 && ray->ray_row > 0))
 		tex_x = TEX_SIZE - tex_x - 1;
 	if (tex_x < 0)
 		tex_x = 0;
