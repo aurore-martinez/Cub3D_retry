@@ -1,27 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   EXAMPLE_render_textured.c                          :+:      :+:    :+:   */
+/*   render_textured.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aumartin <aumartin@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 17:20:00 by aumartin          #+#    #+#             */
-/*   Updated: 2025/11/17 11:08:45 by aumartin         ###   ########.fr       */
+/*   Updated: 2025/11/27 14:05:50 by aumartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-/*
- * EXEMPLE : Comment modifier render_walls() pour utiliser les textures
- *
- * Remplace cette partie dans render.c :
- *
- * 		// mur
- * 		draw_col(d, x, top, bot, wall);
- *
- * Par ceci :
- */
 
 /* static void	render_textured_wall(t_data *d, int x, int top, int bot,
 	t_dda *ray, double perp, int side)
