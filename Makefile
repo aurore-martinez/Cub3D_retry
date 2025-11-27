@@ -8,6 +8,7 @@ endif
 
 # Nom du programme
 NAME = cub3D
+NAME_BONUS = cub3d_bonus
 
 # Compilation
 CC = cc
@@ -131,11 +132,13 @@ SRC_FILES = $(SRC_MAIN) $(SRC_DEBUG) $(SRC_PARSING) $(SRC_PLAYER) $(SRC_INIT) $(
 # Chemins complets des sources et objets
 SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJS_DIR = objs/
+OBJS_BONUS_DIR = objs_bonus/
 #OBJS = $(addprefix $(OBJS_DIR), $(*.=.o))
 OBJS = $(patsubst $(SRC_DIR)%.c,$(OBJS_DIR)%.o,$(SRCS))
+OBJS_BONUS = $(patsubst $(SRC_DIR)%.c,$(OBJS_BONUS_DIR)%.o,$(SRCS))
 
 # fichiers de dépendances .d générés automatiquement
-DEPS = $(OBJS:.o=.d)
+DEPS = $(OBJS:.o=.d) $(OBJS_BONUS:.o=.d)
 
 # inclure les fichiers de dépendances (ne pas échouer s'ils n'existent pas)
 -include $(DEPS)
@@ -194,8 +197,6 @@ TERM_RESET = printf "\033[2J\033[H"
 
 # Compilation principale
 all: $(LIB) $(MLX) $(NAME)
-	@$(PRINT_LOGO)
-
 
 # Compilation lib
 $(LIB):
@@ -222,7 +223,14 @@ $(MLX):
 $(OBJS_DIR):
 	@$(MKDIR) $(OBJS_DIR)
 
+$(OBJS_BONUS_DIR):
+	@$(MKDIR) $(OBJS_BONUS_DIR)
+
 $(OBJS_DIR)%.o: $(SRC_DIR)%.c $(INCLUDE)
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) $(INCLUDE_FLAG) -c $< -o $@
+
+$(OBJS_BONUS_DIR)%.o: $(SRC_DIR)%.c $(INCLUDE) | $(OBJS_BONUS_DIR)
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(INCLUDE_FLAG) -c $< -o $@
 
@@ -233,23 +241,31 @@ $(OBJS_DIR)%.o: $(SRC_DIR)%.c $(INCLUDE)
 $(NAME): $(OBJS) $(LIB) $(MLX)
 	@echo "$(YELLOW) 🚀 Compilation de $(NAME)...$(RESET)\r"
 	@$(CC) $(CFLAGS) $(OBJS) $(LINKER) -o $(NAME) && echo "$(CLEAR_LINE) $(NAME) a été créé avec succès (✔)" && echo "$(GREEN)     eieong 🤝 aumartin" \
+	&& $(PRINT_LOGO)
+
+$(NAME_BONUS): $(OBJS_BONUS) $(LIB) $(MLX)
+	@echo "$(YELLOW) 🚀 Compilation de $(NAME_BONUS)...$(RESET)\r"
+	@$(CC) $(CFLAGS) $(OBJS_BONUS) $(LINKER) -o $(NAME_BONUS) && echo "$(CLEAR_LINE) $(NAME_BONUS) a été créé avec succès (✔)" \
+	&& $(PRINT_LOGO)
 
 # Nettoyage
 clean:
 	@echo "$(YELLOW)🧹 Nettoyage clean en cours...$(RESET)\r"
 	@$(RM) $(OBJS_DIR)
+	@$(RM) $(OBJS_BONUS_DIR)
 	@echo -e "$(CLEAR_LINE) Nettoyage clean réussi (✔)"
 
 fclean: clean
 	@echo "$(YELLOW)🧼 Nettoyage complet fclean en cours...$(RESET)\r"
 	@$(RM) $(NAME)
+	@$(RM) $(NAME_BONUS)
 	@$(MAKE) $(LIB_DIR) fclean
 	@if [ -d "$(MLX_DIR)" ]; then $(MAKE) $(MLX_DIR) clean > /dev/null 2>&1; fi
 	@if [ -d "$(MLX_BASE)" ]; then $(RM) $(MLX_BASE); fi
 	@echo -e "$(CLEAR_LINE) Nettoyage complet fclean réussi (✔)"
 	$(PRINT_CLEAN_LOGO)
 
-bonus: all
+bonus: $(LIB) $(MLX) $(NAME_BONUS)
 
 re: fclean all
 
