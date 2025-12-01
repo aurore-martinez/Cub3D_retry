@@ -15,7 +15,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3 #-fsanitize=address
 
 # Génération automatique des dépendances pour les headers
-CFLAGS += -MMD -MP
+CFLAGS += -MMD
 
 OS = $(shell uname | tr '[:upper:]' '[:lower:]')
 
@@ -139,9 +139,6 @@ OBJS_BONUS = $(patsubst $(SRC_DIR)%.c,$(OBJS_BONUS_DIR)%.o,$(SRCS))
 
 # fichiers de dépendances .d générés automatiquement
 DEPS = $(OBJS:.o=.d) $(OBJS_BONUS:.o=.d)
-
-# inclure les fichiers de dépendances (ne pas échouer s'ils n'existent pas)
--include $(DEPS)
 
 # Couleurs ANSI
 GREEN = \033[32m
@@ -268,5 +265,8 @@ fclean: clean
 bonus: $(LIB) $(MLX) $(NAME_BONUS)
 
 re: fclean all
+
+# inclure les fichiers de dépendances (ne pas échouer s'ils n'existent pas)
+-include $(DEPS)
 
 .PHONY: all clean fclean re bonus
